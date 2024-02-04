@@ -1,0 +1,6 @@
+.enable {
+    background-color: #0d9488 !important;
+    color: white !important;
+    opacity: 1 !important;
+    transition: all ease 0.2s;
+}

@@ -1,23 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import './navbar.css';
-import logo from '../../assets/logo-full-light.png';
+import { ModeContext } from '../../utils/setModeContext';
 
+import './navbar.css';
+import logoLight from '../../assets/img/logo-full-light.png';
+import logoDark from '../../assets/img/logo-full-dark.png';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 export const NavBar = () => {
     const navRef = useRef(null);
+    const logoRef = useRef(null);
     const lightRef = useRef(null);
     const darkRef = useRef(null);
+
+    const { theme,setTheme } = useContext(ModeContext)
 
     useEffect(() => {
         let prevScrollPos = window.scrollY;
 
         window.onscroll = () => {
             let currentScrollPos = window.scrollY;
-
-            console.log(prevScrollPos, currentScrollPos);
 
             if (prevScrollPos > currentScrollPos) {
                 navRef.current.style.top = '0';
@@ -32,39 +35,39 @@ export const NavBar = () => {
     }, []);
 
     useEffect(() => {
-        const mode = localStorage.getItem('mode');
-
-        if (mode === 'light' || mode === null) {
+        if (theme === 'light' || theme === null) {
             lightRef.current.classList.add('select');
+            darkRef.current.classList.remove('select');
+            logoRef.current.src = logoLight;
         } else {
             darkRef.current.classList.add('select');
+            lightRef.current.classList.remove('select');
+            logoRef.current.src = logoDark;
         }
-    }, []);
+    }, [theme]);
 
     const handleMode = (e) => {
         if (e.target.closest('.mode-btn').getAttribute('mode') === 'light') {
-            localStorage.setItem('mode', 'light');
-            lightRef.current.classList.add('select');
-            darkRef.current.classList.remove('select');
+            setTheme('light')
         } else {
-            localStorage.setItem('mode', 'dark');
-            darkRef.current.classList.add('select');
-            lightRef.current.classList.remove('select');
+            setTheme('dark')
         }
     };
 
+
     return (
         <header
-            className="bg-white flex justify-between py-2 px-[4%] shadow-md fixed top-0 left-0 right-0 z-[5]"
+            className="flex justify-between py-2 px-[4%] shadow-md fixed top-0 left-0 right-0 z-[5] bg-header-color"
             ref={navRef}
         >
             <div>
                 <Link to="/">
                     <img
-                        src={logo}
+                        src={logoLight}
                         alt="Main logo"
                         loading="lazy"
                         className="h-[50px]"
+                        ref={logoRef}
                     />
                 </Link>
             </div>
@@ -82,9 +85,9 @@ export const NavBar = () => {
                     <Link to="/print">Báo cáo</Link>
                 </div>
             </nav>
-            <div className="relative w-[5rem] h-[2.5rem] flex justify-between bg-[#EFF2F9] rounded-xl p-1 bs-in cursor-pointer">
+            <div className="relative w-[5rem] h-[2.5rem] flex justify-between bg-[#EFF2F9] rounded-xl p-1 bs-in cursor-pointer my-auto">
                 <div
-                    className="w-[45%] h-full rounded-xl mode-btn"
+                    className="w-[45%] h-full rounded-xl mode-btn light-mode"
                     ref={lightRef}
                     mode="light"
                     onClick={handleMode}
@@ -95,7 +98,7 @@ export const NavBar = () => {
                     />
                 </div>
                 <div
-                    className="w-[45%] h-full rounded-xl mode-btn"
+                    className="w-[45%] h-full rounded-xl mode-btn dark-mode"
                     ref={darkRef}
                     mode="dark"
                     onClick={handleMode}

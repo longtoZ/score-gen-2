@@ -1,0 +1,24 @@
+.select-school-type[school-type="normal"] {
+    color: white;
+    background: #059669;
+    transition: all ease 0.2s;
+}
+
+.select-school-type[school-type="special"] {
+    color: white;
+    background: #0284c7;
+    transition: all ease 0.2s;
+}
+
+.select-function-type {
+    color: white;
+    background-color: #0d9488;
+    transition: all ease 0.2s;
+}
+
+.selected-district svg {
+    color: white;
+    background-color: #6ee7b7;
+    border-color: #6ee7b7;
+    transition: all ease 0.2s;
+}

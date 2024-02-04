@@ -1,10 +1,8 @@
 header {
-    transition: all ease 1s !important;
+    transition: ease 1s !important;
 }
 
-.bs-in {
-    box-shadow: -2px -2px 5px #ffffffbd inset, 2px 2px 5px #161b1d17 inset;
-}
+
 
 .select {
     background-color: white;

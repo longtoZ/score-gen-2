@@ -1,5 +1,5 @@
 import { db } from '../connect.js';
-import { schoolTypesObj } from '../constants/lists.js';
+import { schoolTypesObj } from '../utils/lists.js';
 
 export const searchController = (req, res) => {
 

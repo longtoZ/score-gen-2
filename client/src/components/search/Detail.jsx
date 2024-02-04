@@ -1,5 +1,5 @@
 import React from 'react'
-import './detail.css'
+import './table.css'
 
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';

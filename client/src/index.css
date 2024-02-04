@@ -7,3 +7,62 @@
 * {
     font-size: 98%;
 }
+
+:root {
+    --text-color: #0a0a0a;
+    --text-subtitle-color: #737373;
+    --bg-color: #f0f0f0;
+    --bg-sank-color: #f0f0f0;
+    --header-color: #ffffff;
+    --input-color: #f0f0f0;
+    --box-shadow: 0 0 5px rgb(0 0 0 / 15%);
+    --box-shadow-light: 0 0 12px rgb(0 0 0 / 7%);
+    --box-shadow-lighter: 0 0 12px rgb(0 0 0 / 4%);
+    --box-shadow-thick: 0 0 10px rgb(0 0 0 /8%);
+    --even-row-color: #e8e8e8;
+    --border-color: #dfdfdf;
+    --thumb-color: #d4d4d4;
+}
+
+[data-theme='dark'] {
+    --text-color: #fafafa;
+    --bg-color: #1e1e1e;
+    --header-color: #262626;
+    --input-color: #404040;
+    --box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+    --box-shadow-light: 0 0 12px rgb(0 0 0 / 21%);
+    --box-shadow-lighter: 0 0 12px rgb(0 0 0 / 15%);
+    --even-row-color: #262626;
+    --border-color: #737373;
+    --thumb-color: #262626;
+}
+
+body {
+    animation: transitionIn 1s;
+    background-color: var(--bg-color);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--thumb-color);
+    border-radius: 20px;
+}
+
+input:focus-visible {
+    outline: none;
+}
+
+.App {
+    transition: ease 1s !important;
+}
+
+.bs-in {
+    box-shadow: -2px -2px 5px #ffffffbd inset, 2px 2px 5px #161b1d17 inset;
+}
