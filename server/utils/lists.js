@@ -21,7 +21,7 @@ export const normalSubjectsObj = {
     "Nguyện vọng 3": "NV3"
 }
 
-export const proSubjectsObj = {
+export const specialSubjectsObj = {
     "Nguyện vọng Chuyên Anh" : "NV1_CANH",
     "Nguyện vọng Chuyên Địa" : "NV1_CDIA",
     "Nguyện vọng Chuyên Hoá" : "NV1_CHOA",

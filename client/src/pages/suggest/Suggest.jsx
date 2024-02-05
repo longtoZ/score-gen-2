@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, createContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Range } from '../../components/suggest/Range.jsx';
+import { RangeTable } from '../../components/suggest/RangeTable.jsx';
 import { Top } from '../../components/suggest/Top.jsx';
 import { Average } from '../../components/suggest/Average.jsx';
 import { normalSubjectsObj, districtsList, specialSubjectsObj } from '../../utils/lists.js'
@@ -8,6 +9,8 @@ import { normalSubjectsObj, districtsList, specialSubjectsObj } from '../../util
 import './suggest.css';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddIcon from '@mui/icons-material/Add';
+
+export const TableContext = createContext();
 
 export const Suggest = () => {
 
@@ -24,11 +27,15 @@ export const Suggest = () => {
     const averageRef = useRef(null);
 
     const [schoolType, setSchoolType] = useState('Lớp thường');
+    const [selectedNormalWish, setSelectedNormalWish] = useState(Object.entries(normalSubjectsObj)[0][0]);
+    const [selectedSpecialWish, setSelectedSpecialWish] = useState(Object.entries(specialSubjectsObj)[0][0]);
     const [showNormalWish, setShowNormalWish] = useState(false);
     const [showSpecialWish, setShowSpecialWish] = useState(false);
     const [showDistrict, setShowDistrict] = useState(false);
     const [selectedDistrict, setSelectedDistrict] = useState([]);
     const [currentFunction, setCurrentFunction] = useState('Lọc khoảng');
+
+    const [tableData, setTableData] = useState([]);
 
     const handleShowNormalWish = () => {
         setShowNormalWish(!showNormalWish);
@@ -44,11 +51,13 @@ export const Suggest = () => {
 
     const handleNormalWish = (e) => {
         normalWishRef.current.innerText = e.target.innerText;
+        setSelectedNormalWish(e.target.innerText);
         setShowNormalWish(false);
     }
 
     const handleSpecialWish = (e) => {
         specialWishRef.current.innerText = e.target.innerText;
+        setSelectedSpecialWish(e.target.innerText);
         setShowSpecialWish(false);
     }
 
@@ -207,7 +216,10 @@ export const Suggest = () => {
                                     </div>
                                 </div>
 
-                                {currentFunction === 'Lọc khoảng' ? <Range min={0} max={30} /> : (currentFunction === 'Thứ tự' ? <Top/> : <Average/>)}
+                                <TableContext.Provider value={{tableData, setTableData}}>
+                                    {currentFunction === 'Lọc khoảng' ? <Range min={0} max={30} schoolType='Lớp thường' selectedDistrict={selectedDistrict} wish={selectedNormalWish} /> : (currentFunction === 'Thứ tự' ? <Top/> : <Average/>)}
+                                </TableContext.Provider>
+
                             </div>
                         ) : (
                             <div className='border-2 border-border-color p-4 rounded-lg'>
@@ -218,13 +230,16 @@ export const Suggest = () => {
                                         <h1>Lọc khoảng</h1>
                                     </div>
                                 </div>
-
-                                <Range min={0} max={50}/>
+                                <TableContext.Provider value={{tableData, setTableData}}>
+                                    <Range min={0} max={50} schoolType='Lớp chuyên' selectedDistrict={selectedDistrict} wish={selectedSpecialWish}/>
+                                </TableContext.Provider>
                             </div>
                         )}
 
                     </div>
                 </div>
+
+                <RangeTable tableData={tableData} schoolType={schoolType} />
             </div>
         </div>
     );

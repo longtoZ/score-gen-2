@@ -14,7 +14,7 @@ export const NavBar = () => {
     const lightRef = useRef(null);
     const darkRef = useRef(null);
 
-    const { theme,setTheme } = useContext(ModeContext)
+    const { theme, setTheme } = useContext(ModeContext)
 
     useEffect(() => {
         let prevScrollPos = window.scrollY;
