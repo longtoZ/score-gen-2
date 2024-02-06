@@ -64,5 +64,7 @@ input:focus-visible {
 }
 
 .bs-in {
-    box-shadow: -2px -2px 5px #ffffffbd inset, 2px 2px 5px #161b1d17 inset;
+    box-shadow:
+        -2px -2px 5px #ffffffbd inset,
+        2px 2px 5px #161b1d17 inset;
 }

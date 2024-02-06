@@ -1,8 +1,9 @@
 import express from "express"
-import { suggestRangeController } from "../controllers/suggestRange.js"
+import { rangeController } from "../controllers/range.js"
 
 const router = express.Router()
 
-router.get("/range", suggestRangeController)
+router.get("/", rangeController)
+
 
 export default router

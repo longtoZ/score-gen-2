@@ -1,10 +1,10 @@
-.select-school-type[school-type="normal"] {
+.select-school-type[school-type='normal'] {
     color: white;
     background: #059669;
     transition: all ease 0.2s;
 }
 
-.select-school-type[school-type="special"] {
+.select-school-type[school-type='special'] {
     color: white;
     background: #0284c7;
     transition: all ease 0.2s;

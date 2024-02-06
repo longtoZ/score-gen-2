@@ -1,12 +1,10 @@
 import { useState, useContext } from 'react';
-import { TableContext } from '../../pages/suggest/Suggest';
+import { FilterContext } from '../../pages/suggest/Suggest';
 import { normalSubjectsObj, specialSubjectsObj } from '../../utils/lists';
-import { getAxiosRange, handleDataRange } from './utils';
 
-export const Range = ({ min, max, schoolType, selectedDistrict, wish }) => {
-    
-    const { setTableData } = useContext(TableContext);
-    
+export const Range = ({ min, max, schoolType, wish }) => {
+    const { filterData, setFilterData } = useContext(FilterContext);
+
     const [start, setStart] = useState(min);
     const [end, setEnd] = useState(max);
 
@@ -19,22 +17,23 @@ export const Range = ({ min, max, schoolType, selectedDistrict, wish }) => {
     };
 
     const handleData = () => {
-        const startValue = schoolType === 'Lớp thường' ? ((start / 30) * 100).toFixed(2) : start;
-        const endValue = schoolType === 'Lớp thường' ? ((end / 30) * 100).toFixed(2) : end;
-        const districtValue = selectedDistrict.map((district) => "`QUAN/HUYEN` LIKE '%" + district + "%'").join(' OR ')
-        const wishValue = schoolType === 'Lớp thường' ? normalSubjectsObj[wish] : specialSubjectsObj[wish].replace('1', '%');
+        const startValue =
+            schoolType === 'Lớp thường'
+                ? ((start / 30) * 100).toFixed(2)
+                : start;
+        const endValue =
+            schoolType === 'Lớp thường' ? ((end / 30) * 100).toFixed(2) : end;
+        const wishValue =
+            schoolType === 'Lớp thường'
+                ? normalSubjectsObj[wish]
+                : specialSubjectsObj[wish].replace('1', '%');
 
-        getAxiosRange(startValue, endValue, schoolType, districtValue, wishValue)
-            .then(res => handleDataRange(res, schoolType, wishValue))
-            .then(data => {
-                if (schoolType === 'Lớp thường') {
-                    setTableData(data.filter((item) => parseFloat(item[wishValue]) >= startValue && parseFloat(item[wishValue]) <= endValue))
-                } else {
-                    console.log(data.filter((item) => parseFloat(item['NV1']) >= startValue && parseFloat(item['NV2']) <= endValue))
-                    setTableData(data.filter((item) => parseFloat(item['NV1']) >= startValue && parseFloat(item['NV2']) <= endValue))
-                    
-                }
-            });
+        setFilterData({
+            ...filterData,
+            startValue,
+            endValue,
+            wishValue,
+        });
     };
 
     return (

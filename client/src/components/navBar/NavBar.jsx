@@ -14,7 +14,7 @@ export const NavBar = () => {
     const lightRef = useRef(null);
     const darkRef = useRef(null);
 
-    const { theme, setTheme } = useContext(ModeContext)
+    const { theme, setTheme } = useContext(ModeContext);
 
     useEffect(() => {
         let prevScrollPos = window.scrollY;
@@ -48,12 +48,11 @@ export const NavBar = () => {
 
     const handleMode = (e) => {
         if (e.target.closest('.mode-btn').getAttribute('mode') === 'light') {
-            setTheme('light')
+            setTheme('light');
         } else {
-            setTheme('dark')
+            setTheme('dark');
         }
     };
-
 
     return (
         <header
