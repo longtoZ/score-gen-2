@@ -1,6 +1,6 @@
 import { db } from "../connect.js";
 
-export const rangeController = (req, res) => {
+export const suggestController = (req, res) => {
   const schoolType = req.query.schoolType;
   const wish = req.query.wish;
   const extend =
