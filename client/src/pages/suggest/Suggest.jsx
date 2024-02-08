@@ -185,6 +185,7 @@ export const Suggest = () => {
                     ? normalSubjectsObj[selectedNormalWish]
                     : specialSubjectsObj[selectedSpecialWish].replace('1', '%'),
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedNormalWish, selectedSpecialWish]);
 
     return (

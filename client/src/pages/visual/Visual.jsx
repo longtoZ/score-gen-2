@@ -1,59 +1,75 @@
-import { useState, useRef, createContext } from 'react';
+import { useState, useRef, createContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import { SchoolSearch } from '../../components/visual/SchoolSearch';
+import { YearChart } from '../../components/visual/YearChart';
 import { getAxiosYear, handleDataYear } from '../../components/visual/utils';
+import { yearsList } from '../../utils/lists';
+import './add.css';
 
-export const SchoolContext = createContext()
+export const SchoolContext = createContext();
 
 export const Visual = () => {
-
     const [showSearch, setShowSearch] = useState(false);
-    const [keyword, setKeyword] = useState('')
-    const [schoolList, setSchoolList] = useState([])
-    const [schoolData, setSchoolData] = useState([])
+    const [keyword, setKeyword] = useState('');
+    const [startYear, setStartYear] = useState(yearsList[yearsList.length - 1]);
+    const [endYear, setEndYear] = useState(yearsList[0]);
+    const [selectedWish, setSelectedWish] = useState('NV1');
+    const [schoolList, setSchoolList] = useState([]);
+    const [schoolData, setSchoolData] = useState([]);
 
     const keywordRef = useRef(null);
+    const searchRef = useRef(null);
+    const addSchoolRef = useRef(null);
 
     const handleShowSearch = () => {
         setShowSearch(!showSearch);
-    }
+    };
 
     const handleKeyword = (e) => {
         setKeyword(e.target.value.trim());
-    }
+    };
 
     const handleSearch = () => {
         getAxiosYear(keyword)
-            .then(res => handleDataYear(res))
-            .then(data => {
+            .then((res) => handleDataYear(res))
+            .then((data) => {
                 const school = {
-                    'MA_TRUONG' : data[0]['MA_TRUONG'],
-                    'TEN_TRUONG' : data[0]['TEN_TRUONG'],
-                    'QUAN/HUYEN' : data[0]['QUAN/HUYEN'],
-                    'MA_LOAI' : data[0]['MA_LOAI'],
-                }
+                    MA_TRUONG: data[0]['MA_TRUONG'],
+                    TEN_TRUONG: data[0]['TEN_TRUONG'],
+                    'QUAN/HUYEN': data[0]['QUAN/HUYEN'],
+                    MA_LOAI: data[0]['MA_LOAI'],
+                };
 
                 if (!schoolList.includes(school)) {
-                    setSchoolList([...schoolList, school])
+                    setSchoolList([...schoolList, school]);
 
-                    setSchoolData([...schoolData, 
-                    {
-                        'MA_TRUONG' : data[0]['MA_TRUONG'],
-                        'DATA' : data
-                    }])
-
+                    setSchoolData([
+                        ...schoolData,
+                        {
+                            MA_TRUONG: data[0]['MA_TRUONG'],
+                            DATA: data,
+                        },
+                    ]);
                 } else {
-                    alert('Trường đã có trong danh sách')
+                    alert('Trường đã có trong danh sách');
                 }
 
-                setKeyword('')
-                keywordRef.current.value = ''
-                keywordRef.current.focus()
-            })
-    }
+                setKeyword('');
+                keywordRef.current.value = '';
+                keywordRef.current.focus();
+            });
+    };
+
+    useEffect(() => {
+        if (schoolList.length === 3) {
+            addSchoolRef.current.style.display = 'none';
+        } else {
+            addSchoolRef.current.style.display = 'block';
+        }
+    }, [schoolList]);
 
     return (
         <div className="Visual py-[10rem]">
@@ -72,24 +88,71 @@ export const Visual = () => {
                 </p>
 
                 <div className="flex justify-center gap-4 mt-[3rem]">
-                    <SchoolContext.Provider value={{ schoolList, setSchoolList }}>
+                    <SchoolContext.Provider
+                        value={{
+                            schoolList,
+                            setSchoolList,
+                            schoolData,
+                            setSchoolData,
+                        }}
+                    >
                         {schoolList.map((school, index) => (
-                            <SchoolSearch key={index} school={school}/>
+                            <SchoolSearch key={index} school={school} />
                         ))}
                     </SchoolContext.Provider>
 
-                    <div className='relative'>
-                        <div className='cursor-pointer bg-input-color p-1 rounded-[50%] shadow-basic' onClick={handleShowSearch}>
-                            <AddIcon className={showSearch ? 'rotate-45' : 'rotate-180'} style={{transition: 'transform ease 0.2s'}} />
+                    <div className="relative" ref={addSchoolRef}>
+                        <div
+                            className="add cursor-pointer bg-input-color p-1 rounded-[50%] shadow-basic flex"
+                            onClick={handleShowSearch}
+                        >
+                            <AddIcon
+                                className={
+                                    showSearch ? 'rotate-45' : 'rotate-180'
+                                }
+                                style={{ transition: 'transform ease 0.2s' }}
+                            />
+                            <h1 className="ml-1 font-semibold">Thêm</h1>
                         </div>
-                        <div className={`absolute top-0 left-12 p-2 shadow-basic bg-input-color rounded-lg flex gap-2 ${showSearch ? 'block' : 'hidden'}`}>
-                            <input className="bg-bg-sank-color bs-in p-1 rounded-lg" type="text" placeholder="Nhập tên trường..." ref={keywordRef} onChange={handleKeyword} />
-                            <button className='rounded-[50%] bg-emerald-500 text-white p-1' onClick={handleSearch}>
+                        <div
+                            className={`absolute top-16 left-0 p-2 shadow-basic bg-input-color rounded-lg flex gap-2 ${showSearch ? 'block' : 'hidden'}`}
+                        >
+                            <input
+                                className="bg-bg-sank-color bs-in p-1 rounded-lg"
+                                type="text"
+                                placeholder="Nhập tên trường..."
+                                ref={keywordRef}
+                                onChange={handleKeyword}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        searchRef.current.click();
+                                    }
+                                }}
+                            />
+                            <button
+                                className="rounded-[50%] bg-emerald-500 text-white p-1"
+                                onClick={handleSearch}
+                                ref={searchRef}
+                            >
                                 <SearchIcon />
                             </button>
                         </div>
                     </div>
                 </div>
+
+                <SchoolContext.Provider
+                    value={{
+                        startYear,
+                        setStartYear,
+                        endYear,
+                        setEndYear,
+                        selectedWish,
+                        setSelectedWish,
+                        schoolData,
+                    }}
+                >
+                    <YearChart selectedWish={selectedWish} />
+                </SchoolContext.Provider>
             </div>
         </div>
     );

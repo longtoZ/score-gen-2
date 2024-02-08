@@ -23,7 +23,7 @@ export const districtsList = [
     'Hóc Môn',
     'Nhà Bè',
 ];
-// const wishsList = ["Nguyện vọng 1", "Nguyện vọng 2", "Nguyện vọng 3"]
+
 export const schoolTypesList = [
     'Trường thường',
     'Trường có lớp chuyên, tích hợp',

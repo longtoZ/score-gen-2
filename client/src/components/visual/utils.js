@@ -16,23 +16,21 @@ export const getAxiosYear = (school) => {
 };
 
 export const handleDataYear = (data) => {
-
     let result = [];
     let year = '';
     let code = '';
     let school = {
-        'MA_TRUONG': '',
-        'NAM_HOC': 0,
-        'TEN_TRUONG': '',
+        MA_TRUONG: '',
+        NAM_HOC: 0,
+        TEN_TRUONG: '',
         'QUAN/HUYEN': '',
-        'MA_LOAI': '',
-        'DIEM': {}
+        MA_LOAI: '',
+        DIEM: {},
     };
 
     for (let i = 0; i < data.length; i++) {
         if (year === '') {
             if (i !== 0) {
-
                 if (code !== data[i]['MA_TRUONG']) {
                     break;
                 }
@@ -61,12 +59,12 @@ export const handleDataYear = (data) => {
         } else if (year !== data[i]['NAM_HOC']) {
             result.push(school);
             school = {
-                'MA_TRUONG': '',
-                'NAM_HOC': 0,
-                'TEN_TRUONG': '',
+                MA_TRUONG: '',
+                NAM_HOC: 0,
+                TEN_TRUONG: '',
                 'QUAN/HUYEN': '',
-                'MA_LOAI': '',
-                'DIEM': {}
+                MA_LOAI: '',
+                DIEM: {},
             };
             year = '';
         }
@@ -74,17 +72,16 @@ export const handleDataYear = (data) => {
         if (i === data.length - 1) {
             result.push(school);
             school = {
-                'MA_TRUONG': '',
-                'NAM_HOC': 0,
-                'TEN_TRUONG': '',
+                MA_TRUONG: '',
+                NAM_HOC: 0,
+                TEN_TRUONG: '',
                 'QUAN/HUYEN': '',
-                'MA_LOAI': '',
-                'DIEM': {}
+                MA_LOAI: '',
+                DIEM: {},
             };
             year = '';
         }
     }
 
     return result;
-
-}
+};
