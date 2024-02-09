@@ -10,8 +10,8 @@ export const KeywordContext = createContext();
 
 export const Search = () => {
     const [keyword, setKeyword] = useState('');
-    const [schoolType, setSchoolType] = useState('Trường thường');
-    const [year, setYear] = useState('2023');
+    const [schoolType, setSchoolType] = useState(schoolTypesList[0]);
+    const [year, setYear] = useState(String(yearsList[0]));
 
     const [showType, setShowType] = useState(false);
     const [showYear, setShowYear] = useState(false);
@@ -82,7 +82,7 @@ export const Search = () => {
                         onClick={handleShowType}
                     >
                         <p className="pr-2" ref={schoolTypeRef}>
-                            Trường thường
+                            {schoolType}
                         </p>
                         <ArrowDropDownIcon />
 
@@ -112,7 +112,7 @@ export const Search = () => {
                         onClick={handleShowYear}
                     >
                         <p className="pr-2" ref={yearRef}>
-                            Năm 2023
+                            Năm {year}
                         </p>
                         <ArrowDropDownIcon />
 

@@ -6,7 +6,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import './schoolSearch.css';
 
 export const SchoolSearch = ({ school }) => {
-    const { schoolList, setSchoolList, schoolData, setSchoolData } =
+    const { schoolList, setSchoolList, schoolData, setSchoolData, competeData, setCompeteData } =
         useContext(SchoolContext);
 
     const handleRemove = () => {
@@ -15,6 +15,9 @@ export const SchoolSearch = ({ school }) => {
         );
         setSchoolData(
             schoolData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
+        );
+        setCompeteData(
+            competeData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
         );
     };
 

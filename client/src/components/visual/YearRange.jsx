@@ -3,7 +3,7 @@ import { SchoolContext } from '../../pages/visual/Visual.jsx';
 import { yearsList } from '../../utils/lists.js';
 import './yearRange.css';
 
-export const YearRange = () => {
+export const YearRange = ({showWish = true}) => {
     const {
         startYear,
         setStartYear,
@@ -77,7 +77,8 @@ export const YearRange = () => {
                     }
                 />
             </div>
-            <div className="bg-input-color p-2 rounded-lg shadow-basic inline-block m-4">
+
+            <div className={`bg-input-color p-2 rounded-lg shadow-basic inline-block m-4 ${showWish ? 'block' : 'hidden'}`}>
                 <h1 className="mx-2 mb-2 text-text-color font-semibold">
                     Chọn nguyện vọng
                 </h1>
@@ -108,6 +109,7 @@ export const YearRange = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     );
 };

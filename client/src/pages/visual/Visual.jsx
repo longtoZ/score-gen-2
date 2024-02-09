@@ -5,20 +5,24 @@ import AddIcon from '@mui/icons-material/Add';
 import SearchIcon from '@mui/icons-material/Search';
 import { SchoolSearch } from '../../components/visual/SchoolSearch';
 import { YearChart } from '../../components/visual/YearChart';
-import { getAxiosYear, handleDataYear } from '../../components/visual/utils';
+import { CompeteChart } from '../../components/visual/CompeteChart';
+import { getAxiosYear, handleDataYear, getAxiosCompete, handleDataCompete } from '../../components/visual/utils';
 import { yearsList } from '../../utils/lists';
 import './add.css';
 
 export const SchoolContext = createContext();
+export const CompeteContext = createContext();
 
 export const Visual = () => {
     const [showSearch, setShowSearch] = useState(false);
     const [keyword, setKeyword] = useState('');
     const [startYear, setStartYear] = useState(yearsList[yearsList.length - 1]);
     const [endYear, setEndYear] = useState(yearsList[0]);
+    const [singleYear , setSingleYear] = useState(yearsList[0]);
     const [selectedWish, setSelectedWish] = useState('NV1');
     const [schoolList, setSchoolList] = useState([]);
     const [schoolData, setSchoolData] = useState([]);
+    const [competeData, setCompeteData] = useState([]);
 
     const keywordRef = useRef(null);
     const searchRef = useRef(null);
@@ -61,6 +65,17 @@ export const Visual = () => {
                 keywordRef.current.value = '';
                 keywordRef.current.focus();
             });
+        
+        getAxiosCompete(keyword)
+            .then((res) => handleDataCompete(res))
+            .then((data) => {
+                setCompeteData([
+                    ...competeData,
+                    data
+                ]);
+            });
+        
+
     };
 
     useEffect(() => {
@@ -94,6 +109,8 @@ export const Visual = () => {
                             setSchoolList,
                             schoolData,
                             setSchoolData,
+                            competeData,
+                            setCompeteData
                         }}
                     >
                         {schoolList.map((school, index) => (
@@ -153,6 +170,20 @@ export const Visual = () => {
                 >
                     <YearChart selectedWish={selectedWish} />
                 </SchoolContext.Provider>
+
+                <SchoolContext.Provider
+                    value={{
+                        startYear,
+                        setStartYear,
+                        endYear,
+                        setEndYear
+                    }}
+                >
+                    <CompeteContext.Provider value={{ competeData, singleYear, setSingleYear }}>
+                        <CompeteChart/>
+                    </CompeteContext.Provider>
+                </SchoolContext.Provider>
+
             </div>
         </div>
     );

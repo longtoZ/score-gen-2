@@ -15,6 +15,18 @@ import {
 import { Bar, Line } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
+Chart.register(
+    ChartDataLabels,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    PointElement,
+    LineElement,
+    Tooltip,
+    Legend,
+);
+
 export const YearChart = ({ selectedWish }) => {
     const { startYear, endYear, schoolData } = useContext(SchoolContext);
 
@@ -81,10 +93,14 @@ export const YearChart = ({ selectedWish }) => {
             TEN_TRUONG: school[0]['TEN_TRUONG'],
             DIEM: Array.from(school, (s) => {
                 if (years.includes(s['NAM_HOC'])) {
+                    if (s['DIEM']['NV1'] === 0) {
+                        return NaN
+                    }
+
                     if (s['NAM_HOC'] < 2021) {
-                        return (s['DIEM']['NV1'] / 50) * 100;
+                        return ((s['DIEM']['NV1'] / 50) * 100).toFixed(2);
                     } else {
-                        return (s['DIEM']['NV1'] / 30) * 100;
+                        return ((s['DIEM']['NV1'] / 30) * 100).toFixed(2);
                     }
                 }
                 return null;
@@ -95,10 +111,14 @@ export const YearChart = ({ selectedWish }) => {
             TEN_TRUONG: school[0]['TEN_TRUONG'],
             DIEM: Array.from(school, (s) => {
                 if (years.includes(s['NAM_HOC'])) {
+                    if (s['DIEM']['NV2'] === 0) {
+                        return NaN
+                    }
+
                     if (s['NAM_HOC'] < 2021) {
-                        return (s['DIEM']['NV2'] / 50) * 100;
+                        return ((s['DIEM']['NV2'] / 50) * 100).toFixed(2);
                     } else {
-                        return (s['DIEM']['NV2'] / 30) * 100;
+                        return ((s['DIEM']['NV2'] / 30) * 100).toFixed(2);
                     }
                 }
                 return null;
@@ -109,28 +129,20 @@ export const YearChart = ({ selectedWish }) => {
             TEN_TRUONG: school[0]['TEN_TRUONG'],
             DIEM: Array.from(school, (s) => {
                 if (years.includes(s['NAM_HOC'])) {
+                    if (s['DIEM']['NV3'] === 0) {
+                        return NaN
+                    }
+
                     if (s['NAM_HOC'] < 2021) {
-                        return (s['DIEM']['NV3'] / 50) * 100;
+                        return ((s['DIEM']['NV3'] / 50) * 100).toFixed(2);
                     } else {
-                        return (s['DIEM']['NV3'] / 30) * 100;
+                        return ((s['DIEM']['NV3'] / 30) * 100).toFixed(2);
                     }
                 }
                 return null;
             }).filter((s) => s !== null),
         });
     }
-
-    Chart.register(
-        ChartDataLabels,
-        CategoryScale,
-        LinearScale,
-        BarElement,
-        Title,
-        PointElement,
-        LineElement,
-        Tooltip,
-        Legend,
-    );
 
     let delayedYear;
     const optionsYear = {
@@ -186,6 +198,7 @@ export const YearChart = ({ selectedWish }) => {
     let delayedTrend;
     const optionsTrend = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             title: {
                 display: true,
@@ -207,8 +220,6 @@ export const YearChart = ({ selectedWish }) => {
                     display: true,
                     text: 'Phần trăm',
                 },
-                // min: 0,
-                max: 100,
             },
         },
 
@@ -280,7 +291,7 @@ export const YearChart = ({ selectedWish }) => {
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Xu hướng điểm (%)
                         </h1>
-                        <div className="p-4 w-full">
+                        <div className="p-4 w-full h-[25rem]">
                             <Line
                                 data={dataTrend}
                                 options={optionsTrend}
