@@ -30,6 +30,22 @@ export const getAxiosCompete = (school) => {
     });
 };
 
+export const getAxiosArea = (district, year, wish) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .get(process.env.REACT_APP_SERVER + '/api/visual/area', {
+                params: { district, year, wish },
+            })
+            .then((res) => {
+                resolve(res.data);
+            })
+            .catch((err) => {
+                reject(err);
+            });
+    });
+
+}
+
 export const handleDataYear = (data) => {
     let result = [];
     let year = '';
@@ -125,4 +141,21 @@ export const handleDataCompete = (data) => {
     }
 
     return result;
+}
+
+export const handleDataArea = (data) => {
+    const result = {
+        'QUAN/HUYEN': data[0]['QUAN/HUYEN'],
+        MA_NV: data[0]['MA_NV'],
+        DATA: Array.from(data, (item) => {
+            return {
+                MA_TRUONG: item['MA_TRUONG'],
+                TEN_TRUONG: item['TEN_TRUONG'],
+                DIEM: item['DIEM'],
+            }
+        })
+    }
+
+    return result;
+
 }

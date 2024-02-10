@@ -27,8 +27,29 @@ Chart.register(
     Legend,
 );
 
-export const YearChart = ({ selectedWish }) => {
-    const { startYear, endYear, schoolData } = useContext(SchoolContext);
+const wishFullName = {
+    NV1: 'Nguyện vọng 1',
+    NV2: 'Nguyện vọng 2',
+    NV3: 'Nguyện vọng 3',
+};
+
+const color = [
+    {
+        bg: 'rgba(16, 185, 129, 0.2)',
+        border: '#10b981',
+    },
+    {
+        bg: 'rgba(6, 182, 212, 0.2)',
+        border: '#06b6d4',
+    },
+    {
+        bg: 'rgba(59, 130, 246, 0.2)',
+        border: '#3b82f6',
+    },
+];
+
+export const YearChart = () => {
+    const { startYear, endYear, schoolData, singleWish } = useContext(SchoolContext);
 
     const years = [];
     for (let i = startYear; i <= endYear; i++) {
@@ -45,52 +66,33 @@ export const YearChart = ({ selectedWish }) => {
         NV2: [],
         NV3: [],
     };
-    const color = [
-        {
-            bg: 'rgba(16, 185, 129, 0.2)',
-            border: '#10b981',
-        },
-        {
-            bg: 'rgba(6, 182, 212, 0.2)',
-            border: '#06b6d4',
-        },
-        {
-            bg: 'rgba(59, 130, 246, 0.2)',
-            border: '#3b82f6',
-        },
-    ];
-    const wishFullName = {
-        NV1: 'Nguyện vọng 1',
-        NV2: 'Nguyện vọng 2',
-        NV3: 'Nguyện vọng 3',
-    };
 
     for (const data of schoolData) {
         const school = data['DATA'];
 
         wishes.NV1.push({
-            TEN_TRUONG: school[0]['TEN_TRUONG'],
+            TEN_TRUONG: data['TEN_TRUONG'],
             DIEM: Array.from(school, (s) =>
                 years.includes(s['NAM_HOC']) ? s['DIEM']['NV1'] : null,
             ).filter((s) => s !== null),
         });
 
         wishes.NV2.push({
-            TEN_TRUONG: school[0]['TEN_TRUONG'],
+            TEN_TRUONG: data['TEN_TRUONG'],
             DIEM: Array.from(school, (s) =>
                 years.includes(s['NAM_HOC']) ? s['DIEM']['NV2'] : null,
             ).filter((s) => s !== null),
         });
 
         wishes.NV3.push({
-            TEN_TRUONG: school[0]['TEN_TRUONG'],
+            TEN_TRUONG: data['TEN_TRUONG'],
             DIEM: Array.from(school, (s) =>
                 years.includes(s['NAM_HOC']) ? s['DIEM']['NV3'] : null,
             ).filter((s) => s !== null),
         });
 
         wishesPercentage.NV1.push({
-            TEN_TRUONG: school[0]['TEN_TRUONG'],
+            TEN_TRUONG: data['TEN_TRUONG'],
             DIEM: Array.from(school, (s) => {
                 if (years.includes(s['NAM_HOC'])) {
                     if (s['DIEM']['NV1'] === 0) {
@@ -108,7 +110,7 @@ export const YearChart = ({ selectedWish }) => {
         });
 
         wishesPercentage.NV2.push({
-            TEN_TRUONG: school[0]['TEN_TRUONG'],
+            TEN_TRUONG: data['TEN_TRUONG'],
             DIEM: Array.from(school, (s) => {
                 if (years.includes(s['NAM_HOC'])) {
                     if (s['DIEM']['NV2'] === 0) {
@@ -126,7 +128,7 @@ export const YearChart = ({ selectedWish }) => {
         });
 
         wishesPercentage.NV3.push({
-            TEN_TRUONG: school[0]['TEN_TRUONG'],
+            TEN_TRUONG: data['TEN_TRUONG'],
             DIEM: Array.from(school, (s) => {
                 if (years.includes(s['NAM_HOC'])) {
                     if (s['DIEM']['NV3'] === 0) {
@@ -150,7 +152,7 @@ export const YearChart = ({ selectedWish }) => {
         plugins: {
             title: {
                 display: true,
-                text: wishFullName[selectedWish],
+                text: wishFullName[singleWish],
             },
             datalabels: {
                 display: false,
@@ -202,7 +204,7 @@ export const YearChart = ({ selectedWish }) => {
         plugins: {
             title: {
                 display: true,
-                text: wishFullName[selectedWish],
+                text: wishFullName[singleWish],
             },
             datalabels: {
                 display: false,
@@ -244,7 +246,7 @@ export const YearChart = ({ selectedWish }) => {
 
     const dataYear = {
         labels: years,
-        datasets: Array.from(wishes[selectedWish], (wish, index) => {
+        datasets: Array.from(wishes[singleWish], (wish, index) => {
             return {
                 label: wish['TEN_TRUONG'],
                 data: wish['DIEM'],
@@ -257,7 +259,7 @@ export const YearChart = ({ selectedWish }) => {
 
     const dataTrend = {
         labels: years,
-        datasets: Array.from(wishesPercentage[selectedWish], (wish, index) => {
+        datasets: Array.from(wishesPercentage[singleWish], (wish, index) => {
             return {
                 label: wish['TEN_TRUONG'],
                 data: wish['DIEM'],

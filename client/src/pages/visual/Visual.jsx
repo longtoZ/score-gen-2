@@ -6,23 +6,35 @@ import SearchIcon from '@mui/icons-material/Search';
 import { SchoolSearch } from '../../components/visual/SchoolSearch';
 import { YearChart } from '../../components/visual/YearChart';
 import { CompeteChart } from '../../components/visual/CompeteChart';
-import { getAxiosYear, handleDataYear, getAxiosCompete, handleDataCompete } from '../../components/visual/utils';
+import { AreaChart } from '../../components/visual/AreaChart';
+import {
+    getAxiosYear,
+    handleDataYear,
+    getAxiosCompete,
+    handleDataCompete,
+    getAxiosArea,
+    handleDataArea,
+} from '../../components/visual/utils';
 import { yearsList } from '../../utils/lists';
 import './add.css';
 
 export const SchoolContext = createContext();
-export const CompeteContext = createContext();
 
 export const Visual = () => {
     const [showSearch, setShowSearch] = useState(false);
     const [keyword, setKeyword] = useState('');
     const [startYear, setStartYear] = useState(yearsList[yearsList.length - 1]);
     const [endYear, setEndYear] = useState(yearsList[0]);
-    const [singleYear , setSingleYear] = useState(yearsList[0]);
-    const [selectedWish, setSelectedWish] = useState('NV1');
-    const [schoolList, setSchoolList] = useState([]);
+    const [singleYear, setSingleYear] = useState(yearsList[0]);
+    const [singleWish, setSingleWish] = useState('NV1');
+    const [districtList, setDistrictList] = useState({
+        DATA: [],
+        CHOOSEN: ''
+    });
+
     const [schoolData, setSchoolData] = useState([]);
     const [competeData, setCompeteData] = useState([]);
+    const [areaData, setAreaData] = useState([]);
 
     const keywordRef = useRef(null);
     const searchRef = useRef(null);
@@ -40,51 +52,90 @@ export const Visual = () => {
         getAxiosYear(keyword)
             .then((res) => handleDataYear(res))
             .then((data) => {
-                const school = {
-                    MA_TRUONG: data[0]['MA_TRUONG'],
-                    TEN_TRUONG: data[0]['TEN_TRUONG'],
-                    'QUAN/HUYEN': data[0]['QUAN/HUYEN'],
-                    MA_LOAI: data[0]['MA_LOAI'],
-                };
 
-                if (!schoolList.includes(school)) {
-                    setSchoolList([...schoolList, school]);
-
+                if (
+                    !schoolData.some(
+                        (s) => s['MA_TRUONG'] === data[0]['MA_TRUONG'],
+                    )
+                ) {
                     setSchoolData([
                         ...schoolData,
                         {
                             MA_TRUONG: data[0]['MA_TRUONG'],
-                            DATA: data,
+                            TEN_TRUONG: data[0]['TEN_TRUONG'],
+                            'QUAN/HUYEN': data[0]['QUAN/HUYEN'],
+                            MA_LOAI: data[0]['MA_LOAI'],
+                            DATA: data.map((d) => {
+                                return {
+                                    NAM_HOC: d['NAM_HOC'],
+                                    DIEM: {
+                                        NV1: d['DIEM']['NV1'],
+                                        NV2: d['DIEM']['NV2'],
+                                        NV3: d['DIEM']['NV3'],
+                                    },
+                                }
+                            }),
                         },
                     ]);
+
                 } else {
                     alert('Trường đã có trong danh sách');
+                }
+
+                if (!districtList.DATA.includes(data[0]['QUAN/HUYEN'])) {
+                    setDistrictList({
+                        DATA: [...districtList.DATA, data[0]['QUAN/HUYEN']],
+                        CHOOSEN: data[0]['QUAN/HUYEN'],
+                    });
                 }
 
                 setKeyword('');
                 keywordRef.current.value = '';
                 keywordRef.current.focus();
-            });
-        
-        getAxiosCompete(keyword)
-            .then((res) => handleDataCompete(res))
-            .then((data) => {
-                setCompeteData([
-                    ...competeData,
-                    data
-                ]);
-            });
-        
-
+            })
+            .then(() => {
+                getAxiosCompete(keyword)
+                .then((res) => handleDataCompete(res))
+                .then((data) => {
+                    if (
+                        !schoolData.some(
+                            (s) => s['MA_TRUONG'] === data['MA_TRUONG'],
+                        )
+                    ) {
+                        setCompeteData([...competeData, data]);
+                    } else {
+                        alert('Trường đã có trong danh sách');
+                    }
+                });
+            })
     };
 
+    // useEffect(() => {
+    //     console.log('area data ', areaData)
+    // }, [areaData])
+
     useEffect(() => {
-        if (schoolList.length === 3) {
+        if (districtList.DATA.length === 0) return;
+
+        const promises = districtList.DATA.map(district =>
+            getAxiosArea(district, singleYear, singleWish)
+                .then(res => handleDataArea(res))
+        );
+    
+        Promise.all(promises)
+            .then(dataList => {
+                setAreaData(dataList);
+            });
+
+    }, [districtList, singleYear, singleWish]);
+
+    useEffect(() => {
+        if (schoolData.length === 3) {
             addSchoolRef.current.style.display = 'none';
         } else {
             addSchoolRef.current.style.display = 'block';
         }
-    }, [schoolList]);
+    }, [schoolData]);
 
     return (
         <div className="Visual py-[10rem]">
@@ -105,15 +156,15 @@ export const Visual = () => {
                 <div className="flex justify-center gap-4 mt-[3rem]">
                     <SchoolContext.Provider
                         value={{
-                            schoolList,
-                            setSchoolList,
                             schoolData,
                             setSchoolData,
                             competeData,
-                            setCompeteData
+                            setCompeteData,
+                            areaData,
+                            setAreaData,
                         }}
                     >
-                        {schoolList.map((school, index) => (
+                        {schoolData.map((school, index) => (
                             <SchoolSearch key={index} school={school} />
                         ))}
                     </SchoolContext.Provider>
@@ -163,12 +214,12 @@ export const Visual = () => {
                         setStartYear,
                         endYear,
                         setEndYear,
-                        selectedWish,
-                        setSelectedWish,
+                        singleWish,
+                        setSingleWish,
                         schoolData,
                     }}
                 >
-                    <YearChart selectedWish={selectedWish} />
+                    <YearChart />
                 </SchoolContext.Provider>
 
                 <SchoolContext.Provider
@@ -176,14 +227,32 @@ export const Visual = () => {
                         startYear,
                         setStartYear,
                         endYear,
-                        setEndYear
+                        setEndYear,
+                        competeData, 
+                        singleYear, 
+                        setSingleYear
                     }}
                 >
-                    <CompeteContext.Provider value={{ competeData, singleYear, setSingleYear }}>
-                        <CompeteChart/>
-                    </CompeteContext.Provider>
+                    <CompeteChart />
                 </SchoolContext.Provider>
 
+                <SchoolContext.Provider
+                    value = {{
+                        districtList,
+                        setDistrictList,
+                        areaData,
+                        setAreaData,
+                        singleYear,
+                        setSingleYear,
+                        singleWish,
+                        setSingleWish,
+                    }}    
+                >   
+                {areaData.length === districtList.DATA.length ? (
+                    <AreaChart />
+                ) : null}
+
+                </SchoolContext.Provider>
             </div>
         </div>
     );

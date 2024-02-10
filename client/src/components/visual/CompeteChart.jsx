@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { SingleYear } from './SingleYear.jsx';
-import { CompeteContext } from '../../pages/visual/Visual.jsx';
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
 import { YearRange } from './YearRange.jsx';
+import { yearsList } from '../../utils/lists.js';
 import { Chart, ArcElement, Title, Tooltip, Legend, LineElement, LinearScale } from 'chart.js';
 import { Doughnut, Line } from 'react-chartjs-2';
 
@@ -90,30 +90,30 @@ const competeDataDoughnutChart = (target, total, bg, border) => {
     };
 };
 
+const color = [
+    {
+        bg: 'rgba(16, 185, 129, 0.2)',
+        border: '#10b981',
+    },
+    {
+        bg: 'rgba(6, 182, 212, 0.2)',
+        border: '#06b6d4',
+    },
+    {
+        bg: 'rgba(59, 130, 246, 0.2)',
+        border: '#3b82f6',
+    },
+];
+
+const earliestYear = yearsList[yearsList.length - 1];
+
 export const CompeteChart = () => {
-    const { singleYear, competeData } =
-        useContext(CompeteContext);
-    const { startYear, endYear } = useContext(SchoolContext);
+    const { startYear, endYear, singleYear, competeData } = useContext(SchoolContext);
 
     const years = [];
     for (let i = startYear; i <= endYear; i++) {
         years.push(i);
     }
-
-    const color = [
-        {
-            bg: 'rgba(16, 185, 129, 0.2)',
-            border: '#10b981',
-        },
-        {
-            bg: 'rgba(6, 182, 212, 0.2)',
-            border: '#06b6d4',
-        },
-        {
-            bg: 'rgba(59, 130, 246, 0.2)',
-            border: '#3b82f6',
-        },
-    ];
 
     let delayed;
     const optionsTrend = {
@@ -177,6 +177,8 @@ export const CompeteChart = () => {
         }),
     };
 
+    console.log(competeData)
+
     return (
         <>
             {competeData.length !== 0 ? (
@@ -195,32 +197,55 @@ export const CompeteChart = () => {
                                 const total = item['DATA'].find(
                                     (year) => year['NAM_HOC'] === singleYear,
                                 )['SO_LUONG'];
+                                const c = (total / target).toFixed(2)
+
+                                const targetPrevious = singleYear-1 >= earliestYear ? item['DATA'].find(
+                                    (year) => year['NAM_HOC'] === singleYear-1,
+                                )['CHI_TIEU'] : 0;
+                                const totalPrevious = singleYear-1 >= earliestYear ? item['DATA'].find(
+                                    (year) => year['NAM_HOC'] === singleYear-1,
+                                )['SO_LUONG'] : 0;
+                                const cPrevious = (totalPrevious / targetPrevious).toFixed(2)
+
                                 return (
-                                    <div
-                                        className="h-[20rem] relative"
-                                        key={index}
-                                    >
-                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 text-center">
-                                            <h1 className="text-5xl font-semibold">
-                                                {(total / target).toFixed(2)}
-                                            </h1>
-                                            <p className="mt-2 text-text-subtitle-color">
-                                                {target}/{total}
-                                            </p>
+                                        <div
+                                            className="h-[23rem]"
+                                            key={index}
+                                        >
+                                            <div className='relative h-[90%]'>
+                                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 text-center">
+                                                    <h1 className="text-5xl font-semibold">
+                                                        {(total / target).toFixed(2)}
+                                                    </h1>
+                                                    <p className="mt-2 text-text-subtitle-color">
+                                                        {target}/{total}
+                                                    </p>
+                                                </div>
+                                                <Doughnut
+                                                    data={competeDataDoughnutChart(
+                                                        target,
+                                                        total,
+                                                        color[index]['bg'],
+                                                        color[index]['border']
+                                                    )}
+                                                    options={competeOptionsDoughnutChart(
+                                                        title,
+                                                    )}
+                                                    className="mx-2"
+                                                />
+                                            </div>
+                                            { c !== NaN ? 
+                                            c >= cPrevious ? (
+                                                <p className="text-center text-green-500 font-semibold mt-4">
+                                                    Tăng {(c-cPrevious).toFixed(2)} so với {singleYear-1}
+                                                </p>
+                                            ) : (
+                                                <p className="text-center text-red-400 font-semibold mt-4">
+                                                    Giảm {(cPrevious-c).toFixed(2)} so với {singleYear-1}
+                                                </p>
+                                            )
+                                         : null}
                                         </div>
-                                        <Doughnut
-                                            data={competeDataDoughnutChart(
-                                                target,
-                                                total,
-                                                color[index]['bg'],
-                                                color[index]['border']
-                                            )}
-                                            options={competeOptionsDoughnutChart(
-                                                title,
-                                            )}
-                                            className="mx-2"
-                                        />
-                                    </div>
                                 );
                             })}
                         </div>

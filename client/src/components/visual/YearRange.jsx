@@ -9,8 +9,8 @@ export const YearRange = ({showWish = true}) => {
         setStartYear,
         endYear,
         setEndYear,
-        selectedWish,
-        setSelectedWish,
+        singleWish,
+        setSingleWish,
     } = useContext(SchoolContext);
     const wish1Ref = useRef(null);
     const wish2Ref = useRef(null);
@@ -29,17 +29,17 @@ export const YearRange = ({showWish = true}) => {
         wish2Ref.current.classList.remove('select-wish');
         wish3Ref.current.classList.remove('select-wish');
 
-        if (selectedWish === 'NV1') {
+        if (singleWish === 'NV1') {
             wish1Ref.current.classList.add('select-wish');
-        } else if (selectedWish === 'NV2') {
+        } else if (singleWish === 'NV2') {
             wish2Ref.current.classList.add('select-wish');
         } else {
             wish3Ref.current.classList.add('select-wish');
         }
-    }, [selectedWish]);
+    }, [singleWish]);
 
     const handleWish = (e) => {
-        setSelectedWish(e.target.getAttribute('data-wish'));
+        setSingleWish(e.target.getAttribute('data-wish'));
     };
 
     return (

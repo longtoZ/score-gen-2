@@ -6,12 +6,12 @@ import ClearIcon from '@mui/icons-material/Clear';
 import './schoolSearch.css';
 
 export const SchoolSearch = ({ school }) => {
-    const { schoolList, setSchoolList, schoolData, setSchoolData, competeData, setCompeteData } =
+    const { schoolData, setSchoolData, competeData, setCompeteData, areaData, setAreaData } =
         useContext(SchoolContext);
 
     const handleRemove = () => {
-        setSchoolList(
-            schoolList.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
+        setSchoolData(
+            schoolData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
         );
         setSchoolData(
             schoolData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
@@ -19,6 +19,9 @@ export const SchoolSearch = ({ school }) => {
         setCompeteData(
             competeData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
         );
+        setAreaData(
+            areaData.filter((s) => s['QUAN/HUYEN'] !== school['QUAN/HUYEN']),
+        )
     };
 
     return (

@@ -1,0 +1,147 @@
+import { useContext, memo } from 'react';
+import { SchoolContext } from '../../pages/visual/Visual.jsx';
+import { SingleYear } from './SingleYear.jsx';
+import { SingleWish } from './SingleWish.jsx';
+import { SingleDistrict } from './SingleDistrict.jsx';
+
+import {
+    BarElement,
+    CategoryScale,
+    Chart,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+Chart.register(
+    ChartDataLabels,
+    CategoryScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+);
+
+const color = [
+    {
+        bg: 'rgba(16, 185, 129, 0.2)',
+        border: '#10b981',
+    },
+    {
+        bg: 'rgba(6, 182, 212, 0.2)',
+        border: '#06b6d4',
+    },
+    {
+        bg: 'rgba(59, 130, 246, 0.2)',
+        border: '#3b82f6',
+    },
+];
+
+export const AreaChart = () => {
+    const { areaData, singleYear, districtList } = useContext(SchoolContext);
+
+    // console.log(areaData, areaData.length, districtList.DATA.length, areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOOSEN))
+
+    if (areaData.length !== 0 ) {
+
+        const schools = areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOOSEN)
+        const colorIndex = areaData.findIndex((d) => d['QUAN/HUYEN'] === districtList.CHOOSEN)
+
+        let delayed;
+        const options = {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: `${districtList.CHOOSEN} - ${singleYear}`,
+                },
+                legend: {
+                    display: false
+                },
+                datalabels: {
+                    display: false,
+                    color: 'gray',
+                    align: 'top',
+                    anchor: 'end',
+                },
+            },
+            scales: {
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Trường',
+                    },
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Điểm',
+                    },
+                },
+            },
+
+            animation: {
+                onComplete: () => {
+                    delayed = true;
+                },
+                delay: (context) => {
+                    let delay = 0;
+                    if (
+                        context.type === 'data' &&
+                        context.mode === 'default' &&
+                        !delayed
+                    ) {
+                        delay =
+                            context.dataIndex * 300 + context.datasetIndex * 100;
+                    }
+                    return delay;
+                },
+            },
+        };
+
+        const data = {
+            labels: schools['DATA'].map((d) => d['TEN_TRUONG']),
+            datasets: [{
+                labels: null,
+                data: schools['DATA'].map((d) => d['DIEM']),
+                backgroundColor: color[colorIndex].bg,
+                borderColor: color[colorIndex].border,
+                borderWidth: 1,
+            }]
+        };
+
+        return (
+            <div className="mt-[3rem] shadow-basic rounded-lg overflow-hidden">
+                <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
+                    Các trường trong khu vực
+                </h1>
+                <div className='flex justify-between p-2'>
+                    <div className="w-[60%]">
+                        <div className="p-4 w-full">
+                            <Bar
+                                data={data}
+                                options={options}
+                                plugins={[ChartDataLabels]}
+                            />
+                        </div>
+                    </div>
+                    <div className='w-[40%] pt-4'>
+                        <div className='border-2 border-border-color p-4 rounded-lg w-full mx-auto flex'>
+                            <SingleYear />
+                            <SingleWish />
+                            <SingleDistrict />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        );
+    }
+
+    return <></>
+};
+
+
