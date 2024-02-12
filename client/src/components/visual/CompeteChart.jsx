@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { SingleYear } from './SingleYear.jsx';
+import { SingleYear } from './inputs/SingleYear.jsx';
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
-import { YearRange } from './YearRange.jsx';
+import { YearRange } from './inputs/YearRange.jsx';
 import { yearsList } from '../../utils/lists.js';
 import { Chart, ArcElement, Title, Tooltip, Legend, LineElement, LinearScale } from 'chart.js';
 import { Doughnut, Line } from 'react-chartjs-2';
@@ -177,8 +177,6 @@ export const CompeteChart = () => {
         }),
     };
 
-    console.log(competeData)
-
     return (
         <>
             {competeData.length !== 0 ? (
@@ -187,7 +185,9 @@ export const CompeteChart = () => {
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Tỉ lệ chọi
                         </h1>
-                        <SingleYear />
+                        <div className='m-4'>
+                            <SingleYear />
+                        </div>
                         <div className="p-4 w-full flex justify-center relative">
                             {competeData.map((item, index) => {
                                 const title = item['TEN_TRUONG'];

@@ -1,7 +1,7 @@
-import { yearsList } from '../../utils/lists';
+import { yearsList } from '../../../utils/lists';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useState, useRef, useContext } from 'react';
-import { SchoolContext } from '../../pages/visual/Visual';
+import { SchoolContext } from '../../../pages/visual/Visual';
 
 export const SingleYear = () => {
     const { singleYear, setSingleYear } = useContext(SchoolContext);

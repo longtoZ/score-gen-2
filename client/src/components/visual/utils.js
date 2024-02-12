@@ -46,6 +46,22 @@ export const getAxiosArea = (district, year, wish) => {
 
 }
 
+export const getAxiosGroup = (year, wish, score, diff) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .get(process.env.REACT_APP_SERVER + '/api/visual/group', {
+                params: { year, wish, score, diff },
+            })
+            .then((res) => {
+                resolve(res.data);
+            })
+            .catch((err) => {
+                reject(err);
+            });
+    });
+
+}
+
 export const handleDataYear = (data) => {
     let result = [];
     let year = '';
@@ -158,4 +174,19 @@ export const handleDataArea = (data) => {
 
     return result;
 
+}
+
+export const handleDataGroup = (data) => {
+    const result = Array.from(data, (item) => {
+        return {
+                'QUAN/HUYEN': item['QUAN/HUYEN'],
+                MA_TRUONG: item['MA_TRUONG'],
+                TEN_TRUONG: item['TEN_TRUONG'],
+                NAM_HOC: item['NAM_HOC'],
+                MA_NV: item['MA_NV'],
+                DIEM: item['DIEM'],
+            }
+        })
+    
+    return result;
 }

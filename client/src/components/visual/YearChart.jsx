@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
-import { YearRange } from './YearRange.jsx';
+import { YearRange } from './inputs/YearRange.jsx';
 import {
     BarElement,
     CategoryScale,
@@ -50,6 +50,8 @@ const color = [
 
 export const YearChart = () => {
     const { startYear, endYear, schoolData, singleWish } = useContext(SchoolContext);
+
+    // console.log(schoolData)
 
     const years = [];
     for (let i = startYear; i <= endYear; i++) {

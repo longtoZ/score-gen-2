@@ -7,6 +7,7 @@ import { SchoolSearch } from '../../components/visual/SchoolSearch';
 import { YearChart } from '../../components/visual/YearChart';
 import { CompeteChart } from '../../components/visual/CompeteChart';
 import { AreaChart } from '../../components/visual/AreaChart';
+import { GroupChart } from '../../components/visual/GroupChart';
 import {
     getAxiosYear,
     handleDataYear,
@@ -14,15 +15,32 @@ import {
     handleDataCompete,
     getAxiosArea,
     handleDataArea,
+    getAxiosGroup,
+    handleDataGroup,
 } from '../../components/visual/utils';
 import { yearsList } from '../../utils/lists';
 import './add.css';
+import { ToastContainer, toast } from 'react-toastify';
+import { Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const toastOptions = {
+    position: "bottom-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    transition: Bounce,
+}
 
 export const SchoolContext = createContext();
 
 export const Visual = () => {
     const [showSearch, setShowSearch] = useState(false);
-    const [keyword, setKeyword] = useState('');
+    const [keyword, setKeyword] = useState('Nguyễn Hữu Huân');
     const [startYear, setStartYear] = useState(yearsList[yearsList.length - 1]);
     const [endYear, setEndYear] = useState(yearsList[0]);
     const [singleYear, setSingleYear] = useState(yearsList[0]);
@@ -31,35 +49,49 @@ export const Visual = () => {
         DATA: [],
         CHOOSEN: ''
     });
+    const [singleDiff, setSingleDiff] = useState(0.5);
+    const [sendDiff, setSendDiff] = useState(false)
 
     const [schoolData, setSchoolData] = useState([]);
     const [competeData, setCompeteData] = useState([]);
     const [areaData, setAreaData] = useState([]);
+    const [groupData, setGroupData] = useState([]);
+
+    const [toastMessage, setToastMessage] = useState({
+        type: '',
+        msg: ''
+    })
 
     const keywordRef = useRef(null);
     const searchRef = useRef(null);
     const addSchoolRef = useRef(null);
 
-    const handleShowSearch = () => {
-        setShowSearch(!showSearch);
-    };
-
-    const handleKeyword = (e) => {
-        setKeyword(e.target.value.trim());
-    };
-
-    const handleSearch = () => {
+    const searchBasedOnKeyword = (keyword) => {
         getAxiosYear(keyword)
             .then((res) => handleDataYear(res))
             .then((data) => {
+
+                if (data.length === 0) {
+                    setToastMessage({
+                        type: 'error',
+                        msg: 'Không tìm thấy trường!'
+                    })
+                    return
+                }
 
                 if (
                     !schoolData.some(
                         (s) => s['MA_TRUONG'] === data[0]['MA_TRUONG'],
                     )
                 ) {
+                    const prev = schoolData.map(i => {
+                        return {
+                            ...i,
+                            CHOOSEN: false
+                        }
+                    })
                     setSchoolData([
-                        ...schoolData,
+                        ...prev,
                         {
                             MA_TRUONG: data[0]['MA_TRUONG'],
                             TEN_TRUONG: data[0]['TEN_TRUONG'],
@@ -75,11 +107,21 @@ export const Visual = () => {
                                     },
                                 }
                             }),
+                            CHOOSEN: true,
                         },
                     ]);
 
+                    // setToastMessage({
+                    //     type: 'success',
+                    //     msg: 'Lấy thông tin thành công'
+                    // })
+
                 } else {
-                    alert('Trường đã có trong danh sách');
+                    setToastMessage({
+                        type: 'warning',
+                        msg: 'Trường đã có trong danh sách!'
+                    })
+                    return
                 }
 
                 if (!districtList.DATA.includes(data[0]['QUAN/HUYEN'])) {
@@ -92,28 +134,63 @@ export const Visual = () => {
                 setKeyword('');
                 keywordRef.current.value = '';
                 keywordRef.current.focus();
-            })
-            .then(() => {
-                getAxiosCompete(keyword)
-                .then((res) => handleDataCompete(res))
-                .then((data) => {
-                    if (
-                        !schoolData.some(
-                            (s) => s['MA_TRUONG'] === data['MA_TRUONG'],
-                        )
-                    ) {
-                        setCompeteData([...competeData, data]);
-                    } else {
-                        alert('Trường đã có trong danh sách');
-                    }
-                });
-            })
+            }).catch((e) => {})
+
+        getAxiosCompete(keyword)
+            .then((res) => handleDataCompete(res))
+            .then((data) => {
+                if (data.length === 0) {
+                    setToastMessage({
+                        type: 'error',
+                        msg: 'Không tìm thấy trường!'
+                    })
+                    return
+                }
+
+                if (
+                    !schoolData.some(
+                        (s) => s['MA_TRUONG'] === data['MA_TRUONG'],
+                    )
+                ) {
+                    setCompeteData([...competeData, data]);
+                } else {
+                    setToastMessage({
+                        type: 'warning',
+                        msg: 'Trường đã có trong danh sách!'
+                    })
+                    return
+                }
+            }).catch((e) => {})
+    }
+
+    const handleShowSearch = () => {
+        setShowSearch(!showSearch);
     };
 
-    // useEffect(() => {
-    //     console.log('area data ', areaData)
-    // }, [areaData])
+    const handleKeyword = (e) => {
+        setKeyword(e.target.value.trim());
+    };
 
+    const handleSearch = () => {
+        searchBasedOnKeyword(keyword)
+    };
+
+    // Toast message management
+    useEffect(() => {
+        if (toastMessage.type === 'error') {
+            toast.error(toastMessage.msg, toastOptions)
+        } else if (toastMessage.type === 'warning') {
+            toast.warn(toastMessage.msg, toastOptions)
+        } else if (toastMessage.type === 'success') {
+            toast.success(toastMessage.msg, toastOptions)
+        }
+    }, [toastMessage])
+
+    useEffect(() => {
+        searchBasedOnKeyword(keyword)
+    }, [])
+
+    // Get area data
     useEffect(() => {
         if (districtList.DATA.length === 0) return;
 
@@ -129,6 +206,19 @@ export const Visual = () => {
 
     }, [districtList, singleYear, singleWish]);
 
+    // Get group data
+    useEffect(() => {
+        if (schoolData.length === 0) return;
+
+        const selectedScore = schoolData.find(s => s['CHOOSEN'] === true)['DATA'].find(d => d['NAM_HOC'] === singleYear)['DIEM'][singleWish];
+        getAxiosGroup(singleYear, singleWish, selectedScore, singleDiff)
+            .then(res => handleDataGroup(res))
+            .then(data => {
+                setGroupData(data);
+            });
+    }, [sendDiff])
+
+    // Disable add button when there are 3 schools
     useEffect(() => {
         if (schoolData.length === 3) {
             addSchoolRef.current.style.display = 'none';
@@ -139,6 +229,7 @@ export const Visual = () => {
 
     return (
         <div className="Visual py-[10rem]">
+            <ToastContainer/>
             <div className="w-[90%] mx-auto">
                 <h1 className="text-center my-10 text-3xl font-semibold">
                     Phân tích và trực quan hoá điểm số
@@ -162,6 +253,8 @@ export const Visual = () => {
                             setCompeteData,
                             areaData,
                             setAreaData,
+                            districtList,
+                            setDistrictList
                         }}
                     >
                         {schoolData.map((school, index) => (
@@ -208,6 +301,7 @@ export const Visual = () => {
                     </div>
                 </div>
 
+
                 <SchoolContext.Provider
                     value={{
                         startYear,
@@ -246,12 +340,34 @@ export const Visual = () => {
                         setSingleYear,
                         singleWish,
                         setSingleWish,
+                        schoolData,
                     }}    
                 >   
                 {areaData.length === districtList.DATA.length ? (
                     <AreaChart />
                 ) : null}
 
+                </SchoolContext.Provider>
+
+                <SchoolContext.Provider
+                    value ={{
+                        groupData,
+                        setGroupData,
+                        schoolData,
+                        setSchoolData,
+                        singleYear,
+                        setSingleYear,
+                        singleWish,
+                        setSingleWish,
+                        singleDiff,
+                        setSingleDiff,
+                        sendDiff,
+                        setSendDiff
+                    }}
+                >
+                    {schoolData.length > 0 ? (
+                        <GroupChart />
+                    ) : null}
                 </SchoolContext.Provider>
             </div>
         </div>

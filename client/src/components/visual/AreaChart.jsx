@@ -1,8 +1,8 @@
-import { useContext, memo } from 'react';
+import { useContext } from 'react';
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
-import { SingleYear } from './SingleYear.jsx';
-import { SingleWish } from './SingleWish.jsx';
-import { SingleDistrict } from './SingleDistrict.jsx';
+import { SingleYear } from './inputs/SingleYear.jsx';
+import { SingleWish } from './inputs/SingleWish.jsx';
+import { SingleDistrict } from './inputs/SingleDistrict.jsx';
 
 import {
     BarElement,
@@ -39,15 +39,22 @@ const color = [
     },
 ];
 
-export const AreaChart = () => {
-    const { areaData, singleYear, districtList } = useContext(SchoolContext);
+const selectedColor = {
+    bg: 'rgba(245, 158, 11, 0.2)',
+    border: '#f59e0b',
+}
 
-    // console.log(areaData, areaData.length, districtList.DATA.length, areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOOSEN))
+export const AreaChart = () => {
+    const { areaData, singleYear, districtList, schoolData } = useContext(SchoolContext);
+
+    // console.log(areaData, districtList, areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOOSEN))
 
     if (areaData.length !== 0 ) {
 
         const schools = areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOOSEN)
         const colorIndex = areaData.findIndex((d) => d['QUAN/HUYEN'] === districtList.CHOOSEN)
+
+        const schoolDataList = schoolData.map(s => s['TEN_TRUONG'])
 
         let delayed;
         const options = {
@@ -62,9 +69,9 @@ export const AreaChart = () => {
                     display: false
                 },
                 datalabels: {
-                    display: false,
+                    display: true,
                     color: 'gray',
-                    align: 'top',
+                    align: 'right',
                     anchor: 'end',
                 },
             },
@@ -107,8 +114,8 @@ export const AreaChart = () => {
             datasets: [{
                 labels: null,
                 data: schools['DATA'].map((d) => d['DIEM']),
-                backgroundColor: color[colorIndex].bg,
-                borderColor: color[colorIndex].border,
+                backgroundColor: schools['DATA'].map((d) => schoolDataList.includes(d['TEN_TRUONG']) ? selectedColor.bg : color[colorIndex].bg),
+                borderColor: schools['DATA'].map((d) => schoolDataList.includes(d['TEN_TRUONG']) ? selectedColor.border : color[colorIndex].border),
                 borderWidth: 1,
             }]
         };
@@ -136,7 +143,6 @@ export const AreaChart = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         );
     }

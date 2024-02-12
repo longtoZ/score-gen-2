@@ -6,15 +6,22 @@ import ClearIcon from '@mui/icons-material/Clear';
 import './schoolSearch.css';
 
 export const SchoolSearch = ({ school }) => {
-    const { schoolData, setSchoolData, competeData, setCompeteData, areaData, setAreaData } =
+    const { schoolData, setSchoolData, competeData, setCompeteData, areaData, setAreaData, districtList, setDistrictList } =
         useContext(SchoolContext);
 
     const handleRemove = () => {
+        const removedDistrictList = districtList.DATA.filter((s) => s !== school['QUAN/HUYEN']);
         setSchoolData(
             schoolData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
         );
         setSchoolData(
-            schoolData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
+            schoolData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']).map((s, i, arr) => {
+                if (i === arr.length-1) {
+                    s['CHOOSEN'] = true;
+                }
+
+                return s;
+            }),
         );
         setCompeteData(
             competeData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
@@ -22,6 +29,10 @@ export const SchoolSearch = ({ school }) => {
         setAreaData(
             areaData.filter((s) => s['QUAN/HUYEN'] !== school['QUAN/HUYEN']),
         )
+        setDistrictList({
+            DATA: removedDistrictList,
+            CHOOSEN: removedDistrictList.length > 0 ? (districtList.CHOOSEN = removedDistrictList[removedDistrictList.length - 1]) : '',
+        })
     };
 
     return (
