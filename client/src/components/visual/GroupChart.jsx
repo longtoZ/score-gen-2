@@ -39,7 +39,7 @@ export const GroupChart = () => {
 
     const { groupData, schoolData } = useContext(SchoolContext);
 
-    const selectedScore = schoolData.find(s => s['CHOOSEN'] === true)['TEN_TRUONG'];
+    const selectedScore = schoolData.find(s => s['CHOSEN'] === true)['TEN_TRUONG'];
 
     console.log(groupData)
 

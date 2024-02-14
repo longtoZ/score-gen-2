@@ -20,12 +20,12 @@ export const SingleSchool = () => {
             if (i.MA_TRUONG === code) {
                 return {
                     ...i,
-                    CHOOSEN: true
+                    CHOSEN: true
                 }
             } else {
                 return {
                     ...i,
-                    CHOOSEN: false
+                    CHOSEN: false
                 }
             }
         }))
@@ -42,7 +42,7 @@ export const SingleSchool = () => {
             onClick={handleShowSchool}
             >
                 <p className="pr-2" ref={schoolRef}>
-                    {schoolData.find(i => i.CHOOSEN === true) !== undefined ? schoolData.find(i => i.CHOOSEN === true).TEN_TRUONG : 'Chọn trường'}
+                    {schoolData.find(i => i.CHOSEN === true) !== undefined ? schoolData.find(i => i.CHOSEN === true).TEN_TRUONG : 'Chọn trường'}
                 </p>
                 <ArrowDropDownIcon />
 

@@ -47,12 +47,12 @@ const selectedColor = {
 export const AreaChart = () => {
     const { areaData, singleYear, districtList, schoolData } = useContext(SchoolContext);
 
-    // console.log(areaData, districtList, areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOOSEN))
+    // console.log(areaData, districtList, areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOSEN))
 
     if (areaData.length !== 0 ) {
 
-        const schools = areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOOSEN)
-        const colorIndex = areaData.findIndex((d) => d['QUAN/HUYEN'] === districtList.CHOOSEN)
+        const schools = areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOSEN)
+        const colorIndex = areaData.findIndex((d) => d['QUAN/HUYEN'] === districtList.CHOSEN)
 
         const schoolDataList = schoolData.map(s => s['TEN_TRUONG'])
 
@@ -63,7 +63,7 @@ export const AreaChart = () => {
             plugins: {
                 title: {
                     display: true,
-                    text: `${districtList.CHOOSEN} - ${singleYear}`,
+                    text: `${districtList.CHOSEN} - ${singleYear}`,
                 },
                 legend: {
                     display: false

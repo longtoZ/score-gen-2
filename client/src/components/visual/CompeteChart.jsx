@@ -172,7 +172,7 @@ export const CompeteChart = () => {
                 ),
                 backgroundColor: color[index]['bg'],
                 borderColor: color[index]['border'],
-                tension: 0.4
+                // tension: 0.4
             };
         }),
     };

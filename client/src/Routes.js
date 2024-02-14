@@ -3,6 +3,7 @@ import { Home } from './pages/home/Home';
 import { Search } from './pages/search/Search';
 import { Suggest } from './pages/suggest/Suggest';
 import { Visual } from './pages/visual/Visual';
+import { Print } from './pages/print/Print';
 import { NavBar } from './components/navBar/NavBar';
 
 export const MainRoutes = () => {
@@ -13,6 +14,7 @@ export const MainRoutes = () => {
                 <Route path="/search" element={<Search />} />
                 <Route path="/suggest" element={<Suggest />} />
                 <Route path="/visual" element={<Visual />} />
+                <Route path="/print" element={<Print />} />
                 <Route path="/" element={<Home />} />
             </Routes>
         </Router>

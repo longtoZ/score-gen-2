@@ -17,7 +17,7 @@ export const SchoolSearch = ({ school }) => {
         setSchoolData(
             schoolData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']).map((s, i, arr) => {
                 if (i === arr.length-1) {
-                    s['CHOOSEN'] = true;
+                    s['CHOSEN'] = true;
                 }
 
                 return s;
@@ -31,7 +31,7 @@ export const SchoolSearch = ({ school }) => {
         )
         setDistrictList({
             DATA: removedDistrictList,
-            CHOOSEN: removedDistrictList.length > 0 ? (districtList.CHOOSEN = removedDistrictList[removedDistrictList.length - 1]) : '',
+            CHOSEN: removedDistrictList.length > 0 ? (districtList.CHOSEN = removedDistrictList[removedDistrictList.length - 1]) : '',
         })
     };
 

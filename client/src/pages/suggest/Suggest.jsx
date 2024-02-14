@@ -85,12 +85,10 @@ export const Suggest = () => {
     };
 
     const handleNormalWish = (e) => {
-        normalWishRef.current.innerText = e.target.innerText;
         setSelectedNormalWish(e.target.innerText);
     };
 
     const handleSpecialWish = (e) => {
-        specialWishRef.current.innerText = e.target.innerText;
         setSelectedSpecialWish(e.target.innerText);
     };
 
@@ -203,6 +201,9 @@ export const Suggest = () => {
                     <Link to="/guide" className="text-blue-500 underline">
                         Xem hướng dẫn
                     </Link>
+                    <br/>
+                    <br/>
+                    <span className='text-red-500'>*Điểm được đề xuất dựa trên trung bình cộng từ điểm các năm</span>
                 </p>
 
                 <div className="mt-[3rem] w-1/3 mx-auto grid grid-cols-2 p-2 rounded-lg bg-bg-sank-color bs-in text-center font-semibold cursor-pointer">
@@ -237,9 +238,7 @@ export const Suggest = () => {
                                     >
                                         <p className="pr-2" ref={normalWishRef}>
                                             {
-                                                Object.entries(
-                                                    normalSubjectsObj,
-                                                )[0][0]
+                                                selectedNormalWish
                                             }
                                         </p>
                                         <ArrowDropDownIcon />
@@ -279,9 +278,7 @@ export const Suggest = () => {
                                             ref={specialWishRef}
                                         >
                                             {
-                                                Object.entries(
-                                                    specialSubjectsObj,
-                                                )[0][0]
+                                                selectedSpecialWish
                                             }
                                         </p>
                                         <ArrowDropDownIcon />

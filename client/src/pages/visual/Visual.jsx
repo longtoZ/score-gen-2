@@ -25,16 +25,16 @@ import { Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const toastOptions = {
-    position: "bottom-right",
+    position: 'bottom-right',
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "light",
+    theme: 'light',
     transition: Bounce,
-}
+};
 
 export const SchoolContext = createContext();
 
@@ -47,10 +47,10 @@ export const Visual = () => {
     const [singleWish, setSingleWish] = useState('NV1');
     const [districtList, setDistrictList] = useState({
         DATA: [],
-        CHOOSEN: ''
+        CHOSEN: '',
     });
     const [singleDiff, setSingleDiff] = useState(0.5);
-    const [sendDiff, setSendDiff] = useState(false)
+    const [sendDiff, setSendDiff] = useState(false);
 
     const [schoolData, setSchoolData] = useState([]);
     const [competeData, setCompeteData] = useState([]);
@@ -59,8 +59,8 @@ export const Visual = () => {
 
     const [toastMessage, setToastMessage] = useState({
         type: '',
-        msg: ''
-    })
+        msg: '',
+    });
 
     const keywordRef = useRef(null);
     const searchRef = useRef(null);
@@ -70,13 +70,12 @@ export const Visual = () => {
         getAxiosYear(keyword)
             .then((res) => handleDataYear(res))
             .then((data) => {
-
                 if (data.length === 0) {
                     setToastMessage({
                         type: 'error',
-                        msg: 'Không tìm thấy trường!'
-                    })
-                    return
+                        msg: 'Không tìm thấy trường!',
+                    });
+                    return;
                 }
 
                 if (
@@ -84,12 +83,12 @@ export const Visual = () => {
                         (s) => s['MA_TRUONG'] === data[0]['MA_TRUONG'],
                     )
                 ) {
-                    const prev = schoolData.map(i => {
+                    const prev = schoolData.map((i) => {
                         return {
                             ...i,
-                            CHOOSEN: false
-                        }
-                    })
+                            CHOSEN: false,
+                        };
+                    });
                     setSchoolData([
                         ...prev,
                         {
@@ -105,9 +104,9 @@ export const Visual = () => {
                                         NV2: d['DIEM']['NV2'],
                                         NV3: d['DIEM']['NV3'],
                                     },
-                                }
+                                };
                             }),
-                            CHOOSEN: true,
+                            CHOSEN: true,
                         },
                     ]);
 
@@ -115,26 +114,26 @@ export const Visual = () => {
                     //     type: 'success',
                     //     msg: 'Lấy thông tin thành công'
                     // })
-
                 } else {
                     setToastMessage({
                         type: 'warning',
-                        msg: 'Trường đã có trong danh sách!'
-                    })
-                    return
+                        msg: 'Trường đã có trong danh sách!',
+                    });
+                    return;
                 }
 
                 if (!districtList.DATA.includes(data[0]['QUAN/HUYEN'])) {
                     setDistrictList({
                         DATA: [...districtList.DATA, data[0]['QUAN/HUYEN']],
-                        CHOOSEN: data[0]['QUAN/HUYEN'],
+                        CHOSEN: data[0]['QUAN/HUYEN'],
                     });
                 }
 
                 setKeyword('');
                 keywordRef.current.value = '';
                 keywordRef.current.focus();
-            }).catch((e) => {})
+            })
+            .catch((e) => {});
 
         getAxiosCompete(keyword)
             .then((res) => handleDataCompete(res))
@@ -142,9 +141,9 @@ export const Visual = () => {
                 if (data.length === 0) {
                     setToastMessage({
                         type: 'error',
-                        msg: 'Không tìm thấy trường!'
-                    })
-                    return
+                        msg: 'Không tìm thấy trường!',
+                    });
+                    return;
                 }
 
                 if (
@@ -156,12 +155,13 @@ export const Visual = () => {
                 } else {
                     setToastMessage({
                         type: 'warning',
-                        msg: 'Trường đã có trong danh sách!'
-                    })
-                    return
+                        msg: 'Trường đã có trong danh sách!',
+                    });
+                    return;
                 }
-            }).catch((e) => {})
-    }
+            })
+            .catch((e) => {});
+    };
 
     const handleShowSearch = () => {
         setShowSearch(!showSearch);
@@ -172,51 +172,54 @@ export const Visual = () => {
     };
 
     const handleSearch = () => {
-        searchBasedOnKeyword(keyword)
+        searchBasedOnKeyword(keyword);
     };
 
     // Toast message management
     useEffect(() => {
         if (toastMessage.type === 'error') {
-            toast.error(toastMessage.msg, toastOptions)
+            toast.error(toastMessage.msg, toastOptions);
         } else if (toastMessage.type === 'warning') {
-            toast.warn(toastMessage.msg, toastOptions)
+            toast.warn(toastMessage.msg, toastOptions);
         } else if (toastMessage.type === 'success') {
-            toast.success(toastMessage.msg, toastOptions)
+            toast.success(toastMessage.msg, toastOptions);
         }
-    }, [toastMessage])
+    }, [toastMessage]);
 
     useEffect(() => {
-        searchBasedOnKeyword(keyword)
-    }, [])
+        searchBasedOnKeyword(keyword);
+    }, []);
 
     // Get area data
     useEffect(() => {
         if (districtList.DATA.length === 0) return;
 
-        const promises = districtList.DATA.map(district =>
-            getAxiosArea(district, singleYear, singleWish)
-                .then(res => handleDataArea(res))
+        const promises = districtList.DATA.map((district) =>
+            getAxiosArea(district, singleYear, singleWish).then((res) =>
+                handleDataArea(res),
+            ),
         );
-    
-        Promise.all(promises)
-            .then(dataList => {
-                setAreaData(dataList);
-            });
 
+        Promise.all(promises).then((dataList) => {
+            setAreaData(dataList);
+        });
     }, [districtList, singleYear, singleWish]);
 
     // Get group data
     useEffect(() => {
         if (schoolData.length === 0) return;
 
-        const selectedScore = schoolData.find(s => s['CHOOSEN'] === true)['DATA'].find(d => d['NAM_HOC'] === singleYear)['DIEM'][singleWish];
+        const selectedScore = schoolData
+            .find((s) => s['CHOSEN'] === true)
+            ['DATA'].find((d) => d['NAM_HOC'] === singleYear)['DIEM'][
+            singleWish
+        ];
         getAxiosGroup(singleYear, singleWish, selectedScore, singleDiff)
-            .then(res => handleDataGroup(res))
-            .then(data => {
+            .then((res) => handleDataGroup(res))
+            .then((data) => {
                 setGroupData(data);
             });
-    }, [sendDiff])
+    }, [sendDiff]);
 
     // Disable add button when there are 3 schools
     useEffect(() => {
@@ -229,7 +232,7 @@ export const Visual = () => {
 
     return (
         <div className="Visual py-[10rem]">
-            <ToastContainer/>
+            <ToastContainer />
             <div className="w-[90%] mx-auto">
                 <h1 className="text-center my-10 text-3xl font-semibold">
                     Phân tích và trực quan hoá điểm số
@@ -254,7 +257,7 @@ export const Visual = () => {
                             areaData,
                             setAreaData,
                             districtList,
-                            setDistrictList
+                            setDistrictList,
                         }}
                     >
                         {schoolData.map((school, index) => (
@@ -301,7 +304,6 @@ export const Visual = () => {
                     </div>
                 </div>
 
-
                 <SchoolContext.Provider
                     value={{
                         startYear,
@@ -322,16 +324,16 @@ export const Visual = () => {
                         setStartYear,
                         endYear,
                         setEndYear,
-                        competeData, 
-                        singleYear, 
-                        setSingleYear
+                        competeData,
+                        singleYear,
+                        setSingleYear,
                     }}
                 >
                     <CompeteChart />
                 </SchoolContext.Provider>
 
                 <SchoolContext.Provider
-                    value = {{
+                    value={{
                         districtList,
                         setDistrictList,
                         areaData,
@@ -341,16 +343,15 @@ export const Visual = () => {
                         singleWish,
                         setSingleWish,
                         schoolData,
-                    }}    
-                >   
-                {areaData.length === districtList.DATA.length ? (
-                    <AreaChart />
-                ) : null}
-
+                    }}
+                >
+                    {areaData.length === districtList.DATA.length ? (
+                        <AreaChart />
+                    ) : null}
                 </SchoolContext.Provider>
 
                 <SchoolContext.Provider
-                    value ={{
+                    value={{
                         groupData,
                         setGroupData,
                         schoolData,
@@ -362,12 +363,10 @@ export const Visual = () => {
                         singleDiff,
                         setSingleDiff,
                         sendDiff,
-                        setSendDiff
+                        setSendDiff,
                     }}
                 >
-                    {schoolData.length > 0 ? (
-                        <GroupChart />
-                    ) : null}
+                    {schoolData.length > 0 ? <GroupChart /> : null}
                 </SchoolContext.Provider>
             </div>
         </div>

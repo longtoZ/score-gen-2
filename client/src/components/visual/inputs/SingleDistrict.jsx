@@ -16,7 +16,7 @@ export const SingleDistrict = () => {
         e.stopPropagation();
         setDistrictList({
             DATA: districtList.DATA,
-            CHOOSEN: e.target.getAttribute('data-district')
+            CHOSEN: e.target.getAttribute('data-district')
         });
         setShowDistrict(false);
         districtRef.current.innerText = e.target.innerText;
@@ -30,7 +30,7 @@ export const SingleDistrict = () => {
             onClick={handleShowDistrict}
             >
                 <p className="pr-2" ref={districtRef}>
-                    {districtList.CHOOSEN}
+                    {districtList.CHOSEN}
                 </p>
                 <ArrowDropDownIcon />
 
