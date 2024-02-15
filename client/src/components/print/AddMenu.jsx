@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+import { FunctionContext } from '../../pages/print/Print';
 import { AddContext } from '../../pages/print/Print';
 import { ScoreRange } from './functions/ScoreRange';
 import { Top } from './functions/Top';
@@ -26,21 +27,40 @@ const functionId = [
     'Lớp chuyên',
 ]
 
+const functionType = [
+    'score-range',
+    'top',
+    'year-range',
+    'compete',
+    'area',
+    'group',
+    'special',
+]
+
 export const Add = () => {
 
-    const { setShowAdd } = useContext(AddContext);
-    const [ showFunction, setShowFunction ] = useState(functionId[0]);
+    const { data, setData } = useContext(FunctionContext);
+    const { showAdd, setShowAdd } = useContext(AddContext);
+
+    const defaultPos = 0
+    const editPos = showAdd.mode === 'edit' ? functionType.indexOf(data[showAdd.index].dataType) : -1;
+
+    const [ showFunction, setShowFunction ] = useState(showAdd.mode === 'add' ? functionId[defaultPos]: functionId[editPos]);
 
     const handleHideAdd = (e) => {
         if (e.target === e.currentTarget) {
-            setShowAdd(false);
+            setShowAdd({
+                show: false,
+                mode: 'add',
+                index: 0,
+                data: {}
+            });
         }
     };
 
     const handleSelectFunction = (e) => {
         setShowFunction(e.target.closest('.func-btn').getAttribute('data-function'));
     };
-
 
     return (
         <div
@@ -56,7 +76,7 @@ export const Add = () => {
                         <h1 className="text-text-subtitle-color">Tính năng</h1>
                         <span className="mt-[1rem] grid grid-cols-2 gap-2">
                             
-                            <div onClick={handleSelectFunction} data-function={functionId[0]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[0] ? 'bg-amber-100' : ''}`}>
+                            <div onClick={handleSelectFunction} data-function={functionId[0]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[0] ? 'bg-amber-100' : ''} ${showAdd.mode === 'edit' ? (editPos === 0 ? '' : 'opacity-50 pointer-events-none') : ''}`}>
                                 <div className="bg-emerald-500 text-white p-1 rounded-lg w-8 h-8">
                                     <DataArrayIcon />
                                 </div>
@@ -65,7 +85,7 @@ export const Add = () => {
                                 </h2>
                             </div>
 
-                            <div onClick={handleSelectFunction} data-function={functionId[1]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[1] ? 'bg-amber-100' : ''}`}>
+                            <div onClick={handleSelectFunction} data-function={functionId[1]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[1] ? 'bg-amber-100' : ''} ${showAdd.mode === 'edit' ? (editPos === 1 ? '' : 'opacity-50 pointer-events-none') : ''}`}>
                                 <div className="bg-emerald-500 text-white p-1 rounded-lg w-8 h-8">
                                     <AutoGraphIcon />
                                 </div>
@@ -74,7 +94,7 @@ export const Add = () => {
                                 </h2>
                             </div>
 
-                            <div onClick={handleSelectFunction} data-function={functionId[2]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[2] ? 'bg-amber-100' : ''}`}>
+                            <div onClick={handleSelectFunction} data-function={functionId[2]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[2] ? 'bg-amber-100' : ''} ${showAdd.mode === 'edit' ? (editPos === 2 ? '' : 'opacity-50 pointer-events-none') : ''}`}>
                                 <div className="bg-emerald-500 text-white p-1 rounded-lg w-8 h-8">
                                     <ScoreIcon />
                                 </div>
@@ -83,7 +103,7 @@ export const Add = () => {
                                 </h2>
                             </div>
 
-                            <div onClick={handleSelectFunction} data-function={functionId[3]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[3] ? 'bg-amber-100' : ''}`}>
+                            <div onClick={handleSelectFunction} data-function={functionId[3]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[3] ? 'bg-amber-100' : ''} ${showAdd.mode === 'edit' ? (editPos === 3 ? '' : 'opacity-50 pointer-events-none') : ''}`}>
                                 <div className="bg-emerald-500 text-white p-1 rounded-lg w-8 h-8">
                                     <FormatListBulletedIcon />
                                 </div>
@@ -92,7 +112,7 @@ export const Add = () => {
                                 </h2>
                             </div>
 
-                            <div onClick={handleSelectFunction} data-function={functionId[4]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[4] ? 'bg-amber-100' : ''}`}>
+                            <div onClick={handleSelectFunction} data-function={functionId[4]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[4] ? 'bg-amber-100' : ''} ${showAdd.mode === 'edit' ? (editPos === 4 ? '' : 'opacity-50 pointer-events-none') : ''}`}>
                                 <div className="bg-emerald-500 text-white p-1 rounded-lg w-8 h-8">
                                     <HomeWorkIcon />
                                 </div>
@@ -101,7 +121,7 @@ export const Add = () => {
                                 </h2>
                             </div>
 
-                            <div onClick={handleSelectFunction} data-function={functionId[5]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[5] ? 'bg-amber-100' : ''}`}>
+                            <div onClick={handleSelectFunction} data-function={functionId[5]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[5] ? 'bg-amber-100' : ''} ${showAdd.mode === 'edit' ? (editPos === 5 ? '' : 'opacity-50 pointer-events-none') : ''}`}>
                                 <div className="bg-emerald-500 text-white p-1 rounded-lg w-8 h-8">
                                     <CompareArrowsIcon />
                                 </div>
@@ -110,7 +130,7 @@ export const Add = () => {
                                 </h2>
                             </div>
 
-                            <div onClick={handleSelectFunction} data-function={functionId[6]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[6] ? 'bg-amber-100' : ''}`}>
+                            <div onClick={handleSelectFunction} data-function={functionId[6]} className={`flex gap-2 p-1 hover:bg-even-row-color rounded-lg func-btn transition-colors ease duration-200 cursor-pointer ${showFunction === functionId[6] ? 'bg-amber-100' : ''} ${showAdd.mode === 'edit' ? (editPos === 6 ? '' : 'opacity-50 pointer-events-none') : ''}`}>
                                 <div className="bg-emerald-500 text-white p-1 rounded-lg w-8 h-8">
                                     <GradeIcon />
                                 </div>

@@ -1,49 +1,61 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import { FunctionContext } from '../../../pages/print/Print';
+import { AddContext } from '../../../pages/print/Print';
 import {
     normalSubjectsObj,
     specialSubjectsObj,
+    normalSubjectsObjReverse,
+    specialSubjectsObjReverse,
     districtsList,
 } from '../../../utils/lists';
+import { getAxiosCommon, handleData } from '../../suggest/utils';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddIcon from '@mui/icons-material/Add';
 
 export const ScoreRange = () => {
 
     const { data, setData } = useContext(FunctionContext);
+    const { showAdd, setShowAdd } = useContext(AddContext);
 
-    const [start, setStart] = useState(0);
-    const [end, setEnd] = useState(30);
+    const mode = showAdd.mode
+    const dataIndex = showAdd.index;
 
     const schoolTypeList = ['Lớp thường', 'Lớp chuyên'];
     const fullDistrictsList = ['Tất cả', ...districtsList];
 
     const schoolTypeRef = useRef(null);
-
     const districtRef = useRef(null);
+    const titleRef = useRef(null);
+    const startRef = useRef(null);
+    const endRef = useRef(null);
 
+    const [title, setTitle] = useState(mode === 'add' ? '' : data[dataIndex].title);
+    const [start, setStart] = useState(mode === 'add' ? 0 : data[dataIndex].startValue);
+    const [end, setEnd] = useState(mode === 'add' ? 30 : data[dataIndex].endValue);
     const [showSchoolType, setShowSchoolType] = useState(false);
     const [showNormalWish, setShowNormalWish] = useState(false);
     const [showSpecialWish, setShowSpecialWish] = useState(false);
     const [showDistrict, setShowDistrict] = useState(false);
-    const [selectedDistrict, setSelectedDistrict] = useState([
-        ...districtsList,
-    ]);
+    const [selectedDistrict, setSelectedDistrict] = useState(mode == 'add' ? districtsList : data[dataIndex].districtValue);
 
-    const [schoolType, setSchoolType] = useState(schoolTypeList[0]);
+    const [schoolType, setSchoolType] = useState(mode === 'add' ? schoolTypeList[0] : data[dataIndex].schoolType);
     const [selectedNormalWish, setSelectedNormalWish] = useState(
-        Object.entries(normalSubjectsObj)[0][0],
+        mode === 'add' ? Object.entries(normalSubjectsObj)[0][0] : normalSubjectsObjReverse[data[dataIndex].wishValue],
     );
     const [selectedSpecialWish, setSelectedSpecialWish] = useState(
-        Object.entries(specialSubjectsObj)[0][0],
+        mode === 'add' ? Object.entries(specialSubjectsObj)[0][0] : specialSubjectsObjReverse[data[dataIndex].wishValue],
     );
 
+    const handleTitle = (e) => {
+        setTitle(e.target.value);
+    }
+
     const handleStart = (e) => {
-        setStart(e.target.value);
+        setStart(parseFloat(e.target.value));
     };
 
     const handleEnd = (e) => {
-        setEnd(e.target.value);
+        setEnd(parseFloat(e.target.value));
     };
 
     const handleShowSchoolType = () => {
@@ -100,26 +112,91 @@ export const ScoreRange = () => {
 
     // Add the data to the main array
     const addData = () => {
-        setData([
-            ...data,
-            {
-                dataType: 'score-range',
-                schoolType,
-                wish: schoolType === 'Lớp thường' ? selectedNormalWish : selectedSpecialWish,
-                district: selectedDistrict,
-                start,
-                end,
-            }
-        ])
+
+        const wishValue =
+            schoolType === 'Lớp thường'
+                ? normalSubjectsObj[selectedNormalWish]
+                : specialSubjectsObj[selectedSpecialWish].replace('1', '%');
+        
+        getAxiosCommon(schoolType, wishValue)
+            .then((res) => handleData(res, schoolType, wishValue))
+            .then((tableData) => {
+                setData([
+                    ...data,
+                    {
+                        dataType: 'score-range',
+                        title,
+                        schoolType,
+                        wishValue,
+                        districtValue: selectedDistrict,
+                        startValue: start,
+                        endValue: end,
+                        tableData,
+                    }
+                ])
+            })
+            .then(() => setShowAdd({
+                show: false,
+                mode: 'add',
+                index: 0,
+            }));
     }
+
+    const editData = () => {
+                
+        const wishValue =
+            schoolType === 'Lớp thường'
+                ? normalSubjectsObj[selectedNormalWish]
+                : specialSubjectsObj[selectedSpecialWish].replace('1', '%');
+        
+        getAxiosCommon(schoolType, wishValue)
+            .then((res) => handleData(res, schoolType, wishValue))
+            .then((tableData) => {
+                const newData = data;
+                newData[showAdd.index] = {
+                    dataType: 'score-range',
+                    title,
+                    schoolType,
+                    wishValue,
+                    districtValue: selectedDistrict,
+                    startValue: start,
+                    endValue: end,
+                    tableData,
+                }
+                setData(newData);
+            })
+            .then(() => setShowAdd({
+                show: false,
+                mode: 'add',
+                index: 0,
+            }));
+    }
+
+    // Update value for input fields
+    useEffect(() => {
+        if (mode === 'edit') {
+            titleRef.current.value = data[dataIndex].title;
+            startRef.current.value = data[dataIndex].startValue;
+            endRef.current.value = data[dataIndex].endValue;
+        }
+    }, [mode])
 
     // Update the selected district
     useEffect(() => {
-        districtRef.current.querySelectorAll('li').forEach((item) => {
-            if (selectedDistrict.includes(item.getAttribute('dataset'))) {
-                item.classList.add('selected-district');
-            } else {
-                item.classList.remove('selected-district');
+
+        if (selectedDistrict.length === districtsList.length) {
+            districtRef.current.querySelector('li').classList.add('selected-district');
+        } else {
+            districtRef.current.querySelector('li').classList.remove('selected-district');
+        }
+
+        districtRef.current.querySelectorAll('li').forEach((item, index) => {
+            if (index !== 0) {
+                if (selectedDistrict.includes(item.getAttribute('dataset'))) {
+                    item.classList.add('selected-district');
+                } else {
+                    item.classList.remove('selected-district');
+                }
             }
         });
     }, [selectedDistrict]);
@@ -134,11 +211,8 @@ export const ScoreRange = () => {
                     type="text" 
                     className="block my-2 w-full bs-in p-2 bg-bg-sank-color rounded-lg text-center" 
                     placeholder='Nhập tiêu đề mục...'
-                />
-                <input 
-                    type="text" 
-                    className="block my-2 w-full bs-in p-2 bg-bg-sank-color rounded-lg text-center" 
-                    placeholder='Nhập ghi chú...'
+                    onChange={handleTitle}
+                    ref={titleRef}
                 />
                 <div className='w-full border-b-2 border-border-color'></div>
             </section>
@@ -288,6 +362,7 @@ export const ScoreRange = () => {
                     max="30"
                     placeholder={start}
                     onChange={handleStart}
+                    ref={startRef}
                 />
                 <h1 className='text-center font-semibold'>Điểm cuối</h1>
                 <input
@@ -297,9 +372,14 @@ export const ScoreRange = () => {
                     max="30"
                     placeholder={end}
                     onChange={handleEnd}
+                    ref={endRef}
                 />
             </section>
-            <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm</button>
+            {showAdd.mode === 'add' ? (
+                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm mới</button>
+            ) : (
+                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={editData}>Thay đổi</button>
+            )}
         </div>
     );
 };

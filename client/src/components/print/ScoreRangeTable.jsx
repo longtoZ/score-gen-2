@@ -1,42 +1,48 @@
-export const RangeTable = ({ tableData, filterData, schoolType }) => {
+export const ScoreRangeTable = ({ data }) => {
+    const schoolType = data.schoolType;
+    const tableData = data.tableData;
+    
+    const startValue =
+        schoolType === 'Lớp thường'
+            ? ((data.startValue / 30) * 100).toFixed(2)
+            : data.startValue;
+    const endValue =
+        schoolType === 'Lớp thường'
+            ? ((data.endValue / 30) * 100).toFixed(2)
+            : data.endValue;
+
     const filteredTableData =
         schoolType === 'Lớp thường'
-            ? tableData.filter(
-                  (item) =>
-                      filterData.districtValue.includes(item['district']) &&
-                      parseFloat(item[filterData.wishValue]) >=
-                          filterData.startValue &&
-                      parseFloat(item[filterData.wishValue]) <=
-                          filterData.endValue,
-              ).sort((a,b) => parseFloat(a[filterData.wishValue])-parseFloat(b[filterData.wishValue]))
-            : tableData.filter(
-                  (item) =>
-                      filterData.districtValue.includes(item['district']) &&
-                      parseFloat(item['NV1']) >= filterData.startValue &&
-                      parseFloat(item['NV1']) <= filterData.endValue,
-                ).sort((a,b) => parseFloat(a['NV1'])-parseFloat(b['NV1']));
+            ? tableData
+                  .filter(
+                      (item) =>
+                          data.districtValue.includes(item.district) &&
+                          parseFloat(item[data.wishValue]) >= startValue &&
+                          parseFloat(item[data.wishValue]) <= endValue,
+                  )
+                  .sort(
+                      (a, b) =>
+                          parseFloat(a[data.wishValue]) -
+                          parseFloat(b[data.wishValue]),
+                  )
+            : tableData
+                  .filter(
+                      (item) =>
+                          data.districtValue.includes(item['district']) &&
+                          parseFloat(item['NV1']) >= startValue &&
+                          parseFloat(item['NV1']) <= endValue,
+                  )
+                  .sort((a, b) => parseFloat(a['NV1']) - parseFloat(b['NV1']));
 
     return (
         <>
             {filteredTableData.length !== 0 ? (
                 <>
-                    { schoolType === 'Lớp thường' ? (
-                        <h1 className="text-center text-2xl font-bold mt-10">
-                            Các trường có điểm {filterData.wishValue} trong khoảng{' '}
-                            {(filterData.startValue * 0.3).toFixed(2)} -{' '}
-                            {(filterData.endValue * 0.3).toFixed(2)} (theo trung
-                            bình các năm)
-                        </h1>
-                    ) : (
-                        <h1 className="text-center text-2xl font-bold mt-10">
-                            Các trường có điểm {filterData.wishValue.replace('%', '')} trong khoảng{' '}
-                            {parseFloat(filterData.startValue).toFixed(2)} -{' '}
-                            {parseFloat(filterData.endValue).toFixed(2)} (theo trung
-                            bình các năm)
-                        </h1>
-                    )}
+                    <section className="text-center">
+                        <h1 className="text-3xl font-bold">{data.title}</h1>
+                    </section>
 
-                    <table className="rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
+                    <table className="rounded-lg text-center w-full mt-10 shadow-basic">
                         <thead
                             className={`${
                                 schoolType === 'Lớp thường'
@@ -80,8 +86,7 @@ export const RangeTable = ({ tableData, filterData, schoolType }) => {
                                             <>
                                                 <td
                                                     className={`py-2 ${
-                                                        filterData.wishValue ===
-                                                        'NV1'
+                                                        data.wishValue === 'NV1'
                                                             ? 'bg-amber-100'
                                                             : ''
                                                     }`}
@@ -94,8 +99,7 @@ export const RangeTable = ({ tableData, filterData, schoolType }) => {
                                                 </td>
                                                 <td
                                                     className={`py-2 ${
-                                                        filterData.wishValue ===
-                                                        'NV2'
+                                                        data.wishValue === 'NV2'
                                                             ? 'bg-amber-100'
                                                             : ''
                                                     }`}
@@ -108,8 +112,7 @@ export const RangeTable = ({ tableData, filterData, schoolType }) => {
                                                 </td>
                                                 <td
                                                     className={`py-2 ${
-                                                        filterData.wishValue ===
-                                                        'NV3'
+                                                        data.wishValue === 'NV3'
                                                             ? 'bg-amber-100'
                                                             : ''
                                                     }`}

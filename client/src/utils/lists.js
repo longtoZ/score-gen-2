@@ -48,6 +48,12 @@ export const normalSubjectsObj = {
     'Nguyện vọng 3': 'NV3',
 };
 
+export const normalSubjectsObjReverse = {
+    NV1: 'Nguyện vọng 1',
+    NV2: 'Nguyện vọng 2',
+    NV3: 'Nguyện vọng 3',
+};
+
 export const specialSubjectsObj = {
     'Nguyện vọng Chuyên Anh': 'NV1_CANH',
     'Nguyện vọng Chuyên Địa': 'NV1_CDIA',
@@ -61,4 +67,19 @@ export const specialSubjectsObj = {
     'Nguyện vọng Chuyên Toán': 'NV1_CTO',
     'Nguyện vọng Chuyên Trung': 'NV1_CTRU',
     'Nguyện vọng Chuyên Văn': 'NV1_CVAN',
+};
+
+export const specialSubjectsObjReverse = {
+    NV1_CANH: 'Nguyện vọng Chuyên Anh',
+    NV1_CDIA: 'Nguyện vọng Chuyên Địa',
+    NV1_CHOA: 'Nguyện vọng Chuyên Hoá',
+    NV1_CLY: 'Nguyện vọng Chuyên Lý',
+    NV1_CNHA: 'Nguyện vọng Chuyên Nhật',
+    NV1_CPHA: 'Nguyện vọng Chuyên Pháp',
+    NV1_CSI: 'Nguyện vọng Chuyên Sinh',
+    NV1_CSU: 'Nguyện vọng Chuyên Sử',
+    NV1_CTIN: 'Nguyện vọng Chuyên Tin',
+    NV1_CTO: 'Nguyện vọng Chuyên Toán',
+    NV1_CTRU: 'Nguyện vọng Chuyên Trung',
+    NV1_CVAN: 'Nguyện vọng Chuyên Văn',
 };

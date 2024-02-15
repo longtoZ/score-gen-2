@@ -160,11 +160,19 @@ export const Suggest = () => {
 
     // Update the selected district
     useEffect(() => {
-        districtRef.current.querySelectorAll('li').forEach((item) => {
-            if (selectedDistrict.includes(item.getAttribute('dataset'))) {
-                item.classList.add('selected-district');
-            } else {
-                item.classList.remove('selected-district');
+        if (selectedDistrict.length === districtsList.length) {
+            districtRef.current.querySelector('li').classList.add('selected-district');
+        } else {
+            districtRef.current.querySelector('li').classList.remove('selected-district');
+        }
+        
+        districtRef.current.querySelectorAll('li').forEach((item, index) => {
+            if (index !== 0) {
+                if (selectedDistrict.includes(item.getAttribute('dataset'))) {
+                    item.classList.add('selected-district');
+                } else {
+                    item.classList.remove('selected-district');
+                }
             }
         });
 

@@ -22,7 +22,9 @@ export const Range = ({ min, max, schoolType, wish }) => {
                 ? ((start / 30) * 100).toFixed(2)
                 : start;
         const endValue =
-            schoolType === 'Lớp thường' ? ((end / 30) * 100).toFixed(2) : end;
+            schoolType === 'Lớp thường' 
+                ? ((end / 30) * 100).toFixed(2) 
+                : end;
         const wishValue =
             schoolType === 'Lớp thường'
                 ? normalSubjectsObj[wish]

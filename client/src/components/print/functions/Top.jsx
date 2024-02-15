@@ -1,37 +1,48 @@
 import { useState, useEffect, useRef, useContext } from 'react';
 import { FunctionContext } from '../../../pages/print/Print';
+import { AddContext } from '../../../pages/print/Print';
 import {
     normalSubjectsObj,
-    specialSubjectsObj,
+    normalSubjectsObjReverse,
     districtsList,
 } from '../../../utils/lists';
+import { getAxiosCommon, handleData } from '../../suggest/utils';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddIcon from '@mui/icons-material/Add';
 
 export const Top = () => {
 
     const { data, setData } = useContext(FunctionContext);
+    const { showAdd, setShowAdd } = useContext(AddContext);
+
+    const mode = showAdd.mode
+    const dataIndex = showAdd.index;
 
     const fullDistrictsList = ['Tất cả', ...districtsList];
 
     const districtRef = useRef(null);
     const highestRef = useRef(null);
     const lowestRef = useRef(null);
+    const titleRef = useRef(null);
+    const topRef = useRef(null);
     
-    const [top, setTop] = useState(10);
-    const [position, setPosition] = useState('highest');
+    const [title, setTitle] = useState(mode === 'add' ? '' : data[dataIndex].title);
+    const [top, setTop] = useState(mode === 'add' ? 10 : data[dataIndex].topValue);
+    const [position, setPosition] = useState(mode === 'add' ? 'highest' : data[dataIndex].positionValue);
     const [showNormalWish, setShowNormalWish] = useState(false);
     const [showDistrict, setShowDistrict] = useState(false);
-    const [selectedDistrict, setSelectedDistrict] = useState([
-        ...districtsList,
-    ]);
+    const [selectedDistrict, setSelectedDistrict] = useState(mode == 'add' ? districtsList : data[dataIndex].districtValue);
 
     const [selectedNormalWish, setSelectedNormalWish] = useState(
-        Object.entries(normalSubjectsObj)[0][0],
+        mode === 'add' ? Object.entries(normalSubjectsObj)[0][0] : normalSubjectsObjReverse[data[dataIndex].wishValue]
     );
 
+    const handleTitle = (e) => {
+        setTitle(e.target.value);
+    }
+
     const handleTop = (e) => {
-        setTop(e.target.value);
+        setTop(parseFloat(e.target.value));
     };
 
     const handleShowNormalWish = () => {
@@ -42,7 +53,6 @@ export const Top = () => {
     const handleShowDistrict = () => {
         setShowDistrict(!showDistrict);
     };
-
 
     const handleNormalWish = (e) => {
         setSelectedNormalWish(e.target.innerText);
@@ -74,42 +84,101 @@ export const Top = () => {
 
     const handlePosition = (e) => {
         const dataType = e.target.getAttribute('data-type');
+        setPosition(dataType);
+    };
 
-        if (dataType === 'highest') {
+    useEffect(() => {
+        if (position === 'highest') {
             highestRef.current.classList.add('enable');
             lowestRef.current.classList.remove('enable');
         } else {
             lowestRef.current.classList.add('enable');
             highestRef.current.classList.remove('enable');
         }
-
-        setPosition(dataType);
-    };
+    }, [position])
 
     // Add the data to the main array
     const addData = () => {
-        setData([
-            ...data,
-            {
-                dataType: 'top',
-                wish: selectedNormalWish,
-                district: selectedDistrict,
-                top,
-                position,
-            }
-        ])
+
+        const schoolType = 'Lớp thường'
+        const wishValue = normalSubjectsObj[selectedNormalWish]
+        
+        getAxiosCommon(schoolType, wishValue)
+            .then((res) => handleData(res, schoolType, wishValue))
+            .then((tableData) => {
+                setData([
+                    ...data,
+                    {
+                        dataType: 'top',
+                        title,
+                        wishValue,
+                        districtValue: selectedDistrict,
+                        topValue: top,
+                        positionValue: position,
+                        tableData,
+                    }
+                ])
+            })
+            .then(() => setShowAdd({
+                show: false,
+                mode: 'add',
+                index: 0,
+            }));
+    }
+
+    const editData = () => {
+                
+        const schoolType = 'Lớp thường'
+        const wishValue = normalSubjectsObj[selectedNormalWish]
+
+        getAxiosCommon(schoolType, wishValue)
+            .then((res) => handleData(res, schoolType, wishValue))
+            .then((tableData) => {
+                const newData = data;
+                newData[dataIndex] = {
+                    dataType: 'top',
+                    title,
+                    wishValue,
+                    districtValue: selectedDistrict,
+                    topValue: top,
+                    positionValue: position,
+                    tableData,
+                }
+                setData(newData);
+            })
+            .then(() => setShowAdd({
+                show: false,
+                mode: 'add',
+                index: 0,
+            }));
     }
 
     // Update the selected district
     useEffect(() => {
-        districtRef.current.querySelectorAll('li').forEach((item) => {
-            if (selectedDistrict.includes(item.getAttribute('dataset'))) {
-                item.classList.add('selected-district');
-            } else {
-                item.classList.remove('selected-district');
+        if (selectedDistrict.length === districtsList.length) {
+            districtRef.current.querySelector('li').classList.add('selected-district');
+        } else {
+            districtRef.current.querySelector('li').classList.remove('selected-district');
+        }
+
+        districtRef.current.querySelectorAll('li').forEach((item, index) => {
+            if (index !== 0) {
+                if (selectedDistrict.includes(item.getAttribute('dataset'))) {
+                    item.classList.add('selected-district');
+                } else {
+                    item.classList.remove('selected-district');
+                }
             }
         });
     }, [selectedDistrict]);
+
+    // Update value for input fields
+    useEffect(() => {
+        if (mode === 'edit') {
+            titleRef.current.value = data[dataIndex].title;
+            topRef.current.value = data[dataIndex].topValue;
+        }
+    }, [mode])
 
     return (
         <div>
@@ -121,11 +190,8 @@ export const Top = () => {
                     type="text" 
                     className="block my-2 w-full bs-in p-2 bg-bg-sank-color rounded-lg text-center" 
                     placeholder='Nhập tiêu đề mục...'
-                />
-                <input 
-                    type="text" 
-                    className="block my-2 w-full bs-in p-2 bg-bg-sank-color rounded-lg text-center" 
-                    placeholder='Nhập ghi chú...'
+                    onChange={handleTitle}
+                    ref={titleRef}
                 />
                 <div className='w-full border-b-2 border-border-color'></div>
             </section>
@@ -204,14 +270,14 @@ export const Top = () => {
                 <input
                     className="bs-in p-2 bg-bg-sank-color rounded-lg text-center"
                     type="number"
-                    value={top}
+                    placeholder={top}
                     min="0"
                     max="30"
-                    placeholder="Số lượng"
                     onChange={handleTop}
+                    ref={topRef}
                 />
                 <button
-                    className="enable font-semibold text-text-color p-2 rounded-lg shadow-md cursor-pointer opacity-50"
+                    className="font-semibold text-text-color p-2 rounded-lg shadow-md cursor-pointer opacity-50"
                     ref={highestRef}
                     data-type="highest"
                     onClick={handlePosition}
@@ -227,7 +293,11 @@ export const Top = () => {
                     Thấp nhất
                 </button>
             </section>
-            <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm</button>
+            {showAdd.mode === 'add' ? (
+                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm mới</button>
+            ) : (
+                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={editData}>Thay đổi</button>
+            )}
         </div>
     );
 };

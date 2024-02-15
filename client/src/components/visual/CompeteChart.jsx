@@ -197,7 +197,7 @@ export const CompeteChart = () => {
                                 const total = item['DATA'].find(
                                     (year) => year['NAM_HOC'] === singleYear,
                                 )['SO_LUONG'];
-                                const c = (total / target).toFixed(2)
+                                const c = (total / target)
 
                                 const targetPrevious = singleYear-1 >= earliestYear ? item['DATA'].find(
                                     (year) => year['NAM_HOC'] === singleYear-1,
@@ -205,7 +205,7 @@ export const CompeteChart = () => {
                                 const totalPrevious = singleYear-1 >= earliestYear ? item['DATA'].find(
                                     (year) => year['NAM_HOC'] === singleYear-1,
                                 )['SO_LUONG'] : 0;
-                                const cPrevious = (totalPrevious / targetPrevious).toFixed(2)
+                                const cPrevious = (totalPrevious / targetPrevious)
 
                                 return (
                                         <div

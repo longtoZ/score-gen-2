@@ -1,27 +1,29 @@
-export const TopTable = ({ tableData, filterData }) => {
-    const filteredTableData = tableData
-        .filter((item) => filterData.districtValue.includes(item.district))
-        .sort((a, b) => {
-            const wish1 = parseFloat(a[filterData.wishValue]);
-            const wish2 = parseFloat(b[filterData.wishValue]);
+export const TopTable = ({ data }) => {
+    const tableData = data.tableData;
 
-            if (filterData.positionValue === 'highest') {
+    const filteredTableData = tableData
+        .filter((item) => data.districtValue.includes(item.district))
+        .sort((a, b) => {
+            const wish1 = parseFloat(a[data.wishValue]);
+            const wish2 = parseFloat(b[data.wishValue]);
+
+            if (data.positionValue === 'highest') {
                 return wish2 - wish1;
             } else {
                 return wish1 - wish2;
             }
         })
-        .slice(0, filterData.topValue);
+        .slice(0, data.topValue);
 
     return (
         <>
             {filteredTableData.length !== 0 ? (
                 <>
-                    <h1 className="text-center text-2xl font-bold mt-10">
-                        Top {filterData.topValue} trường có điểm{' '}
-                        {filterData.wishValue} cao nhất
-                    </h1>
-                    <table className="rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
+                    <section className="text-center">
+                        <h1 className="text-3xl font-bold">{data.title}</h1>
+                        <h1 className="text-center text-lg mt-5"></h1>
+                    </section>
+                    <table className="rounded-lg text-center w-full mt-20 shadow-basic">
                         <thead className="bg-emerald-600 text-white font-bold">
                             <tr>
                                 <th className="py-2 px-4">STT</th>
@@ -40,7 +42,7 @@ export const TopTable = ({ tableData, filterData }) => {
                                         key={index}
                                         className="[&:nth-child(even)]:bg-even-row-color"
                                     >
-                                        <td className="text-emerald-600">
+                                        <td className="text-emerald-600 py-2">
                                             {index + 1}
                                         </td>
                                         <td className="py-2">{item['name']}</td>
@@ -49,7 +51,7 @@ export const TopTable = ({ tableData, filterData }) => {
                                         </td>
                                         <td
                                             className={`py-2 ${
-                                                filterData.wishValue === 'NV1'
+                                                data.wishValue === 'NV1'
                                                     ? 'bg-amber-100'
                                                     : ''
                                             }`}
@@ -60,7 +62,7 @@ export const TopTable = ({ tableData, filterData }) => {
                                         </td>
                                         <td
                                             className={`py-2 ${
-                                                filterData.wishValue === 'NV2'
+                                                data.wishValue === 'NV2'
                                                     ? 'bg-amber-100'
                                                     : ''
                                             }`}
@@ -71,7 +73,7 @@ export const TopTable = ({ tableData, filterData }) => {
                                         </td>
                                         <td
                                             className={`py-2 ${
-                                                filterData.wishValue === 'NV3'
+                                                data.wishValue === 'NV3'
                                                     ? 'bg-amber-100'
                                                     : ''
                                             }`}
