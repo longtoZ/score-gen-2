@@ -1,5 +1,5 @@
-export const YearRangeTable = ({ data }) => {
-    const tableData = data.tableData.filter((d) => d['NAM_HOC'] >= data.start && d['NAM_HOC'] <= data.end);
+export const AreaTable = ({ data }) => {
+    const tableData = data.tableData;
     const length = tableData.length;
 
     return (
@@ -13,9 +13,9 @@ export const YearRangeTable = ({ data }) => {
                     <table className="rounded-lg text-center w-full mt-20 shadow-basic">
                         <thead className="bg-emerald-600 text-white font-bold">
                             <tr>
-                                <th className="py-2 px-4">TÊN TRƯỜNG</th>
                                 <th className="py-2 px-4">TÊN QUẬN</th>
-                                <th className="py-2 px-4">Năm</th>
+                                <th className="py-2 px-4">NĂM</th>
+                                <th className="py-2 px-4">TÊN TRƯỜNG</th>
                                 <th className="py-2 px-4">ĐIỂM NV1</th>
                                 <th className="py-2 px-4">ĐIỂM NV2</th>
                                 <th className="py-2 px-4">ĐIỂM NV3</th>
@@ -35,19 +35,17 @@ export const YearRangeTable = ({ data }) => {
                                                     className="py-2 text-emerald-600 font-semibold"
                                                     rowSpan={length}
                                                 >
-                                                    {item['TEN_TRUONG']}
-                                                </td>
-                                                <td
-                                                    className="py-2 text-emerald-600 font-semibold"
-                                                    rowSpan={length}
-                                                >
                                                     {item['QUAN/HUYEN']}
+                                                </td>
+                                                <td className="py-2 text-emerald-600 font-semibold" rowSpan={length}>
+                                                    {item['NAM_HOC']}
                                                 </td>
                                             </>
                                         ) : null}
                                         <td className="py-2">
-                                            {item['NAM_HOC']}
+                                            {item['TEN_TRUONG']}
                                         </td>
+
                                         <td className="py-2">
                                             {item['DIEM']['NV1']}
                                         </td>

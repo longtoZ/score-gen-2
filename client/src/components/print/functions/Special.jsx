@@ -1,23 +1,36 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
 import { FunctionContext } from '../../../pages/print/Print';
+import { AddContext } from '../../../pages/print/Print';
 import {
     specialSubjectsObj,
+    specialSubjectsObjReverse,
     yearsList
 } from '../../../utils/lists';
+import { getAxiosSpecial, handleDataSpecial } from '../../visual/utils';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export const Special = () => {
 
     const { data, setData } = useContext(FunctionContext);
+    const { showAdd, setShowAdd } = useContext(AddContext);
 
+    const mode = showAdd.mode
+    const dataIndex = showAdd.index;
+
+    const titleRef = useRef(null);
+
+    const [title, setTitle] = useState(mode === 'add' ? '' : data[dataIndex].title);
     const [showYear, setShowYear] = useState(false);
     const [showSpecialWish, setShowSpecialWish] = useState(false);
 
-    const [selectedYear, setSelectedYear] = useState(yearsList[0]);
+    const [selectedYear, setSelectedYear] = useState(mode === 'add' ? yearsList[0] : data[dataIndex].year);
     const [selectedSpecialWish, setSelectedSpecialWish] = useState(
-        Object.entries(specialSubjectsObj)[0][0],
+        mode === 'add' ? Object.entries(specialSubjectsObj)[0][0] : specialSubjectsObjReverse[data[dataIndex].wish],
     );
 
+    const handleTitle = (e) => {
+        setTitle(e.target.value)
+    }
 
     const handleShowYear = () => {
         setShowYear(!showYear);
@@ -37,17 +50,57 @@ export const Special = () => {
 
     // Add the data to the main array
     const addData = () => {
-        setData([
-            ...data,
-            {
-                dataType: 'special',
-                year: selectedYear,
-                wish: selectedSpecialWish,
-            }
-        ])
+        const wishValue = specialSubjectsObj[selectedSpecialWish].replace('1', '%');
+    
+        getAxiosSpecial(selectedYear, wishValue)
+            .then((res) => handleDataSpecial(res))
+            .then((tableData) => {
+                setData([
+                    ...data,
+                    {
+                        dataType: 'special',
+                        title,
+                        year: selectedYear,
+                        wish: wishValue,
+                        tableData,
+                    }
+                ])
+            })
+            .then(() => setShowAdd({
+                show: false,
+                mode: 'add',
+                index: 0,
+            }));
     }
 
+    const editData = () => {
+        const wishValue = specialSubjectsObj[selectedSpecialWish].replace('1', '%');
+    
+        getAxiosSpecial(selectedYear, wishValue)
+            .then((res) => handleDataSpecial(res))
+            .then((tableData) => {
+                const newData = [...data];
+                newData[dataIndex] = {
+                    dataType: 'special',
+                    title,
+                    year: selectedYear,
+                    wish: wishValue,
+                    tableData,
+                };
+                setData(newData);
+            })
+            .then(() => setShowAdd({
+                show: false,
+                mode: 'add',
+                index: 0,
+            }));
+    }
 
+    useEffect(() => {
+        if (mode === 'edit') {
+            titleRef.current.value = data[dataIndex].title;
+        }
+    }, [mode])
 
     return (
         <div>
@@ -59,11 +112,8 @@ export const Special = () => {
                     type="text" 
                     className="block my-2 w-full bs-in p-2 bg-bg-sank-color rounded-lg text-center" 
                     placeholder='Nhập tiêu đề mục...'
-                />
-                <input 
-                    type="text" 
-                    className="block my-2 w-full bs-in p-2 bg-bg-sank-color rounded-lg text-center" 
-                    placeholder='Nhập ghi chú...'
+                    ref={titleRef}
+                    onChange={handleTitle}
                 />
                 <div className='w-full border-b-2 border-border-color'></div>
             </section>
@@ -135,7 +185,11 @@ export const Special = () => {
                     </ul>
                 </div>
             </section>
-            <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm</button>
+            {showAdd.mode === 'add' ? (
+                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm mới</button>
+            ) : (
+                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={editData}>Thay đổi</button>
+            )}
         </div>
     );
 };

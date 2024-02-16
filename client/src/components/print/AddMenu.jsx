@@ -9,6 +9,7 @@ import { Area } from './functions/Area';
 import { Group } from './functions/Group';
 import { Special } from './functions/Special';
 
+import CloseIcon from '@mui/icons-material/Close';
 import DataArrayIcon from '@mui/icons-material/DataArray';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import ScoreIcon from '@mui/icons-material/Score';
@@ -64,10 +65,13 @@ export const Add = () => {
 
     return (
         <div
-            className="w-full h-full fixed bg-black bg-opacity-40 flex justify-center items-center"
+            className="w-full h-full fixed bg-black bg-opacity-40 flex justify-center items-center z-[3]"
             onClick={handleHideAdd}
         >
             <div className="w-[70%] py-8 px-4 bg-input-color rounded-lg">
+                <div className='text-right text-gray-400 rounded-lg'>
+                    <CloseIcon onClick={handleHideAdd} className='cursor-pointer'/>
+                </div>
                 <h1 className="text-lg text-center font-semibold">
                     Các mục in khả dụng
                 </h1>

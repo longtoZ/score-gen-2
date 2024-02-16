@@ -34,11 +34,11 @@ export const YearRange = () => {
     }
 
     const handleStart = (e) => {
-        setStart(e.target.value);
+        setStart(parseInt(e.target.value));
     };
 
     const handleEnd = (e) => {
-        setEnd(e.target.value);
+        setEnd(parseInt(e.target.value));
     };
 
 

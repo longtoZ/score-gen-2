@@ -211,9 +211,8 @@ export const Visual = () => {
 
         const selectedScore = schoolData
             .find((s) => s['CHOSEN'] === true)
-            ['DATA'].find((d) => d['NAM_HOC'] === singleYear)['DIEM'][
-            singleWish
-        ];
+            ['DATA'].find((d) => d['NAM_HOC'] === singleYear)['DIEM'][singleWish];
+            
         getAxiosGroup(singleYear, singleWish, selectedScore, singleDiff)
             .then((res) => handleDataGroup(res))
             .then((data) => {

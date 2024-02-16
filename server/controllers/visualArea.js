@@ -6,7 +6,7 @@ export const visualAreaController = (req, res) => {
   const wish = req.query.wish;
 
   const query =
-    "SELECT `truong`.`TEN_TRUONG`, `diem_chuan`.`MA_TRUONG`, `truong`.`QUAN/HUYEN`, `diem_chuan`.`MA_NV`, `diem_chuan`.`DIEM` FROM `diem_chuan` LEFT OUTER JOIN `truong` on `truong`.`MA_TRUONG` = `diem_chuan`.`MA_TRUONG` WHERE `QUAN/HUYEN` LIKE '%" + district + "%' AND `NAM_HOC` = " + year + " AND `MA_NV` = '" + wish + "' ORDER BY `DIEM` DESC";
+    "SELECT `truong`.`TEN_TRUONG`, `diem_chuan`.`MA_TRUONG`, `truong`.`QUAN/HUYEN`, `diem_chuan`.`MA_NV`, `diem_chuan`.`DIEM` FROM `diem_chuan` LEFT OUTER JOIN `truong` on `truong`.`MA_TRUONG` = `diem_chuan`.`MA_TRUONG` WHERE `QUAN/HUYEN` LIKE '%" + district + "%' AND `NAM_HOC` = " + year + " AND (`MA_NV` = '" + wish + "') ORDER BY `DIEM` DESC";
 
   db.query(query, (err, result) => {
     if (err) {

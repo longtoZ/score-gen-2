@@ -35,13 +35,13 @@ export const CompeteTable = ({ data }) => {
                                         {index === 0 ? (
                                             <>
                                                 <td
-                                                    className="py-2 text-emerald-600"
+                                                    className="py-2 text-emerald-600 font-semibold"
                                                     rowSpan={length}
                                                 >
                                                     {school}
                                                 </td>
                                                 <td
-                                                    className="py-2 text-emerald-600"
+                                                    className="py-2 text-emerald-600 font-semibold"
                                                     rowSpan={length}
                                                 >
                                                     {district}

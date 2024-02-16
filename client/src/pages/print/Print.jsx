@@ -5,11 +5,16 @@ import { ScoreRangeTable } from '../../components/print/ScoreRangeTable';
 import { TopTable } from '../../components/print/TopTable';
 import { YearRangeTable } from '../../components/print/YearRangeTable';
 import { CompeteTable } from '../../components/print/CompeteTable';
+import { AreaTable } from '../../components/print/AreaTable';
+import { GroupTable } from '../../components/print/GroupTable';
+import { SpecialTable } from '../../components/print/SpecialTable';
 
 import AddIcon from '@mui/icons-material/Add';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ListIcon from '@mui/icons-material/List';
+
+import './print.css'
 
 const functionsDescription = {
     'score-range': 'Khoảng điểm',
@@ -65,7 +70,7 @@ export const Print = () => {
                 </AddContext.Provider>
             </FunctionContext.Provider>
 
-            <div className="Visual py-[10rem] w-[90%] mx-auto">
+            <div className="Visual py-[10rem] w-[90%] mx-auto relative">
                 <h1 className="text-center my-10 text-3xl font-semibold">
                     Phân tích và trực quan hoá điểm số
                 </h1>
@@ -82,6 +87,13 @@ export const Print = () => {
                     <div className="p-2 flex justify-center gap-2 rounded-lg bg-input-color shadow-basic">
                         <AddIcon />
                         <h1 className="font-semibold">Thêm mục</h1>
+                    </div>
+                </div>
+
+                <div className='fixed bottom-4 right-4 p-2 cursor-pointer add-btn' onClick={handleShowAdd}>
+                    <div className="p-2 flex justify-center gap-2 bg-input-color shadow-basic">
+                        <h1 className="font-semibold add-text">Thêm mục</h1>
+                        <AddIcon />
                     </div>
                 </div>
 
@@ -111,6 +123,9 @@ export const Print = () => {
                                     {item.dataType === 'top' && <TopTable data={item} />}
                                     {item.dataType === 'year-range' && <YearRangeTable data={item} />}
                                     {item.dataType === 'compete' && <CompeteTable data={item} />}
+                                    {item.dataType === 'area' && <AreaTable data={item} />}
+                                    {item.dataType === 'group' && <GroupTable data={item} />}
+                                    {item.dataType === 'special' && <SpecialTable data={item} />}
                                 </div>
                             </div>
                         );

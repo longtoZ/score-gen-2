@@ -1,0 +1,19 @@
+.add-btn {
+    transition: all ease 0.2s;
+}
+
+.add-btn > div {
+    border-radius: 50%;
+}
+
+.add-text {
+    display: none;
+}
+
+.add-btn:hover > div {
+    border-radius: 0.5rem;
+}
+
+.add-btn:hover .add-text {
+    display: block;
+}

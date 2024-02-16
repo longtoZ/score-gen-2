@@ -42,7 +42,7 @@ export const TopTable = ({ data }) => {
                                         key={index}
                                         className="[&:nth-child(even)]:bg-even-row-color"
                                     >
-                                        <td className="text-emerald-600 py-2">
+                                        <td className="text-emerald-600 py-2 font-semibold">
                                             {index + 1}
                                         </td>
                                         <td className="py-2">{item['name']}</td>
