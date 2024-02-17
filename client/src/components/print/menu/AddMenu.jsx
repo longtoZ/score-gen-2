@@ -1,13 +1,14 @@
-import { useContext, useEffect, useState } from 'react';
-import { FunctionContext } from '../../pages/print/Print';
-import { AddContext } from '../../pages/print/Print';
-import { ScoreRange } from './functions/ScoreRange';
-import { Top } from './functions/Top';
-import { YearRange } from './functions/YearRange';
-import { Compete } from './functions/Compete';
-import { Area } from './functions/Area';
-import { Group } from './functions/Group';
-import { Special } from './functions/Special';
+import { useContext, useState } from 'react';
+import { FunctionContext } from '../../../pages/print/Print';
+import { AddContext } from '../../../pages/print/Print';
+
+import { ScoreRange } from '../functions/ScoreRange';
+import { Top } from '../functions/Top';
+import { YearRange } from '../functions/YearRange';
+import { Compete } from '../functions/Compete';
+import { Area } from '../functions/Area';
+import { Group } from '../functions/Group';
+import { Special } from '../functions/Special';
 
 import CloseIcon from '@mui/icons-material/Close';
 import DataArrayIcon from '@mui/icons-material/DataArray';
@@ -17,6 +18,8 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import GradeIcon from '@mui/icons-material/Grade';
+
+import '../responsive.css';
 
 const functionId = [
     'Khoảng điểm',
@@ -38,7 +41,7 @@ const functionType = [
     'special',
 ]
 
-export const Add = () => {
+export const AddMenu = () => {
 
     const { data, setData } = useContext(FunctionContext);
     const { showAdd, setShowAdd } = useContext(AddContext);
@@ -68,14 +71,14 @@ export const Add = () => {
             className="w-full h-full fixed bg-black bg-opacity-40 flex justify-center items-center z-[3]"
             onClick={handleHideAdd}
         >
-            <div className="w-[70%] py-8 px-4 bg-input-color rounded-lg">
-                <div className='text-right text-gray-400 rounded-lg'>
+            <div className="w-[70%] py-8 px-4 bg-input-color rounded-lg relative menu-container">
+                <div className='absolute top-3 right-3 text-gray-400'>
                     <CloseIcon onClick={handleHideAdd} className='cursor-pointer'/>
                 </div>
                 <h1 className="text-lg text-center font-semibold">
                     Các mục in khả dụng
                 </h1>
-                <div className="grid grid-cols-2 gap-4 mt-[2rem] ">
+                <div className="grid grid-cols-2 gap-4 mt-[2rem] menu-grid">
                     <div className="border-2 border-border-color rounded-lg p-2">
                         <h1 className="text-text-subtitle-color">Tính năng</h1>
                         <span className="mt-[1rem] grid grid-cols-2 gap-2">

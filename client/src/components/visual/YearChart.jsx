@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
 import { YearRange } from './inputs/YearRange.jsx';
 import {
@@ -14,6 +14,7 @@ import {
 } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import './responsive.css';
 
 Chart.register(
     ChartDataLabels,
@@ -49,6 +50,9 @@ const color = [
 ];
 
 export const YearChart = () => {
+
+
+
     const { startYear, endYear, schoolData, singleWish } = useContext(SchoolContext);
 
     // console.log(schoolData)
@@ -277,7 +281,7 @@ export const YearChart = () => {
     return (
         <>
             {schoolData.length !== 0 ? (
-                <div className="mt-[5rem] grid grid-cols-2 gap-4">
+                <div className="mt-[5rem] grid grid-cols-2 gap-4 year-chart-grid">
                     <div className="shadow-basic rounded-lg overflow-hidden">
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Điểm qua các năm

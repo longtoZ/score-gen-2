@@ -13,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 export const Top = () => {
 
     const { data, setData } = useContext(FunctionContext);
-    const { showAdd, setShowAdd } = useContext(AddContext);
+    const { showAdd, setShowAdd, setToastMessage } = useContext(AddContext);
 
     const mode = showAdd.mode
     const dataIndex = showAdd.index;
@@ -100,6 +100,14 @@ export const Top = () => {
     // Add the data to the main array
     const addData = () => {
 
+        if (top < 1) {
+            setToastMessage({
+                type: 'error',
+                msg: 'Top điểm phải lớn hơn 0',
+            });
+            return;
+        }
+
         const schoolType = 'Lớp thường'
         const wishValue = normalSubjectsObj[selectedNormalWish]
         
@@ -127,6 +135,14 @@ export const Top = () => {
     }
 
     const editData = () => {
+
+        if (top < 1) {
+            setToastMessage({
+                type: 'warning',
+                msg: 'Top điểm phải lớn hơn 0',
+            });
+            return;
+        }
                 
         const schoolType = 'Lớp thường'
         const wishValue = normalSubjectsObj[selectedNormalWish]
@@ -195,7 +211,8 @@ export const Top = () => {
                 />
                 <div className='w-full border-b-2 border-border-color'></div>
             </section>
-            <section className="mt-4 grid grid-cols-2 gap-2 pt-8 px-[10%]">
+            <span className='text-red-500 text-center block w-full pt-8'>*Điểm được đề xuất dựa trên trung bình cộng từ điểm các năm</span>
+            <section className="mt-4 grid grid-cols-2 gap-2 px-[10%]">
                 <div
                     className="mx-auto w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer"
                     onClick={handleShowNormalWish}

@@ -25,7 +25,7 @@ export const Special = () => {
 
     const [selectedYear, setSelectedYear] = useState(mode === 'add' ? yearsList[0] : data[dataIndex].year);
     const [selectedSpecialWish, setSelectedSpecialWish] = useState(
-        mode === 'add' ? Object.entries(specialSubjectsObj)[0][0] : specialSubjectsObjReverse[data[dataIndex].wish],
+        mode === 'add' ? Object.entries(specialSubjectsObj)[0][0] : specialSubjectsObjReverse[data[dataIndex].wish.replace('%', '1')],
     );
 
     const handleTitle = (e) => {

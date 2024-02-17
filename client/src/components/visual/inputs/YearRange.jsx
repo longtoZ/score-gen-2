@@ -17,11 +17,13 @@ export const YearRange = ({showWish = true}) => {
     const wish3Ref = useRef(null);
 
     const handleStartYear = (e) => {
-        setStartYear(parseInt(e.target.value));
+        const year = parseInt(e.target.value);
+        setStartYear(year);
     };
 
     const handleEndYear = (e) => {
-        setEndYear(parseInt(e.target.value));
+        const year = parseInt(e.target.value);
+        setEndYear(year);
     };
 
     useEffect(() => {
@@ -78,7 +80,7 @@ export const YearRange = ({showWish = true}) => {
                 />
             </div>
 
-            <div className={`bg-input-color p-2 rounded-lg shadow-basic inline-block m-4 ${showWish ? 'block' : 'hidden'}`}>
+            <div className={`bg-input-color p-2 rounded-lg shadow-basic m-4 ${showWish ? 'inline-block' : 'hidden'}`}>
                 <h1 className="mx-2 mb-2 text-text-color font-semibold">
                     Chọn nguyện vọng
                 </h1>

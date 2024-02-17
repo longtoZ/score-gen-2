@@ -3,7 +3,7 @@ import { FilterContext } from '../../pages/suggest/Suggest';
 import { normalSubjectsObj, specialSubjectsObj } from '../../utils/lists';
 
 export const Range = ({ min, max, schoolType, wish }) => {
-    const { filterData, setFilterData } = useContext(FilterContext);
+    const { filterData, setFilterData, setToastMessage } = useContext(FilterContext);
 
     const [start, setStart] = useState(min);
     const [end, setEnd] = useState(max);
@@ -17,6 +17,22 @@ export const Range = ({ min, max, schoolType, wish }) => {
     };
 
     const handleData = () => {
+        if (start > end) {
+            setToastMessage({
+                type: 'warning',
+                msg: 'Điểm bắt đầu phải nhỏ hơn điểm kết thúc',
+            });
+            return;
+        }
+
+        if (start < min || end > max) {
+            setToastMessage({
+                type: 'warning',
+                msg: `Điểm bắt đầu và kết thúc phải nằm trong khoảng ${min} - ${max}`,
+            });
+            return;
+        }
+
         const startValue =
             schoolType === 'Lớp thường'
                 ? ((start / 30) * 100).toFixed(2)

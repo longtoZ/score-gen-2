@@ -10,7 +10,7 @@ import { getAxiosCompete, handleDataCompete } from '../../visual/utils';
 export const Compete = () => {
 
     const { data, setData } = useContext(FunctionContext);
-    const { showAdd, setShowAdd } = useContext(AddContext);
+    const { showAdd, setShowAdd, setToastMessage } = useContext(AddContext);
 
     const mode = showAdd.mode
     const dataIndex = showAdd.index;
@@ -44,10 +44,27 @@ export const Compete = () => {
 
     // Add the data to the main array
     const addData = () => {
+
+        if (end > yearsList[0] || start < yearsList[yearsList.length - 1]) {
+            setToastMessage({
+                type: 'warning',
+                msg: `Năm bắt đầu và kết thúc phải năm trong khoảng từ ${yearsList[yearsList.length - 1]} đến ${yearsList[0]}`,
+            });
+            return;
+        }
         
         getAxiosCompete(school)
             .then((res) => handleDataCompete(res))
             .then((tableData) => {
+
+                if (tableData.length === 0) {
+                    setToastMessage({
+                        type: 'error',
+                        msg: 'Không tìm thấy trường',
+                    });
+                    return;
+                }
+
                 setData([
                     ...data,
                     {
@@ -68,9 +85,24 @@ export const Compete = () => {
     }
 
     const editData = () => {
+        if (end > yearsList[0] || start < yearsList[yearsList.length - 1]) {
+            setToastMessage({
+                type: 'warning',
+                msg: `Năm bắt đầu và kết thúc phải năm trong khoảng từ ${yearsList[yearsList.length - 1]} đến ${yearsList[0]}`,
+            });
+            return;
+        }
+
         getAxiosCompete(school)
             .then((res) => handleDataCompete(res))
             .then((tableData) => {
+                if (tableData.length === 0) {
+                    setToastMessage({
+                        type: 'error',
+                        msg: 'Không tìm thấy trường',
+                    });
+                    return;
+                }
                 const newData = data
                 newData[dataIndex] = {
                     dataType: 'compete',

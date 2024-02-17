@@ -14,6 +14,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import './responsive.css';
 
 Chart.register(
     ChartDataLabels,
@@ -112,7 +113,7 @@ export const GroupChart = () => {
             <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                 Các trường có điểm tương đương
             </h1>
-            <div className="flex justify-between p-2">
+            <div className="flex justify-between p-2 group-chart-grid">
                 <div className="w-[60%]">
                     <div className="p-4 w-full my-auto">
                         <Bar

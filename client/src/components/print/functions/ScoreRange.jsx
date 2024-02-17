@@ -15,7 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 export const ScoreRange = () => {
 
     const { data, setData } = useContext(FunctionContext);
-    const { showAdd, setShowAdd } = useContext(AddContext);
+    const { showAdd, setShowAdd, setToastMessage } = useContext(AddContext);
 
     const mode = showAdd.mode
     const dataIndex = showAdd.index;
@@ -43,7 +43,7 @@ export const ScoreRange = () => {
         mode === 'add' ? Object.entries(normalSubjectsObj)[0][0] : normalSubjectsObjReverse[data[dataIndex].wishValue],
     );
     const [selectedSpecialWish, setSelectedSpecialWish] = useState(
-        mode === 'add' ? Object.entries(specialSubjectsObj)[0][0] : specialSubjectsObjReverse[data[dataIndex].wishValue],
+        mode === 'add' ? Object.entries(specialSubjectsObj)[0][0] : specialSubjectsObjReverse[data[dataIndex].wishValue.replace('%', '1')],
     );
 
     const handleTitle = (e) => {
@@ -113,6 +113,22 @@ export const ScoreRange = () => {
     // Add the data to the main array
     const addData = () => {
 
+        if (start > end) {
+            setToastMessage({
+                type: 'error',
+                msg: 'Điểm đầu không thể lớn hơn điểm cuối',
+            });
+            return;
+        }
+
+        if (start < 0 || end > 30) {
+            setToastMessage({
+                type: 'error',
+                msg: 'Điểm phải nằm trong khoảng từ 0 đến 30',
+            });
+            return;
+        }
+
         const wishValue =
             schoolType === 'Lớp thường'
                 ? normalSubjectsObj[selectedNormalWish]
@@ -143,6 +159,22 @@ export const ScoreRange = () => {
     }
 
     const editData = () => {
+
+        if (start > end) {
+            setToastMessage({
+                type: 'warning',
+                msg: 'Điểm đầu không thể lớn hơn điểm cuối',
+            });
+            return;
+        }
+
+        if (start < 0 || end > 30) {
+            setToastMessage({
+                type: 'error ',
+                msg: 'Điểm phải nằm trong khoảng từ 0 đến 30',
+            });
+            return;
+        }
                 
         const wishValue =
             schoolType === 'Lớp thường'
@@ -216,7 +248,8 @@ export const ScoreRange = () => {
                 />
                 <div className='w-full border-b-2 border-border-color'></div>
             </section>
-            <section className="mt-4 grid grid-cols-2 gap-2 pt-8 px-[10%]">
+            <span className='text-red-500 text-center block w-full pt-8'>*Điểm được đề xuất dựa trên trung bình cộng từ điểm các năm</span>
+            <section className="mt-4 grid grid-cols-2 gap-2 px-[10%]">
                 <div
                     className="mb-2 mx-auto w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer"
                     onClick={handleShowSchoolType}

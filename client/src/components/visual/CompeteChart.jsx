@@ -5,6 +5,8 @@ import { YearRange } from './inputs/YearRange.jsx';
 import { yearsList } from '../../utils/lists.js';
 import { Chart, ArcElement, Title, Tooltip, Legend, LineElement, LinearScale } from 'chart.js';
 import { Doughnut, Line } from 'react-chartjs-2';
+import './responsive.css';
+
 
 Chart.register(ArcElement, Title, Tooltip, Legend, LineElement, LinearScale);
 
@@ -180,7 +182,7 @@ export const CompeteChart = () => {
     return (
         <>
             {competeData.length !== 0 ? (
-                <div className="mt-[3rem] flex justify-between gap-4">
+                <div className="mt-[3rem] flex justify-between gap-4 compete-chart-grid">
                     <div className="shadow-basic rounded-lg overflow-hidden w-[70%]">
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Tỉ lệ chọi
@@ -188,7 +190,7 @@ export const CompeteChart = () => {
                         <div className='m-4'>
                             <SingleYear />
                         </div>
-                        <div className="p-4 w-full flex justify-center relative">
+                        <div className="p-4 w-full flex justify-center relative flex-wrap">
                             {competeData.map((item, index) => {
                                 const title = item['TEN_TRUONG'];
                                 const target = item['DATA'].find(
@@ -209,7 +211,7 @@ export const CompeteChart = () => {
 
                                 return (
                                         <div
-                                            className="h-[23rem]"
+                                            className="h-[23rem] doughnut-chart my-2"
                                             key={index}
                                         >
                                             <div className='relative h-[90%]'>

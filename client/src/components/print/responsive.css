@@ -1,0 +1,24 @@
+@media (max-width: 768px) {
+
+    .table-section {
+        padding: 0 0 !important;
+    }
+
+    .menu-container {
+        height: 80vh !important;
+        overflow-y: scroll;
+    }
+
+    .menu-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+
+    .order-container {
+        width: 50% !important;
+        padding: 2rem !important;
+    }
+
+    .grab-btn {
+        width: 15% !important;
+    }
+}

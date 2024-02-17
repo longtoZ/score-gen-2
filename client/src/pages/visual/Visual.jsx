@@ -225,7 +225,7 @@ export const Visual = () => {
         if (schoolData.length === 3) {
             addSchoolRef.current.style.display = 'none';
         } else {
-            addSchoolRef.current.style.display = 'block';
+            addSchoolRef.current.style.display = 'inline-block';
         }
     }, [schoolData]);
 
@@ -246,24 +246,7 @@ export const Visual = () => {
                     </Link>
                 </p>
 
-                <div className="flex justify-center gap-4 mt-[3rem]">
-                    <SchoolContext.Provider
-                        value={{
-                            schoolData,
-                            setSchoolData,
-                            competeData,
-                            setCompeteData,
-                            areaData,
-                            setAreaData,
-                            districtList,
-                            setDistrictList,
-                        }}
-                    >
-                        {schoolData.map((school, index) => (
-                            <SchoolSearch key={index} school={school} />
-                        ))}
-                    </SchoolContext.Provider>
-
+                <div className='flex justify-center my-[2rem]'>
                     <div className="relative" ref={addSchoolRef}>
                         <div
                             className="add cursor-pointer bg-input-color p-1 rounded-[50%] shadow-basic flex"
@@ -278,7 +261,7 @@ export const Visual = () => {
                             <h1 className="ml-1 font-semibold">Thêm</h1>
                         </div>
                         <div
-                            className={`absolute top-16 left-0 p-2 shadow-basic bg-input-color rounded-lg flex gap-2 ${showSearch ? 'block' : 'hidden'}`}
+                            className={`absolute top-0 left-28 p-2 shadow-basic bg-input-color rounded-lg flex gap-2 ${showSearch ? 'block' : 'hidden'}`}
                         >
                             <input
                                 className="bg-bg-sank-color bs-in p-1 rounded-lg"
@@ -301,6 +284,28 @@ export const Visual = () => {
                             </button>
                         </div>
                     </div>
+                </div>
+
+
+                <div className="flex justify-center gap-4 mt-[3rem] flex-wrap">
+                    <SchoolContext.Provider
+                        value={{
+                            schoolData,
+                            setSchoolData,
+                            competeData,
+                            setCompeteData,
+                            areaData,
+                            setAreaData,
+                            districtList,
+                            setDistrictList,
+                        }}
+                    >
+                        {schoolData.map((school, index) => (
+                            <SchoolSearch key={index} school={school} />
+                        ))}
+                    </SchoolContext.Provider>
+
+
                 </div>
 
                 <SchoolContext.Provider
@@ -363,6 +368,7 @@ export const Visual = () => {
                         setSingleDiff,
                         sendDiff,
                         setSendDiff,
+                        setToastMessage,
                     }}
                 >
                     {schoolData.length > 0 ? <GroupChart /> : null}

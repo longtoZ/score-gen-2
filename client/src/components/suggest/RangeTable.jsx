@@ -1,4 +1,8 @@
+import './responsive.css';
+
+
 export const RangeTable = ({ tableData, filterData, schoolType }) => {
+    
     const filteredTableData =
         schoolType === 'Lớp thường'
             ? tableData.filter(
@@ -36,7 +40,7 @@ export const RangeTable = ({ tableData, filterData, schoolType }) => {
                         </h1>
                     )}
 
-                    <table className="rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
+                    <table className="suggest-table rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
                         <thead
                             className={`${
                                 schoolType === 'Lớp thường'

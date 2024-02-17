@@ -12,7 +12,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 export const Group = () => {
 
     const { data, setData } = useContext(FunctionContext);
-    const { showAdd, setShowAdd } = useContext(AddContext);
+    const { showAdd, setShowAdd, setToastMessage } = useContext(AddContext);
 
     const mode = showAdd.mode;
     const dataIndex = showAdd.index;
@@ -71,6 +71,14 @@ export const Group = () => {
         getAxiosYear(school)
             .then((res) => handleDataYear(res))
             .then((schoolData) => {
+                if (schoolData.length === 0) {
+                    setToastMessage({
+                        type: 'error',
+                        msg: 'Không tìm thấy trường',
+                    });
+                    return;
+                }
+
                 const schoolName = schoolData[0].TEN_TRUONG;
                 const selectedScore = schoolData.find((d) => d['NAM_HOC'] === selectedYear)['DIEM'][normalSubjectsObj[selectedNormalWish]];
                 
@@ -103,6 +111,13 @@ export const Group = () => {
             getAxiosYear(school)
                 .then((res) => handleDataYear(res))
                 .then((schoolData) => {
+                    if (schoolData.length === 0) {
+                        setToastMessage({
+                            type: 'error',
+                            msg: 'Không tìm thấy trường',
+                        });
+                        return;
+                    }
                     const schoolName = schoolData[0].TEN_TRUONG;
                     const selectedScore = schoolData.find((d) => d['NAM_HOC'] === selectedYear)['DIEM'][normalSubjectsObj[selectedNormalWish]];
                     

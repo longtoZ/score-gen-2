@@ -40,7 +40,7 @@ export const SingleWish = () => {
                 <ArrowDropDownIcon />
 
                 <ul
-                    className="overflow-y-scroll h-[14rem] w-[8rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg"
+                    className="w-[8rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg"
                     style={
                         showWish === true
                             ? { display: 'block' }

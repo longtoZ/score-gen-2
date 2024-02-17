@@ -16,6 +16,21 @@ import { getAxiosCommon, handleData } from '../../components/suggest/utils.js';
 import './suggest.css';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import AddIcon from '@mui/icons-material/Add';
+import { ToastContainer, toast } from 'react-toastify';
+import { Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const toastOptions = {
+    position: 'bottom-right',
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'light',
+    transition: Bounce,
+};
 
 export const FilterContext = createContext();
 
@@ -56,6 +71,11 @@ export const Suggest = () => {
         topValue: 10,
         positionValue: 'highest',
         averageValue: 'higher',
+    });
+
+    const [toastMessage, setToastMessage] = useState({
+        type: '',
+        msg: '',
     });
 
     // Get the data from the server
@@ -104,6 +124,17 @@ export const Suggest = () => {
         setCurrentFunction('Lọc khoảng');
         setSchoolType(e.target.innerText);
     };
+
+    // Toast message management
+    useEffect(() => {
+        if (toastMessage.type === 'error') {
+            toast.error(toastMessage.msg, toastOptions);
+        } else if (toastMessage.type === 'warning') {
+            toast.warn(toastMessage.msg, toastOptions);
+        } else if (toastMessage.type === 'success') {
+            toast.success(toastMessage.msg, toastOptions);
+        }
+    }, [toastMessage]);
 
     // Update the current function
     useEffect(() => {
@@ -161,11 +192,15 @@ export const Suggest = () => {
     // Update the selected district
     useEffect(() => {
         if (selectedDistrict.length === districtsList.length) {
-            districtRef.current.querySelector('li').classList.add('selected-district');
+            districtRef.current
+                .querySelector('li')
+                .classList.add('selected-district');
         } else {
-            districtRef.current.querySelector('li').classList.remove('selected-district');
+            districtRef.current
+                .querySelector('li')
+                .classList.remove('selected-district');
         }
-        
+
         districtRef.current.querySelectorAll('li').forEach((item, index) => {
             if (index !== 0) {
                 if (selectedDistrict.includes(item.getAttribute('dataset'))) {
@@ -191,11 +226,13 @@ export const Suggest = () => {
                     ? normalSubjectsObj[selectedNormalWish]
                     : specialSubjectsObj[selectedSpecialWish].replace('1', '%'),
         });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedNormalWish, selectedSpecialWish]);
 
     return (
         <div className="Suggest py-[10rem]">
+            <ToastContainer />
+
             <div className="w-2/3 mx-auto">
                 <h1 className="text-center my-10 text-3xl font-semibold">
                     Đề xuất trường
@@ -209,12 +246,15 @@ export const Suggest = () => {
                     <Link to="/guide" className="text-blue-500 underline">
                         Xem hướng dẫn
                     </Link>
-                    <br/>
-                    <br/>
-                    <span className='text-red-500'>*Điểm được đề xuất dựa trên trung bình cộng từ điểm các năm</span>
+                    <br />
+                    <br />
+                    <span className="text-red-500">
+                        *Điểm được đề xuất dựa trên trung bình cộng từ điểm các
+                        năm
+                    </span>
                 </p>
 
-                <div className="mt-[3rem] w-1/3 mx-auto grid grid-cols-2 p-2 rounded-lg bg-bg-sank-color bs-in text-center font-semibold cursor-pointer">
+                <div className="mt-[3rem] w-1/3 mx-auto grid grid-cols-2 p-2 rounded-lg bg-bg-sank-color bs-in text-center font-semibold cursor-pointer school-type-select">
                     <div
                         className="py-1 select-school-type rounded-lg"
                         school-type="normal"
@@ -234,7 +274,7 @@ export const Suggest = () => {
                 </div>
 
                 <div className="mt-[1rem] w-full mx-auto rounded-lg shadow-basic bg-input-color p-4">
-                    <div className="w-3/4 mx-auto grid grid-cols-2 gap-4">
+                    <div className="w-3/4 mx-auto grid grid-cols-2 gap-4 suggest-grid">
                         <div className="border-2 border-border-color p-4 rounded-lg">
                             <h1 className="font-semibold">Bộ lọc</h1>
 
@@ -245,9 +285,7 @@ export const Suggest = () => {
                                         onClick={handleShowNormalWish}
                                     >
                                         <p className="pr-2" ref={normalWishRef}>
-                                            {
-                                                selectedNormalWish
-                                            }
+                                            {selectedNormalWish}
                                         </p>
                                         <ArrowDropDownIcon />
 
@@ -285,9 +323,7 @@ export const Suggest = () => {
                                             className="pr-2"
                                             ref={specialWishRef}
                                         >
-                                            {
-                                                selectedSpecialWish
-                                            }
+                                            {selectedSpecialWish}
                                         </p>
                                         <ArrowDropDownIcon />
 
@@ -390,7 +426,7 @@ export const Suggest = () => {
                                 </div>
 
                                 <FilterContext.Provider
-                                    value={{ filterData, setFilterData }}
+                                    value={{ filterData, setFilterData, setToastMessage }}
                                 >
                                     {currentFunction === 'Lọc khoảng' ? (
                                         <Range
@@ -421,7 +457,7 @@ export const Suggest = () => {
                                 </div>
 
                                 <FilterContext.Provider
-                                    value={{ filterData, setFilterData }}
+                                    value={{ filterData, setFilterData, setToastMessage }}
                                 >
                                     <Range
                                         min={0}

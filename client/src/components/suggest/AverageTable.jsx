@@ -1,3 +1,6 @@
+import './responsive.css';
+
+
 export const AverageTable = ({ tableData, filterData }) => {
     tableData.sort((a, b) => {
         const wish1 = parseFloat(a[filterData.wishValue]);
@@ -44,7 +47,7 @@ export const AverageTable = ({ tableData, filterData }) => {
                             {(averageWish3 * 0.3).toFixed(2)}
                         </h1>
                     )}
-                    <table className="rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
+                    <table className="suggest-table rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
                         <thead className="bg-emerald-600 text-white font-bold">
                             <tr>
                                 <th className="py-2 px-4">STT</th>

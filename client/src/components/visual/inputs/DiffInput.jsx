@@ -2,7 +2,7 @@ import { useState, useContext, useEffect, useRef } from 'react';
 import { SchoolContext } from '../../../pages/visual/Visual';
 
 export const SingleDiff = () => {
-    const { singleDiff, setSingleDiff, sendDiff, setSendDiff } = useContext(SchoolContext);
+    const { singleDiff, setSingleDiff, sendDiff, setSendDiff, setToastMessage } = useContext(SchoolContext);
     const [ diff, setDiff] = useState(singleDiff);
     const inputRef = useRef();
 
@@ -11,6 +11,15 @@ export const SingleDiff = () => {
     }
 
     const handleSendDiff = () => {
+
+        if (diff < 0) {
+            setToastMessage({
+                type: 'warning',
+                msg: 'Sai số phải lớn hơn hoặc bằng 0',
+            });
+            return;
+        }
+
         setSingleDiff(diff);
         setSendDiff(!sendDiff);
     }

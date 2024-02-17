@@ -6,3 +6,7 @@ header {
     background-color: white;
     transition: all ease-in-out 0.2s;
 }
+
+.current-page {
+    color: #059669 !important;
+}

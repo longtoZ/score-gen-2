@@ -14,6 +14,8 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import './responsive.css';
+
 
 Chart.register(
     ChartDataLabels,
@@ -125,7 +127,7 @@ export const AreaChart = () => {
                 <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                     Các trường trong khu vực
                 </h1>
-                <div className='flex justify-between p-2'>
+                <div className='flex justify-between p-2 area-chart-grid'>
                     <div className="w-[60%]">
                         <div className="p-4 w-full">
                             <Bar
@@ -136,7 +138,7 @@ export const AreaChart = () => {
                         </div>
                     </div>
                     <div className='w-[40%] pt-4'>
-                        <div className='border-2 border-border-color p-4 rounded-lg w-full mx-auto flex'>
+                        <div className='border-2 border-border-color p-4 rounded-lg w-full mx-auto flex flex-wrap'>
                             <SingleYear />
                             <SingleWish />
                             <SingleDistrict />

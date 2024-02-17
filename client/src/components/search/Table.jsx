@@ -46,7 +46,7 @@ export const Table = ({ tableData, keyword, schoolType }) => {
     return (
         <div>
             {schoolType === 'Trường thường' ? (
-                <table className="rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
+                <table className="search-table rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
                     <thead className="bg-emerald-600 text-white font-bold">
                         <tr>
                             <th className="py-2 px-4">STT</th>

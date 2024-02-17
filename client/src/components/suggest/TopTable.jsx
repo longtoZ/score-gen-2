@@ -1,3 +1,5 @@
+import './responsive.css';
+
 export const TopTable = ({ tableData, filterData }) => {
     const filteredTableData = tableData
         .filter((item) => filterData.districtValue.includes(item.district))
@@ -21,7 +23,7 @@ export const TopTable = ({ tableData, filterData }) => {
                         Top {filterData.topValue} trường có điểm{' '}
                         {filterData.wishValue} cao nhất
                     </h1>
-                    <table className="rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
+                    <table className="suggest-table rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
                         <thead className="bg-emerald-600 text-white font-bold">
                             <tr>
                                 <th className="py-2 px-4">STT</th>

@@ -7,13 +7,22 @@ export const Top = () => {
     const lowestRef = useRef(null);
     const [top, setTop] = useState(10);
 
-    const { filterData, setFilterData } = useContext(FilterContext);
+    const { filterData, setFilterData, setToastMessage } = useContext(FilterContext);
 
     const handleTop = (e) => {
-        setTop(e.target.value);
+        setTop(parseInt(e.target.value));
     };
 
     const handleData = (e) => {
+
+        if (top < 1) {
+            setToastMessage({
+                type: 'warning',
+                msg: 'Số lượng phải lớn hơn 0',
+            });
+            return;
+        }
+
         const dataType = e.target.getAttribute('data-type');
 
         if (dataType === 'highest') {
@@ -26,7 +35,7 @@ export const Top = () => {
 
         setFilterData({
             ...filterData,
-            topValue: parseInt(top),
+            topValue: top,
             positionValue: dataType,
         });
     };
@@ -36,7 +45,6 @@ export const Top = () => {
             <input
                 className="bs-in p-2 bg-bg-sank-color rounded-lg text-center"
                 type="number"
-                value={top}
                 min="0"
                 max="30"
                 placeholder="Số lượng"

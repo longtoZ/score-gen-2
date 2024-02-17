@@ -26,3 +26,9 @@ tbody tr:hover {
         height: 25rem;
     }
 }
+
+@media (max-width: 768px) {
+    .search-table {
+        width: 75% !important
+    };
+}
