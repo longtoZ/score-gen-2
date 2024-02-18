@@ -1,0 +1,100 @@
+.Home h1, .Home p  {
+    color: #334155 ;
+}
+
+.Score {
+    background: linear-gradient(to right, rgba(52,211,153,1) 0%, rgba(45,212,191,1) 68%);
+	background-clip: text;
+    -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.Compare tbody tr, .Compare thead tr {
+    border-bottom: 2px solid #cbd5e1;
+}
+
+.Compare tbody tr:hover {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.Compare tbody tr td:first-child, .Compare thead tr th:first-child {
+    /* border-right: 2px solid #cbd5e1; */
+    background: #e2e8f0;
+}
+
+.Compare tbody tr td {
+    padding: 1rem 1rem;
+}
+
+.swiper-mesh {
+    background-color:hsla(0,0%,100%,1);
+    background-image:
+    radial-gradient(at 71% 68%, hsla(289,90%,72%,0.66) 0px, transparent 50%),
+    radial-gradient(at 29% 20%, hsla(229,100%,75%,1) 0px, transparent 50%),
+    radial-gradient(at 81% 31%, hsla(158,100%,75%,1) 0px, transparent 50%),
+    radial-gradient(at 29% 52%, hsla(188,100%,75%,1) 0px, transparent 50%);
+}
+
+.moveDownAnimation {
+    animation: moveDown 5s ease-in-out infinite;
+}
+
+.moveUpAnimation {
+    animation-delay: 2s;
+    animation: moveUp 5s ease-in-out infinite;
+}
+
+.mesh1 {
+    height: 20rem;
+    width: 20rem;
+    background: rgb(52,211,153);
+    background: radial-gradient(circle, rgba(52,211,153,0.6) 0%, rgba(45,212,191,0) 70%);
+}
+
+.mesh2 {
+    height: 25rem;
+    width: 25rem;
+    background: rgb(34,211,238);
+    background: radial-gradient(circle, rgba(34,211,238,0.6) 0%, rgba(34,211,238,0) 70%);
+}
+
+.mesh3 {
+    height: 23rem;
+    width: 23rem;
+    background: rgb(129,140,248);
+    background: radial-gradient(circle, rgba(129,140,248,0.8) 0%, rgba(129,140,248,0) 70%);
+}
+
+.mesh4 {
+    height: 20rem;
+    width: 20rem;
+    background: rgb(45,212,191);
+    background: radial-gradient(circle, rgba(45,212,191,0.7) 0%, rgba(129,140,248,0) 70%);
+}
+
+@keyframes moveDown {
+    0% {
+        transform: translateY(0%);
+    }
+    25% {
+        transform: translateY(10%);
+    }
+    100% {
+        transform: translateY(0%);
+
+    }
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(0%);
+    }
+    25% {
+        transform: translateY(-10%);
+    }
+    100% {
+        transform: translateY(0%);
+
+    }
+}

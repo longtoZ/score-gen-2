@@ -13,6 +13,7 @@ import { GroupTable } from '../../components/print/GroupTable';
 import { SpecialTable } from '../../components/print/SpecialTable';
 
 import AddIcon from '@mui/icons-material/Add';
+import SaveIcon from '@mui/icons-material/Save';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ListIcon from '@mui/icons-material/List';
@@ -52,7 +53,7 @@ export const FunctionContext = createContext();
 
 export const Print = () => {
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : []);
     const [showAdd, setShowAdd] = useState({
         show: false,
         mode: 'add',
@@ -73,6 +74,23 @@ export const Print = () => {
         setShowAdd({
             ...showAdd,
             show: true,
+        });
+    }
+
+    const handleSaveData = () => {
+        localStorage.setItem('data', JSON.stringify(data));
+        setToastMessage({
+            type: 'success',
+            msg: 'Dữ liệu đã được lưu.'
+        });
+    }
+
+    const handleDeleteData = () => {
+        setData([]);
+        localStorage.removeItem('data');
+        setToastMessage({
+            type: 'success',
+            msg: 'Dữ liệu đã được xóa.'
         });
     }
 
@@ -146,12 +164,27 @@ export const Print = () => {
                     </Link>
                 </p>
 
-                <div className="mx-auto mt-[3rem] w-[8rem] cursor-pointer" onClick={handleShowAdd}>
-                    <div className="p-2 flex justify-center gap-2 rounded-lg bg-input-color shadow-basic">
-                        <AddIcon />
-                        <h1 className="font-semibold">Thêm mục</h1>
+                <div className='flex justify-center gap-2 mt-[3rem]'>
+                    <div className="w-[8rem] cursor-pointer" onClick={handleShowAdd}>
+                        <div className="p-2 flex justify-center gap-2 rounded-lg bg-input-color shadow-basic">
+                            <AddIcon />
+                            <h1 className="font-semibold">Thêm mục</h1>
+                        </div>
+                    </div>
+                    <div className="w-[8rem] cursor-pointer" onClick={handleSaveData}>
+                        <div className="p-2 flex justify-center gap-2 rounded-lg bg-cyan-500 text-white shadow-basic">
+                            <SaveIcon style={{fontSize: '1.4em'}} />
+                            <h1 className="font-semibold">Lưu dữ liệu</h1>
+                        </div>
+                    </div>
+                    <div className="w-[8rem] cursor-pointer" onClick={handleDeleteData}>
+                        <div className="p-2 flex justify-center gap-2 rounded-lg bg-red-500 text-white shadow-basic">
+                            <DeleteForeverIcon style={{fontSize: '1.4em'}} />
+                            <h1 className="font-semibold">Xoá tất cả</h1>
+                        </div>
                     </div>
                 </div>
+
 
                 <div className='fixed bottom-4 p-2 cursor-pointer add-btn' onClick={handleShowAdd}>
                     <div className="p-2 flex justify-center gap-2 bg-input-color shadow-basic">

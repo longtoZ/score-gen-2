@@ -211,7 +211,7 @@ export const CompeteChart = () => {
 
                                 return (
                                         <div
-                                            className="h-[23rem] doughnut-chart my-2"
+                                            className="h-[20rem] w-[33%] doughnut-chart my-2"
                                             key={index}
                                         >
                                             <div className='relative h-[90%]'>

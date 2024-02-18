@@ -235,9 +235,6 @@ export const ScoreRange = () => {
 
     return (
         <div>
-            <section>
-                <img src="" alt="demo" />
-            </section>
             <section className='w-full px-[10%] block pt-8'>
                 <input 
                     type="text" 

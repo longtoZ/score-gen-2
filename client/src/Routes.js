@@ -5,6 +5,7 @@ import { Suggest } from './pages/suggest/Suggest';
 import { Visual } from './pages/visual/Visual';
 import { Print } from './pages/print/Print';
 import { NavBar } from './components/navBar/NavBar';
+import { Footer } from './components/navBar/Footer';
 
 export const MainRoutes = () => {
     return (
@@ -17,6 +18,7 @@ export const MainRoutes = () => {
                 <Route path="/print" element={<Print />} />
                 <Route path="/" element={<Home />} />
             </Routes>
+            <Footer/>
         </Router>
     );
 };

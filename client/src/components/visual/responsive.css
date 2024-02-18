@@ -1,7 +1,9 @@
 @media (max-width: 992px) {
     .doughnut-chart {
-        height: 20rem !important;
+        width: auto !important;
+        height: 18rem !important;
     }
+
 }
 
 @media (max-width: 768px) {

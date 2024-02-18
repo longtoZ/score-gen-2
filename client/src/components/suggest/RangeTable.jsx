@@ -40,7 +40,7 @@ export const RangeTable = ({ tableData, filterData, schoolType }) => {
                         </h1>
                     )}
 
-                    <table className="suggest-table rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
+                    <table className="suggest-table rounded-lg text-center w-full mt-20 shadow-basic">
                         <thead
                             className={`${
                                 schoolType === 'Lớp thường'
