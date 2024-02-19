@@ -14,10 +14,12 @@ export const Table = ({ tableData, keyword, schoolType }) => {
     );
 
     const handleMore = (e) => {
-        if (e.target.parentNode.getAttribute('state') === 'collapse') {
-            e.target.parentNode.setAttribute('state', 'expand');
+        const moreBtn = e.target.closest('.more-btn')
 
-            const data = e.target.parentNode.getAttribute('data');
+        if (moreBtn.getAttribute('state') === 'collapse') {
+            moreBtn.setAttribute('state', 'expand');
+
+            const data = moreBtn.getAttribute('data');
 
             getDetailInfo(data).then((res) => {
                 const portalElement = document.createElement('tr');
@@ -25,20 +27,20 @@ export const Table = ({ tableData, keyword, schoolType }) => {
                 const root = ReactDOM.createRoot(portalElement);
                 root.render(<Detail {...res[0]} />);
 
-                e.target.parentNode.parentNode.parentNode.insertBefore(
+                moreBtn.parentNode.parentNode.insertBefore(
                     portalElement,
-                    e.target.parentNode.parentNode.nextSibling,
+                    moreBtn.parentNode.nextSibling,
                 );
             });
         } else {
-            e.target.parentNode.setAttribute('state', 'collapse');
+            moreBtn.setAttribute('state', 'collapse');
             if (
-                e.target.parentNode.parentNode.nextSibling.classList.contains(
+                moreBtn.parentNode.nextSibling.classList.contains(
                     'detail-portal',
                 )
             )
-                e.target.parentNode.parentNode.parentNode.removeChild(
-                    e.target.parentNode.parentNode.nextSibling,
+            moreBtn.parentNode.parentNode.removeChild(
+                moreBtn.parentNode.nextSibling,
                 );
         }
     };
@@ -75,7 +77,7 @@ export const Table = ({ tableData, keyword, schoolType }) => {
                                     <td className="py-2">{item[2]['NV2']}</td>
                                     <td className="py-2">{item[2]['NV3']}</td>
                                     <td
-                                        className="py-2 cursor-pointer"
+                                        className="py-2 cursor-pointer more-btn"
                                         onClick={handleMore}
                                         data={item[0]}
                                         state="collapse"

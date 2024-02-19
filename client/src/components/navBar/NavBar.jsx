@@ -40,15 +40,18 @@ export const NavBar = () => {
             visualRef.current.classList.add('current-page');
         } else if(location.pathname === '/print') {
             printRef.current.classList.add('current-page');
+        } else if (location.pathname.includes('/docs')) {
+            document.querySelector('footer').style.display = 'none';
         }
     }, [location]);
 
     useEffect(() => {
         let prevScrollPos = window.scrollY;
         let windowHeight = window.innerHeight;
-        const addBtn = document.querySelector('.add-btn');
+        const addBtn = document.querySelector('.add-area');
 
         window.onscroll = () => {
+
             let currentScrollPos = window.scrollY;
 
             if (navRef.current === null) return;

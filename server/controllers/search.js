@@ -1,3 +1,4 @@
+
 import { db } from "../connect.js";
 import { schoolTypesObj } from "../utils/lists.js";
 

@@ -3,7 +3,9 @@ import { Features } from '../../components/home/Features';
 import { Benefits } from '../../components/home/Benefits';
 import { Compare } from '../../components/home/Compare';
 import { Questions } from '../../components/home/Questions';
-import './home.css'
+import { Tech } from '../../components/home/Tech';
+import './home.css';
+import './responsive.css';
 
 export const Home = () => {
     return (
@@ -13,6 +15,7 @@ export const Home = () => {
             <Features />
             <Compare />
             <Questions />
+            <Tech />
         </div>
     );
 };

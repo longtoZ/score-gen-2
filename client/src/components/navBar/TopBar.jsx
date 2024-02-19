@@ -10,20 +10,20 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 export const TopBar = ({logoRef, navRef, searchRef, suggestRef, visualRef, printRef}) => {
     const { theme, setTheme } = useContext(ModeContext);
 
-    const lightRef = useRef(null);
-    const darkRef = useRef(null);
+    // const lightRef = useRef(null);
+    // const darkRef = useRef(null);
 
-    useEffect(() => {
-        if (theme === 'light' || theme === null) {
-            lightRef.current.classList.add('select');
-            darkRef.current.classList.remove('select');
-            logoRef.current.src = logoLight;
-        } else {
-            darkRef.current.classList.add('select');
-            lightRef.current.classList.remove('select');
-            logoRef.current.src = logoDark;
-        }
-    }, [theme]);
+    // useEffect(() => {
+    //     if (theme === 'light' || theme === null) {
+    //         lightRef.current.classList.add('select');
+    //         darkRef.current.classList.remove('select');
+    //         logoRef.current.src = logoLight;
+    //     } else {
+    //         darkRef.current.classList.add('select');
+    //         lightRef.current.classList.remove('select');
+    //         logoRef.current.src = logoDark;
+    //     }
+    // }, [theme]);
 
     const handleMode = (e) => {
         if (e.target.closest('.mode-btn').getAttribute('mode') === 'light') {
@@ -63,7 +63,7 @@ export const TopBar = ({logoRef, navRef, searchRef, suggestRef, visualRef, print
             <Link to="/print">Báo cáo</Link>
         </div>
     </nav>
-    <div className="relative w-[5rem] h-[2.5rem] flex justify-between bg-[#EFF2F9] rounded-xl p-1 bs-in cursor-pointer my-auto">
+    {/* <div className="relative w-[5rem] h-[2.5rem] flex justify-between bg-[#EFF2F9] rounded-xl p-1 bs-in cursor-pointer my-auto">
         <div
             className="w-[45%] h-full rounded-xl mode-btn light-mode"
             ref={lightRef}
@@ -86,6 +86,11 @@ export const TopBar = ({logoRef, navRef, searchRef, suggestRef, visualRef, print
                 style={{ height: '100%' }}
             />
         </div>
+    </div> */}
+    <div className='my-auto'>
+        <button className=' relative py-2 px-4 rounded-lg bg-slate-500 text-white'>
+            <Link to='/docs/introduction'>Tài liệu</Link>
+        </button>
     </div>
 </header>
   )

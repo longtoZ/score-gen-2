@@ -1,10 +1,16 @@
 import axios from 'axios';
 
+const token = process.env.REACT_APP_SECRET_KEY;
+
 export const getAxios = (type, year) => {
     return new Promise((resolve, reject) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/search', {
                 params: { type, year },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token,
+                }
             })
             .then((res) => {
                 resolve(res.data);

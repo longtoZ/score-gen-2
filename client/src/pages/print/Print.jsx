@@ -14,6 +14,7 @@ import { SpecialTable } from '../../components/print/SpecialTable';
 
 import AddIcon from '@mui/icons-material/Add';
 import SaveIcon from '@mui/icons-material/Save';
+import PrintIcon from '@mui/icons-material/Print';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ListIcon from '@mui/icons-material/List';
@@ -113,6 +114,20 @@ export const Print = () => {
         });
     }
 
+    const [showPrint, setShowPrint] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
+
+    const handleCheck = () => {
+        setIsChecked(!isChecked);
+    }
+
+    const handleShowPrint = (e) => {
+        e.stopPropagation();
+
+        setShowPrint(!showPrint);
+        
+    }
+
     // Toast message management
     useEffect(() => {
         if (toastMessage.type === 'error') {
@@ -153,9 +168,9 @@ export const Print = () => {
 
             <div className="Visual py-[10rem] w-[90%] mx-auto relative">
                 <h1 className="text-center my-10 text-3xl font-semibold">
-                    Phân tích và trực quan hoá điểm số
+                    Báo cáo và xuất dữ liệu
                 </h1>
-                <p className="text-center italic text-sm text-text-subtitle-color">
+                <p className="subtitle text-center italic text-sm text-text-subtitle-color">
                     Tuỳ chỉnh thông tin để in ấn và lưu trữ lâu dài.
                     <br />
                     Chưa rõ?{' '}
@@ -164,7 +179,7 @@ export const Print = () => {
                     </Link>
                 </p>
 
-                <div className='flex justify-center gap-2 mt-[3rem]'>
+                <div className='options flex justify-center gap-2 mt-[3rem]'>
                     <div className="w-[8rem] cursor-pointer" onClick={handleShowAdd}>
                         <div className="p-2 flex justify-center gap-2 rounded-lg bg-input-color shadow-basic">
                             <AddIcon />
@@ -185,11 +200,21 @@ export const Print = () => {
                     </div>
                 </div>
 
-
-                <div className='fixed bottom-4 p-2 cursor-pointer add-btn' onClick={handleShowAdd}>
-                    <div className="p-2 flex justify-center gap-2 bg-input-color shadow-basic">
+                <div className='fixed bottom-4 p-2 cursor-pointer add-area' >
+                    <div className="my-2 p-2 flex justify-center gap-2 bg-white shadow-basic add-btn" onClick={handleShowAdd}>
                         <h1 className="font-semibold add-text">Thêm mục</h1>
                         <AddIcon />
+                    </div>
+                    <div className="float-right inline-block relative my-2 p-2 gap-2 bg-white shadow-basic print-btn" onClick={handleShowPrint} >
+                        <PrintIcon />
+
+                        <div className={` ${showPrint ? 'block' : 'hidden'} absolute bottom-0 right-[120%] bg-white py-2 px-6 rounded-lg w-[12rem]`}>
+                            <label className='block mb-2'>
+                                <h1 className='mx-2 inline-block'>Mỗi trang 1 mục</h1>
+                                <input type="checkbox" checked={isChecked} onChange={handleCheck} />
+                            </label>
+                            <button className='block w-full bg-emerald-500 p-2 rounded-lg text-white font-bold my-1' onClick={() => { window.print()}}>In</button>
+                        </div>
                     </div>
                 </div>
 
@@ -197,8 +222,8 @@ export const Print = () => {
                     {data.map((item, index) => {
 
                         return (
-                            <div key={index} className='my-[5rem] bg-input-color border-2 border-border-color rounded-xl overflow-hidden'>
-                                <div className='flex justify-between py-3 px-[5%] bg-even-row-color'>
+                            <div key={index} className={`${isChecked ? 'page-break-after' : ''} table-area my-[5rem] bg-input-color border-2 border-border-color rounded-xl overflow-hidden`}>
+                                <div className='table-options flex justify-between py-3 px-[5%] bg-even-row-color'>
                                     <div className='flex gap-2'>
                                         <button className='bg-input-color p-1 rounded-lg border-2 border-border-color text-gray-600 cursor-pointer mx-auto' onClick={handleShowOrder}>
                                             <ListIcon />

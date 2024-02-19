@@ -6,9 +6,9 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 export const Benefits = () => {
   return (
     <div className='Benefits mt-[30rem] px-[18%] py-20'>
-        <h1 className='text-center font-semibold text-4xl'>Vì sao lại sử dụng Score?</h1>
+        <h1 className='text-center font-semibold text-4xl'>Vì sao nên sử dụng Score?</h1>
 
-        <div className='mt-[5rem] grid grid-cols-4 gap-8 text-center relative'>
+        <div className='benefits-grid mt-[5rem] grid grid-cols-4 gap-8 text-center relative'>
             <div className='py-6 px-6 rounded-lg bg-white bg-opacity-60 backdrop-blur z-[2]'>
                 <div className='rounded-lg p-2 bg-teal-100 inline-block mx-auto'>
                     <AccessTimeIcon className='text-teal-500' style={{fontSize:'2.2em'}} />
@@ -52,7 +52,6 @@ export const Benefits = () => {
             <div className='absolute top-0 left-1/2 -translate-x-1/2 opacity-40 mesh2'></div>
             <div className='absolute -top-[4rem] left-1/2 opacity-50 mesh3 moveUpAnimation'></div>
             <div className='absolute -top-[2rem] right-2/3 opacity-50 mesh4 moveDownAnimation'></div>
-
 
         </div>
     </div>

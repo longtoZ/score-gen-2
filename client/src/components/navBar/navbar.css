@@ -18,3 +18,10 @@ header {
     background: linear-gradient(45deg, rgba(52,211,153,1) 0%, rgba(45,212,191,1) 68%);
     box-shadow: 12px 12px 10px rgba(45,212,191,0.3); */
 }
+
+@media (max-width: 768px) {
+    footer {
+        padding-left: 10% !important;
+        padding-right: 10% !important;
+    }
+}

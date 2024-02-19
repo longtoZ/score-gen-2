@@ -1,9 +1,9 @@
-.add-btn {
+.add-area {
     right: -4rem;
     transition: all ease 0.2s;
 }
 
-.add-btn > div {
+.add-btn, .print-btn {
     border-radius: 50%;
 }
 
@@ -11,10 +11,60 @@
     display: none;
 }
 
-.add-btn:hover > div {
+.add-btn:hover {
     border-radius: 0.5rem;
 }
 
 .add-btn:hover .add-text {
     display: block;
+}
+
+
+@media print {
+    @page {
+        size: A4;
+        margin: 2cm 0;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header, footer {
+        display: none !important;
+    }
+
+    .Visual {
+        padding: 0 0 !important;
+    }
+
+    .subtitle, .options, .table-options, .add-area {
+        display: none !important;
+    }
+
+    .table-area {
+        border: none !important;
+        margin: 0 0 !important;
+        border-bottom: 1px dashed rgb(141, 141, 141) !important;
+        border-radius: 0 !important;
+    }
+
+    .page-break-after {
+        page-break-after: always;
+    }
+
+    table {
+        margin-top: 0 !important;
+        margin-bottom: 5rem !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+    }
+
+    table td, table th, span {
+        color: black !important;
+    }
+
+    table tr, table td, table th {
+        border: 1px solid black;
+    }
 }

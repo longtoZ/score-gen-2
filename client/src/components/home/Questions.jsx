@@ -2,7 +2,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 export const Questions = () => {
   return (
-    <div className='Compare mt-[30rem] px-[20%]'>
+    <div className='Questions mt-[30rem] px-[20%]'>
         <h1 className='text-center font-semibold text-4xl'>Câu hỏi thường gặp?</h1>
 
         <div className='relative'>
