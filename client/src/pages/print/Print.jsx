@@ -166,7 +166,7 @@ export const Print = () => {
                 {showDelete.show && <DeleteMenu />}
             </DeleteContext.Provider>
 
-            <div className="Visual py-[10rem] w-[90%] mx-auto relative">
+            <div className="Print py-[10rem] w-[90%] mx-auto relative">
                 <h1 className="text-center my-10 text-3xl font-semibold">
                     Báo cáo và xuất dữ liệu
                 </h1>

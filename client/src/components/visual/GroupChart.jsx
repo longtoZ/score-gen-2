@@ -42,8 +42,6 @@ export const GroupChart = () => {
 
     const selectedScore = schoolData.find(s => s['CHOSEN'] === true)['TEN_TRUONG'];
 
-    console.log(groupData)
-
     let delayed;
     const options = {
         indexAxis: 'y',

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import logoLight from '../../assets/img/logo-full-light.png';
@@ -11,7 +11,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import './navbar.css';
 
-export const SideBar = ({ logoRef, searchRef, suggestRef, visualRef, printRef }) => {
+export const SideBar = ({ navRef, logoRef, searchRef, suggestRef, visualRef, printRef }) => {
 
     const [show, setShow] = useState(false);
 
@@ -25,13 +25,9 @@ export const SideBar = ({ logoRef, searchRef, suggestRef, visualRef, printRef })
         }
     }
 
-    useEffect(() => {
-        console.log(show)
-    }, [show])
-
     return (
         <>
-            <header className="flex justify-between py-2 px-[4%] shadow-md fixed top-0 left-0 right-0 z-[5] bg-header-color">
+            <header className="flex justify-between py-2 px-[4%] shadow-md fixed top-0 left-0 right-0 z-[5] bg-header-color" ref={navRef}>
                 <div>
                     <Link to="/">
                         <img
@@ -49,7 +45,7 @@ export const SideBar = ({ logoRef, searchRef, suggestRef, visualRef, printRef })
             </header>
             <div className={`w-full h-full fixed bg-black bg-opacity-40 z-[6] ${show ? 'block' :'hidden'}`} onClick={handleHide}>
             </div>
-            <div className={`w-[30%] h-full fixed top-0 right-0 p-4 bg-bg-color z-[7] transition-transform ease-in-out duration-300 ${show ? 'translate-x-0' : 'translate-x-[100%]'}`}>
+            <div className={`side-menu w-[35%] h-full fixed top-0 right-0 p-4 bg-bg-color z-[7] transition-transform ease-in-out duration-300 ${show ? 'translate-x-0' : 'translate-x-[100%]'}`}>
                 <h1 className="text-2xl font-bold text-right my-4">Mục lục</h1>
                 <div className="rounded-lg bs-in p-2 flex justify-between bg-input-color">
                     <input type="text" className="w-[80%] bg-transparent" placeholder="Tìm tài liệu..." />
@@ -57,19 +53,19 @@ export const SideBar = ({ logoRef, searchRef, suggestRef, visualRef, printRef })
                 </div>
 
                 <ul className="text-right mt-[2rem]">
-                    <li className="p-2 font-semibold hover:bg-even-row-color rounded-lg" ref={searchRef}>
+                    <li className="p-2 font-semibold hover:bg-even-row-color rounded-lg" ref={searchRef} onClick={() => setShow(false)}>
                         <Link to="/search">Tra cứu</Link>
                         <SearchIcon className="ml-2" style={{fontSize: '1.4em'}} />
                     </li>
-                    <li className="p-2 font-semibold hover:bg-even-row-color rounded-lg" ref={suggestRef}>
+                    <li className="p-2 font-semibold hover:bg-even-row-color rounded-lg" ref={suggestRef} onClick={() => setShow(false)}>
                         <Link to="/suggest">Đề xuất</Link>
                         <TipsAndUpdatesIcon className="ml-2" style={{fontSize: '1.4em'}} />
                     </li>
-                    <li className="p-2 font-semibold hover:bg-even-row-color rounded-lg" ref={visualRef}>
+                    <li className="p-2 font-semibold hover:bg-even-row-color rounded-lg" ref={visualRef} onClick={() => setShow(false)}>
                         <Link to="/visual">Phân tích</Link>
                         <BarChartIcon className="ml-2" style={{fontSize: '1.4em'}} />
                     </li>
-                    <li className="p-2 font-semibold hover:bg-even-row-color rounded-lg" ref={printRef}>
+                    <li className="p-2 font-semibold hover:bg-even-row-color rounded-lg" ref={printRef} onClick={() => setShow(false)}>
                         <Link to="/print">Báo cáo</Link>
                         <PostAddIcon className="ml-2" style={{fontSize: '1.4em'}} />
                     </li>
@@ -82,7 +78,9 @@ export const SideBar = ({ logoRef, searchRef, suggestRef, visualRef, printRef })
                         <div className="flex justify-between px-[10%] items-center text-xs mt-4">
                             <h1>Khám phá</h1>
                             <div className="rounded-[50%] bg-white text-emerald-400 p-1 cursor-pointer transition-transform ease-in-out duration-500 hover:rotate-[360deg]">
-                                <ArrowForwardIcon />
+                                <Link to="/docs/migration">
+                                    <ArrowForwardIcon />
+                                </Link>
                             </div>
                         </div>
 

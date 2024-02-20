@@ -1,19 +1,16 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { TopBar } from './TopBar';
 import { SideBar } from './SideBar';
 
 import './navbar.css';
 
-import SearchIcon from '@mui/icons-material/Search';
-import MenuIcon from '@mui/icons-material/Menu';
-
 export const NavBar = () => {
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    const [hideNav, setHideNav] = useState(true);
 
     const navRef = useRef(null);
     const logoRef = useRef(null);
-
     const searchRef = useRef(null);
     const suggestRef = useRef(null);
     const visualRef = useRef(null);
@@ -21,16 +18,15 @@ export const NavBar = () => {
 
     const location = useLocation();
 
-    const handleResize = () => {
-        setWindowWidth(window.innerWidth);
-    };
-
     useEffect(() => {
         // Path changed
         searchRef.current.classList.remove('current-page');
         suggestRef.current.classList.remove('current-page');
         visualRef.current.classList.remove('current-page');
         printRef.current.classList.remove('current-page');
+
+        document.querySelector('footer').style.display = 'block';
+        setHideNav(true);
 
         if (location.pathname === '/search') {
             searchRef.current.classList.add('current-page');
@@ -42,10 +38,13 @@ export const NavBar = () => {
             printRef.current.classList.add('current-page');
         } else if (location.pathname.includes('/docs')) {
             document.querySelector('footer').style.display = 'none';
+            setHideNav(false);
         }
     }, [location]);
 
     useEffect(() => {
+        if (!hideNav) return;
+
         let prevScrollPos = window.scrollY;
         let windowHeight = window.innerHeight;
         const addBtn = document.querySelector('.add-area');
@@ -74,20 +73,12 @@ export const NavBar = () => {
         };
 
         return () => (window.onscroll = null);
-    }, []);
-
-
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-
-        return () => window.removeEventListener('resize', handleResize);
-    }, [windowWidth]);
-
+    }, [hideNav]);
 
     return (
         <>
-            {windowWidth < 768 ? (
-                <SideBar logoRef={logoRef} searchRef={searchRef} suggestRef={suggestRef} visualRef={visualRef} printRef={printRef} />
+            {window.innerWidth < 768 ? (
+                <SideBar navRef={navRef} logoRef={logoRef} searchRef={searchRef} suggestRef={suggestRef} visualRef={visualRef} printRef={printRef} />
             ) : (
                 <TopBar navRef={navRef} logoRef={logoRef} searchRef={searchRef} suggestRef={suggestRef} visualRef={visualRef} printRef={printRef} />
             )}

@@ -5,6 +5,10 @@ export const getAxiosYear = (school) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/year', {
                 params: { school },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
+                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -20,6 +24,10 @@ export const getAxiosCompete = (school) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/compete', {
                 params: { school },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
+                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -35,6 +43,10 @@ export const getAxiosArea = (district, year, wish) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/area', {
                 params: { district, year, wish },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
+                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -51,6 +63,10 @@ export const getAxiosAreaAll = (district, year) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/areaAll', {
                 params: { district, year },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
+                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -67,6 +83,10 @@ export const getAxiosGroup = (year, wish, score, diff) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/group', {
                 params: { year, wish, score, diff },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
+                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -83,6 +103,10 @@ export const getAxiosSpecial = (year, wish) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/special', {
                 params: { year, wish },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
+                }
             })
             .then((res) => {
                 resolve(res.data);

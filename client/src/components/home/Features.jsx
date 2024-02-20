@@ -1,3 +1,8 @@
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
+import AutoGraphIcon from '@mui/icons-material/AutoGraph';
+import PhotoFilterIcon from '@mui/icons-material/PhotoFilter';
+
 import searchDemo from '../../assets/vid/search-demo.mp4';
 import suggestDemo from '../../assets/vid/suggest-demo.mp4';
 import visualDemo from '../../assets/vid/visual-demo.mp4';
@@ -17,7 +22,7 @@ export const Features = () => {
                             loop
                             autoPlay
                             muted
-                            className="object-fill relative rounded-lg h-[20rem] m-auto z-[2]"
+                            className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
                             <source src={searchDemo} type="video/mp4" />
                         </video>
@@ -26,9 +31,15 @@ export const Features = () => {
                     </div>
 
                     <div className="px-16 flex justify-center flex-col">
-                        <h1 className="text-2xl font-semibold">
-                            Tra cứu thông minh
-                        </h1>
+                        <div className='flex items-center'>
+                            <div className='rounded-lg p-2 bg-cyan-100 '>
+                                <AutoAwesomeIcon className='text-cyan-500' style={{fontSize:'2.2em'}} />
+                            </div>
+                            <h1 className="text-2xl font-semibold ml-4 ">
+                                Tra cứu thông minh
+                            </h1>
+                        </div>
+
                         <p className="mt-[1rem] leading-7">
                             Tìm kiếm bằng tên trường, loại trường, năm học.
                             Không những thế, bạn còn có thể xem chi tiết về
@@ -40,9 +51,14 @@ export const Features = () => {
 
                 <div className="grid grid-cols-2 my-6">
                     <div className="px-16 flex justify-center flex-col">
-                        <h1 className="text-2xl font-semibold">
-                            Đề xuất theo tiêu chí
-                        </h1>
+                        <div className='flex items-center'>
+                            <div className='rounded-lg p-2 bg-sky-100 '>
+                                <TipsAndUpdatesIcon className='text-sky-500' style={{fontSize:'2.2em'}} />
+                            </div>
+                            <h1 className="text-2xl font-semibold ml-4 ">
+                                Đề xuất theo tiêu chí
+                            </h1>
+                        </div>
                         <p className="mt-[1rem] leading-7">
                             Dựa vào trung bình cộng điểm các năm, hệ thống sẽ tự
                             đề xuất những trường có điểm phù hợp với chỉ tiêu đề
@@ -56,7 +72,7 @@ export const Features = () => {
                             loop
                             autoPlay
                             muted
-                            className="object-fill relative rounded-lg h-[20rem] m-auto z-[2]"
+                            className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
                             <source src={suggestDemo} type="video/mp4" />
                         </video>
@@ -71,7 +87,7 @@ export const Features = () => {
                             loop
                             autoPlay
                             muted
-                            className="object-fill relative rounded-lg h-[20rem] m-auto z-[2]"
+                            className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
                             <source src={visualDemo} type="video/mp4" />
                         </video>
@@ -80,9 +96,14 @@ export const Features = () => {
                     </div>
 
                     <div className="px-16 flex justify-center flex-col">
-                        <h1 className="text-2xl font-semibold">
-                            Trực quan hoá dữ liệu
-                        </h1>
+                        <div className='flex items-center'>
+                            <div className='rounded-lg p-2 bg-blue-100 '>
+                                <AutoGraphIcon className='text-blue-500' style={{fontSize:'2.2em'}} />
+                            </div>
+                            <h1 className="text-2xl font-semibold ml-4 ">
+                                Trực quan hoá dữ liệu
+                            </h1>
+                        </div>
                         <p className="mt-[1rem] leading-7">
                             Dữ liệu được trực quan hoá qua biểu đồ, bảng, đồ
                             thị. Bạn có thể dễ dàng so sánh, phân tích và đánh
@@ -96,9 +117,14 @@ export const Features = () => {
 
                 <div className="grid grid-cols-2 my-6">
                     <div className="px-16 flex justify-center flex-col">
-                        <h1 className="text-2xl font-semibold">
-                            Soạn nội dung lưu trữ
-                        </h1>
+                        <div className='flex items-center'>
+                            <div className='rounded-lg p-2 bg-indigo-100 '>
+                                <PhotoFilterIcon className='text-indigo-500' style={{fontSize:'2.2em'}} />
+                            </div>
+                            <h1 className="text-2xl font-semibold ml-4 ">
+                                Soạn nội dung lưu trữ
+                            </h1>
+                        </div>
                         <p className="mt-[1rem] leading-7">
                             Không chỉ dừng lại ở việc tra cứu, bạn còn có thể
                             tạo các mục với thông số tuỳ chọn để hiển thị. Đồng
@@ -112,7 +138,7 @@ export const Features = () => {
                             loop
                             autoPlay
                             muted
-                            className="object-fill relative rounded-lg h-[20rem] m-auto z-[2]"
+                            className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
                             <source src={printDemo} type="video/mp4" />
                         </video>

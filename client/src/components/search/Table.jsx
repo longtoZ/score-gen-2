@@ -90,7 +90,7 @@ export const Table = ({ tableData, keyword, schoolType }) => {
                     </tbody>
                 </table>
             ) : (
-                <table className="rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
+                <table className="search-table rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
                     <thead className="bg-sky-600 text-white font-bold">
                         <tr>
                             <th className="py-2 px-4">STT</th>
@@ -162,7 +162,7 @@ export const Table = ({ tableData, keyword, schoolType }) => {
                                                     </td>
                                                     {index2 === length - 1 ? (
                                                         <td
-                                                            className="py-2 cursor-pointer"
+                                                            className="py-2 cursor-pointer more-btn"
                                                             onClick={handleMore}
                                                             data={item[0]}
                                                             state="collapse"

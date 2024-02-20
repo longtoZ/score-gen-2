@@ -52,29 +52,31 @@ export const Hero = () => {
                 </div>
             </div>
             <div className="w-[60%] py-16 px-20 relative">
-                <Swiper
-                    slidesPerView={1}
-                    spaceBetween={0}
-                    pagination={{ clickable: true }}
-                    autoplay={{ delay: 3000 }}
-                    loop={true}
-                    modules={[Pagination, Autoplay]}
-                    style={{ height: '20rem' }}
-                    className="rounded-lg"
-                >
-                    <SwiperSlide>
-                        <img src={Home1} alt="home1" className="object-fill" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={Home2} alt="home2" className="object-fill" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={Home3} alt="home3" className="object-fill" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src={Home4} alt="home4" className="object-fill" />
-                    </SwiperSlide>
-                </Swiper>
+                <div className='flex items-center justify-center h-full'>
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={0}
+                        pagination={{ clickable: true }}
+                        autoplay={{ delay: 3000 }}
+                        loop={true}
+                        modules={[Pagination, Autoplay]}
+                        className="slide-height rounded-lg h-[20rem] mx-auto"
+                    >
+                        <SwiperSlide>
+                            <img src={Home1} alt="home1" className="h-full mx-auto object-fill" />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <img src={Home2} alt="home2" className="h-full mx-auto object-fill" />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <img src={Home3} alt="home3" className="h-full mx-auto object-fill" />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <img src={Home4} alt="home4" className="h-full mx-auto object-fill" />
+                        </SwiperSlide>
+                    </Swiper>
+                </div>
+
 
                 <div className="absolute -top-[1rem] left-[20%] mesh1 moveDownAnimation"></div>
                 <div className="absolute bottom-0 left-0 mesh2"></div>

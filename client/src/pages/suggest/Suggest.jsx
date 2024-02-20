@@ -254,7 +254,7 @@ export const Suggest = () => {
                     </span>
                 </p>
 
-                <div className="mt-[3rem] w-1/3 mx-auto grid grid-cols-2 p-2 rounded-lg bg-bg-sank-color bs-in text-center font-semibold cursor-pointer school-type-select">
+                <div className="school-type-grid mt-[3rem] w-1/3 mx-auto grid grid-cols-2 p-2 rounded-lg bg-bg-sank-color bs-in text-center font-semibold cursor-pointer school-type-select">
                     <div
                         className="py-1 select-school-type rounded-lg"
                         school-type="normal"
@@ -278,10 +278,10 @@ export const Suggest = () => {
                         <div className="border-2 border-border-color p-4 rounded-lg">
                             <h1 className="font-semibold">Bộ lọc</h1>
 
-                            <div className="mt-4 grid grid-cols-2">
+                            <div className="mt-4 grid grid-cols-1 gap-4">
                                 {schoolType === 'Lớp thường' ? (
                                     <div
-                                        className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer"
+                                        className="mx-auto w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer"
                                         onClick={handleShowNormalWish}
                                     >
                                         <p className="pr-2" ref={normalWishRef}>
@@ -290,7 +290,7 @@ export const Suggest = () => {
                                         <ArrowDropDownIcon />
 
                                         <ul
-                                            className="w-[10rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg"
+                                            className="w-[10rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg z-[2]"
                                             style={
                                                 showNormalWish
                                                     ? { display: 'block' }
@@ -316,7 +316,7 @@ export const Suggest = () => {
                                     </div>
                                 ) : (
                                     <div
-                                        className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer"
+                                        className="mx-auto w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer"
                                         onClick={handleShowSpecialWish}
                                     >
                                         <p
@@ -328,7 +328,7 @@ export const Suggest = () => {
                                         <ArrowDropDownIcon />
 
                                         <ul
-                                            className="overflow-y-scroll h-[14rem] w-[10rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg"
+                                            className="overflow-y-scroll h-[14rem] w-[10rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg z-[2]"
                                             style={
                                                 showSpecialWish
                                                     ? { display: 'block' }
@@ -355,14 +355,14 @@ export const Suggest = () => {
                                 )}
 
                                 <div
-                                    className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer"
+                                    className="mx-auto w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer"
                                     onClick={handleShowDistrict}
                                 >
                                     <p className="pr-2">Chọn khu vực</p>
                                     <ArrowDropDownIcon />
 
                                     <ul
-                                        className="overflow-y-scroll h-[14rem] w-[10rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg"
+                                        className="overflow-y-scroll h-[14rem] w-[10rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg z-[2]"
                                         style={
                                             showDistrict
                                                 ? { display: 'block' }

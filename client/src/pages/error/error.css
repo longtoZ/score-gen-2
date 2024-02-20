@@ -1,0 +1,22 @@
+.NotFound {
+    background: linear-gradient(135deg, #ffffff 20%, transparent 20%, transparent 80%, #ffffff 80%),linear-gradient(45deg, #ffffff 40%, #fcfcfc 40%, #fcfcfc 60%, #fcfcfc 60%, #ffffff 60%) , linear-gradient(135deg, #ffffff 20%, #fcfcfc 20%, #fcfcfc 80%, #ffffff 80%);
+    background-size: 4em 4em;
+    background-color: #ffffff;
+    opacity: 1
+}
+
+.NotFound .oops {
+    font-size: 10em;
+    background-color:#99ffb8;
+    background-image:
+    radial-gradient(at 41% 30%, hsla(111,93%,79%,1) 0px, transparent 50%),
+    radial-gradient(at 90% 31%, hsla(172,73%,62%,1) 0px, transparent 50%),
+    radial-gradient(at 99% 67%, hsla(173,73%,72%,1) 0px, transparent 50%),
+    radial-gradient(at 61% 82%, hsla(221,97%,61%,1) 0px, transparent 50%),
+    radial-gradient(at 7% 54%, hsla(130,71%,63%,1) 0px, transparent 50%),
+    radial-gradient(at 83% 39%, hsla(114,82%,73%,1) 0px, transparent 50%),
+    radial-gradient(at 60% 65%, hsla(47,68%,72%,1) 0px, transparent 50%);
+	background-clip: text;
+    -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}

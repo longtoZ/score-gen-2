@@ -52,7 +52,6 @@ export const Area = () => {
         getAxiosAreaAll(selectedDistrict, selectedYear)
             .then((res) => handleDataAreaAll(res))
             .then((tableData) => {
-                console.log(tableData);
                 setData([
                     ...data,
                     {

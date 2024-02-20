@@ -31,7 +31,7 @@ export const Detail = ({ ...res }) => {
                         <b>Địa chỉ: </b> {res.DIA_CHI}
                     </li>
                 </ul>
-                <div dangerouslySetInnerHTML={{ __html: res.BAN_DO }}></div>
+                <div className='map-area' dangerouslySetInnerHTML={{ __html: res.BAN_DO }}></div>
             </div>
         </td>
     );

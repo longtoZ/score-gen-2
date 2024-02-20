@@ -70,7 +70,7 @@ export const Search = () => {
                     </Link>
                 </p>
 
-                <div className="flex justify-center gap-2 mt-10">
+                <div className="flex justify-center flex-wrap gap-2 mt-10">
                     <input
                         className="bg-input-color border border-border-color shadow-md rounded-lg py-2 px-3 text-sm"
                         type="text"
@@ -87,7 +87,7 @@ export const Search = () => {
                         <ArrowDropDownIcon />
 
                         <ul
-                            className="w-[10rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg"
+                            className="w-[10rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg z-[2]"
                             style={
                                 showType === true
                                     ? { display: 'block' }
@@ -117,7 +117,7 @@ export const Search = () => {
                         <ArrowDropDownIcon />
 
                         <ul
-                            className="overflow-y-scroll h-[14rem] w-[8rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg"
+                            className="overflow-y-scroll h-[14rem] w-[8rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg z-[2]"
                             style={
                                 showYear === true
                                     ? { display: 'block' }

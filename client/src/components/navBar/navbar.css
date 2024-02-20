@@ -25,3 +25,9 @@ header {
         padding-right: 10% !important;
     }
 }
+
+@media (max-width: 576px) {
+    .side-menu {
+        width: 50% !important;
+    }
+}

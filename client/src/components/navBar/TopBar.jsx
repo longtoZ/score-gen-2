@@ -1,14 +1,11 @@
-import {useEffect, useRef, useContext} from 'react'
 import {Link} from 'react-router-dom'
-import {ModeContext} from '../../utils/setModeContext'
+// import {useContext} from 'react'
+// import {ModeContext} from '../../utils/setModeContext'
 
 import logoLight from '../../assets/img/logo-full-light.png';
-import logoDark from '../../assets/img/logo-full-dark.png';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 export const TopBar = ({logoRef, navRef, searchRef, suggestRef, visualRef, printRef}) => {
-    const { theme, setTheme } = useContext(ModeContext);
+    // const { theme, setTheme } = useContext(ModeContext);
 
     // const lightRef = useRef(null);
     // const darkRef = useRef(null);
@@ -25,13 +22,14 @@ export const TopBar = ({logoRef, navRef, searchRef, suggestRef, visualRef, print
     //     }
     // }, [theme]);
 
-    const handleMode = (e) => {
-        if (e.target.closest('.mode-btn').getAttribute('mode') === 'light') {
-            setTheme('light');
-        } else {
-            setTheme('dark');
-        }
-    };
+    // const handleMode = (e) => {
+    //     if (e.target.closest('.mode-btn').getAttribute('mode') === 'light') {
+    //         setTheme('light');
+    //     } else {
+    //         setTheme('dark');
+    //     }
+    // };
+
 
   return (
     <header

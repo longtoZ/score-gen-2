@@ -1,5 +1,9 @@
-@media (max-width: 768px) {
-
+@media (max-width: 1250px) {
+    .Benefits {
+        padding-left: 12% !important;
+        padding-right: 12% !important;
+    }
+    
     .mesh1, .mesh4 {
         width: 18rem;
         height: 18rem;
@@ -14,6 +18,9 @@
         width: 21rem;
         height: 21rem;
     }
+}
+
+@media (max-width: 992px) {
 
     .Hero {
         flex-direction: column;
@@ -65,6 +72,93 @@
 
     .tech-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    }
+}
 
+@media (max-width: 576px) {
+
+    .mesh1, .mesh4 {
+        width: 15rem !important;
+        height: 15rem !important;
+    }
+
+    .mesh2 {
+        width: 20rem !important;
+        height: 20rem !important;
+    }
+
+    .mesh3 {
+        width: 18rem !important;
+        height: 18rem !important;
+    }
+
+    .slide-height {
+        height: 16rem !important;
+    }
+
+    .Benefits .benefits-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+
+    .Benefits .mesh2 {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 15%;
+    }
+
+    .Benefits .mesh3 {
+        left: 40%;
+        transform: translateX(-50%);
+        top: 40%;
+        animation: none;
+    }
+
+    .Benefits .mesh4 {
+        left: 70%;
+        transform: translateX(-50%);
+        top: 60%;
+        animation: none;
+    }
+
+    .video-height {
+        height: 14rem !important;
+    }
+
+    .Compare .mesh4 {
+        top: -5%;
+    }
+
+    .Compare .mesh2 {
+        opacity: 0.8;
+        right: -20%;
+    }
+
+    .Compare .mesh1 {
+        opacity: 0.5;
+    }
+
+    .questions-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+
+    .Questions .mesh4 {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 6%;
+        opacity: 0.7;
+    }
+
+    .Questions .mesh3 {
+        opacity: 0.7;
+        top: 40%;
+    }
+
+    .Questions .mesh1 {
+        opacity: 0.7;
+        left: 50%;
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
 }

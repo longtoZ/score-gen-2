@@ -9,7 +9,7 @@
         overflow-y: scroll;
     }
 
-    .menu-grid {
+    .menu-grid, .Print .grid-cols-2 {
         grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
     }
 
@@ -20,5 +20,12 @@
 
     .grab-btn {
         width: 15% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .Print .grid-cols-3 {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+
     }
 }

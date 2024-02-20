@@ -261,7 +261,7 @@ export const Visual = () => {
                             <h1 className="ml-1 font-semibold">Thêm</h1>
                         </div>
                         <div
-                            className={`absolute top-0 left-28 p-2 shadow-basic bg-input-color rounded-lg flex gap-2 ${showSearch ? 'block' : 'hidden'}`}
+                            className={`absolute top-[150%] left-0 p-2 shadow-basic bg-input-color rounded-lg flex gap-2 ${showSearch ? 'block' : 'hidden'}`}
                         >
                             <input
                                 className="bg-bg-sank-color bs-in p-1 rounded-lg"
@@ -287,7 +287,7 @@ export const Visual = () => {
                 </div>
 
 
-                <div className="flex justify-center gap-4 mt-[3rem] flex-wrap">
+                <div className="flex justify-center gap-4 mt-[6rem] flex-wrap">
                     <SchoolContext.Provider
                         value={{
                             schoolData,
@@ -304,7 +304,6 @@ export const Visual = () => {
                             <SchoolSearch key={index} school={school} />
                         ))}
                     </SchoolContext.Provider>
-
 
                 </div>
 

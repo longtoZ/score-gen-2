@@ -46,7 +46,7 @@ export const DeleteMenu = () => {
             <div className="p-8 bg-input-color rounded-lg relative">
               <div className='text-center'>
                 <h1 className="text-lg text-center font-semibold my-2">
-                  Xoá mục "{functionType[data[showDelete.index].dataType]}"
+                  Xoá mục &quot;{functionType[data[showDelete.index].dataType]}&quot;
                 </h1>
                 <p className='text-sm text-gray-400'>Hành động này không thể được hoàn tác.</p>
               </div>

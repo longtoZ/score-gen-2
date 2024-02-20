@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const token = process.env.REACT_APP_SECRET_KEY;
-
 export const getAxios = (type, year) => {
     return new Promise((resolve, reject) => {
         axios
@@ -9,7 +7,7 @@ export const getAxios = (type, year) => {
                 params: { type, year },
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token,
+                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
                 }
             })
             .then((res) => {
@@ -63,6 +61,10 @@ export const getDetailInfo = (school) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/detail', {
                 params: { school },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
+                }
             })
             .then((res) => {
                 resolve(res.data);

@@ -14,4 +14,8 @@
     .suggest-table {
         width: 100% !important;
     }
+
+    .school-type-grid {
+        width: 66% !important;
+    }
 }

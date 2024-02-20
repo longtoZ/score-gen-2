@@ -6,7 +6,7 @@ export const Questions = () => {
         <h1 className='text-center font-semibold text-4xl'>Câu hỏi thường gặp?</h1>
 
         <div className='relative'>
-            <div className='grid grid-cols-2 gap-8 mt-[3rem]'>
+            <div className='questions-grid grid grid-cols-2 gap-8 mt-[3rem]'>
                 <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 backdrop-blur'>
                     <HelpOutlineIcon className='w-[20%]'/>
                     <div className='w-[80%]'>

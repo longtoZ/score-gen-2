@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import logoTitleDark from '../../assets/img/logo-title-dark.png'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -17,16 +19,16 @@ export const Footer = () => {
                     <b>SCORE</b> - Hệ thống tra cứu, phân tích và trực quan hoá điểm chuẩn tuyển sinh 10 khu vực TP.HCM.
                 </p>
                 <div className='flex gap-2 mt-4'>
-                    <a href="https://www.facebook.com/its.longto/" target='_blank'>
+                    <a href="https://www.facebook.com/its.longto/" target='_blank' rel="noreferrer">
                         <FacebookIcon className='text-neutral-500' />
                     </a>
-                    <a href="https://www.instagram.com/longto_/" target='_blank'>
+                    <a href="https://www.instagram.com/longto_/" target='_blank' rel="noreferrer">
                         <InstagramIcon className='text-neutral-500' />
                     </a>
-                    <a href="https://www.pinterest.com/TheRealNautilus/" target='_blank'>
+                    <a href="https://www.pinterest.com/TheRealNautilus/" target='_blank' rel="noreferrer">
                         <PinterestIcon className='text-neutral-500' />
                     </a>
-                    <a href="https://github.com/longtoZ" target='_blank'>
+                    <a href="https://github.com/longtoZ" target='_blank' rel="noreferrer">
                         <GitHubIcon className='text-neutral-500' />
                     </a>
                 </div>
@@ -45,7 +47,9 @@ export const Footer = () => {
                     <h1 className='text-white'>Thông tin</h1>
                     <ul className='text-neutral-500 mt-6'>
                         <li className='py-1'>Về chúng tôi</li>
-                        <li className='py-1'>Tài liệu</li>
+                        <li className='py-1'>
+                            <Link to='/docs/introduction'>Tài liệu</Link>
+                        </li>
                         <li className='py-1'>Đối tác</li>
                     </ul>
                 </div>

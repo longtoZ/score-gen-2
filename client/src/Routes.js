@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { Home } from './pages/home/Home';
 import { Search } from './pages/search/Search';
 import { Suggest } from './pages/suggest/Suggest';
@@ -15,6 +16,8 @@ import { SuggestDocs } from './components/docs/Suggest';
 import { VisualDocs } from './components/docs/Visual';
 import { PrintDocs } from './components/docs/Print';
 
+import { NotFound } from './pages/error/NotFound';
+
 export const MainRoutes = () => {
     return (
         <Router>
@@ -24,7 +27,8 @@ export const MainRoutes = () => {
                 <Route path="/suggest" element={<Suggest />} />
                 <Route path="/visual" element={<Visual />} />
                 <Route path="/print" element={<Print />} />
-                <Route path="/docs" element={<Docs />}>
+                <Route path="/docs" element={<Docs/>}>
+                    <Route path='' element={<Navigate to="introduction"/>} />
                     <Route path='introduction' element={<Introduction />} />
                     <Route path='migration' element={<Migration />} />
                     <Route path='search' element={<SearchDocs />} />
@@ -33,6 +37,7 @@ export const MainRoutes = () => {
                     <Route path='print' element={<PrintDocs />} />
                 </Route>
                 <Route path="/" element={<Home />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer/>
         </Router>

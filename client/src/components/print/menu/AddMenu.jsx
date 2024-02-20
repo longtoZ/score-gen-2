@@ -43,7 +43,7 @@ const functionType = [
 
 export const AddMenu = () => {
 
-    const { data, setData } = useContext(FunctionContext);
+    const { data } = useContext(FunctionContext);
     const { showAdd, setShowAdd } = useContext(AddContext);
 
     const defaultPos = 0

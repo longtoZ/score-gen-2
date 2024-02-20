@@ -21,8 +21,6 @@ export const Group = () => {
     const schoolRef = useRef(null);
     const diffRef = useRef(null);
 
-    console.log(data[dataIndex])
-
     const [title, setTitle] = useState(mode === 'add' ? '' : data[dataIndex].title);
     const [school, setSchool] = useState(mode === 'add' ? '' : data[dataIndex].school);
     const [diff, setDiff] = useState(mode === 'add' ? 0.5 : data[dataIndex].diff);
@@ -33,8 +31,6 @@ export const Group = () => {
     const [selectedNormalWish, setSelectedNormalWish] = useState(
         mode === 'add' ? Object.entries(normalSubjectsObj)[0][0] : normalSubjectsObjReverse[data[dataIndex].wish],
     );
-
-    console.log(selectedNormalWish)
 
     const handleTitle = (e) => {
         setTitle(e.target.value);

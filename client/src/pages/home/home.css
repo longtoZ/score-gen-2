@@ -108,7 +108,7 @@
     filter: grayscale(1);
 }
 
-.logo, .logo > img, .logo h1 {
+.logo, .logo img, .logo h1 {
     transition: all ease-in-out 0.2s;
 }
 
@@ -116,7 +116,7 @@
     opacity: 1;
 }
 
-.logo:hover > img {
+.logo:hover img {
     opacity: 1;
     filter: grayscale(0);
 }
