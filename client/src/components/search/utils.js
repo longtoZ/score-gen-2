@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export const getAxios = (type, year) => {
     return new Promise((resolve, reject) => {
-        console.log(process.env.REACT_APP_SERVER + '/api/search')
         axios
             .get(process.env.REACT_APP_SERVER + '/api/search', {
                 params: { type, year },
