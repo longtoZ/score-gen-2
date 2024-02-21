@@ -5,10 +5,6 @@ export const getAxios = (type, year) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/search', {
                 params: { type, year },
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -61,10 +57,6 @@ export const getDetailInfo = (school) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/detail', {
                 params: { school },
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-                }
             })
             .then((res) => {
                 resolve(res.data);

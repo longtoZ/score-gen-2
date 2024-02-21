@@ -5,10 +5,6 @@ export const getAxiosYear = (school) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/year', {
                 params: { school },
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -24,10 +20,6 @@ export const getAxiosCompete = (school) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/compete', {
                 params: { school },
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -43,10 +35,6 @@ export const getAxiosArea = (district, year, wish) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/area', {
                 params: { district, year, wish },
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -55,18 +43,13 @@ export const getAxiosArea = (district, year, wish) => {
                 reject(err);
             });
     });
-
-}
+};
 
 export const getAxiosAreaAll = (district, year) => {
     return new Promise((resolve, reject) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/areaAll', {
                 params: { district, year },
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -75,18 +58,13 @@ export const getAxiosAreaAll = (district, year) => {
                 reject(err);
             });
     });
-
-}
+};
 
 export const getAxiosGroup = (year, wish, score, diff) => {
     return new Promise((resolve, reject) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/group', {
                 params: { year, wish, score, diff },
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -95,18 +73,13 @@ export const getAxiosGroup = (year, wish, score, diff) => {
                 reject(err);
             });
     });
-
-}
+};
 
 export const getAxiosSpecial = (year, wish) => {
     return new Promise((resolve, reject) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/visual/special', {
                 params: { year, wish },
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-                }
             })
             .then((res) => {
                 resolve(res.data);
@@ -115,8 +88,7 @@ export const getAxiosSpecial = (year, wish) => {
                 reject(err);
             });
     });
-
-}
+};
 
 export const handleDataYear = (data) => {
     let result = [];
@@ -198,13 +170,13 @@ export const handleDataCompete = (data) => {
         TEN_TRUONG: data[0]['TEN_TRUONG'],
         'QUAN/HUYEN': data[0]['QUAN/HUYEN'],
         DATA: [],
-    }
+    };
 
     for (let i = 0; i < data.length; i++) {
         if (code !== data[i]['MA_TRUONG']) {
             break;
         }
-        
+
         result.DATA.push({
             NAM_HOC: data[i]['NAM_HOC'],
             CHI_TIEU: data[i]['CHI_TIEU'],
@@ -213,7 +185,7 @@ export const handleDataCompete = (data) => {
     }
 
     return result;
-}
+};
 
 export const handleDataArea = (data) => {
     const result = {
@@ -224,13 +196,12 @@ export const handleDataArea = (data) => {
                 MA_TRUONG: item['MA_TRUONG'],
                 TEN_TRUONG: item['TEN_TRUONG'],
                 DIEM: item['DIEM'],
-            }
-        })
-    }
+            };
+        }),
+    };
 
     return result;
-
-}
+};
 
 export const handleDataAreaAll = (data) => {
     let result = [];
@@ -296,17 +267,17 @@ export const handleDataAreaAll = (data) => {
 export const handleDataGroup = (data) => {
     const result = Array.from(data, (item) => {
         return {
-                'QUAN/HUYEN': item['QUAN/HUYEN'],
-                MA_TRUONG: item['MA_TRUONG'],
-                TEN_TRUONG: item['TEN_TRUONG'],
-                NAM_HOC: item['NAM_HOC'],
-                MA_NV: item['MA_NV'],
-                DIEM: item['DIEM'],
-            }
-        })
-    
+            'QUAN/HUYEN': item['QUAN/HUYEN'],
+            MA_TRUONG: item['MA_TRUONG'],
+            TEN_TRUONG: item['TEN_TRUONG'],
+            NAM_HOC: item['NAM_HOC'],
+            MA_NV: item['MA_NV'],
+            DIEM: item['DIEM'],
+        };
+    });
+
     return result;
-}
+};
 
 export const handleDataSpecial = (data) => {
     let result = [];
