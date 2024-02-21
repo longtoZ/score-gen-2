@@ -2,11 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { TopBar } from './TopBar';
 import { SideBar } from './SideBar';
-
 import './navbar.css';
 
 export const NavBar = () => {
-
     const [hideNav, setHideNav] = useState(true);
 
     const navRef = useRef(null);

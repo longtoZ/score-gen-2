@@ -27,7 +27,7 @@ export const YearRangeTable = ({ data }) => {
                                 return (
                                     <tr
                                         key={index}
-                                        className="[&:nth-child(even)]:bg-even-row-color"
+                                        className="[&:nth-child(even)]:bg-even-row-color-light"
                                     >
                                         {index === 0 ? (
                                             <>

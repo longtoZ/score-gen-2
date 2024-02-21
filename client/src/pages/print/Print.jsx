@@ -1,4 +1,4 @@
-import { useState, useRef, createContext, useEffect } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AddMenu } from '../../components/print/menu/AddMenu';
@@ -87,6 +87,9 @@ export const Print = () => {
     }
 
     const handleDeleteData = () => {
+        const res = confirm('Bạn có chắc chắn muốn xóa tất cả dữ liệu?');
+        if (!res) return;
+        
         setData([]);
         localStorage.removeItem('data');
         setToastMessage({
@@ -222,8 +225,8 @@ export const Print = () => {
                     {data.map((item, index) => {
 
                         return (
-                            <div key={index} className={`${isChecked ? 'page-break-after' : ''} table-area my-[5rem] bg-input-color border-2 border-border-color rounded-xl overflow-hidden`}>
-                                <div className='table-options flex justify-between py-3 px-[5%] bg-even-row-color'>
+                            <div key={index} className={`${isChecked ? 'page-break-after' : ''} table-area my-[5rem] bg-container-color border-2 border-border-color rounded-xl overflow-hidden`}>
+                                <div className='table-options flex justify-between py-3 px-[5%] bg-even-row-color-light'>
                                     <div className='flex gap-2'>
                                         <button className='bg-input-color p-1 rounded-lg border-2 border-border-color text-gray-600 cursor-pointer mx-auto' onClick={handleShowOrder}>
                                             <ListIcon />

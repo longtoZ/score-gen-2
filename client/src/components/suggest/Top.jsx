@@ -43,7 +43,7 @@ export const Top = () => {
     return (
         <div className="mt-[2rem] grid grid-cols-3 gap-2">
             <input
-                className="bs-in p-2 bg-bg-sank-color rounded-lg text-center"
+                className="bs-in-light p-2 bg-transparent rounded-lg text-center"
                 type="number"
                 min="0"
                 max="30"
@@ -51,7 +51,7 @@ export const Top = () => {
                 onChange={handleTop}
             />
             <button
-                className="enable font-semibold text-text-color p-2 rounded-lg shadow-md cursor-pointer opacity-50"
+                className="enable font-semibold text-text-color p-2 rounded-lg shadow-thick cursor-pointer opacity-50"
                 ref={highestRef}
                 data-type="highest"
                 onClick={handleData}
@@ -59,7 +59,7 @@ export const Top = () => {
                 Cao nhất
             </button>
             <button
-                className="font-semibold text-text-color p-2 rounded-lg shadow-md cursor-pointer opacity-50"
+                className="font-semibold text-text-color p-2 rounded-lg shadow-thick cursor-pointer opacity-50"
                 ref={lowestRef}
                 data-type="lowest"
                 onClick={handleData}

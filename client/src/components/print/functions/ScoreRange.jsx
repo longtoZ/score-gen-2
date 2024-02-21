@@ -31,7 +31,7 @@ export const ScoreRange = () => {
 
     const [title, setTitle] = useState(mode === 'add' ? '' : data[dataIndex].title);
     const [start, setStart] = useState(mode === 'add' ? 0 : data[dataIndex].startValue);
-    const [end, setEnd] = useState(mode === 'add' ? 30 : data[dataIndex].endValue);
+    const [end, setEnd] = useState(mode === 'add' ? 0 : data[dataIndex].endValue);
     const [showSchoolType, setShowSchoolType] = useState(false);
     const [showNormalWish, setShowNormalWish] = useState(false);
     const [showSpecialWish, setShowSpecialWish] = useState(false);
@@ -238,7 +238,7 @@ export const ScoreRange = () => {
             <section className='w-full px-[10%] block pt-8'>
                 <input 
                     type="text" 
-                    className="block my-2 w-full bs-in p-2 bg-bg-sank-color rounded-lg text-center" 
+                    className="block my-2 w-full bs-in p-2 bg-transparent rounded-lg text-center" 
                     placeholder='Nhập tiêu đề mục...'
                     onChange={handleTitle}
                     ref={titleRef}
@@ -386,29 +386,29 @@ export const ScoreRange = () => {
             <section className="mt-[2rem] w-full grid grid-cols-2 gap-2 px-[10%]">
                 <h1 className='text-center font-semibold'>Điểm đầu</h1>
                 <input
-                    className="bs-in p-2 bg-bg-sank-color rounded-lg text-center"
+                    className="bs-in p-2 bg-transparent rounded-lg text-center"
                     type="number"
                     min="0"
                     max="30"
-                    placeholder={start}
+                    placeholder="Nhập điểm đầu..."
                     onChange={handleStart}
                     ref={startRef}
                 />
                 <h1 className='text-center font-semibold'>Điểm cuối</h1>
                 <input
-                    className="bs-in p-2 bg-bg-sank-color rounded-lg text-center"
+                    className="bs-in p-2 bg-transparent rounded-lg text-center"
                     type="number"
                     min="0"
                     max="30"
-                    placeholder={end}
+                    placeholder="Nhap điểm cuối..."
                     onChange={handleEnd}
                     ref={endRef}
                 />
             </section>
             {showAdd.mode === 'add' ? (
-                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm mới</button>
+                <button className='float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm mới</button>
             ) : (
-                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={editData}>Thay đổi</button>
+                <button className='float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg' onClick={editData}>Thay đổi</button>
             )}
         </div>
     );

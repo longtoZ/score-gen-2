@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import './docs.css';
@@ -20,10 +20,11 @@ export const Docs = () => {
         <div className="Docs mx-[8%]">
             {window.innerWidth < 992 ? (
                 <>
-                    <div className="fixed top-0 pt-[6rem] pb-[1rem] w-full border-b-2 border-dashed bg-bg-color">
+                    <div className="fixed top-0 left-0 pl-[8%] pt-[6rem] pb-[1rem] w-full border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed bg-bg-color">
                         <MenuIcon
                             onClick={handleShow}
                             className="cursor-pointer"
+                            style={{fontSize:'2rem'}}
                         />
                     </div>
                     <div

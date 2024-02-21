@@ -80,7 +80,7 @@ export const AverageTable = ({ tableData, filterData }) => {
                                                 <td className="py-2">
                                                     {item['district']}
                                                 </td>
-                                                <td className="py-2 bg-amber-100">
+                                                <td className="py-2 bg-amber-100 text-black">
                                                     {(
                                                         parseFloat(
                                                             item['NV1'],
@@ -126,7 +126,7 @@ export const AverageTable = ({ tableData, filterData }) => {
                                                         ) * 0.3
                                                     ).toFixed(2)}
                                                 </td>
-                                                <td className="py-2 bg-amber-100">
+                                                <td className="py-2 bg-amber-100 text-black">
                                                     {(
                                                         parseFloat(
                                                             item['NV2'],
@@ -172,7 +172,7 @@ export const AverageTable = ({ tableData, filterData }) => {
                                                         ) * 0.3
                                                     ).toFixed(2)}
                                                 </td>
-                                                <td className="py-2 bg-amber-100">
+                                                <td className="py-2 bg-amber-100 text-black">
                                                     {(
                                                         parseFloat(
                                                             item['NV3'],

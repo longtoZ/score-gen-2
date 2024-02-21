@@ -52,7 +52,7 @@ export const TopTable = ({ tableData, filterData }) => {
                                         <td
                                             className={`py-2 ${
                                                 filterData.wishValue === 'NV1'
-                                                    ? 'bg-amber-100'
+                                                    ? 'bg-amber-100 text-black'
                                                     : ''
                                             }`}
                                         >
@@ -63,7 +63,7 @@ export const TopTable = ({ tableData, filterData }) => {
                                         <td
                                             className={`py-2 ${
                                                 filterData.wishValue === 'NV2'
-                                                    ? 'bg-amber-100'
+                                                    ? 'bg-amber-100 text-black'
                                                     : ''
                                             }`}
                                         >
@@ -74,7 +74,7 @@ export const TopTable = ({ tableData, filterData }) => {
                                         <td
                                             className={`py-2 ${
                                                 filterData.wishValue === 'NV3'
-                                                    ? 'bg-amber-100'
+                                                    ? 'bg-amber-100 text-black'
                                                     : ''
                                             }`}
                                         >

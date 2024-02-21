@@ -12,7 +12,7 @@ import print1 from '../../assets/img/docs/8.png';
 export const Migration = () => {
     return (
         <div>
-            <h1 className="font-semibold text-4xl pb-2 border-b-2 border-dashed">
+            <h1 className="font-semibold text-4xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed">
                 Score Gen 2
             </h1>
             <p className="mt-[1rem]">
@@ -26,7 +26,7 @@ export const Migration = () => {
                 web này giúp người dùng hiểu rõ hơn về tiến triển học tập và đề
                 xuất các cải tiến cụ thể.
             </p>
-            <h1 className="font-semibold text-3xl pb-2 border-b-2 border-dashed mt-[4rem]">
+            <h1 className="font-semibold text-3xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed mt-[4rem]">
                 Thay đổi trong giao diện
             </h1>
             <p className="mt-[1rem]">
@@ -35,7 +35,7 @@ export const Migration = () => {
                 1, từ đó sửa đổi và cải thiện giao diện để phù hợp hơn với nhu
                 cầu của người dùng.
             </p>
-            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-dashed mt-[4rem]">
+            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed mt-[4rem]">
                 Font chữ
             </h1>
             <p className="mt-[1rem]">
@@ -71,7 +71,7 @@ export const Migration = () => {
                 alt="font2"
                 className="my-6 w-full rounded-lg border-2 border-border-color"
             />
-                        <h1 className="font-semibold text-2xl pb-2 border-b-2 border-dashed mt-[4rem]">
+                        <h1 className="font-semibold text-2xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed mt-[4rem]">
                 Giao diện trang &quot;Tra cứu&quot;
             </h1>
             <p className="mt-[1rem]">
@@ -83,7 +83,7 @@ export const Migration = () => {
                 alt="font2"
                 className="my-6 w-full rounded-lg border-2 border-border-color"
             />
-            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-dashed mt-[4rem]">
+            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed mt-[4rem]">
                 Giao diện trang &quot;Đề xuất&quot;
             </h1>
             <p className="mt-[1rem]">
@@ -105,7 +105,7 @@ export const Migration = () => {
                 alt="font2"
                 className="my-6 w-full rounded-lg border-2 border-border-color"
             />
-            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-dashed mt-[4rem]">
+            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed mt-[4rem]">
                 Giao diện trang &quot;Phân tích&quot;
             </h1>
             <p className="mt-[1rem]">
@@ -136,7 +136,7 @@ export const Migration = () => {
             <p className="mt-[1rem]">
               Ngoài ra, các mục được cho là không cần thiết cũng bị loại bỏ.
             </p>
-            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-dashed mt-[4rem]">
+            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed mt-[4rem]">
                 Giao diện trang &quot;Báo cáo&quot;
             </h1>
             <p className="mt-[1rem]">
@@ -158,7 +158,7 @@ export const Migration = () => {
                 alt="font2"
                 className="my-6 w-full rounded-lg border-2 border-border-color"
             />
-            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-dashed mt-[4rem]">
+            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed mt-[4rem]">
                 Thuật toán và hiệu năng
             </h1>
             <p className="mt-[1rem]">

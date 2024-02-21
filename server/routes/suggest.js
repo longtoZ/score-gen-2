@@ -4,7 +4,7 @@ import { suggestController } from "../controllers/suggest.js"
 
 const router = express.Router()
 
-router.get("/", verifyToken, suggestController)
+router.get("/", suggestController)
 
 
 export default router

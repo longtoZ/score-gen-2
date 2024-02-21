@@ -67,7 +67,7 @@ export const ScoreRangeTable = ({ data }) => {
                                 return (
                                     <tr
                                         key={index}
-                                        className="[&:nth-child(even)]:bg-even-row-color"
+                                        className="[&:nth-child(even)]:bg-even-row-color-light"
                                     >
                                         <td
                                             className={`${
@@ -87,7 +87,7 @@ export const ScoreRangeTable = ({ data }) => {
                                                 <td
                                                     className={`py-2 ${
                                                         data.wishValue === 'NV1'
-                                                            ? 'bg-amber-100'
+                                                            ? 'bg-amber-100 text-black'
                                                             : ''
                                                     }`}
                                                 >
@@ -100,7 +100,7 @@ export const ScoreRangeTable = ({ data }) => {
                                                 <td
                                                     className={`py-2 ${
                                                         data.wishValue === 'NV2'
-                                                            ? 'bg-amber-100'
+                                                            ? 'bg-amber-100 text-black'
                                                             : ''
                                                     }`}
                                                 >
@@ -113,7 +113,7 @@ export const ScoreRangeTable = ({ data }) => {
                                                 <td
                                                     className={`py-2 ${
                                                         data.wishValue === 'NV3'
-                                                            ? 'bg-amber-100'
+                                                            ? 'bg-amber-100 text-black'
                                                             : ''
                                                     }`}
                                                 >

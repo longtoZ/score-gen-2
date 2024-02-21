@@ -43,7 +43,7 @@ export const DeleteMenu = () => {
             className="w-full h-full fixed bg-black bg-opacity-40 flex justify-center items-center z-[3]"
             onClick={handleHideDelete}
         >
-            <div className="p-8 bg-input-color rounded-lg relative">
+            <div className="p-8 bg-container-color rounded-lg relative">
               <div className='text-center'>
                 <h1 className="text-lg text-center font-semibold my-2">
                   Xoá mục &quot;{functionType[data[showDelete.index].dataType]}&quot;

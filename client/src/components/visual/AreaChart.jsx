@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { ModeContext } from '../../utils/setModeContext.js';
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
 import { SingleYear } from './inputs/SingleYear.jsx';
 import { SingleWish } from './inputs/SingleWish.jsx';
@@ -47,6 +48,7 @@ const selectedColor = {
 }
 
 export const AreaChart = () => {
+    const { theme } = useContext(ModeContext);
     const { areaData, singleYear, districtList, schoolData } = useContext(SchoolContext);
 
     // console.log(areaData, districtList, areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOSEN))
@@ -66,6 +68,7 @@ export const AreaChart = () => {
                 title: {
                     display: true,
                     text: `${districtList.CHOSEN} - ${singleYear}`,
+                    color: theme === 'light' ? '#18181b' : '#d4d4d8',
                 },
                 legend: {
                     display: false
@@ -83,12 +86,18 @@ export const AreaChart = () => {
                         display: true,
                         text: 'Trường',
                     },
+                    ticks : {
+                        color: theme === 'light' ? '#18181b' : '#d4d4d8',
+                    }
                 },
                 x: {
                     title: {
                         display: true,
                         text: 'Điểm',
                     },
+                    ticks : {
+                        color: theme === 'light' ? '#18181b' : '#d4d4d8',
+                    }
                 },
             },
 
@@ -123,7 +132,7 @@ export const AreaChart = () => {
         };
 
         return (
-            <div className="mt-[3rem] shadow-basic rounded-lg overflow-hidden">
+            <div className="mt-[3rem] bg-container-color shadow-basic rounded-lg overflow-hidden">
                 <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                     Các trường trong khu vực
                 </h1>

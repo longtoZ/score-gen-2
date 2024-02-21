@@ -27,7 +27,7 @@ export const Top = () => {
     const topRef = useRef(null);
     
     const [title, setTitle] = useState(mode === 'add' ? '' : data[dataIndex].title);
-    const [top, setTop] = useState(mode === 'add' ? 10 : data[dataIndex].topValue);
+    const [top, setTop] = useState(mode === 'add' ? 0 : data[dataIndex].topValue);
     const [position, setPosition] = useState(mode === 'add' ? 'highest' : data[dataIndex].positionValue);
     const [showNormalWish, setShowNormalWish] = useState(false);
     const [showDistrict, setShowDistrict] = useState(false);
@@ -204,7 +204,7 @@ export const Top = () => {
             <section className='w-full px-[10%] block pt-8'>
                 <input 
                     type="text" 
-                    className="block my-2 w-full bs-in p-2 bg-bg-sank-color rounded-lg text-center" 
+                    className="block my-2 w-full bs-in p-2 bg-transparent rounded-lg text-center" 
                     placeholder='Nhập tiêu đề mục...'
                     onChange={handleTitle}
                     ref={titleRef}
@@ -285,9 +285,9 @@ export const Top = () => {
             </section>
             <section className="mt-[2rem] w-full grid grid-cols-3 gap-2 px-[10%]">
                 <input
-                    className="bs-in p-2 bg-bg-sank-color rounded-lg text-center"
+                    className="bs-in p-2 bg-transparent rounded-lg text-center"
                     type="number"
-                    placeholder={top}
+                    placeholder="Nhập số lượng"
                     min="0"
                     max="30"
                     onChange={handleTop}
@@ -311,9 +311,9 @@ export const Top = () => {
                 </button>
             </section>
             {showAdd.mode === 'add' ? (
-                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm mới</button>
+                <button className='float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm mới</button>
             ) : (
-                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={editData}>Thay đổi</button>
+                <button className='float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg' onClick={editData}>Thay đổi</button>
             )}
         </div>
     );

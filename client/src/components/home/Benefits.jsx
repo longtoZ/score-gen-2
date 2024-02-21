@@ -9,7 +9,7 @@ export const Benefits = () => {
         <h1 className='text-center font-semibold text-4xl'>Vì sao nên sử dụng Score?</h1>
 
         <div className='benefits-grid mt-[5rem] grid grid-cols-4 gap-8 text-center relative'>
-            <div className='py-6 px-6 rounded-lg bg-white bg-opacity-60 backdrop-blur z-[2]'>
+            <div className='py-6 px-6 rounded-lg bg-white bg-opacity-60 dark:bg-black dark:bg-opacity-30 backdrop-blur z-[2]'>
                 <div className='rounded-lg p-2 bg-teal-100 inline-block mx-auto'>
                     <AccessTimeIcon className='text-teal-500' style={{fontSize:'2.2em'}} />
                 </div>
@@ -19,7 +19,7 @@ export const Benefits = () => {
                 </p>
             </div>
 
-            <div className='py-6 px-6 rounded-lg bg-white bg-opacity-60 backdrop-blur z-[2]'>
+            <div className='py-6 px-6 rounded-lg bg-white bg-opacity-60 dark:bg-black dark:bg-opacity-30 backdrop-blur z-[2]'>
                 <div className='rounded-lg p-2 bg-teal-100 inline-block mx-auto'>
                     <AppsIcon className='text-teal-500' style={{fontSize:'2.2em'}} />
                 </div>
@@ -29,7 +29,7 @@ export const Benefits = () => {
                 </p>
             </div>
 
-            <div className='py-6 px-6 rounded-lg bg-white bg-opacity-60 backdrop-blur z-[2]'>
+            <div className='py-6 px-6 rounded-lg bg-white bg-opacity-60 dark:bg-black dark:bg-opacity-30 backdrop-blur z-[2]'>
                 <div className='rounded-lg p-2 bg-teal-100 inline-block mx-auto'>
                     <PeopleAltIcon className='text-teal-500' style={{fontSize:'2.2em'}} />
                 </div>
@@ -39,7 +39,7 @@ export const Benefits = () => {
                 </p>
             </div>
 
-            <div className='py-6 px-6 rounded-lg bg-white bg-opacity-60 backdrop-blur z-[2]'>
+            <div className='py-6 px-6 rounded-lg bg-white bg-opacity-60 dark:bg-black dark:bg-opacity-30 backdrop-blur z-[2]'>
                 <div className='rounded-lg p-2 bg-teal-100 inline-block mx-auto'>
                     <AttachMoneyIcon className='text-teal-500' style={{fontSize:'2.2em'}} />
                 </div>

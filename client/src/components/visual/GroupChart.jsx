@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { ModeContext } from '../../utils/setModeContext.js';
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
 import { SingleSchool } from './inputs/SingleSchool.jsx';
 import { SingleYear } from './inputs/SingleYear.jsx';
@@ -37,7 +38,7 @@ const color = {
 }
 
 export const GroupChart = () => {
-
+    const { theme } = useContext(ModeContext);
     const { groupData, schoolData } = useContext(SchoolContext);
 
     const selectedScore = schoolData.find(s => s['CHOSEN'] === true)['TEN_TRUONG'];
@@ -50,6 +51,7 @@ export const GroupChart = () => {
             title: {
                 display: true,
                 text: `${groupData.length > 0 ? groupData[0]['NAM_HOC'] : ''}`,
+                color: theme === 'light' ? '#18181b' : '#d4d4d8',
             },
             legend: {
                 display: false
@@ -67,12 +69,18 @@ export const GroupChart = () => {
                     display: true,
                     text: 'Trường',
                 },
+                ticks : {
+                    color: theme === 'light' ? '#18181b' : '#d4d4d8',
+                }
             },
             x: {
                 title: {
                     display: true,
                     text: 'Điểm',
                 },
+                ticks : {
+                    color: theme === 'light' ? '#18181b' : '#d4d4d8',
+                }
             },
         },
 
@@ -107,7 +115,7 @@ export const GroupChart = () => {
     };
 
     return (
-        <div className="mt-[3rem] shadow-basic rounded-lg overflow-hidden pb-4">
+        <div className="mt-[3rem] bg-container-color shadow-basic rounded-lg overflow-hidden pb-4">
             <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                 Các trường có điểm tương đương
             </h1>

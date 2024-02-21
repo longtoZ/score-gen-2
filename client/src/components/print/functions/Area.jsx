@@ -110,7 +110,7 @@ export const Area = () => {
             <section className="w-full px-[10%] block pt-8">
                 <input
                     type="text"
-                    className="block my-2 w-full bs-in p-2 bg-bg-sank-color rounded-lg text-center"
+                    className="block my-2 w-full bs-in p-2 bg-transparent rounded-lg text-center"
                     placeholder="Nhập tiêu đề mục..."
                     ref={titleRef}
                     onChange={handleTitle}
@@ -179,14 +179,14 @@ export const Area = () => {
             </section>
             {showAdd.mode === 'add' ? (
                 <button
-                    className="float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg"
+                    className="float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg"
                     onClick={addData}
                 >
                     Thêm mới
                 </button>
             ) : (
                 <button
-                    className="float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg"
+                    className="float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg"
                     onClick={editData}
                 >
                     Thay đổi

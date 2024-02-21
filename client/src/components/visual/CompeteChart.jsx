@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { ModeContext } from '../../utils/setModeContext.js';
 import { SingleYear } from './inputs/SingleYear.jsx';
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
 import { YearRange } from './inputs/YearRange.jsx';
@@ -10,23 +11,23 @@ import './responsive.css';
 
 Chart.register(ArcElement, Title, Tooltip, Legend, LineElement, LinearScale);
 
-const textCenter = {
-    id: 'textCenter',
-    beforeDatasetsDraw(chart, args, pluginOptions) {
-        const { ctx, data } = chart;
+// const textCenter = {
+//     id: 'textCenter',
+//     beforeDatasetsDraw(chart, args, pluginOptions) {
+//         const { ctx, data } = chart;
 
-        ctx.save();
-        ctx.font = 'bold 30px sans-serif';
-        ctx.fillStyle = 'black';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(
-            'Center Text',
-            chart.getDatasetMeta(0).data[0].x,
-            chart.getDatasetMeta(0).data[0].y,
-        );
-    },
-};
+//         ctx.save();
+//         ctx.font = 'bold 30px sans-serif';
+//         ctx.fillStyle = 'black';
+//         ctx.textAlign = 'center';
+//         ctx.textBaseline = 'middle';
+//         ctx.fillText(
+//             'Center Text',
+//             chart.getDatasetMeta(0).data[0].x,
+//             chart.getDatasetMeta(0).data[0].y,
+//         );
+//     },
+// };
 
 const competeOptionsDoughnutChart = (title1) => {
     let delayed;
@@ -110,6 +111,7 @@ const color = [
 const earliestYear = yearsList[yearsList.length - 1];
 
 export const CompeteChart = () => {
+    const { theme } = useContext(ModeContext);
     const { startYear, endYear, singleYear, competeData } = useContext(SchoolContext);
 
     const years = [];
@@ -124,6 +126,7 @@ export const CompeteChart = () => {
         plugins: {
             title: {
                 display: false,
+                color: theme === 'light' ? '#18181b' : '#d4d4d8',
             },
             datalabels: {
                 display: false,
@@ -135,12 +138,18 @@ export const CompeteChart = () => {
                     display: true,
                     text: 'Năm',
                 },
+                ticks : {
+                    color: theme === 'light' ? '#18181b' : '#d4d4d8',
+                }
             },
             y: {
                 title: {
                     display: true,
                     text: 'Tỉ lệ',
                 },
+                ticks : {
+                    color: theme === 'light' ? '#18181b' : '#d4d4d8',
+                }
             },
         },
         animation: {
@@ -183,7 +192,7 @@ export const CompeteChart = () => {
         <>
             {competeData.length !== 0 ? (
                 <div className="mt-[3rem] flex justify-between gap-4 compete-chart-grid">
-                    <div className="shadow-basic rounded-lg overflow-hidden w-[70%]">
+                    <div className="bg-container-color shadow-basic rounded-lg overflow-hidden w-[70%]">
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Tỉ lệ chọi
                         </h1>
@@ -236,7 +245,7 @@ export const CompeteChart = () => {
                                                     className="mx-2"
                                                 />
                                             </div>
-                                            { c !== NaN ? 
+                                            { !isNaN(c) ? 
                                             c >= cPrevious ? (
                                                 <p className="text-center text-green-500 font-semibold mt-4">
                                                     Tăng {(c-cPrevious).toFixed(2)} so với {singleYear-1}
@@ -252,7 +261,7 @@ export const CompeteChart = () => {
                             })}
                         </div>
                     </div>
-                    <div className="shadow-basic rounded-lg overflow-hidden w-[30%] relative">
+                    <div className="bg-container-color shadow-basic rounded-lg overflow-hidden w-[30%] relative">
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Xu hướng tỉ lệ chọi
                         </h1>

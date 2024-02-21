@@ -133,7 +133,7 @@ export const Visual = () => {
                 keywordRef.current.value = '';
                 keywordRef.current.focus();
             })
-            .catch((e) => {});
+            .catch(() => {});
 
         getAxiosCompete(keyword)
             .then((res) => handleDataCompete(res))
@@ -160,7 +160,7 @@ export const Visual = () => {
                     return;
                 }
             })
-            .catch((e) => {});
+            .catch(() => {});
     };
 
     const handleShowSearch = () => {
@@ -210,8 +210,7 @@ export const Visual = () => {
         if (schoolData.length === 0) return;
 
         const selectedScore = schoolData
-            .find((s) => s['CHOSEN'] === true)
-            ['DATA'].find((d) => d['NAM_HOC'] === singleYear)['DIEM'][singleWish];
+            .find((s) => s['CHOSEN'] === true)['DATA'].find((d) => d['NAM_HOC'] === singleYear)['DIEM'][singleWish];
             
         getAxiosGroup(singleYear, singleWish, selectedScore, singleDiff)
             .then((res) => handleDataGroup(res))
@@ -264,7 +263,7 @@ export const Visual = () => {
                             className={`absolute top-[150%] left-0 p-2 shadow-basic bg-input-color rounded-lg flex gap-2 ${showSearch ? 'block' : 'hidden'}`}
                         >
                             <input
-                                className="bg-bg-sank-color bs-in p-1 rounded-lg"
+                                className="bg-input-color bs-in-light py-1 px-2 rounded-lg"
                                 type="text"
                                 placeholder="Nhập tên trường..."
                                 ref={keywordRef}

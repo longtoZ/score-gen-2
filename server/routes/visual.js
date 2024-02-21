@@ -9,11 +9,11 @@ import { visualSpecialController } from "../controllers/visualSpecial.js"
 
 const router = express.Router()
 
-router.get("/year", verifyToken, visualYearController)
-router.get("/compete", verifyToken, visualCompeteController)
-router.get("/area", verifyToken, visualAreaController)
-router.get("/areaAll", verifyToken, visualAreaAllController)
-router.get("/group", verifyToken, visualGroupController)
-router.get("/special", verifyToken, visualSpecialController)
+router.get("/year", visualYearController)
+router.get("/compete", visualCompeteController)
+router.get("/area", visualAreaController)
+router.get("/areaAll", visualAreaAllController)
+router.get("/group", visualGroupController)
+router.get("/special", visualSpecialController)
 
 export default router

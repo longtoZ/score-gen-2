@@ -28,7 +28,7 @@ export const Average = () => {
     return (
         <div className="mt-[2rem] grid grid-cols-2 gap-2">
             <button
-                className="enable font-semibold text-text-color p-2 rounded-lg shadow-md cursor-pointer opacity-50"
+                className="enable font-semibold text-text-color p-2 rounded-lg shadow-thick cursor-pointer opacity-50"
                 ref={higherRef}
                 data-type="higher"
                 onClick={handleData}
@@ -36,7 +36,7 @@ export const Average = () => {
                 Trên trung bình
             </button>
             <button
-                className="font-semibold text-text-color p-2 rounded-lg shadow-md cursor-pointer opacity-50"
+                className="font-semibold text-text-color p-2 rounded-lg shadow-thick cursor-pointer opacity-50"
                 ref={lowerRef}
                 data-type="lower"
                 onClick={handleData}

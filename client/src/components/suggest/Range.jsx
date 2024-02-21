@@ -57,7 +57,7 @@ export const Range = ({ min, max, schoolType, wish }) => {
     return (
         <div className="mt-[2rem] grid grid-cols-3 gap-2">
             <input
-                className="bs-in p-2 bg-bg-sank-color rounded-lg text-center"
+                className="bs-in-light p-2 bg-transparent rounded-lg text-center"
                 type="number"
                 value={start}
                 min={min}
@@ -66,7 +66,7 @@ export const Range = ({ min, max, schoolType, wish }) => {
                 onChange={handleStart}
             />
             <input
-                className="bs-in p-2 bg-bg-sank-color rounded-lg text-center"
+                className="bs-in-light p-2 bg-transparent rounded-lg text-center"
                 type="number"
                 value={end}
                 min={min}

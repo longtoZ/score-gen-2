@@ -12,6 +12,7 @@ import {
     specialSubjectsObj,
 } from '../../utils/lists.js';
 import { getAxiosCommon, handleData } from '../../components/suggest/utils.js';
+import {Loader} from '../../components/loader/Loader';
 
 import './suggest.css';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -78,6 +79,8 @@ export const Suggest = () => {
         msg: '',
     });
 
+    const [showLoader, setShowLoader] = useState(false);
+
     // Get the data from the server
     useEffect(() => {
         const wishValue =
@@ -85,11 +88,13 @@ export const Suggest = () => {
                 ? normalSubjectsObj[selectedNormalWish]
                 : specialSubjectsObj[selectedSpecialWish].replace('1', '%');
 
+        setShowLoader(true);
         getAxiosCommon(schoolType, wishValue)
             .then((res) => handleData(res, schoolType, wishValue))
             .then((data) => {
                 setTableData(data);
-            });
+            })
+            .then(() => setShowLoader(false));
     }, [schoolType]);
 
     const handleShowNormalWish = () => {
@@ -254,7 +259,7 @@ export const Suggest = () => {
                     </span>
                 </p>
 
-                <div className="school-type-grid mt-[3rem] w-1/3 mx-auto grid grid-cols-2 p-2 rounded-lg bg-bg-sank-color bs-in text-center font-semibold cursor-pointer school-type-select">
+                <div className="school-type-grid mt-[3rem] w-1/3 mx-auto grid grid-cols-2 p-2 rounded-lg bg-bg-color bs-in text-center font-semibold cursor-pointer school-type-select">
                     <div
                         className="py-1 select-school-type rounded-lg"
                         school-type="normal"
@@ -273,7 +278,7 @@ export const Suggest = () => {
                     </div>
                 </div>
 
-                <div className="mt-[1rem] w-full mx-auto rounded-lg shadow-basic bg-input-color p-4">
+                <div className="mt-[1rem] w-full mx-auto rounded-lg shadow-basic bg-container-color p-4">
                     <div className="w-3/4 mx-auto grid grid-cols-2 gap-4 suggest-grid">
                         <div className="border-2 border-border-color p-4 rounded-lg">
                             <h1 className="font-semibold">Bộ lọc</h1>
@@ -401,7 +406,7 @@ export const Suggest = () => {
                             <div className="border-2 border-border-color p-4 rounded-lg">
                                 <h1 className="font-semibold">Chức năng</h1>
 
-                                <div className="mt-[1rem] w-full grid grid-cols-3 p-1 rounded-lg bg-bg-sank-color bs-in text-center font-semibold cursor-pointer">
+                                <div className="mt-[1rem] w-full grid grid-cols-3 p-2 rounded-lg bg-transparent bs-in text-center font-semibold cursor-pointer">
                                     <div
                                         className="py-1 select-function-type rounded-lg"
                                         ref={rangeRef}
@@ -447,7 +452,7 @@ export const Suggest = () => {
                             <div className="border-2 border-border-color p-4 rounded-lg">
                                 <h1 className="font-semibold">Chức năng</h1>
 
-                                <div className="mt-[1rem] w-full grid grid-cols-1 p-1 rounded-lg bg-bg-sank-color bs-in text-center font-semibold">
+                                <div className="mt-[1rem] w-full grid grid-cols-1 p-1 rounded-lg bg-bg-color bs-in text-center font-semibold">
                                     <div
                                         className="py-1 select-function-type rounded-lg"
                                         ref={rangeRef}
@@ -472,6 +477,8 @@ export const Suggest = () => {
                     </div>
                 </div>
 
+                {showLoader && <Loader/>}
+                
                 {currentFunction === 'Lọc khoảng' ? (
                     <RangeTable
                         tableData={tableData}

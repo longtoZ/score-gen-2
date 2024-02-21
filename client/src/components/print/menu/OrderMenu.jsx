@@ -51,7 +51,7 @@ export const OrderMenu = () => {
             className="w-full h-full fixed bg-black bg-opacity-40 flex justify-center items-center z-[3]"
             onClick={handleHideOrder}
         >
-            <div className="w-1/3 py-8 px-16 bg-input-color rounded-lg relative order-container">
+            <div className="w-1/3 py-8 px-16 bg-container-color rounded-lg relative order-container">
                 <div className="absolute top-3 right-3 text-gray-400">
                     <CloseIcon
                         onClick={handleHideOrder}

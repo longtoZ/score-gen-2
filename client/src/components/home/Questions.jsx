@@ -7,7 +7,7 @@ export const Questions = () => {
 
         <div className='relative'>
             <div className='questions-grid grid grid-cols-2 gap-8 mt-[3rem]'>
-                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 backdrop-blur'>
+                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-30 backdrop-blur'>
                     <HelpOutlineIcon className='w-[20%]'/>
                     <div className='w-[80%]'>
                         <h1 className='text-lg font-semibold'>Dữ liệu của Score lấy từ đâu?</h1>
@@ -19,7 +19,7 @@ export const Questions = () => {
                     </div>
                 </div>
 
-                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 backdrop-blur'>
+                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-30 backdrop-blur'>
                     <HelpOutlineIcon className='w-[20%]'/>
                     <div className='w-[80%]'>
                         <h1 className='text-lg font-semibold'>Tôi có cần tạo tài khoản để sử dụng không?</h1>
@@ -30,7 +30,7 @@ export const Questions = () => {
                     </div>
                 </div>
 
-                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 backdrop-blur'>
+                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-30 backdrop-blur'>
                     <HelpOutlineIcon className='w-[20%]'/>
                     <div className='w-[80%]'>
                         <h1 className='text-lg font-semibold'>Score hỗ trợ tra cứu điểm trong phạm vi nào?</h1>
@@ -41,7 +41,7 @@ export const Questions = () => {
                     </div>
                 </div>
 
-                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 backdrop-blur'>
+                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-30 backdrop-blur'>
                     <HelpOutlineIcon className='w-[20%]'/>
                     <div className='w-[80%]'>
                         <h1 className='text-lg font-semibold'>Tôi có thể dùng Score trên điện thoại không?</h1>
@@ -52,7 +52,7 @@ export const Questions = () => {
                     </div>
                 </div>
 
-                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 backdrop-blur'>
+                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-30 backdrop-blur'>
                     <HelpOutlineIcon className='w-[20%]'/>
                     <div className='w-[80%]'>
                         <h1 className='text-lg font-semibold'>Nếu tôi không biết sử dụng một vài chức năng thì sao?</h1>
@@ -63,7 +63,7 @@ export const Questions = () => {
                     </div>
                 </div>
 
-                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 backdrop-blur'>
+                <div className='flex gap-4 p-6 rounded-lg z-[2] bg-white bg-opacity-50 dark:bg-black dark:bg-opacity-30 backdrop-blur'>
                     <HelpOutlineIcon className='w-[20%]'/>
                     <div className='w-[80%]'>
                         <h1 className='text-lg font-semibold'>Làm sao để tôi đóng góp ý kiến cho Score?</h1>

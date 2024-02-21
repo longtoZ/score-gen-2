@@ -28,6 +28,8 @@
 
     body {
         margin: 0;
+        background: white !important;
+        color: black !important;
     }
 
     header, footer {

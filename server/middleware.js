@@ -16,12 +16,13 @@ export const verifyToken = (req, res, next) => {
       {expiresIn: '1m'}
     );
   
-    try {
-      // Verify the JWT token
-      const decoded = jwt.verify(token, process.env.SECRET_KEY);
-      req.user = decoded;
+
+    // Verify the JWT token
+    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+      if (err) {
+        return res.status(403).json({ error: 'Invalid or expired token' });
+      }
       next();
-    } catch (error) {
-      return res.status(403).json({ error: 'Invalid or expired token' });
-    }
+
+    });
   };

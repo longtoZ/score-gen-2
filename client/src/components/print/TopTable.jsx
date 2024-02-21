@@ -40,7 +40,7 @@ export const TopTable = ({ data }) => {
                                 return (
                                     <tr
                                         key={index}
-                                        className="[&:nth-child(even)]:bg-even-row-color"
+                                        className="[&:nth-child(even)]:bg-even-row-color-light"
                                     >
                                         <td className="text-emerald-600 py-2 font-semibold">
                                             {index + 1}
@@ -52,7 +52,7 @@ export const TopTable = ({ data }) => {
                                         <td
                                             className={`py-2 ${
                                                 data.wishValue === 'NV1'
-                                                    ? 'bg-amber-100'
+                                                    ? 'bg-amber-100 text-black'
                                                     : ''
                                             }`}
                                         >
@@ -63,7 +63,7 @@ export const TopTable = ({ data }) => {
                                         <td
                                             className={`py-2 ${
                                                 data.wishValue === 'NV2'
-                                                    ? 'bg-amber-100'
+                                                    ? 'bg-amber-100 text-black'
                                                     : ''
                                             }`}
                                         >

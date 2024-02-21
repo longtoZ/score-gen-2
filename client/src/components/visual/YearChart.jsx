@@ -1,4 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
+import { ModeContext } from '../../utils/setModeContext.js';
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
 import { YearRange } from './inputs/YearRange.jsx';
 import {
@@ -50,9 +51,7 @@ const color = [
 ];
 
 export const YearChart = () => {
-
-
-
+    const { theme } = useContext(ModeContext);
     const { startYear, endYear, schoolData, singleWish } = useContext(SchoolContext);
 
     // console.log(schoolData)
@@ -159,6 +158,7 @@ export const YearChart = () => {
             title: {
                 display: true,
                 text: wishFullName[singleWish],
+                color: theme === 'light' ? '#18181b' : '#d4d4d8',
             },
             datalabels: {
                 display: false,
@@ -173,11 +173,17 @@ export const YearChart = () => {
                     display: true,
                     text: 'Năm',
                 },
+                ticks : {
+                    color: theme === 'light' ? '#18181b' : '#d4d4d8',
+                }
             },
             y: {
                 title: {
                     display: true,
                     text: 'Điểm',
+                },
+                ticks : {
+                    color: theme === 'light' ? '#18181b' : '#d4d4d8',
                 },
                 // min: 0,
                 max: 50,
@@ -211,6 +217,7 @@ export const YearChart = () => {
             title: {
                 display: true,
                 text: wishFullName[singleWish],
+                color: theme === 'light' ? '#18181b' : '#d4d4d8',
             },
             datalabels: {
                 display: false,
@@ -222,12 +229,18 @@ export const YearChart = () => {
                     display: true,
                     text: 'Năm',
                 },
+                ticks : {
+                    color: theme === 'light' ? '#18181b' : '#d4d4d8',
+                }
             },
             y: {
                 title: {
                     display: true,
                     text: 'Phần trăm',
                 },
+                ticks : {
+                    color: theme === 'light' ? '#18181b' : '#d4d4d8',
+                }
             },
         },
 
@@ -282,7 +295,7 @@ export const YearChart = () => {
         <>
             {schoolData.length !== 0 ? (
                 <div className="mt-[5rem] grid grid-cols-2 gap-4 year-chart-grid">
-                    <div className="shadow-basic rounded-lg overflow-hidden">
+                    <div className="shadow-basic bg-container-color rounded-lg overflow-hidden">
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Điểm qua các năm
                         </h1>
@@ -295,7 +308,7 @@ export const YearChart = () => {
                             />
                         </div>
                     </div>
-                    <div className="shadow-basic rounded-lg overflow-hidden">
+                    <div className="shadow-basic bg-container-color rounded-lg overflow-hidden">
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Xu hướng điểm (%)
                         </h1>

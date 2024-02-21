@@ -15,11 +15,13 @@
     --bg-sank-color: #f0f0f0;
     --header-color: #ffffff;
     --input-color: #f0f0f0;
+    --container-color: #f0f0f0;
     --box-shadow: 0 0 5px rgb(0 0 0 / 15%);
     --box-shadow-light: 0 0 12px rgb(0 0 0 / 7%);
     --box-shadow-lighter: 0 0 12px rgb(0 0 0 / 4%);
-    --box-shadow-thick: 0 0 10px rgb(0 0 0 /8%);
+    --box-shadow-thick: 0 0 5px rgb(0 0 0 /25%);
     --even-row-color: #e8e8e8;
+    --even-row-color-light: #e8e8e8;
     --border-color: #dfdfdf;
     --thumb-color: #d4d4d4;
 }
@@ -29,12 +31,15 @@
     --bg-color: #1e1e1e;
     --header-color: #262626;
     --input-color: #404040;
+    --container-color: #262626;
     --box-shadow: 0 0 10px rgb(0 0 0 / 30%);
     --box-shadow-light: 0 0 12px rgb(0 0 0 / 21%);
     --box-shadow-lighter: 0 0 12px rgb(0 0 0 / 15%);
+    --box-shadow-thick: 0 0 10px rgb(0 0 0 /75%);
     --even-row-color: #262626;
+    --even-row-color-light: #373737;
     --border-color: #737373;
-    --thumb-color: #262626;
+    --thumb-color: #171717;
 }
 
 body {
@@ -67,4 +72,22 @@ input:focus-visible {
     box-shadow:
         -2px -2px 5px #ffffffbd inset,
         2px 2px 5px #161b1d17 inset;
+}
+
+.bs-in-light {
+    box-shadow:
+    -2px -2px 5px #ffffffbd inset,
+    2px 2px 5px #161b1d17 inset;
+}
+
+[data-theme='dark'] .bs-in {
+    box-shadow:
+    -2px -2px 5px #ffffff1b inset,
+    2px 2px 5px #00000091 inset;
+}
+
+[data-theme='dark'] .bs-in-light {
+    box-shadow:
+    -2px -2px 5px #ffffff1b inset,
+    2px 2px 5px #00000061 inset;
 }

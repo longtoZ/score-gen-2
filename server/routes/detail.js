@@ -4,6 +4,6 @@ import { detailController } from "../controllers/detail.js"
 
 const router = express.Router()
 
-router.get("/", verifyToken, detailController)
+router.get("/", detailController)
 
 export default router

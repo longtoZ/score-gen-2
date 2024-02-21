@@ -51,7 +51,7 @@ export const YearRange = ({showWish = true}) => {
                     Chọn khoảng năm
                 </h1>
                 <input
-                    className="bg-bg-sank-color bs-in rounded-lg mx-2 py-1 font-semibold text-center"
+                    className="bg-input-color bs-in-light rounded-lg mx-2 py-1 font-semibold text-center"
                     type="number"
                     value={startYear}
                     min={yearsList[yearsList.length - 1]}
@@ -65,7 +65,7 @@ export const YearRange = ({showWish = true}) => {
                     }
                 />
                 <input
-                    className="bg-bg-sank-color bs-in rounded-lg mx-2 py-1 font-semibold text-center"
+                    className="bg-input-color bs-in-light rounded-lg mx-2 py-1 font-semibold text-center"
                     type="number"
                     value={endYear}
                     min={yearsList[yearsList.length - 1]}
@@ -84,7 +84,7 @@ export const YearRange = ({showWish = true}) => {
                 <h1 className="mx-2 mb-2 text-text-color font-semibold">
                     Chọn nguyện vọng
                 </h1>
-                <div className="bg-bg-sank-color bs-in rounded-lg p-1 flex gap-2 cursor-pointer">
+                <div className="bg-bg-input-color bs-in-light rounded-lg p-1 flex gap-2 cursor-pointer">
                     <div
                         className="bg-transparent font-semibold rounded-lg py-1 px-2"
                         data-wish="NV1"

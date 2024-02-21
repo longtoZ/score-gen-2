@@ -1,5 +1,5 @@
 header {
-    transition: ease 1s !important;
+    transition: transform ease 1s, top ease 1s !important;
 }
 
 .select {
@@ -17,6 +17,11 @@ header {
     /*
     background: linear-gradient(45deg, rgba(52,211,153,1) 0%, rgba(45,212,191,1) 68%);
     box-shadow: 12px 12px 10px rgba(45,212,191,0.3); */
+}
+
+[data-theme='dark'] .advertising {
+    box-shadow: 6px 6px 10px rgba(52, 211, 153, 0.3);
+
 }
 
 @media (max-width: 768px) {

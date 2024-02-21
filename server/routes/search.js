@@ -4,6 +4,6 @@ import { searchController } from "../controllers/search.js"
 
 const router = express.Router()
 
-router.get("/", verifyToken, searchController)
+router.get("/", searchController)
 
 export default router

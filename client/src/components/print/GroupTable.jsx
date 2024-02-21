@@ -37,7 +37,7 @@ export const GroupTable = ({data}) => {
                                 return (
                                     <tr
                                         key={index}
-                                        className={item['TEN_TRUONG'] === data.school ? 'bg-amber-100' : '[&:nth-child(even)]:bg-even-row-color'}
+                                        className={item['TEN_TRUONG'] === data.school ? 'bg-amber-100 text black' : '[&:nth-child(even)]:bg-even-row-color-light'}
                                     >
                                         <td className="py-2">
                                             {item['NAM_HOC']}

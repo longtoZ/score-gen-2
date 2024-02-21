@@ -5,6 +5,7 @@ import { Table } from '../../components/search/Table.jsx';
 import { yearsList, schoolTypesList } from '../../utils/lists.js';
 import { getAxios, handleData } from '../../components/search/utils.js';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import {Loader} from '../../components/loader/Loader';
 
 export const KeywordContext = createContext();
 
@@ -19,12 +20,16 @@ export const Search = () => {
     const schoolTypeRef = useRef(null);
     const yearRef = useRef(null);
 
+    const [showLoader, setShowLoader] = useState(false);
+
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
+        setShowLoader(true);
         getAxios(schoolType, year.replace('Năm ', '').trim())
             .then((res) => handleData(res))
-            .then((data) => setTableData(data));
+            .then((data) => setTableData(data))
+            .then(() => setShowLoader(false));
     }, [schoolType, year]);
 
     const handleShowType = () => {
@@ -139,7 +144,7 @@ export const Search = () => {
                     </div>
                 </div>
             </div>
-
+            {showLoader && <Loader/>}
             <Table
                 tableData={tableData}
                 keyword={keyword}

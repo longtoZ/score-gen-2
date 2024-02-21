@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ModeContext } from '../../utils/setModeContext';
+
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
@@ -7,12 +10,18 @@ import 'swiper/css/navigation';
 
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
-import Home1 from '../../assets/img/home1.png';
-import Home2 from '../../assets/img/home2.png';
-import Home3 from '../../assets/img/home3.png';
-import Home4 from '../../assets/img/home4.png';
+import Home1 from '../../assets/img/home/home1.png';
+import Home2 from '../../assets/img/home/home2.png';
+import Home3 from '../../assets/img/home/home3.png';
+import Home4 from '../../assets/img/home/home4.png';
+import Home1Dark from '../../assets/img/home/home1-dark.png';
+import Home2Dark from '../../assets/img/home/home2-dark.png';
+import Home3Dark from '../../assets/img/home/home3-dark.png';
+import Home4Dark from '../../assets/img/home/home4-dark.png';
+
 
 export const Hero = () => {
+    const {theme} = useContext(ModeContext);
     return (
         <section className="Hero px-[8%] flex justify-between mt-[10rem]">
             <div className="w-[40%] p-6 flex flex-col justify-center">
@@ -33,18 +42,12 @@ export const Hero = () => {
                 </p>
                 <div className="flex gap-6">
                     <button
-                        className="mt-[2rem] bg-emerald-400 text-white font-semibold rounded-lg p-2 w-[7rem]"
-                        style={{
-                            boxShadow: '7px 7px 10px rgba(52, 211, 153, 0.3)',
-                        }}
+                        className="mt-[2rem] bg-emerald-400 text-white font-semibold rounded-lg p-2 w-[7rem] try-shadow"
                     >
                         <Link to="/search">Thử ngay</Link>
                     </button>
                     <button
-                        className="mt-[2rem] bg-bg-color border-2 font-semibold rounded-lg p-2 w-[8rem]"
-                        style={{
-                            boxShadow: 'rgb(209 209 209 / 30%) 7px 7px 10px',
-                        }}
+                        className="mt-[2rem] bg-bg-color border-2 font-semibold rounded-lg p-2 w-[8rem] demo-shadow"
                     >
                         <PlayArrowIcon className="mr-2" />
                         Xem demo
@@ -58,21 +61,20 @@ export const Hero = () => {
                         spaceBetween={0}
                         pagination={{ clickable: true }}
                         autoplay={{ delay: 3000 }}
-                        loop={true}
                         modules={[Pagination, Autoplay]}
                         className="slide-height rounded-lg h-[20rem] mx-auto"
                     >
                         <SwiperSlide>
-                            <img src={Home1} alt="home1" className="h-full mx-auto object-fill" />
+                            <img src={theme === 'light' ? Home1 : Home1Dark} alt="home1" className="h-full mx-auto object-fill" />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img src={Home2} alt="home2" className="h-full mx-auto object-fill" />
+                            <img src={theme === 'light' ? Home2 : Home2Dark} alt="home2" className="h-full mx-auto object-fill" />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img src={Home3} alt="home3" className="h-full mx-auto object-fill" />
+                            <img src={theme === 'light' ? Home3 : Home3Dark} alt="home3" className="h-full mx-auto object-fill" />
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img src={Home4} alt="home4" className="h-full mx-auto object-fill" />
+                            <img src={theme === 'light' ? Home4 : Home4Dark} alt="home4" className="h-full mx-auto object-fill" />
                         </SwiperSlide>
                     </Swiper>
                 </div>

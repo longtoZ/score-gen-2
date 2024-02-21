@@ -157,7 +157,7 @@ export const Group = () => {
             <section className='w-full px-[10%] block pt-8'>
                 <input 
                     type="text" 
-                    className="block my-2 w-full bs-in p-2 bg-bg-sank-color rounded-lg text-center" 
+                    className="block my-2 w-full bs-in p-2 bg-transparent rounded-lg text-center" 
                     placeholder='Nhập tiêu đề mục...'
                     onChange={handleTitle}
                     ref={titleRef}
@@ -236,7 +236,7 @@ export const Group = () => {
             <section className="mt-[2rem] w-full grid grid-cols-2 gap-2 px-[10%]">
                 <h1 className='text-center font-semibold'>Tên trường</h1>
                 <input
-                    className="bs-in p-2 bg-bg-sank-color rounded-lg text-center"
+                    className="bs-in p-2 bg-transparent rounded-lg text-center"
                     type="text"
                     placeholder="Nhập tên trường"
                     onChange={handleSchool}
@@ -244,7 +244,7 @@ export const Group = () => {
                 />
                 <h1 className='text-center font-semibold'>Chênh lệch</h1>
                 <input
-                    className="bs-in p-2 bg-bg-sank-color rounded-lg text-center"
+                    className="bs-in p-2 bg-transparent rounded-lg text-center"
                     type="number"
                     step="0.1"
                     placeholder={diff}
@@ -253,9 +253,9 @@ export const Group = () => {
                 />
             </section>
             {showAdd.mode === 'add' ? (
-                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm mới</button>
+                <button className='float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm mới</button>
             ) : (
-                <button className='float-right mt-[1rem] bg-teal-600 text-white p-2 rounded-lg' onClick={editData}>Thay đổi</button>
+                <button className='float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg' onClick={editData}>Thay đổi</button>
             )}
         </div>
     );

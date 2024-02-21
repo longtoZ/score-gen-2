@@ -1,36 +1,23 @@
 import {Link} from 'react-router-dom'
-// import {useContext} from 'react'
-// import {ModeContext} from '../../utils/setModeContext'
+import { useContext, useEffect } from 'react';
+import { ModeContext } from '../../utils/setModeContext';
 
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import NightsStayIcon from '@mui/icons-material/NightsStay';
 import logoLight from '../../assets/img/logo-full-light.png';
+import logoDark from '../../assets/img/logo-full-dark.png';
 
 export const TopBar = ({logoRef, navRef, searchRef, suggestRef, visualRef, printRef}) => {
-    // const { theme, setTheme } = useContext(ModeContext);
+    const { theme, setTheme } = useContext(ModeContext);
+    useEffect(() => {
+        if (theme === null) setTheme('light')
 
-    // const lightRef = useRef(null);
-    // const darkRef = useRef(null);
-
-    // useEffect(() => {
-    //     if (theme === 'light' || theme === null) {
-    //         lightRef.current.classList.add('select');
-    //         darkRef.current.classList.remove('select');
-    //         logoRef.current.src = logoLight;
-    //     } else {
-    //         darkRef.current.classList.add('select');
-    //         lightRef.current.classList.remove('select');
-    //         logoRef.current.src = logoDark;
-    //     }
-    // }, [theme]);
-
-    // const handleMode = (e) => {
-    //     if (e.target.closest('.mode-btn').getAttribute('mode') === 'light') {
-    //         setTheme('light');
-    //     } else {
-    //         setTheme('dark');
-    //     }
-    // };
-
-
+        if (theme === 'light') {
+            logoRef.current.src = logoLight;
+        } else {
+            logoRef.current.src = logoDark;
+        }
+    }, [theme]);
   return (
     <header
     className="flex justify-between py-2 px-[4%] shadow-md fixed top-0 left-0 right-0 z-[5] bg-header-color"
@@ -85,10 +72,15 @@ export const TopBar = ({logoRef, navRef, searchRef, suggestRef, visualRef, print
             />
         </div>
     </div> */}
-    <div className='my-auto'>
-        <button className=' relative py-2 px-4 rounded-lg bg-slate-500 text-white'>
-            <Link to='/docs/introduction'>Tài liệu</Link>
-        </button>
+    <div className='flex items-center '>
+        {theme === 'light' && <WbSunnyIcon
+            className="cursor-pointer text-slate-700"
+            onClick={() => setTheme('dark')}
+        />}
+        {theme === 'dark' && <NightsStayIcon
+            className="cursor-pointer text-slate-200"
+            onClick={() => setTheme('light')}
+        />}
     </div>
 </header>
   )

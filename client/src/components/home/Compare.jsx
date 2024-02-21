@@ -22,7 +22,7 @@ export const Compare = () => {
 
         <div className='relative'>
 
-            <table className='w-full mt-[5rem] text-center overflow-hidden rounded-lg z-[2] bg-white bg-opacity-60 backdrop-blur relative'>
+            <table className='w-full mt-[5rem] text-center overflow-hidden rounded-lg z-[2] bg-white bg-opacity-60 dark:bg-black dark:bg-opacity-30 backdrop-blur-xl relative'>
                 <thead>
                     <tr>
                         <th className='px-4 py-2' style={{width: '30%'}}></th>

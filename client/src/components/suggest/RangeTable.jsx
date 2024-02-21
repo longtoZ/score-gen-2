@@ -86,7 +86,7 @@ export const RangeTable = ({ tableData, filterData, schoolType }) => {
                                                     className={`py-2 ${
                                                         filterData.wishValue ===
                                                         'NV1'
-                                                            ? 'bg-amber-100'
+                                                            ? 'bg-amber-100 text-black'
                                                             : ''
                                                     }`}
                                                 >
@@ -100,7 +100,7 @@ export const RangeTable = ({ tableData, filterData, schoolType }) => {
                                                     className={`py-2 ${
                                                         filterData.wishValue ===
                                                         'NV2'
-                                                            ? 'bg-amber-100'
+                                                            ? 'bg-amber-100 text-black'
                                                             : ''
                                                     }`}
                                                 >
@@ -114,7 +114,7 @@ export const RangeTable = ({ tableData, filterData, schoolType }) => {
                                                     className={`py-2 ${
                                                         filterData.wishValue ===
                                                         'NV3'
-                                                            ? 'bg-amber-100'
+                                                            ? 'bg-amber-100 text-black'
                                                             : ''
                                                     }`}
                                                 >

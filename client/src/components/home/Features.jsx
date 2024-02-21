@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ModeContext } from '../../utils/setModeContext';
+
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
@@ -7,8 +10,14 @@ import searchDemo from '../../assets/vid/search-demo.mp4';
 import suggestDemo from '../../assets/vid/suggest-demo.mp4';
 import visualDemo from '../../assets/vid/visual-demo.mp4';
 import printDemo from '../../assets/vid/print-demo.mp4';
+import searchDemoDark from '../../assets/vid/search-demo-dark.mp4';
+import suggestDemoDark from '../../assets/vid/suggest-demo-dark.mp4';
+import visualDemoDark from '../../assets/vid/visual-demo-dark.mp4';
+import printDemoDark from '../../assets/vid/print-demo-dark.mp4';
 
 export const Features = () => {
+    const {theme} = useContext(ModeContext);
+
     return (
         <div className="Features mt-[30rem] px-[8%]">
             <h1 className="text-center font-semibold text-4xl">
@@ -24,7 +33,7 @@ export const Features = () => {
                             muted
                             className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
-                            <source src={searchDemo} type="video/mp4" />
+                            <source src={theme === 'light' ? searchDemo : searchDemoDark} type="video/mp4" />
                         </video>
                         <div className="absolute -bottom-[1rem] left-0 mesh2"></div>
                         <div className="absolute top-0 right-0 mesh4"></div>
@@ -74,7 +83,7 @@ export const Features = () => {
                             muted
                             className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
-                            <source src={suggestDemo} type="video/mp4" />
+                            <source src={theme === 'light' ? suggestDemo : suggestDemoDark} type="video/mp4" />
                         </video>
                         <div className="absolute top-0 left-0 mesh1"></div>
                         <div className="absolute bottom-0 right-0 mesh3"></div>
@@ -89,7 +98,7 @@ export const Features = () => {
                             muted
                             className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
-                            <source src={visualDemo} type="video/mp4" />
+                            <source src={theme === 'light' ? visualDemo : visualDemoDark} type="video/mp4" />
                         </video>
                         <div className="absolute -bottom-[1rem] left-0 mesh2"></div>
                         <div className="absolute top-0 right-0 mesh4"></div>
@@ -140,7 +149,7 @@ export const Features = () => {
                             muted
                             className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
-                            <source src={printDemo} type="video/mp4" />
+                            <source src={theme === 'light' ? printDemo : printDemoDark} type="video/mp4" />
                         </video>
                         <div className="absolute top-0 left-0 mesh1"></div>
                         <div className="absolute bottom-0 right-0 mesh3"></div>
