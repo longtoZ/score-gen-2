@@ -5,7 +5,7 @@ import { Table } from '../../components/search/Table.jsx';
 import { yearsList, schoolTypesList } from '../../utils/lists.js';
 import { getAxios, handleData } from '../../components/search/utils.js';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import {Loader} from '../../components/loader/Loader';
+import { Loader } from '../../components/loader/Loader';
 
 export const KeywordContext = createContext();
 
@@ -144,12 +144,14 @@ export const Search = () => {
                     </div>
                 </div>
             </div>
-            {showLoader && <Loader/>}
-            <Table
-                tableData={tableData}
-                keyword={keyword}
-                schoolType={schoolType}
-            />
+            {showLoader && <Loader />}
+            {tableData.length !== 0 && (
+                <Table
+                    tableData={tableData}
+                    keyword={keyword}
+                    schoolType={schoolType}
+                />
+            )}
         </div>
     );
 };
