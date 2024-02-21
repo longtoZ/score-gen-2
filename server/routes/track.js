@@ -1,5 +1,4 @@
 import express from "express"
-import {verifyToken} from "../middleware.js"
 import { trackGetController } from "../controllers/trackGet.js"
 import { trackPutController } from "../controllers/trackPut.js"
 import { trackPostController } from "../controllers/trackPost.js"

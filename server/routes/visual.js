@@ -1,5 +1,4 @@
 import express from "express"
-import {verifyToken} from "../middleware.js"
 import { visualYearController } from "../controllers/visualYear.js"
 import { visualCompeteController } from "../controllers/visualCompete.js"
 import { visualAreaController } from "../controllers/visualArea.js"
