@@ -1,25 +1,31 @@
-import { useState, useRef, useEffect, createContext } from 'react';
+import { createContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import { Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { Average } from '../../components/suggest/Average.jsx';
+import { AverageTable } from '../../components/suggest/AverageTable.jsx';
 import { Range } from '../../components/suggest/Range.jsx';
 import { RangeTable } from '../../components/suggest/RangeTable.jsx';
 import { Top } from '../../components/suggest/Top.jsx';
 import { TopTable } from '../../components/suggest/TopTable.jsx';
-import { Average } from '../../components/suggest/Average.jsx';
-import { AverageTable } from '../../components/suggest/AverageTable.jsx';
+
+import { getAxiosCommon, handleData } from '../../components/suggest/utils.js';
 import {
-    normalSubjectsObj,
     districtsList,
+    normalSubjectsObj,
     specialSubjectsObj,
 } from '../../utils/lists.js';
-import { getAxiosCommon, handleData } from '../../components/suggest/utils.js';
-import {Loader} from '../../components/loader/Loader';
 
-import './suggest.css';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Loader } from '../../components/loader/Loader';
+
 import AddIcon from '@mui/icons-material/Add';
-import { ToastContainer, toast } from 'react-toastify';
-import { Bounce } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
+import './responsive.css';
+import './suggest.css';
+import './top.css';
 
 const toastOptions = {
     position: 'bottom-right',
@@ -130,6 +136,11 @@ export const Suggest = () => {
         setSchoolType(e.target.innerText);
     };
 
+    // Update the title
+    useEffect(() => {
+        document.title = 'Score | Đề xuất';
+    }, []);
+
     // Toast message management
     useEffect(() => {
         if (toastMessage.type === 'error') {
@@ -238,7 +249,7 @@ export const Suggest = () => {
         <div className="Suggest py-[10rem]">
             <ToastContainer />
 
-            <div className="w-2/3 mx-auto">
+            <div className="w-2/3 mx-auto container">
                 <h1 className="text-center my-10 text-3xl font-semibold">
                     Đề xuất trường
                 </h1>
@@ -248,7 +259,10 @@ export const Suggest = () => {
                     vọng của mình.
                     <br />
                     Chưa rõ?{' '}
-                    <Link to="/guide" className="text-blue-500 underline">
+                    <Link
+                        to="/docs/suggest"
+                        className="text-blue-500 underline"
+                    >
                         Xem hướng dẫn
                     </Link>
                     <br />
@@ -408,21 +422,21 @@ export const Suggest = () => {
 
                                 <div className="mt-[1rem] w-full grid grid-cols-3 p-2 rounded-lg bg-transparent bs-in text-center font-semibold cursor-pointer">
                                     <div
-                                        className="py-1 select-function-type rounded-lg"
+                                        className="p-1 select-function-type rounded-lg"
                                         ref={rangeRef}
                                         onClick={handleFunction}
                                     >
                                         <h1>Lọc khoảng</h1>
                                     </div>
                                     <div
-                                        className="py-1 rounded-lg"
+                                        className="p-1 rounded-lg"
                                         ref={topRef}
                                         onClick={handleFunction}
                                     >
                                         <h1>Thứ tự</h1>
                                     </div>
                                     <div
-                                        className="py-1 rounded-lg"
+                                        className="p-1 rounded-lg"
                                         ref={averageRef}
                                         onClick={handleFunction}
                                     >
@@ -431,7 +445,11 @@ export const Suggest = () => {
                                 </div>
 
                                 <FilterContext.Provider
-                                    value={{ filterData, setFilterData, setToastMessage }}
+                                    value={{
+                                        filterData,
+                                        setFilterData,
+                                        setToastMessage,
+                                    }}
                                 >
                                     {currentFunction === 'Lọc khoảng' ? (
                                         <Range
@@ -462,7 +480,11 @@ export const Suggest = () => {
                                 </div>
 
                                 <FilterContext.Provider
-                                    value={{ filterData, setFilterData, setToastMessage }}
+                                    value={{
+                                        filterData,
+                                        setFilterData,
+                                        setToastMessage,
+                                    }}
                                 >
                                     <Range
                                         min={0}
@@ -477,8 +499,8 @@ export const Suggest = () => {
                     </div>
                 </div>
 
-                {showLoader && <Loader/>}
-                
+                {showLoader && <Loader />}
+
                 {currentFunction === 'Lọc khoảng' ? (
                     <RangeTable
                         tableData={tableData}

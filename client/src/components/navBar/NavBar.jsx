@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { TopBar } from './TopBar';
-import { SideBar } from './SideBar';
+
 import './navbar.css';
+
+import { SideBar } from './SideBar';
+import { TopBar } from './TopBar';
 
 export const NavBar = () => {
     const [hideNav, setHideNav] = useState(true);
@@ -32,7 +34,7 @@ export const NavBar = () => {
             suggestRef.current.classList.add('current-page');
         } else if (location.pathname === '/visual') {
             visualRef.current.classList.add('current-page');
-        } else if(location.pathname === '/print') {
+        } else if (location.pathname === '/print') {
             printRef.current.classList.add('current-page');
         } else if (location.pathname.includes('/docs')) {
             document.querySelector('footer').style.display = 'none';
@@ -48,7 +50,6 @@ export const NavBar = () => {
         const addBtn = document.querySelector('.add-area');
 
         window.onscroll = () => {
-
             let currentScrollPos = window.scrollY;
 
             if (navRef.current === null) return;
@@ -76,9 +77,23 @@ export const NavBar = () => {
     return (
         <>
             {window.innerWidth < 768 ? (
-                <SideBar navRef={navRef} logoRef={logoRef} searchRef={searchRef} suggestRef={suggestRef} visualRef={visualRef} printRef={printRef} />
+                <SideBar
+                    navRef={navRef}
+                    logoRef={logoRef}
+                    searchRef={searchRef}
+                    suggestRef={suggestRef}
+                    visualRef={visualRef}
+                    printRef={printRef}
+                />
             ) : (
-                <TopBar navRef={navRef} logoRef={logoRef} searchRef={searchRef} suggestRef={suggestRef} visualRef={visualRef} printRef={printRef} />
+                <TopBar
+                    navRef={navRef}
+                    logoRef={logoRef}
+                    searchRef={searchRef}
+                    suggestRef={suggestRef}
+                    visualRef={visualRef}
+                    printRef={printRef}
+                />
             )}
         </>
     );

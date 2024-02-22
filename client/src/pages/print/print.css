@@ -3,7 +3,8 @@
     transition: all ease 0.2s;
 }
 
-.add-btn, .print-btn {
+.add-btn,
+.print-btn {
     border-radius: 50%;
 }
 
@@ -19,7 +20,6 @@
     display: block;
 }
 
-
 @media print {
     @page {
         size: A4;
@@ -32,7 +32,8 @@
         color: black !important;
     }
 
-    header, footer {
+    header,
+    footer {
         display: none !important;
     }
 
@@ -40,18 +41,21 @@
         padding: 0 0 !important;
     }
 
-    .subtitle, .options, .table-options, .add-area {
+    .Print .subtitle,
+    .Print .options,
+    .Print .table-options,
+    .Print .add-area {
         display: none !important;
     }
 
-    .table-area {
+    .Print .table-area {
         border: none !important;
         margin: 0 0 !important;
         border-bottom: 1px dashed rgb(141, 141, 141) !important;
         border-radius: 0 !important;
     }
 
-    .page-break-after {
+    .Print .page-break-after {
         page-break-after: always;
     }
 
@@ -62,11 +66,15 @@
         border-radius: 0 !important;
     }
 
-    table td, table th, span {
+    table td,
+    table th,
+    span {
         color: black !important;
     }
 
-    table tr, table td, table th {
+    table tr,
+    table td,
+    table th {
         border: 1px solid black;
     }
 }

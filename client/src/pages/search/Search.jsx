@@ -1,11 +1,16 @@
-import { useState, useEffect, useRef, createContext } from 'react';
+import { createContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Table } from '../../components/search/Table.jsx';
-import { yearsList, schoolTypesList } from '../../utils/lists.js';
+
 import { getAxios, handleData } from '../../components/search/utils.js';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { schoolTypesList, yearsList } from '../../utils/lists.js';
+
 import { Loader } from '../../components/loader/Loader';
+
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
+import './table.css';
 
 export const KeywordContext = createContext();
 
@@ -24,6 +29,11 @@ export const Search = () => {
 
     const [tableData, setTableData] = useState([]);
 
+    useEffect(() => {
+        document.title = 'Score | Tra cứu';
+    }, []);
+
+    // Get data from server
     useEffect(() => {
         setShowLoader(true);
         getAxios(schoolType, year.replace('Năm ', '').trim())
@@ -70,7 +80,7 @@ export const Search = () => {
                     theo danh sách.
                     <br />
                     Chưa rõ?{' '}
-                    <Link to="/guide" className="text-blue-500 underline">
+                    <Link to="/docs/search" className="text-blue-500 underline">
                         Xem hướng dẫn
                     </Link>
                 </p>

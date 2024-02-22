@@ -58,16 +58,59 @@ export const CompeteTable = ({ data }) => {
                                             {item['SO_LUONG']}
                                         </td>
                                         <td className="py-2">
-                                            {(item['SO_LUONG'] / item['CHI_TIEU']).toFixed(2)}
+                                            {(
+                                                item['SO_LUONG'] /
+                                                item['CHI_TIEU']
+                                            ).toFixed(2)}
                                         </td>
                                         <td className="py-2">
-                                            {index === 0 ? '' : (tableData[index]['SO_LUONG'] / tableData[index]['CHI_TIEU']).toFixed(2) - (tableData[index - 1]['SO_LUONG'] / tableData[index - 1]['CHI_TIEU']).toFixed(2) > 0 ? (
+                                            {index === 0 ? (
+                                                ''
+                                            ) : (
+                                                  tableData[index]['SO_LUONG'] /
+                                                  tableData[index]['CHI_TIEU']
+                                              ).toFixed(2) -
+                                                  (
+                                                      tableData[index - 1][
+                                                          'SO_LUONG'
+                                                      ] /
+                                                      tableData[index - 1][
+                                                          'CHI_TIEU'
+                                                      ]
+                                                  ).toFixed(2) >
+                                              0 ? (
                                                 <span className="text-emerald-600">
-                                                    {((tableData[index]['SO_LUONG'] / tableData[index]['CHI_TIEU']) - (tableData[index - 1]['SO_LUONG'] / tableData[index - 1]['CHI_TIEU'])).toFixed(2)}
+                                                    {(
+                                                        tableData[index][
+                                                            'SO_LUONG'
+                                                        ] /
+                                                            tableData[index][
+                                                                'CHI_TIEU'
+                                                            ] -
+                                                        tableData[index - 1][
+                                                            'SO_LUONG'
+                                                        ] /
+                                                            tableData[
+                                                                index - 1
+                                                            ]['CHI_TIEU']
+                                                    ).toFixed(2)}
                                                 </span>
                                             ) : (
                                                 <span className="text-red-600">
-                                                    {((tableData[index]['SO_LUONG'] / tableData[index]['CHI_TIEU']) - (tableData[index - 1]['SO_LUONG'] / tableData[index - 1]['CHI_TIEU'])).toFixed(2)}
+                                                    {(
+                                                        tableData[index][
+                                                            'SO_LUONG'
+                                                        ] /
+                                                            tableData[index][
+                                                                'CHI_TIEU'
+                                                            ] -
+                                                        tableData[index - 1][
+                                                            'SO_LUONG'
+                                                        ] /
+                                                            tableData[
+                                                                index - 1
+                                                            ]['CHI_TIEU']
+                                                    ).toFixed(2)}
                                                 </span>
                                             )}
                                         </td>

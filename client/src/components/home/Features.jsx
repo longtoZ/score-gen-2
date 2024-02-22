@@ -1,22 +1,22 @@
 import { useContext } from 'react';
-import { ModeContext } from '../../utils/setModeContext';
 
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import PhotoFilterIcon from '@mui/icons-material/PhotoFilter';
+import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 
-import searchDemo from '../../assets/vid/search-demo.mp4';
-import suggestDemo from '../../assets/vid/suggest-demo.mp4';
-import visualDemo from '../../assets/vid/visual-demo.mp4';
+import printDemoDark from '../../assets/vid/print-demo-dark.mp4';
 import printDemo from '../../assets/vid/print-demo.mp4';
 import searchDemoDark from '../../assets/vid/search-demo-dark.mp4';
+import searchDemo from '../../assets/vid/search-demo.mp4';
 import suggestDemoDark from '../../assets/vid/suggest-demo-dark.mp4';
+import suggestDemo from '../../assets/vid/suggest-demo.mp4';
 import visualDemoDark from '../../assets/vid/visual-demo-dark.mp4';
-import printDemoDark from '../../assets/vid/print-demo-dark.mp4';
+import visualDemo from '../../assets/vid/visual-demo.mp4';
+import { ModeContext } from '../../utils/setModeContext';
 
 export const Features = () => {
-    const {theme} = useContext(ModeContext);
+    const { theme } = useContext(ModeContext);
 
     return (
         <div className="Features mt-[30rem] px-[8%]">
@@ -26,23 +26,33 @@ export const Features = () => {
 
             <div className="features-grid mt-[5rem]">
                 <div className="grid grid-cols-2 my-6">
-                    <div className="relative px-10 py-16 overflow-hidden">
+                    <div className="relative px-10 py-16 overflow-hidden video-container">
                         <video
                             loop
                             autoPlay
                             muted
                             className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
-                            <source src={theme === 'light' ? searchDemo : searchDemoDark} type="video/mp4" />
+                            <source
+                                src={
+                                    theme === 'light'
+                                        ? searchDemo
+                                        : searchDemoDark
+                                }
+                                type="video/mp4"
+                            />
                         </video>
                         <div className="absolute -bottom-[1rem] left-0 mesh2"></div>
                         <div className="absolute top-0 right-0 mesh4"></div>
                     </div>
 
-                    <div className="px-16 flex justify-center flex-col">
-                        <div className='flex items-center'>
-                            <div className='rounded-lg p-2 bg-cyan-100 '>
-                                <AutoAwesomeIcon className='text-cyan-500' style={{fontSize:'2.2em'}} />
+                    <div className="px-16 flex justify-center flex-col text-container">
+                        <div className="flex items-center">
+                            <div className="rounded-lg p-2 bg-cyan-100 ">
+                                <AutoAwesomeIcon
+                                    className="text-cyan-500"
+                                    style={{ fontSize: '2.2em' }}
+                                />
                             </div>
                             <h1 className="text-2xl font-semibold ml-4 ">
                                 Tra cứu thông minh
@@ -59,10 +69,13 @@ export const Features = () => {
                 </div>
 
                 <div className="grid grid-cols-2 my-6">
-                    <div className="px-16 flex justify-center flex-col">
-                        <div className='flex items-center'>
-                            <div className='rounded-lg p-2 bg-sky-100 '>
-                                <TipsAndUpdatesIcon className='text-sky-500' style={{fontSize:'2.2em'}} />
+                    <div className="px-16 flex justify-center flex-col text-container">
+                        <div className="flex items-center">
+                            <div className="rounded-lg p-2 bg-sky-100 ">
+                                <TipsAndUpdatesIcon
+                                    className="text-sky-500"
+                                    style={{ fontSize: '2.2em' }}
+                                />
                             </div>
                             <h1 className="text-2xl font-semibold ml-4 ">
                                 Đề xuất theo tiêu chí
@@ -76,14 +89,21 @@ export const Features = () => {
                         </p>
                     </div>
 
-                    <div className="relative px-10 py-16 overflow-hidden">
+                    <div className="relative px-10 py-16 overflow-hidden video-container">
                         <video
                             loop
                             autoPlay
                             muted
                             className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
-                            <source src={theme === 'light' ? suggestDemo : suggestDemoDark} type="video/mp4" />
+                            <source
+                                src={
+                                    theme === 'light'
+                                        ? suggestDemo
+                                        : suggestDemoDark
+                                }
+                                type="video/mp4"
+                            />
                         </video>
                         <div className="absolute top-0 left-0 mesh1"></div>
                         <div className="absolute bottom-0 right-0 mesh3"></div>
@@ -91,23 +111,33 @@ export const Features = () => {
                 </div>
 
                 <div className="grid grid-cols-2 my-6">
-                    <div className="relative px-10 py-16 overflow-hidden">
+                    <div className="relative px-10 py-16 overflow-hidden video-container">
                         <video
                             loop
                             autoPlay
                             muted
                             className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
-                            <source src={theme === 'light' ? visualDemo : visualDemoDark} type="video/mp4" />
+                            <source
+                                src={
+                                    theme === 'light'
+                                        ? visualDemo
+                                        : visualDemoDark
+                                }
+                                type="video/mp4"
+                            />
                         </video>
                         <div className="absolute -bottom-[1rem] left-0 mesh2"></div>
                         <div className="absolute top-0 right-0 mesh4"></div>
                     </div>
 
-                    <div className="px-16 flex justify-center flex-col">
-                        <div className='flex items-center'>
-                            <div className='rounded-lg p-2 bg-blue-100 '>
-                                <AutoGraphIcon className='text-blue-500' style={{fontSize:'2.2em'}} />
+                    <div className="px-16 flex justify-center flex-col text-container">
+                        <div className="flex items-center">
+                            <div className="rounded-lg p-2 bg-blue-100 ">
+                                <AutoGraphIcon
+                                    className="text-blue-500"
+                                    style={{ fontSize: '2.2em' }}
+                                />
                             </div>
                             <h1 className="text-2xl font-semibold ml-4 ">
                                 Trực quan hoá dữ liệu
@@ -125,10 +155,13 @@ export const Features = () => {
                 </div>
 
                 <div className="grid grid-cols-2 my-6">
-                    <div className="px-16 flex justify-center flex-col">
-                        <div className='flex items-center'>
-                            <div className='rounded-lg p-2 bg-indigo-100 '>
-                                <PhotoFilterIcon className='text-indigo-500' style={{fontSize:'2.2em'}} />
+                    <div className="px-16 flex justify-center flex-col text-container">
+                        <div className="flex items-center">
+                            <div className="rounded-lg p-2 bg-indigo-100 ">
+                                <PhotoFilterIcon
+                                    className="text-indigo-500"
+                                    style={{ fontSize: '2.2em' }}
+                                />
                             </div>
                             <h1 className="text-2xl font-semibold ml-4 ">
                                 Soạn nội dung lưu trữ
@@ -142,14 +175,21 @@ export const Features = () => {
                         </p>
                     </div>
 
-                    <div className="relative px-10 py-16 overflow-hidden">
+                    <div className="relative px-10 py-16 overflow-hidden video-container">
                         <video
                             loop
                             autoPlay
                             muted
                             className="object-fill relative rounded-lg h-[20rem] video-height m-auto z-[2]"
                         >
-                            <source src={theme === 'light' ? printDemo : printDemoDark} type="video/mp4" />
+                            <source
+                                src={
+                                    theme === 'light'
+                                        ? printDemo
+                                        : printDemoDark
+                                }
+                                type="video/mp4"
+                            />
                         </video>
                         <div className="absolute top-0 left-0 mesh1"></div>
                         <div className="absolute bottom-0 right-0 mesh3"></div>

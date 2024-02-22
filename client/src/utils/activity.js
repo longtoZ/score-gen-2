@@ -14,8 +14,8 @@ const get = () => {
             },
         });
         const time = new Date().toString();
-    
-            axios
+
+        axios
             .get('https://freeipapi.com/api/json')
             .then((res) => {
                 const data = {
@@ -29,50 +29,37 @@ const get = () => {
                 return data;
             })
             .then((data) => {
-                axios.get(process.env.REACT_APP_SERVER + '/api/track/get', {
-                    params: { ip: data.ip },
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-                    },
-                }).then((res) => {
-                    resolve({
-                        length: res.data.length,
-                        data,
+                axios
+                    .get(process.env.REACT_APP_SERVER + '/api/track/get', {
+                        params: { ip: data.ip },
                     })
-                }) 
-            }).catch((error) => reject(error));
-
-
-    })
-}
+                    .then((res) => {
+                        resolve({
+                            length: res.data.length,
+                            data,
+                        });
+                    });
+            })
+            .catch((error) => reject(error));
+    });
+};
 
 const update = (length, data) => {
     if (length > 0) {
         axios.put(process.env.REACT_APP_SERVER + '/api/track/put', {
             params: data,
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization:
-                    'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-            },
         });
     } else {
         axios.post(process.env.REACT_APP_SERVER + '/api/track/post', {
             params: data,
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization:
-                    'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-            },
         });
     }
-} 
+};
 
 export const track = () => {
- get().then((res) => {
-     update(res.length, res.data);
- }).catch(() => {
-
- });
+    get()
+        .then((res) => {
+            update(res.length, res.data);
+        })
+        .catch(() => {});
 };

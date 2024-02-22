@@ -1,9 +1,9 @@
 import ReactDOM from 'react-dom/client';
-import { getDetailInfo } from './utils';
 
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
 import { Detail } from './Detail';
-import './table.css';
+import { getDetailInfo } from './utils';
 
 export const Table = ({ tableData, keyword, schoolType }) => {
     const result = tableData.filter((item) =>
@@ -14,7 +14,7 @@ export const Table = ({ tableData, keyword, schoolType }) => {
     );
 
     const handleMore = (e) => {
-        const moreBtn = e.target.closest('.more-btn')
+        const moreBtn = e.target.closest('.more-btn');
 
         if (moreBtn.getAttribute('state') === 'collapse') {
             moreBtn.setAttribute('state', 'expand');
@@ -39,14 +39,14 @@ export const Table = ({ tableData, keyword, schoolType }) => {
                     'detail-portal',
                 )
             )
-            moreBtn.parentNode.parentNode.removeChild(
-                moreBtn.parentNode.nextSibling,
+                moreBtn.parentNode.parentNode.removeChild(
+                    moreBtn.parentNode.nextSibling,
                 );
         }
     };
 
     return (
-        <div>
+        <div className="table-container">
             {schoolType === 'Trường thường' ? (
                 <table className="search-table rounded-lg text-center mx-auto w-2/3 mt-20 shadow-basic">
                     <thead className="bg-emerald-600 text-white font-bold">

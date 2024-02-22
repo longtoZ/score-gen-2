@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-export const GroupTable = ({data}) => {
-    const tableData = data.tableData.sort((a, b) => 
-      b['DIEM']-a['DIEM']
-    );
+export const GroupTable = ({ data }) => {
+    const tableData = data.tableData.sort((a, b) => b['DIEM'] - a['DIEM']);
     const wish = data.wish;
 
     return (
@@ -37,7 +35,11 @@ export const GroupTable = ({data}) => {
                                 return (
                                     <tr
                                         key={index}
-                                        className={item['TEN_TRUONG'] === data.school ? 'bg-amber-100 text black' : '[&:nth-child(even)]:bg-even-row-color-light'}
+                                        className={
+                                            item['TEN_TRUONG'] === data.school
+                                                ? 'bg-amber-100 text black'
+                                                : '[&:nth-child(even)]:bg-even-row-color-light'
+                                        }
                                     >
                                         <td className="py-2">
                                             {item['NAM_HOC']}
@@ -73,4 +75,4 @@ export const GroupTable = ({data}) => {
             ) : null}
         </>
     );
-}
+};

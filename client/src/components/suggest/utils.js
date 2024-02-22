@@ -5,11 +5,6 @@ export const getAxiosCommon = (schoolType, wish) => {
         axios
             .get(process.env.REACT_APP_SERVER + '/api/suggest', {
                 params: { schoolType, wish },
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + process.env.REACT_APP_SECRET_KEY,
-                }
-                
             })
             .then((res) => {
                 resolve(res.data);

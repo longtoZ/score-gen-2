@@ -1,6 +1,6 @@
-import { useRef, useContext } from 'react';
+import { useContext, useRef } from 'react';
+
 import { FilterContext } from '../../pages/suggest/Suggest';
-import './top.css';
 
 export const Average = () => {
     const higherRef = useRef(null);

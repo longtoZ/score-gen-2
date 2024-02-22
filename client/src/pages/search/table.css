@@ -1,0 +1,79 @@
+.map-area {
+    transform: scale(0.9);
+}
+
+iframe {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.219);
+    margin: 0 auto;
+}
+
+tbody tr:hover {
+    background-color: #fef3c7 !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all ease-in-out 0.2s;
+    color: black;
+}
+
+.detail-td {
+    display: block;
+    overflow: hidden;
+    height: 0;
+    animation: change-height 1s forwards;
+}
+
+@keyframes change-height {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 25rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .map-area {
+        transform: scale(0.65);
+    }
+}
+
+@media (max-width: 768px) {
+    .search-table {
+        width: 75% !important;
+    }
+
+    .map-area {
+        transform: scale(1);
+    }
+
+    .detail-portal div {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .Search .table-container {
+        overflow-x: scroll;
+    }
+
+    table * {
+        font-size: 95%;
+    }
+
+    tbody tr:hover {
+        box-shadow: none;
+    }
+
+    th,
+    td {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+
+    .map-area {
+        transform: scale(0.75);
+        position: relative;
+        left: -1rem;
+    }
+}

@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+
 import MenuIcon from '@mui/icons-material/Menu';
+
 import './docs.css';
 
 export const Docs = () => {
@@ -16,6 +18,11 @@ export const Docs = () => {
         }
     };
 
+    // Update document title
+    useEffect(() => {
+        document.title = 'Score | Tài liệu';
+    }, []);
+
     return (
         <div className="Docs mx-[8%]">
             {window.innerWidth < 992 ? (
@@ -24,7 +31,7 @@ export const Docs = () => {
                         <MenuIcon
                             onClick={handleShow}
                             className="cursor-pointer"
-                            style={{fontSize:'2rem'}}
+                            style={{ fontSize: '2rem' }}
                         />
                     </div>
                     <div
@@ -32,7 +39,7 @@ export const Docs = () => {
                         onClick={handleHide}
                     ></div>
                     <div
-                        className={`w-[30%] pt-[6rem] pl-[2rem] h-full fixed top-0 left-0 p-4 bg-bg-color z-[3] transition-transform ease-in-out duration-300 ${show ? 'translate-x-0' : '-translate-x-[100%]'}`}
+                        className={`side-bar w-[30%] pt-[6rem] pl-[2rem] h-full fixed top-0 left-0 p-4 bg-bg-color z-[3] transition-transform ease-in-out duration-300 ${show ? 'translate-x-0' : '-translate-x-[100%]'}`}
                     >
                         <section className="mb-[2rem]">
                             <h1 className="text-lg font-semibold">Bắt đầu</h1>
@@ -128,8 +135,10 @@ export const Docs = () => {
                     </div>
                 </>
             )}
-            <div className='w-full my-6'>
-                <small className='block text-right'>Copyright © 2024, Score Project</small>
+            <div className="w-full my-6">
+                <small className="block text-right">
+                    Copyright © 2024, Score Project
+                </small>
             </div>
         </div>
     );

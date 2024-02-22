@@ -1,20 +1,20 @@
-import { useState, useRef, useContext } from 'react';
+import { useContext, useRef, useState } from 'react';
+
 import { FilterContext } from '../../pages/suggest/Suggest';
-import './top.css';
 
 export const Top = () => {
     const highestRef = useRef(null);
     const lowestRef = useRef(null);
     const [top, setTop] = useState(10);
 
-    const { filterData, setFilterData, setToastMessage } = useContext(FilterContext);
+    const { filterData, setFilterData, setToastMessage } =
+        useContext(FilterContext);
 
     const handleTop = (e) => {
         setTop(parseInt(e.target.value));
     };
 
     const handleData = (e) => {
-
         if (top < 1) {
             setToastMessage({
                 type: 'warning',
@@ -41,7 +41,7 @@ export const Top = () => {
     };
 
     return (
-        <div className="mt-[2rem] grid grid-cols-3 gap-2">
+        <div className="inputs-grid mt-[2rem] grid grid-cols-3 gap-2">
             <input
                 className="bs-in-light p-2 bg-transparent rounded-lg text-center"
                 type="number"

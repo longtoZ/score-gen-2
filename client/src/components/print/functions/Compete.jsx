@@ -1,18 +1,15 @@
-import { useState, useRef, useEffect, useContext } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+
 import { FunctionContext } from '../../../pages/print/Print';
 import { AddContext } from '../../../pages/print/Print';
-
-import {
-    yearsList
-} from '../../../utils/lists';
+import { yearsList } from '../../../utils/lists';
 import { getAxiosCompete, handleDataCompete } from '../../visual/utils';
 
 export const Compete = () => {
-
     const { data, setData } = useContext(FunctionContext);
     const { showAdd, setShowAdd, setToastMessage } = useContext(AddContext);
 
-    const mode = showAdd.mode
+    const mode = showAdd.mode;
     const dataIndex = showAdd.index;
 
     const titleRef = useRef(null);
@@ -20,18 +17,28 @@ export const Compete = () => {
     const startRef = useRef(null);
     const endRef = useRef(null);
 
-    const [title, setTitle] = useState(mode === 'add' ? '' : data[dataIndex].title);
-    const [school, setSchool] = useState(mode === 'add' ? '' : data[dataIndex].school);
-    const [start, setStart] = useState(mode === 'add' ? yearsList[yearsList.length - 1] : data[dataIndex].start);
-    const [end, setEnd] = useState(mode === 'add' ? yearsList[0] : data[dataIndex].end);
+    const [title, setTitle] = useState(
+        mode === 'add' ? '' : data[dataIndex].title,
+    );
+    const [school, setSchool] = useState(
+        mode === 'add' ? '' : data[dataIndex].school,
+    );
+    const [start, setStart] = useState(
+        mode === 'add'
+            ? yearsList[yearsList.length - 1]
+            : data[dataIndex].start,
+    );
+    const [end, setEnd] = useState(
+        mode === 'add' ? yearsList[0] : data[dataIndex].end,
+    );
 
     const handleTitle = (e) => {
         setTitle(e.target.value);
-    }
+    };
 
     const handleSchool = (e) => {
         setSchool(e.target.value);
-    }
+    };
 
     const handleStart = (e) => {
         setStart(e.target.value);
@@ -41,10 +48,8 @@ export const Compete = () => {
         setEnd(e.target.value);
     };
 
-
     // Add the data to the main array
     const addData = () => {
-
         if (end > yearsList[0] || start < yearsList[yearsList.length - 1]) {
             setToastMessage({
                 type: 'warning',
@@ -52,11 +57,10 @@ export const Compete = () => {
             });
             return;
         }
-        
+
         getAxiosCompete(school)
             .then((res) => handleDataCompete(res))
             .then((tableData) => {
-
                 if (tableData.length === 0) {
                     setToastMessage({
                         type: 'error',
@@ -74,15 +78,17 @@ export const Compete = () => {
                         start,
                         end,
                         tableData,
-                    }
-                ])
+                    },
+                ]);
             })
-            .then(() => setShowAdd({
-                show: false,
-                mode: 'add',
-                index: 0,
-            }));
-    }
+            .then(() =>
+                setShowAdd({
+                    show: false,
+                    mode: 'add',
+                    index: 0,
+                }),
+            );
+    };
 
     const editData = () => {
         if (end > yearsList[0] || start < yearsList[yearsList.length - 1]) {
@@ -103,7 +109,7 @@ export const Compete = () => {
                     });
                     return;
                 }
-                const newData = data
+                const newData = data;
                 newData[dataIndex] = {
                     dataType: 'compete',
                     title,
@@ -111,15 +117,17 @@ export const Compete = () => {
                     start,
                     end,
                     tableData,
-                }
-                setData(newData)
+                };
+                setData(newData);
             })
-            .then(() => setShowAdd({
-                show: false,
-                mode: 'add',
-                index: 0,
-            }));
-    }
+            .then(() =>
+                setShowAdd({
+                    show: false,
+                    mode: 'add',
+                    index: 0,
+                }),
+            );
+    };
 
     useEffect(() => {
         if (mode === 'edit') {
@@ -128,25 +136,22 @@ export const Compete = () => {
             startRef.current.value = data[dataIndex].start;
             endRef.current.value = data[dataIndex].end;
         }
-    }, [mode])
+    }, [mode]);
 
     return (
         <div>
-            <section>
-                <img src="" alt="demo" />
-            </section>
-            <section className='w-full px-[10%] block pt-8'>
-                <input 
-                    type="text" 
-                    className="block my-2 w-full bs-in p-2 bg-transparent rounded-lg text-center" 
-                    placeholder='Nhập tiêu đề mục...'
+            <section className="w-full px-[10%] block pt-8">
+                <input
+                    type="text"
+                    className="block my-2 w-full bs-in p-2 bg-transparent rounded-lg text-center"
+                    placeholder="Nhập tiêu đề mục..."
                     onChange={handleTitle}
                     ref={titleRef}
                 />
-                <div className='w-full border-b-2 border-border-color'></div>
+                <div className="w-full border-b-2 border-border-color"></div>
             </section>
-            <section className="mt-[2rem] w-full grid grid-cols-2 gap-2 px-[10%]">
-                <h1 className='text-center font-semibold'>Tên trường</h1>
+            <section className="inputs-grid mt-[2rem] w-full grid grid-cols-2 gap-2 px-[10%]">
+                <h1 className="text-center font-semibold">Tên trường</h1>
                 <input
                     className="bs-in p-2 bg-transparent rounded-lg text-center"
                     type="text"
@@ -154,7 +159,7 @@ export const Compete = () => {
                     onChange={handleSchool}
                     ref={schoolRef}
                 />
-                <h1 className='text-center font-semibold'>Năm bắt đầu</h1>
+                <h1 className="text-center font-semibold">Năm bắt đầu</h1>
                 <input
                     className="bs-in p-2 bg-transparent rounded-lg text-center"
                     type="number"
@@ -164,7 +169,7 @@ export const Compete = () => {
                     onChange={handleStart}
                     ref={startRef}
                 />
-                <h1 className='text-center font-semibold'>Năm kết thúc</h1>
+                <h1 className="text-center font-semibold">Năm kết thúc</h1>
                 <input
                     className="bs-in p-2 bg-transparent rounded-lg text-center"
                     type="number"
@@ -176,10 +181,20 @@ export const Compete = () => {
                 />
             </section>
             {showAdd.mode === 'add' ? (
-                <button className='float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg' onClick={addData}>Thêm mới</button>
+                <button
+                    className="float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg"
+                    onClick={addData}
+                >
+                    Thêm mới
+                </button>
             ) : (
-                <button className='float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg' onClick={editData}>Thay đổi</button>
-            )}        
+                <button
+                    className="float-right mt-[2rem] bg-teal-600 text-white p-2 rounded-lg"
+                    onClick={editData}
+                >
+                    Thay đổi
+                </button>
+            )}
         </div>
     );
 };

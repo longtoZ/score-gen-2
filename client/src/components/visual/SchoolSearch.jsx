@@ -1,38 +1,54 @@
 import { useContext } from 'react';
+
+import ClearIcon from '@mui/icons-material/Clear';
+
 import { SchoolContext } from '../../pages/visual/Visual';
 import { schoolTypesObjRev } from '../../utils/lists';
 
-import ClearIcon from '@mui/icons-material/Clear';
-import './schoolSearch.css';
-
 export const SchoolSearch = ({ school }) => {
-    const { schoolData, setSchoolData, competeData, setCompeteData, areaData, setAreaData, districtList, setDistrictList } =
-        useContext(SchoolContext);
+    const {
+        schoolData,
+        setSchoolData,
+        competeData,
+        setCompeteData,
+        areaData,
+        setAreaData,
+        districtList,
+        setDistrictList,
+    } = useContext(SchoolContext);
 
     const handleRemove = () => {
-        const removedDistrictList = districtList.DATA.filter((s) => s !== school['QUAN/HUYEN']);
+        const removedDistrictList = districtList.DATA.filter(
+            (s) => s !== school['QUAN/HUYEN'],
+        );
         setSchoolData(
             schoolData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
         );
         setSchoolData(
-            schoolData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']).map((s, i, arr) => {
-                if (i === arr.length-1) {
-                    s['CHOSEN'] = true;
-                }
+            schoolData
+                .filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG'])
+                .map((s, i, arr) => {
+                    if (i === arr.length - 1) {
+                        s['CHOSEN'] = true;
+                    }
 
-                return s;
-            }),
+                    return s;
+                }),
         );
         setCompeteData(
             competeData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
         );
         setAreaData(
             areaData.filter((s) => s['QUAN/HUYEN'] !== school['QUAN/HUYEN']),
-        )
+        );
         setDistrictList({
             DATA: removedDistrictList,
-            CHOSEN: removedDistrictList.length > 0 ? (districtList.CHOSEN = removedDistrictList[removedDistrictList.length - 1]) : '',
-        })
+            CHOSEN:
+                removedDistrictList.length > 0
+                    ? (districtList.CHOSEN =
+                          removedDistrictList[removedDistrictList.length - 1])
+                    : '',
+        });
     };
 
     return (

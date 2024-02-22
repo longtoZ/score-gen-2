@@ -76,18 +76,18 @@ input:focus-visible {
 
 .bs-in-light {
     box-shadow:
-    -2px -2px 5px #ffffffbd inset,
-    2px 2px 5px #161b1d17 inset;
+        -2px -2px 5px #ffffffbd inset,
+        2px 2px 5px #161b1d17 inset;
 }
 
 [data-theme='dark'] .bs-in {
     box-shadow:
-    -2px -2px 5px #ffffff1b inset,
-    2px 2px 5px #00000091 inset;
+        -2px -2px 5px #ffffff1b inset,
+        2px 2px 5px #00000091 inset;
 }
 
 [data-theme='dark'] .bs-in-light {
     box-shadow:
-    -2px -2px 5px #ffffff1b inset,
-    2px 2px 5px #00000061 inset;
+        -2px -2px 5px #ffffff1b inset,
+        2px 2px 5px #00000061 inset;
 }

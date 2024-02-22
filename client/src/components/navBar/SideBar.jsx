@@ -1,18 +1,18 @@
-import { useState, useEffect, useContext } from 'react';
-import { ModeContext } from '../../utils/setModeContext';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import logoLight from '../../assets/img/logo-full-light.png';
-import logoDark from '../../assets/img/logo-full-dark.png';
-
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import MenuIcon from '@mui/icons-material/Menu';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 import SearchIcon from '@mui/icons-material/Search';
 import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import PostAddIcon from '@mui/icons-material/PostAdd';
-import MenuIcon from '@mui/icons-material/Menu';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import './navbar.css';
+
+import logoDark from '../../assets/img/logo-full-dark.png';
+import logoLight from '../../assets/img/logo-full-light.png';
+import { ModeContext } from '../../utils/setModeContext';
 
 export const SideBar = ({
     navRef,
@@ -77,10 +77,19 @@ export const SideBar = ({
                 className={`side-menu bg-header-color w-[35%] h-full fixed top-0 right-0 p-4 z-[7] transition-transform ease-in-out duration-300 ${show ? 'translate-x-0' : 'translate-x-[100%]'}`}
             >
                 <h1 className="text-2xl font-bold text-right my-4">Mục lục</h1>
-                <div className='grid grid-cols-2 rounded-lg border-2 border-border-color overflow-hidden'>
-                    <div className={`px-4 py-1 cursor-pointer text-center font-semibold ${theme === 'light' ? 'bg-gray-950 text-white' : 'bg-transparent'}`} onClick={() => setTheme('light')}>Sáng</div>
-                    <div className={`px-4 py-1 cursor-pointer text-center font-semibold ${theme === 'dark' ? 'bg-gray-50 text-black' : 'bg-transparent'}`} onClick={() => setTheme('dark')}>Tối</div>
-
+                <div className="grid grid-cols-2 rounded-lg border-2 border-border-color overflow-hidden">
+                    <div
+                        className={`px-4 py-1 cursor-pointer text-center font-semibold ${theme === 'light' ? 'bg-gray-950 text-white' : 'bg-transparent'}`}
+                        onClick={() => setTheme('light')}
+                    >
+                        Sáng
+                    </div>
+                    <div
+                        className={`px-4 py-1 cursor-pointer text-center font-semibold ${theme === 'dark' ? 'bg-gray-50 text-black' : 'bg-transparent'}`}
+                        onClick={() => setTheme('dark')}
+                    >
+                        Tối
+                    </div>
                 </div>
                 <ul className="text-right mt-[2rem]">
                     <li

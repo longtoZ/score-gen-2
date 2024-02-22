@@ -1,16 +1,22 @@
-.Home h1, .Home p  {
+.Home h1,
+.Home p {
     color: #334155;
 }
 
-[data-theme='dark'] .Home h1, [data-theme='dark'] .Home p {
+[data-theme='dark'] .Home h1,
+[data-theme='dark'] .Home p {
     color: #cbd5e1;
 }
 
 .Score {
-    background: linear-gradient(to right, rgba(52,211,153,1) 0%, rgba(45,212,191,1) 68%);
-	background-clip: text;
+    background: linear-gradient(
+        to right,
+        rgba(52, 211, 153, 1) 0%,
+        rgba(45, 212, 191, 1) 68%
+    );
+    background-clip: text;
     -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
 }
 
 .try-shadow {
@@ -29,13 +35,14 @@
     box-shadow: none;
 }
 
-.Compare tbody tr, .Compare thead tr {
+.Compare tbody tr,
+.Compare thead tr {
     border-bottom: 2px solid #cbd5e1;
 }
 
-[data-theme='dark'] .Compare tbody tr, .Compare thead tr {
+[data-theme='dark'] .Compare tbody tr,
+.Compare thead tr {
     border-bottom: 2px solid #3e3e3e96;
-
 }
 
 .Compare tbody tr:hover {
@@ -44,7 +51,8 @@
     box-shadow: none !important;
 }
 
-.Compare tbody tr td:first-child, .Compare thead tr th:first-child {
+.Compare tbody tr td:first-child,
+.Compare thead tr th:first-child {
     /* border-right: 2px solid #cbd5e1; */
     background: rgba(226, 232, 240, 0.5);
 }
@@ -54,12 +62,27 @@
 }
 
 .swiper-mesh {
-    background-color:hsla(0,0%,100%,1);
-    background-image:
-    radial-gradient(at 71% 68%, hsla(289,90%,72%,0.66) 0px, transparent 50%),
-    radial-gradient(at 29% 20%, hsla(229,100%,75%,1) 0px, transparent 50%),
-    radial-gradient(at 81% 31%, hsla(158,100%,75%,1) 0px, transparent 50%),
-    radial-gradient(at 29% 52%, hsla(188,100%,75%,1) 0px, transparent 50%);
+    background-color: hsla(0, 0%, 100%, 1);
+    background-image: radial-gradient(
+            at 71% 68%,
+            hsla(289, 90%, 72%, 0.66) 0px,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 29% 20%,
+            hsla(229, 100%, 75%, 1) 0px,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 81% 31%,
+            hsla(158, 100%, 75%, 1) 0px,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 29% 52%,
+            hsla(188, 100%, 75%, 1) 0px,
+            transparent 50%
+        );
 }
 
 .moveDownAnimation {
@@ -74,46 +97,77 @@
 .mesh1 {
     height: 20rem;
     width: 20rem;
-    background: rgb(52,211,153);
-    background: radial-gradient(circle, rgba(52,211,153,0.6) 0%, rgba(45,212,191,0) 70%);
+    background: rgb(52, 211, 153);
+    background: radial-gradient(
+        circle,
+        rgba(52, 211, 153, 0.6) 0%,
+        rgba(45, 212, 191, 0) 70%
+    );
 }
 
 [data-theme='dark'] .mesh1 {
-    background: radial-gradient(circle, rgba(52,211,153,0.4) 0%, rgba(45,212,191,0) 70%);
+    background: radial-gradient(
+        circle,
+        rgba(52, 211, 153, 0.4) 0%,
+        rgba(45, 212, 191, 0) 70%
+    );
 }
 
 .mesh2 {
     height: 25rem;
     width: 25rem;
-    background: rgb(34,211,238);
-    background: radial-gradient(circle, rgba(34,211,238,0.6) 0%, rgba(34,211,238,0) 70%);
+    background: rgb(34, 211, 238);
+    background: radial-gradient(
+        circle,
+        rgba(34, 211, 238, 0.6) 0%,
+        rgba(34, 211, 238, 0) 70%
+    );
 }
 
 [data-theme='dark'] .mesh2 {
-    background: radial-gradient(circle, rgba(34,211,238,0.4) 0%, rgba(34,211,238,0) 70%);
+    background: radial-gradient(
+        circle,
+        rgba(34, 211, 238, 0.4) 0%,
+        rgba(34, 211, 238, 0) 70%
+    );
 }
 
 .mesh3 {
     height: 23rem;
     width: 23rem;
-    background: rgb(129,140,248);
-    background: radial-gradient(circle, rgba(129,140,248,0.8) 0%, rgba(129,140,248,0) 70%);
+    background: rgb(129, 140, 248);
+    background: radial-gradient(
+        circle,
+        rgba(129, 140, 248, 0.8) 0%,
+        rgba(129, 140, 248, 0) 70%
+    );
 }
 
 [data-theme='dark'] .mesh3 {
-    background: radial-gradient(circle, rgba(129,140,248,0.6) 0%, rgba(129,140,248,0) 70%);
+    background: radial-gradient(
+        circle,
+        rgba(129, 140, 248, 0.6) 0%,
+        rgba(129, 140, 248, 0) 70%
+    );
 }
 
 .mesh4 {
     height: 20rem;
     width: 20rem;
-    background: rgb(45,212,191);
-    background: radial-gradient(circle, rgba(45,212,191,0.7) 0%, rgba(129,140,248,0) 70%);
+    background: rgb(45, 212, 191);
+    background: radial-gradient(
+        circle,
+        rgba(45, 212, 191, 0.7) 0%,
+        rgba(129, 140, 248, 0) 70%
+    );
 }
 
 [data-theme='dark'] .mesh4 {
-    background: radial-gradient(circle, rgba(45,212,191,0.5) 0%, rgba(129,140,248,0) 70%);
-
+    background: radial-gradient(
+        circle,
+        rgba(45, 212, 191, 0.5) 0%,
+        rgba(129, 140, 248, 0) 70%
+    );
 }
 
 @keyframes moveDown {
@@ -125,7 +179,6 @@
     }
     100% {
         transform: translateY(0%);
-
     }
 }
 
@@ -138,7 +191,6 @@
     }
     100% {
         transform: translateY(0%);
-
     }
 }
 
@@ -151,7 +203,9 @@
     filter: grayscale(1);
 }
 
-.logo, .logo img, .logo h1 {
+.logo,
+.logo img,
+.logo h1 {
     transition: all ease-in-out 0.2s;
 }
 
@@ -163,4 +217,3 @@
     opacity: 1;
     filter: grayscale(0);
 }
-

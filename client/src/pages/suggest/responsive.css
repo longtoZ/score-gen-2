@@ -1,0 +1,31 @@
+@media (max-width: 768px) {
+    .Suggest > div {
+        width: 75% !important;
+    }
+
+    .school-type-select {
+        width: 50% !important;
+    }
+
+    .suggest-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+
+    .suggest-table {
+        width: 100% !important;
+    }
+
+    .school-type-grid {
+        width: 66% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .Suggest .container {
+        width: 90% !important;
+    }
+
+    .suggest-grid {
+        width: 90% !important;
+    }
+}

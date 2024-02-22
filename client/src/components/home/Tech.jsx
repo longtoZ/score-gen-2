@@ -1,10 +1,11 @@
 import React from 'react';
-import reactLogo from '../../assets/img/react-logo.png';
-import nodeLogo from '../../assets/img/node-logo.png';
+
+import chartLogo from '../../assets/img/chart-logo.png';
 import expressLogo from '../../assets/img/express-logo.png';
 import mysqlLogo from '../../assets/img/mysql-logo.png';
+import nodeLogo from '../../assets/img/node-logo.png';
+import reactLogo from '../../assets/img/react-logo.png';
 import tailwindLogo from '../../assets/img/tailwind-logo.png';
-import chartLogo from '../../assets/img/chart-logo.png';
 
 export const Tech = () => {
     return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useContext, useEffect } from 'react';
+
 import { MainRoutes } from './Routes';
 import { ModeContext } from './utils/setModeContext';
 
@@ -8,7 +9,7 @@ function App() {
 
     useEffect(() => {
         document.body.setAttribute('data-theme', theme);
-    }, [theme])
+    }, [theme]);
 
     return (
         <div className="App bg-bg-color text-text-color overflow-hidden">

@@ -1,7 +1,7 @@
 export const ScoreRangeTable = ({ data }) => {
     const schoolType = data.schoolType;
     const tableData = data.tableData;
-    
+
     const startValue =
         schoolType === 'Lớp thường'
             ? ((data.startValue / 30) * 100).toFixed(2)

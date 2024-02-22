@@ -1,5 +1,3 @@
-import './responsive.css';
-
 export const TopTable = ({ tableData, filterData }) => {
     const filteredTableData = tableData
         .filter((item) => filterData.districtValue.includes(item.district))

@@ -1,6 +1,3 @@
-import './responsive.css';
-
-
 export const AverageTable = ({ tableData, filterData }) => {
     tableData.sort((a, b) => {
         const wish1 = parseFloat(a[filterData.wishValue]);

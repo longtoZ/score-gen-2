@@ -1,13 +1,21 @@
 import { useContext } from 'react';
-import { ModeContext } from '../../utils/setModeContext.js';
-import { SingleYear } from './inputs/SingleYear.jsx';
-import { SchoolContext } from '../../pages/visual/Visual.jsx';
-import { YearRange } from './inputs/YearRange.jsx';
-import { yearsList } from '../../utils/lists.js';
-import { Chart, ArcElement, Title, Tooltip, Legend, LineElement, LinearScale } from 'chart.js';
 import { Doughnut, Line } from 'react-chartjs-2';
-import './responsive.css';
 
+import { SchoolContext } from '../../pages/visual/Visual.jsx';
+import { SingleYear } from './inputs/SingleYear.jsx';
+import { YearRange } from './inputs/YearRange.jsx';
+
+import { yearsList } from '../../utils/lists.js';
+import { ModeContext } from '../../utils/setModeContext.js';
+import {
+    ArcElement,
+    Chart,
+    Legend,
+    LineElement,
+    LinearScale,
+    Title,
+    Tooltip,
+} from 'chart.js';
 
 Chart.register(ArcElement, Title, Tooltip, Legend, LineElement, LinearScale);
 
@@ -74,10 +82,7 @@ const competeDataDoughnutChart = (target, total, bg, border) => {
         datasets: [
             {
                 data: [target, total - target < 0 ? 0 : total - target],
-                backgroundColor: [
-                    bg,
-                    'rgba(156, 163, 175, 0.2)',
-                ],
+                backgroundColor: [bg, 'rgba(156, 163, 175, 0.2)'],
                 borderColor: [border, 'rgba(0,0,0,0)'],
                 weight: 0.8,
             },
@@ -112,7 +117,8 @@ const earliestYear = yearsList[yearsList.length - 1];
 
 export const CompeteChart = () => {
     const { theme } = useContext(ModeContext);
-    const { startYear, endYear, singleYear, competeData } = useContext(SchoolContext);
+    const { startYear, endYear, singleYear, competeData } =
+        useContext(SchoolContext);
 
     const years = [];
     for (let i = startYear; i <= endYear; i++) {
@@ -138,18 +144,18 @@ export const CompeteChart = () => {
                     display: true,
                     text: 'Năm',
                 },
-                ticks : {
+                ticks: {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
-                }
+                },
             },
             y: {
                 title: {
                     display: true,
                     text: 'Tỉ lệ',
                 },
-                ticks : {
+                ticks: {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
-                }
+                },
             },
         },
         animation: {
@@ -176,10 +182,15 @@ export const CompeteChart = () => {
         datasets: Array.from(competeData, (item, index) => {
             return {
                 label: item['TEN_TRUONG'],
-                data: years.map(
-                    (year) => 
-                        (item['DATA'].find((item) => item['NAM_HOC'] === year)['SO_LUONG'] /
-                        item['DATA'].find((item) => item['NAM_HOC'] === year)['CHI_TIEU']).toFixed(2),
+                data: years.map((year) =>
+                    (
+                        item['DATA'].find((item) => item['NAM_HOC'] === year)[
+                            'SO_LUONG'
+                        ] /
+                        item['DATA'].find((item) => item['NAM_HOC'] === year)[
+                            'CHI_TIEU'
+                        ]
+                    ).toFixed(2),
                 ),
                 backgroundColor: color[index]['bg'],
                 borderColor: color[index]['border'],
@@ -196,7 +207,7 @@ export const CompeteChart = () => {
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Tỉ lệ chọi
                         </h1>
-                        <div className='m-4'>
+                        <div className="m-4">
                             <SingleYear />
                         </div>
                         <div className="p-4 w-full flex justify-center relative flex-wrap">
@@ -208,55 +219,72 @@ export const CompeteChart = () => {
                                 const total = item['DATA'].find(
                                     (year) => year['NAM_HOC'] === singleYear,
                                 )['SO_LUONG'];
-                                const c = (total / target)
+                                const c = total / target;
 
-                                const targetPrevious = singleYear-1 >= earliestYear ? item['DATA'].find(
-                                    (year) => year['NAM_HOC'] === singleYear-1,
-                                )['CHI_TIEU'] : 0;
-                                const totalPrevious = singleYear-1 >= earliestYear ? item['DATA'].find(
-                                    (year) => year['NAM_HOC'] === singleYear-1,
-                                )['SO_LUONG'] : 0;
-                                const cPrevious = (totalPrevious / targetPrevious)
+                                const targetPrevious =
+                                    singleYear - 1 >= earliestYear
+                                        ? item['DATA'].find(
+                                              (year) =>
+                                                  year['NAM_HOC'] ===
+                                                  singleYear - 1,
+                                          )['CHI_TIEU']
+                                        : 0;
+                                const totalPrevious =
+                                    singleYear - 1 >= earliestYear
+                                        ? item['DATA'].find(
+                                              (year) =>
+                                                  year['NAM_HOC'] ===
+                                                  singleYear - 1,
+                                          )['SO_LUONG']
+                                        : 0;
+                                const cPrevious =
+                                    totalPrevious / targetPrevious;
 
                                 return (
-                                        <div
-                                            className="h-[20rem] w-[33%] doughnut-chart my-2"
-                                            key={index}
-                                        >
-                                            <div className='relative h-[90%]'>
-                                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 text-center">
-                                                    <h1 className="text-5xl font-semibold">
-                                                        {(total / target).toFixed(2)}
-                                                    </h1>
-                                                    <p className="mt-2 text-text-subtitle-color">
-                                                        {target}/{total}
-                                                    </p>
-                                                </div>
-                                                <Doughnut
-                                                    data={competeDataDoughnutChart(
-                                                        target,
-                                                        total,
-                                                        color[index]['bg'],
-                                                        color[index]['border']
+                                    <div
+                                        className="h-[20rem] w-[33%] doughnut-chart my-2"
+                                        key={index}
+                                    >
+                                        <div className="relative h-[90%]">
+                                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 text-center">
+                                                <h1 className="text-5xl font-semibold">
+                                                    {(total / target).toFixed(
+                                                        2,
                                                     )}
-                                                    options={competeOptionsDoughnutChart(
-                                                        title,
-                                                    )}
-                                                    className="mx-2"
-                                                />
+                                                </h1>
+                                                <p className="mt-2 text-text-subtitle-color">
+                                                    {target}/{total}
+                                                </p>
                                             </div>
-                                            { !isNaN(c) ? 
+                                            <Doughnut
+                                                data={competeDataDoughnutChart(
+                                                    target,
+                                                    total,
+                                                    color[index]['bg'],
+                                                    color[index]['border'],
+                                                )}
+                                                options={competeOptionsDoughnutChart(
+                                                    title,
+                                                )}
+                                                className="mx-2"
+                                            />
+                                        </div>
+                                        {!isNaN(c) ? (
                                             c >= cPrevious ? (
                                                 <p className="text-center text-green-500 font-semibold mt-4">
-                                                    Tăng {(c-cPrevious).toFixed(2)} so với {singleYear-1}
+                                                    Tăng{' '}
+                                                    {(c - cPrevious).toFixed(2)}{' '}
+                                                    so với {singleYear - 1}
                                                 </p>
                                             ) : (
                                                 <p className="text-center text-red-400 font-semibold mt-4">
-                                                    Giảm {(cPrevious-c).toFixed(2)} so với {singleYear-1}
+                                                    Giảm{' '}
+                                                    {(cPrevious - c).toFixed(2)}{' '}
+                                                    so với {singleYear - 1}
                                                 </p>
                                             )
-                                         : null}
-                                        </div>
+                                        ) : null}
+                                    </div>
                                 );
                             })}
                         </div>
@@ -265,12 +293,9 @@ export const CompeteChart = () => {
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Xu hướng tỉ lệ chọi
                         </h1>
-                        <YearRange showWish={false}/>
-                        <div className="p-4 w-full h-[20rem]">
-                            <Line
-                                data={dataTrend}
-                                options={optionsTrend}
-                            />
+                        <YearRange showWish={false} />
+                        <div className="p-4 w-full h-[25rem]">
+                            <Line data={dataTrend} options={optionsTrend} />
                         </div>
                     </div>
                 </div>

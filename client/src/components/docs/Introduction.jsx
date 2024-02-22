@@ -3,7 +3,9 @@ import React from 'react';
 export const Introduction = () => {
     return (
         <div>
-            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-dashed">Tóm tắt dự án</h1>
+            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-dashed">
+                Tóm tắt dự án
+            </h1>
             <p className="mt-[1rem]">
                 Score là một hệ thống website hỗ trợ phụ huynh và học sinh tra
                 cứu điểm chuẩn tuyển sinh 10 tại TP.HCM từ năm 2015 đến nay.

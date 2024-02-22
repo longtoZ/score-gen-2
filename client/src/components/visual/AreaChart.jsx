@@ -1,22 +1,22 @@
-import { useContext } from 'react';
-import { ModeContext } from '../../utils/setModeContext.js';
-import { SchoolContext } from '../../pages/visual/Visual.jsx';
-import { SingleYear } from './inputs/SingleYear.jsx';
-import { SingleWish } from './inputs/SingleWish.jsx';
-import { SingleDistrict } from './inputs/SingleDistrict.jsx';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
+import { useContext } from 'react';
+import { Bar } from 'react-chartjs-2';
+
+import { SchoolContext } from '../../pages/visual/Visual.jsx';
+import { SingleDistrict } from './inputs/SingleDistrict.jsx';
+import { SingleWish } from './inputs/SingleWish.jsx';
+import { SingleYear } from './inputs/SingleYear.jsx';
+
+import { ModeContext } from '../../utils/setModeContext.js';
 import {
     BarElement,
     CategoryScale,
     Chart,
+    Legend,
     Title,
     Tooltip,
-    Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-import './responsive.css';
-
 
 Chart.register(
     ChartDataLabels,
@@ -45,25 +45,30 @@ const color = [
 const selectedColor = {
     bg: 'rgba(245, 158, 11, 0.2)',
     border: '#f59e0b',
-}
+};
 
 export const AreaChart = () => {
     const { theme } = useContext(ModeContext);
-    const { areaData, singleYear, districtList, schoolData } = useContext(SchoolContext);
+    const { areaData, singleYear, districtList, schoolData } =
+        useContext(SchoolContext);
 
     // console.log(areaData, districtList, areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOSEN))
 
-    if (areaData.length !== 0 ) {
+    if (areaData.length !== 0) {
+        const schools = areaData.find(
+            (d) => d['QUAN/HUYEN'] === districtList.CHOSEN,
+        );
+        const colorIndex = areaData.findIndex(
+            (d) => d['QUAN/HUYEN'] === districtList.CHOSEN,
+        );
 
-        const schools = areaData.find((d) => d['QUAN/HUYEN'] === districtList.CHOSEN)
-        const colorIndex = areaData.findIndex((d) => d['QUAN/HUYEN'] === districtList.CHOSEN)
-
-        const schoolDataList = schoolData.map(s => s['TEN_TRUONG'])
+        const schoolDataList = schoolData.map((s) => s['TEN_TRUONG']);
 
         let delayed;
         const options = {
             indexAxis: 'y',
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 title: {
                     display: true,
@@ -71,7 +76,7 @@ export const AreaChart = () => {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
                 },
                 legend: {
-                    display: false
+                    display: false,
                 },
                 datalabels: {
                     display: true,
@@ -86,18 +91,18 @@ export const AreaChart = () => {
                         display: true,
                         text: 'Trường',
                     },
-                    ticks : {
+                    ticks: {
                         color: theme === 'light' ? '#18181b' : '#d4d4d8',
-                    }
+                    },
                 },
                 x: {
                     title: {
                         display: true,
                         text: 'Điểm',
                     },
-                    ticks : {
+                    ticks: {
                         color: theme === 'light' ? '#18181b' : '#d4d4d8',
-                    }
+                    },
                 },
             },
 
@@ -113,7 +118,8 @@ export const AreaChart = () => {
                         !delayed
                     ) {
                         delay =
-                            context.dataIndex * 300 + context.datasetIndex * 100;
+                            context.dataIndex * 300 +
+                            context.datasetIndex * 100;
                     }
                     return delay;
                 },
@@ -122,13 +128,23 @@ export const AreaChart = () => {
 
         const data = {
             labels: schools['DATA'].map((d) => d['TEN_TRUONG']),
-            datasets: [{
-                labels: null,
-                data: schools['DATA'].map((d) => d['DIEM']),
-                backgroundColor: schools['DATA'].map((d) => schoolDataList.includes(d['TEN_TRUONG']) ? selectedColor.bg : color[colorIndex].bg),
-                borderColor: schools['DATA'].map((d) => schoolDataList.includes(d['TEN_TRUONG']) ? selectedColor.border : color[colorIndex].border),
-                borderWidth: 1,
-            }]
+            datasets: [
+                {
+                    labels: null,
+                    data: schools['DATA'].map((d) => d['DIEM']),
+                    backgroundColor: schools['DATA'].map((d) =>
+                        schoolDataList.includes(d['TEN_TRUONG'])
+                            ? selectedColor.bg
+                            : color[colorIndex].bg,
+                    ),
+                    borderColor: schools['DATA'].map((d) =>
+                        schoolDataList.includes(d['TEN_TRUONG'])
+                            ? selectedColor.border
+                            : color[colorIndex].border,
+                    ),
+                    borderWidth: 1,
+                },
+            ],
         };
 
         return (
@@ -136,9 +152,9 @@ export const AreaChart = () => {
                 <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                     Các trường trong khu vực
                 </h1>
-                <div className='flex justify-between p-2 area-chart-grid'>
+                <div className="flex justify-between p-2 area-chart-grid">
                     <div className="w-[60%]">
-                        <div className="p-4 w-full">
+                        <div className="p-4 w-full h-[25rem] mx-auto">
                             <Bar
                                 data={data}
                                 options={options}
@@ -146,8 +162,8 @@ export const AreaChart = () => {
                             />
                         </div>
                     </div>
-                    <div className='w-[40%] pt-4'>
-                        <div className='border-2 border-border-color p-4 rounded-lg w-full mx-auto flex flex-wrap'>
+                    <div className="w-[40%] pt-4">
+                        <div className="border-2 border-border-color p-4 rounded-lg w-full mx-auto flex flex-wrap">
                             <SingleYear />
                             <SingleWish />
                             <SingleDistrict />
@@ -158,7 +174,5 @@ export const AreaChart = () => {
         );
     }
 
-    return <></>
+    return <></>;
 };
-
-

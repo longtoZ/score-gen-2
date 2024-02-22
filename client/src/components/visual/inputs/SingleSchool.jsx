@@ -1,5 +1,7 @@
+import { useContext, useRef, useState } from 'react';
+
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { useState, useRef, useContext } from 'react';
+
 import { SchoolContext } from '../../../pages/visual/Visual';
 
 export const SingleSchool = () => {
@@ -10,39 +12,43 @@ export const SingleSchool = () => {
 
     const handleShowSchool = () => {
         setShowSchool(!showSchool);
-    }
+    };
 
     const handleSchool = (e) => {
         e.stopPropagation();
         const code = e.target.getAttribute('data-school');
 
-        setSchoolData(schoolData.map(i => {
-            if (i.MA_TRUONG === code) {
-                return {
-                    ...i,
-                    CHOSEN: true
+        setSchoolData(
+            schoolData.map((i) => {
+                if (i.MA_TRUONG === code) {
+                    return {
+                        ...i,
+                        CHOSEN: true,
+                    };
+                } else {
+                    return {
+                        ...i,
+                        CHOSEN: false,
+                    };
                 }
-            } else {
-                return {
-                    ...i,
-                    CHOSEN: false
-                }
-            }
-        }))
+            }),
+        );
         setShowSchool(false);
 
         schoolRef.current.innerText = e.target.innerText;
-    }
+    };
 
     return (
-        <div className='m-1'>
-            <h1 className='font-semibold mx-2 my-1 block'>Chọn khu vực</h1>
+        <div className="m-1">
+            <h1 className="font-semibold mx-2 my-1 block">Chọn khu vực</h1>
             <div
-            className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer z-[3]"
-            onClick={handleShowSchool}
+                className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer z-[3]"
+                onClick={handleShowSchool}
             >
                 <p className="pr-2" ref={schoolRef}>
-                    {schoolData.find(i => i.CHOSEN === true) !== undefined ? schoolData.find(i => i.CHOSEN === true).TEN_TRUONG : 'Chọn trường'}
+                    {schoolData.find((i) => i.CHOSEN === true) !== undefined
+                        ? schoolData.find((i) => i.CHOSEN === true).TEN_TRUONG
+                        : 'Chọn trường'}
                 </p>
                 <ArrowDropDownIcon />
 
@@ -55,8 +61,8 @@ export const SingleSchool = () => {
                     }
                 >
                     {schoolData.map((item, index) => {
-                        const name = item.TEN_TRUONG
-                        const code = item.MA_TRUONG
+                        const name = item.TEN_TRUONG;
+                        const code = item.MA_TRUONG;
 
                         return (
                             <li
@@ -72,6 +78,5 @@ export const SingleSchool = () => {
                 </ul>
             </div>
         </div>
-
     );
 };

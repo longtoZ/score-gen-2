@@ -1,5 +1,7 @@
 header {
-    transition: transform ease 1s, top ease 1s !important;
+    transition:
+        transform ease 1s,
+        top ease 1s !important;
 }
 
 .select {
@@ -21,7 +23,6 @@ header {
 
 [data-theme='dark'] .advertising {
     box-shadow: 6px 6px 10px rgba(52, 211, 153, 0.3);
-
 }
 
 @media (max-width: 768px) {
@@ -34,5 +35,19 @@ header {
 @media (max-width: 576px) {
     .side-menu {
         width: 50% !important;
+    }
+
+    footer > div:first-child {
+        flex-direction: column;
+    }
+
+    footer > div:first-child > div {
+        width: 100% !important;
+    }
+}
+
+@media (max-height: 500px) {
+    .advertising {
+        display: none;
     }
 }

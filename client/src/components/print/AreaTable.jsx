@@ -37,7 +37,10 @@ export const AreaTable = ({ data }) => {
                                                 >
                                                     {item['QUAN/HUYEN']}
                                                 </td>
-                                                <td className="py-2 text-emerald-600 font-semibold" rowSpan={length}>
+                                                <td
+                                                    className="py-2 text-emerald-600 font-semibold"
+                                                    rowSpan={length}
+                                                >
                                                     {item['NAM_HOC']}
                                                 </td>
                                             </>

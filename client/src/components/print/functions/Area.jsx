@@ -1,9 +1,11 @@
-import { useState, useContext, useRef, useEffect } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+
 import { FunctionContext } from '../../../pages/print/Print';
 import { AddContext } from '../../../pages/print/Print';
 import { districtsList, yearsList } from '../../../utils/lists';
 import { getAxiosAreaAll, handleDataAreaAll } from '../../visual/utils';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export const Area = () => {
     const { data, setData } = useContext(FunctionContext);
@@ -104,9 +106,6 @@ export const Area = () => {
 
     return (
         <div>
-            <section>
-                <img src="" alt="demo" />
-            </section>
             <section className="w-full px-[10%] block pt-8">
                 <input
                     type="text"
@@ -117,7 +116,7 @@ export const Area = () => {
                 />
                 <div className="w-full border-b-2 border-border-color"></div>
             </section>
-            <section className="mt-4 grid grid-cols-2 gap-2 pt-8 px-[10%]">
+            <section className="options-grid mt-4 grid grid-cols-2 gap-2 pt-8 px-[10%]">
                 <div
                     className="mx-auto w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer"
                     onClick={handleShowYear}

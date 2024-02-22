@@ -1,0 +1,57 @@
+@media (max-width: 1200px) {
+    .options-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .menu-grid span {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .Print .table-section {
+        padding: 0 0 !important;
+    }
+
+    .menu-container {
+        height: 80vh !important;
+        overflow-y: scroll;
+    }
+
+    .menu-grid,
+    .Print .grid-cols-2,
+    .inputs-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+
+    .order-container {
+        width: 50% !important;
+        padding: 2rem !important;
+    }
+
+    .grab-btn {
+        width: 15% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .Print .grid-cols-3 {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+
+    .Print .options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .add-menu,
+    .order-menu {
+        width: 80% !important;
+    }
+
+    .Print .table-area {
+        overflow-x: scroll;
+    }
+}

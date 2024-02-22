@@ -1,13 +1,12 @@
 import font1 from '../../assets/img/docs/1.png';
 import font2 from '../../assets/img/docs/2.png';
-import search1 from '../../assets/img/docs/9.png';
 import suggest1 from '../../assets/img/docs/3.png';
 import suggest2 from '../../assets/img/docs/4.png';
 import visual1 from '../../assets/img/docs/5.png';
 import visual2 from '../../assets/img/docs/6.png';
 import visual3 from '../../assets/img/docs/7.png';
 import print1 from '../../assets/img/docs/8.png';
-
+import search1 from '../../assets/img/docs/9.png';
 
 export const Migration = () => {
     return (
@@ -71,12 +70,13 @@ export const Migration = () => {
                 alt="font2"
                 className="my-6 w-full rounded-lg border-2 border-border-color"
             />
-                        <h1 className="font-semibold text-2xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed mt-[4rem]">
+            <h1 className="font-semibold text-2xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed mt-[4rem]">
                 Giao diện trang &quot;Tra cứu&quot;
             </h1>
             <p className="mt-[1rem]">
-              Ở phiên bản mới, mỗi trường sẽ có 1 ô giúp người dùng có thể xem thông tin chi tiết về trường như:
-              địa chỉ, năm thành lập, trang thông tin chính và địa chỉ trên bản đồ.
+                Ở phiên bản mới, mỗi trường sẽ có 1 ô giúp người dùng có thể xem
+                thông tin chi tiết về trường như: địa chỉ, năm thành lập, trang
+                thông tin chính và địa chỉ trên bản đồ.
             </p>
             <img
                 src={search1}
@@ -87,10 +87,11 @@ export const Migration = () => {
                 Giao diện trang &quot;Đề xuất&quot;
             </h1>
             <p className="mt-[1rem]">
-                Ở phiên bản cũ, &quot;bộ lọc&quot; và &quot;chức năng&quot; không được phân chia rõ
-                ràng, gây khó khăn cho người mới sửa dụng. Đồng thời, 3 chức
-                năng &quot;Lọc khoảng&quot;, &quot;Thứ tự&quot; và &quot;Trung bình&quot; cũng không được sắp
-                xếp một cách hợp lý.
+                Ở phiên bản cũ, &quot;bộ lọc&quot; và &quot;chức năng&quot;
+                không được phân chia rõ ràng, gây khó khăn cho người mới sửa
+                dụng. Đồng thời, 3 chức năng &quot;Lọc khoảng&quot;, &quot;Thứ
+                tự&quot; và &quot;Trung bình&quot; cũng không được sắp xếp một
+                cách hợp lý.
                 <img
                     src={suggest1}
                     alt="font2"
@@ -134,24 +135,28 @@ export const Migration = () => {
                 className="my-6 w-full rounded-lg border-2 border-border-color"
             />
             <p className="mt-[1rem]">
-              Ngoài ra, các mục được cho là không cần thiết cũng bị loại bỏ.
+                Ngoài ra, các mục được cho là không cần thiết cũng bị loại bỏ.
             </p>
             <h1 className="font-semibold text-2xl pb-2 border-b-2 border-neutral-200 dark:border-neutral-700 border-dashed mt-[4rem]">
                 Giao diện trang &quot;Báo cáo&quot;
             </h1>
             <p className="mt-[1rem]">
-              Trước cập nhật, trang &quot;Báo cáo&quot; cố định nội dung mà người dùng có thể in, điều này đồng nghĩa vói 
-              việc bạn không thể thêm, xoá hay sắp xếp các mục theo ý muốn của mình. Đồng thời, số lượng 
-              các mục cũng bị giới hạn (chỉ 5 mục).
-              <br/>
-              <br/>
-              Ở phiên bản Gen 2, chúng tôi đã xây dựng giao diện mới giúp người dùng có thể tuỳ chọn mục với
-              thông số tuỳ ý. Đồng thời, bạn cũng hoàn toàn có thể chỉnh sửa lại thông tin mục đã thêm hoặc xoá chúng.
-              Ngoài ra, bạn cũng có thể kéo thả để sắp xếp lại các mục theo ý muốn của mình.
-              <br/>
-              <br/>
-              Nếu cần thiết, bạn vẫn có thể lưu nội dung các mục vào bộ nhớ tạm trên thiết bị của mình. 
-              Lần tiếp theo truy cập vào Score, dữ liệu vẫn được giữ nguyên.
+                Trước cập nhật, trang &quot;Báo cáo&quot; cố định nội dung mà
+                người dùng có thể in, điều này đồng nghĩa vói việc bạn không thể
+                thêm, xoá hay sắp xếp các mục theo ý muốn của mình. Đồng thời,
+                số lượng các mục cũng bị giới hạn (chỉ 5 mục).
+                <br />
+                <br />
+                Ở phiên bản Gen 2, chúng tôi đã xây dựng giao diện mới giúp
+                người dùng có thể tuỳ chọn mục với thông số tuỳ ý. Đồng thời,
+                bạn cũng hoàn toàn có thể chỉnh sửa lại thông tin mục đã thêm
+                hoặc xoá chúng. Ngoài ra, bạn cũng có thể kéo thả để sắp xếp lại
+                các mục theo ý muốn của mình.
+                <br />
+                <br />
+                Nếu cần thiết, bạn vẫn có thể lưu nội dung các mục vào bộ nhớ
+                tạm trên thiết bị của mình. Lần tiếp theo truy cập vào Score, dữ
+                liệu vẫn được giữ nguyên.
             </p>
             <img
                 src={print1}
@@ -162,8 +167,8 @@ export const Migration = () => {
                 Thuật toán và hiệu năng
             </h1>
             <p className="mt-[1rem]">
-                Score Gen 2 sở hữu những cải thiện đáng kể trong thuật toán, giúp tối ưu hóa hiệu năng và
-                tốc độ xử lý dữ liệu. 
+                Score Gen 2 sở hữu những cải thiện đáng kể trong thuật toán,
+                giúp tối ưu hóa hiệu năng và tốc độ xử lý dữ liệu.
             </p>
         </div>
     );

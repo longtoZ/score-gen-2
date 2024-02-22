@@ -1,42 +1,45 @@
-import './responsive.css';
-
-
 export const RangeTable = ({ tableData, filterData, schoolType }) => {
-    
     const filteredTableData =
         schoolType === 'Lớp thường'
-            ? tableData.filter(
-                  (item) =>
-                      filterData.districtValue.includes(item['district']) &&
-                      parseFloat(item[filterData.wishValue]) >=
-                          filterData.startValue &&
-                      parseFloat(item[filterData.wishValue]) <=
-                          filterData.endValue,
-              ).sort((a,b) => parseFloat(a[filterData.wishValue])-parseFloat(b[filterData.wishValue]))
-            : tableData.filter(
-                  (item) =>
-                      filterData.districtValue.includes(item['district']) &&
-                      parseFloat(item['NV1']) >= filterData.startValue &&
-                      parseFloat(item['NV1']) <= filterData.endValue,
-                ).sort((a,b) => parseFloat(a['NV1'])-parseFloat(b['NV1']));
+            ? tableData
+                  .filter(
+                      (item) =>
+                          filterData.districtValue.includes(item['district']) &&
+                          parseFloat(item[filterData.wishValue]) >=
+                              filterData.startValue &&
+                          parseFloat(item[filterData.wishValue]) <=
+                              filterData.endValue,
+                  )
+                  .sort(
+                      (a, b) =>
+                          parseFloat(a[filterData.wishValue]) -
+                          parseFloat(b[filterData.wishValue]),
+                  )
+            : tableData
+                  .filter(
+                      (item) =>
+                          filterData.districtValue.includes(item['district']) &&
+                          parseFloat(item['NV1']) >= filterData.startValue &&
+                          parseFloat(item['NV1']) <= filterData.endValue,
+                  )
+                  .sort((a, b) => parseFloat(a['NV1']) - parseFloat(b['NV1']));
 
     return (
         <>
             {filteredTableData.length !== 0 ? (
                 <>
-                    { schoolType === 'Lớp thường' ? (
+                    {schoolType === 'Lớp thường' ? (
                         <h1 className="text-center text-2xl font-bold mt-10">
-                            Các trường có điểm {filterData.wishValue} trong khoảng{' '}
-                            {(filterData.startValue * 0.3).toFixed(2)} -{' '}
-                            {(filterData.endValue * 0.3).toFixed(2)} (theo trung
-                            bình các năm)
+                            Các trường có điểm {filterData.wishValue} trong
+                            khoảng {(filterData.startValue * 0.3).toFixed(2)} -{' '}
+                            {(filterData.endValue * 0.3).toFixed(2)}
                         </h1>
                     ) : (
                         <h1 className="text-center text-2xl font-bold mt-10">
-                            Các trường có điểm {filterData.wishValue.replace('%', '')} trong khoảng{' '}
+                            Các trường có điểm{' '}
+                            {filterData.wishValue.replace('%', '')} trong khoảng{' '}
                             {parseFloat(filterData.startValue).toFixed(2)} -{' '}
-                            {parseFloat(filterData.endValue).toFixed(2)} (theo trung
-                            bình các năm)
+                            {parseFloat(filterData.endValue).toFixed(2)}
                         </h1>
                     )}
 

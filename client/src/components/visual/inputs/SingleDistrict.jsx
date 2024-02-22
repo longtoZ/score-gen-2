@@ -1,5 +1,7 @@
+import { useContext, useRef, useState } from 'react';
+
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { useState, useRef, useContext } from 'react';
+
 import { SchoolContext } from '../../../pages/visual/Visual';
 
 export const SingleDistrict = () => {
@@ -10,24 +12,24 @@ export const SingleDistrict = () => {
 
     const handleShowDistrict = () => {
         setShowDistrict(!showDistrict);
-    }
+    };
 
     const handleDistrict = (e) => {
         e.stopPropagation();
         setDistrictList({
             DATA: districtList.DATA,
-            CHOSEN: e.target.getAttribute('data-district')
+            CHOSEN: e.target.getAttribute('data-district'),
         });
         setShowDistrict(false);
         districtRef.current.innerText = e.target.innerText;
-    }
+    };
 
     return (
-        <div className='m-1'>
-            <h1 className='font-semibold mx-2 my-1 block'>Chọn khu vực</h1>
+        <div className="m-1">
+            <h1 className="font-semibold mx-2 my-1 block">Chọn khu vực</h1>
             <div
-            className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer z-[3]"
-            onClick={handleShowDistrict}
+                className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer z-[3]"
+                onClick={handleShowDistrict}
             >
                 <p className="pr-2" ref={districtRef}>
                     {districtList.CHOSEN}
@@ -57,6 +59,5 @@ export const SingleDistrict = () => {
                 </ul>
             </div>
         </div>
-
     );
 };

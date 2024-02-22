@@ -1,28 +1,33 @@
-import { useState, useRef, createContext, useEffect } from 'react';
+import { createContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import AddIcon from '@mui/icons-material/Add';
-import SearchIcon from '@mui/icons-material/Search';
-import { SchoolSearch } from '../../components/visual/SchoolSearch';
-import { YearChart } from '../../components/visual/YearChart';
-import { CompeteChart } from '../../components/visual/CompeteChart';
-import { AreaChart } from '../../components/visual/AreaChart';
-import { GroupChart } from '../../components/visual/GroupChart';
-import {
-    getAxiosYear,
-    handleDataYear,
-    getAxiosCompete,
-    handleDataCompete,
-    getAxiosArea,
-    handleDataArea,
-    getAxiosGroup,
-    handleDataGroup,
-} from '../../components/visual/utils';
-import { yearsList } from '../../utils/lists';
-import './add.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { AreaChart } from '../../components/visual/AreaChart';
+import { CompeteChart } from '../../components/visual/CompeteChart';
+import { GroupChart } from '../../components/visual/GroupChart';
+import { SchoolSearch } from '../../components/visual/SchoolSearch';
+import { YearChart } from '../../components/visual/YearChart';
+import {
+    getAxiosArea,
+    getAxiosCompete,
+    getAxiosGroup,
+    getAxiosYear,
+    handleDataArea,
+    handleDataCompete,
+    handleDataGroup,
+    handleDataYear,
+} from '../../components/visual/utils';
+
+import AddIcon from '@mui/icons-material/Add';
+import SearchIcon from '@mui/icons-material/Search';
+
+import './add.css';
+import './responsive.css';
+import './schoolSearch.css';
+
+import { yearsList } from '../../utils/lists';
 
 const toastOptions = {
     position: 'bottom-right',
@@ -45,10 +50,7 @@ export const Visual = () => {
     const [endYear, setEndYear] = useState(yearsList[0]);
     const [singleYear, setSingleYear] = useState(yearsList[0]);
     const [singleWish, setSingleWish] = useState('NV1');
-    const [districtList, setDistrictList] = useState({
-        DATA: [],
-        CHOSEN: '',
-    });
+    const [districtList, setDistrictList] = useState({ DATA: [], CHOSEN: '' });
     const [singleDiff, setSingleDiff] = useState(0.5);
     const [sendDiff, setSendDiff] = useState(false);
 
@@ -175,6 +177,11 @@ export const Visual = () => {
         searchBasedOnKeyword(keyword);
     };
 
+    // Update document title
+    useEffect(() => {
+        document.title = 'Score | Phân tích';
+    }, []);
+
     // Toast message management
     useEffect(() => {
         if (toastMessage.type === 'error') {
@@ -211,7 +218,7 @@ export const Visual = () => {
 
         const selectedScore = schoolData
             .find((s) => s['CHOSEN'] === true)['DATA'].find((d) => d['NAM_HOC'] === singleYear)['DIEM'][singleWish];
-            
+
         getAxiosGroup(singleYear, singleWish, selectedScore, singleDiff)
             .then((res) => handleDataGroup(res))
             .then((data) => {
@@ -240,12 +247,12 @@ export const Visual = () => {
                     thông qua các biểu đồ và tuỳ biến đa dạng.
                     <br />
                     Chưa rõ?{' '}
-                    <Link to="/guide" className="text-blue-500 underline">
+                    <Link to="/docs/visual" className="text-blue-500 underline">
                         Xem hướng dẫn
                     </Link>
                 </p>
 
-                <div className='flex justify-center my-[2rem]'>
+                <div className="flex justify-center my-[2rem]">
                     <div className="relative" ref={addSchoolRef}>
                         <div
                             className="add cursor-pointer bg-input-color p-1 rounded-[50%] shadow-basic flex"
@@ -285,7 +292,6 @@ export const Visual = () => {
                     </div>
                 </div>
 
-
                 <div className="flex justify-center gap-4 mt-[6rem] flex-wrap">
                     <SchoolContext.Provider
                         value={{
@@ -303,7 +309,6 @@ export const Visual = () => {
                             <SchoolSearch key={index} school={school} />
                         ))}
                     </SchoolContext.Provider>
-
                 </div>
 
                 <SchoolContext.Provider

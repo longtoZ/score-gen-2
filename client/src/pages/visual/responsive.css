@@ -1,0 +1,36 @@
+@media (max-width: 992px) {
+    .doughnut-chart {
+        width: auto !important;
+        height: 18rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .year-chart-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    }
+
+    .compete-chart-grid {
+        flex-direction: column !important;
+    }
+
+    .compete-chart-grid > div {
+        width: 100% !important;
+    }
+
+    .area-chart-grid {
+        flex-direction: column-reverse !important;
+    }
+
+    .area-chart-grid > div {
+        width: 100% !important;
+    }
+
+    .group-chart-grid {
+        flex-direction: column-reverse !important;
+    }
+
+    .group-chart-grid > div {
+        width: 100% !important;
+    }
+}

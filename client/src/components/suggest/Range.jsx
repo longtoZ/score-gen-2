@@ -1,9 +1,11 @@
-import { useState, useContext } from 'react';
+import { useContext, useState } from 'react';
+
 import { FilterContext } from '../../pages/suggest/Suggest';
 import { normalSubjectsObj, specialSubjectsObj } from '../../utils/lists';
 
 export const Range = ({ min, max, schoolType, wish }) => {
-    const { filterData, setFilterData, setToastMessage } = useContext(FilterContext);
+    const { filterData, setFilterData, setToastMessage } =
+        useContext(FilterContext);
 
     const [start, setStart] = useState(min);
     const [end, setEnd] = useState(max);
@@ -38,9 +40,7 @@ export const Range = ({ min, max, schoolType, wish }) => {
                 ? ((start / 30) * 100).toFixed(2)
                 : start;
         const endValue =
-            schoolType === 'Lớp thường' 
-                ? ((end / 30) * 100).toFixed(2) 
-                : end;
+            schoolType === 'Lớp thường' ? ((end / 30) * 100).toFixed(2) : end;
         const wishValue =
             schoolType === 'Lớp thường'
                 ? normalSubjectsObj[wish]
@@ -55,7 +55,7 @@ export const Range = ({ min, max, schoolType, wish }) => {
     };
 
     return (
-        <div className="mt-[2rem] grid grid-cols-3 gap-2">
+        <div className="inputs-grid mt-[2rem] grid grid-cols-3 gap-2">
             <input
                 className="bs-in-light p-2 bg-transparent rounded-lg text-center"
                 type="number"

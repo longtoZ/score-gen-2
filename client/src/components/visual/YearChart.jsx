@@ -1,21 +1,23 @@
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 import { useContext } from 'react';
-import { ModeContext } from '../../utils/setModeContext.js';
+import { Bar, Line } from 'react-chartjs-2';
+
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
 import { YearRange } from './inputs/YearRange.jsx';
+
+import { ModeContext } from '../../utils/setModeContext.js';
 import {
     BarElement,
     CategoryScale,
     Chart,
-    LinearScale,
-    Title,
-    PointElement,
-    LineElement,
-    Tooltip,
     Legend,
+    LineElement,
+    LinearScale,
+    PointElement,
+    Title,
+    Tooltip,
 } from 'chart.js';
-import { Bar, Line } from 'react-chartjs-2';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-import './responsive.css';
 
 Chart.register(
     ChartDataLabels,
@@ -52,7 +54,8 @@ const color = [
 
 export const YearChart = () => {
     const { theme } = useContext(ModeContext);
-    const { startYear, endYear, schoolData, singleWish } = useContext(SchoolContext);
+    const { startYear, endYear, schoolData, singleWish } =
+        useContext(SchoolContext);
 
     // console.log(schoolData)
 
@@ -101,7 +104,7 @@ export const YearChart = () => {
             DIEM: Array.from(school, (s) => {
                 if (years.includes(s['NAM_HOC'])) {
                     if (s['DIEM']['NV1'] === 0) {
-                        return NaN
+                        return NaN;
                     }
 
                     if (s['NAM_HOC'] < 2021) {
@@ -119,7 +122,7 @@ export const YearChart = () => {
             DIEM: Array.from(school, (s) => {
                 if (years.includes(s['NAM_HOC'])) {
                     if (s['DIEM']['NV2'] === 0) {
-                        return NaN
+                        return NaN;
                     }
 
                     if (s['NAM_HOC'] < 2021) {
@@ -137,7 +140,7 @@ export const YearChart = () => {
             DIEM: Array.from(school, (s) => {
                 if (years.includes(s['NAM_HOC'])) {
                     if (s['DIEM']['NV3'] === 0) {
-                        return NaN
+                        return NaN;
                     }
 
                     if (s['NAM_HOC'] < 2021) {
@@ -154,6 +157,7 @@ export const YearChart = () => {
     let delayedYear;
     const optionsYear = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             title: {
                 display: true,
@@ -173,16 +177,16 @@ export const YearChart = () => {
                     display: true,
                     text: 'Năm',
                 },
-                ticks : {
+                ticks: {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
-                }
+                },
             },
             y: {
                 title: {
                     display: true,
                     text: 'Điểm',
                 },
-                ticks : {
+                ticks: {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
                 },
                 // min: 0,
@@ -229,18 +233,18 @@ export const YearChart = () => {
                     display: true,
                     text: 'Năm',
                 },
-                ticks : {
+                ticks: {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
-                }
+                },
             },
             y: {
                 title: {
                     display: true,
                     text: 'Phần trăm',
                 },
-                ticks : {
+                ticks: {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
-                }
+                },
             },
         },
 
@@ -300,7 +304,7 @@ export const YearChart = () => {
                             Điểm qua các năm
                         </h1>
                         <YearRange />
-                        <div className="p-4 w-full">
+                        <div className="p-4 w-full h-[25rem] mx-auto">
                             <Bar
                                 data={dataYear}
                                 options={optionsYear}
@@ -312,7 +316,7 @@ export const YearChart = () => {
                         <h1 className="w-full bg-emerald-500 text-center text-white font-semibold text-lg py-2">
                             Xu hướng điểm (%)
                         </h1>
-                        <div className="p-4 w-full h-[25rem]">
+                        <div className="p-4 w-full h-[25rem] mx-auto">
                             <Line
                                 data={dataTrend}
                                 options={optionsTrend}

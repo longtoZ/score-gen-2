@@ -1,10 +1,9 @@
 import { useContext, useState } from 'react';
-import { OrderContext } from '../../../pages/print/Print';
 
 import CloseIcon from '@mui/icons-material/Close';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
 
-import '../responsive.css';
+import { OrderContext } from '../../../pages/print/Print';
 
 const functionType = {
     'score-range': 'Khoảng điểm',
@@ -28,14 +27,14 @@ export const OrderMenu = () => {
 
     const handleDragStart = (index) => {
         setDraggedIndex(index);
-    }
+    };
 
     const handleDragOver = (e, index) => {
-        e.preventDefault()
+        e.preventDefault();
         if (index !== draggedIndex) {
             // console.log(index, draggedIndex);
         }
-    }
+    };
 
     const handleDrop = (index) => {
         if (index !== draggedIndex) {
@@ -44,14 +43,14 @@ export const OrderMenu = () => {
             newData.splice(index, 0, item[0]);
             setData(newData);
         }
-    }
+    };
 
     return (
         <div
             className="w-full h-full fixed bg-black bg-opacity-40 flex justify-center items-center z-[3]"
             onClick={handleHideOrder}
         >
-            <div className="w-1/3 py-8 px-16 bg-container-color rounded-lg relative order-container">
+            <div className="order-menu w-1/3 py-8 px-16 bg-container-color rounded-lg relative order-container">
                 <div className="absolute top-3 right-3 text-gray-400">
                     <CloseIcon
                         onClick={handleHideOrder}
@@ -61,8 +60,10 @@ export const OrderMenu = () => {
                 <h1 className="text-lg text-center font-semibold">
                     Kéo và thả để sắp xếp lại thứ tự
                 </h1>
-                <h1 className='text-sm text-gray-400 mt-[2rem]'>Tổng số mục: {data.length}</h1>
-                <div className=''>
+                <h1 className="text-sm text-gray-400 mt-[2rem]">
+                    Tổng số mục: {data.length}
+                </h1>
+                <div className="">
                     {data.map((item, index) => {
                         return (
                             <div
@@ -74,9 +75,8 @@ export const OrderMenu = () => {
                                 onDrop={() => handleDrop(index)}
                             >
                                 <div className="w-[10%] text-center bg-even-row-color p-1 cursor-grab grab-btn">
-                                    <div className='flex items-center justify-center h-full'>
-                                        <DragHandleIcon className='my-auto text-gray-400' />
-
+                                    <div className="flex items-center justify-center h-full">
+                                        <DragHandleIcon className="my-auto text-gray-400" />
                                     </div>
                                 </div>
                                 <div className="px-4 py-1 my-auto">

@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export const PrintDocs = () => {
-  return (
-    <div>Đang cập nhật...</div>
-  )
-}
+    return <div>Đang cập nhật...</div>;
+};

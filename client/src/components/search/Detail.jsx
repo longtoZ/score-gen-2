@@ -1,5 +1,4 @@
 import React from 'react';
-import './table.css';
 
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
@@ -31,7 +30,10 @@ export const Detail = ({ ...res }) => {
                         <b>Địa chỉ: </b> {res.DIA_CHI}
                     </li>
                 </ul>
-                <div className='map-area' dangerouslySetInnerHTML={{ __html: res.BAN_DO }}></div>
+                <div
+                    className="map-area"
+                    dangerouslySetInnerHTML={{ __html: res.BAN_DO }}
+                ></div>
             </div>
         </td>
     );

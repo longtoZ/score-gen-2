@@ -1,5 +1,7 @@
+import { useContext, useRef, useState } from 'react';
+
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { useState, useRef, useContext } from 'react';
+
 import { SchoolContext } from '../../../pages/visual/Visual';
 
 const wishFullName = {
@@ -18,21 +20,21 @@ export const SingleWish = () => {
 
     const handleShowWish = () => {
         setShowWish(!showWish);
-    }
+    };
 
     const handleWish = (e) => {
         e.stopPropagation();
         setSingleWish(e.target.getAttribute('data-wish'));
         setShowWish(false);
         wishRef.current.innerText = e.target.innerText;
-    }
+    };
 
     return (
-        <div className='m-1'>
-            <h1 className='font-semibold mx-2 my-1 block'>Chọn nguyện vọng</h1>
+        <div className="m-1">
+            <h1 className="font-semibold mx-2 my-1 block">Chọn nguyện vọng</h1>
             <div
-            className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer z-[3]"
-            onClick={handleShowWish}
+                className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer z-[3]"
+                onClick={handleShowWish}
             >
                 <p className="pr-2" ref={wishRef}>
                     {wishFullName[singleWish]}
@@ -62,6 +64,5 @@ export const SingleWish = () => {
                 </ul>
             </div>
         </div>
-
     );
 };

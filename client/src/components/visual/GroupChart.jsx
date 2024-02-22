@@ -1,21 +1,23 @@
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 import { useContext } from 'react';
-import { ModeContext } from '../../utils/setModeContext.js';
+import { Bar } from 'react-chartjs-2';
+
 import { SchoolContext } from '../../pages/visual/Visual.jsx';
-import { SingleSchool } from './inputs/SingleSchool.jsx';
-import { SingleYear } from './inputs/SingleYear.jsx';
-import { SingleWish } from './inputs/SingleWish.jsx';
 import { SingleDiff } from './inputs/DiffInput.jsx';
+import { SingleSchool } from './inputs/SingleSchool.jsx';
+import { SingleWish } from './inputs/SingleWish.jsx';
+import { SingleYear } from './inputs/SingleYear.jsx';
+
+import { ModeContext } from '../../utils/setModeContext.js';
 import {
     BarElement,
     CategoryScale,
     Chart,
+    Legend,
     Title,
     Tooltip,
-    Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-import './responsive.css';
 
 Chart.register(
     ChartDataLabels,
@@ -34,19 +36,23 @@ const color = {
     selected: {
         bg: 'rgba(245, 158, 11, 0.2)',
         border: '#f59e0b',
-    }
-}
+    },
+};
 
 export const GroupChart = () => {
     const { theme } = useContext(ModeContext);
     const { groupData, schoolData } = useContext(SchoolContext);
 
-    const selectedScore = schoolData.find(s => s['CHOSEN'] === true)['TEN_TRUONG'];
+    const selectedScore = schoolData.find((s) => s['CHOSEN'] === true)[
+        'TEN_TRUONG'
+    ];
 
     let delayed;
     const options = {
         indexAxis: 'y',
         responsive: true,
+        maintainAspectRatio: false,
+
         plugins: {
             title: {
                 display: true,
@@ -54,7 +60,7 @@ export const GroupChart = () => {
                 color: theme === 'light' ? '#18181b' : '#d4d4d8',
             },
             legend: {
-                display: false
+                display: false,
             },
             datalabels: {
                 display: true,
@@ -69,18 +75,18 @@ export const GroupChart = () => {
                     display: true,
                     text: 'Trường',
                 },
-                ticks : {
+                ticks: {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
-                }
+                },
             },
             x: {
                 title: {
                     display: true,
                     text: 'Điểm',
                 },
-                ticks : {
+                ticks: {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
-                }
+                },
             },
         },
 
@@ -105,13 +111,23 @@ export const GroupChart = () => {
 
     const data = {
         labels: groupData.map((d) => d['TEN_TRUONG']),
-        datasets: [{
-            labels: null,
-            data: groupData.map((d) => d['DIEM']),
-            backgroundColor: groupData.map((d) => d['TEN_TRUONG'] === selectedScore ? color.selected.bg : color.normal.bg),
-            borderColor: groupData.map((d) => d['TEN_TRUONG'] === selectedScore ? color.selected.border : color.normal.border),
-            borderWidth: 1,
-        }]
+        datasets: [
+            {
+                labels: null,
+                data: groupData.map((d) => d['DIEM']),
+                backgroundColor: groupData.map((d) =>
+                    d['TEN_TRUONG'] === selectedScore
+                        ? color.selected.bg
+                        : color.normal.bg,
+                ),
+                borderColor: groupData.map((d) =>
+                    d['TEN_TRUONG'] === selectedScore
+                        ? color.selected.border
+                        : color.normal.border,
+                ),
+                borderWidth: 1,
+            },
+        ],
     };
 
     return (
@@ -121,12 +137,16 @@ export const GroupChart = () => {
             </h1>
             <div className="flex justify-between p-2 group-chart-grid">
                 <div className="w-[60%]">
-                    <div className="p-4 w-full my-auto">
-                        <Bar
-                            data={data}
-                            options={options}
-                            plugins={[ChartDataLabels]}
-                        />
+                    <div
+                        className={`p-4 w-full my-auto ${groupData.length > 0 ? 'h-[25rem]' : 'h-0'}`}
+                    >
+                        {groupData.length > 0 && (
+                            <Bar
+                                data={data}
+                                options={options}
+                                plugins={[ChartDataLabels]}
+                            />
+                        )}
                     </div>
                 </div>
                 <div className="w-[40%] h-full pt-4 block">
@@ -134,17 +154,24 @@ export const GroupChart = () => {
                         <SingleSchool />
                         <SingleYear />
                         <SingleWish />
-                        <SingleDiff/>
+                        <SingleDiff />
                     </div>
-                    <div className='mt-[1rem] h-[15rem] overflow-y-scroll border-2 border-border-color py-4 px-6 rounded-lg'>
-                        <ul className=''>
+                    <div className="mt-[1rem] h-[15rem] overflow-y-scroll border-2 border-border-color py-4 px-6 rounded-lg">
+                        <ul className="">
                             {groupData.map((item, index) => {
                                 return (
-                                    <li key={index} className='flex justify-between py-2 my-2 border-b-2 border-border-color'>
-                                        <h1 className='inline-block font-semibold'>{item['TEN_TRUONG']}</h1>
-                                        <h1 className='inline-block'>{item['QUAN/HUYEN']}</h1>
+                                    <li
+                                        key={index}
+                                        className="flex justify-between py-2 my-2 border-b-2 border-border-color"
+                                    >
+                                        <h1 className="inline-block font-semibold">
+                                            {item['TEN_TRUONG']}
+                                        </h1>
+                                        <h1 className="inline-block">
+                                            {item['QUAN/HUYEN']}
+                                        </h1>
                                     </li>
-                                )
+                                );
                             })}
                         </ul>
                     </div>

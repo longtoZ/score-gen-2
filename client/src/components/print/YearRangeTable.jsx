@@ -1,5 +1,7 @@
 export const YearRangeTable = ({ data }) => {
-    const tableData = data.tableData.filter((d) => d['NAM_HOC'] >= data.start && d['NAM_HOC'] <= data.end);
+    const tableData = data.tableData.filter(
+        (d) => d['NAM_HOC'] >= data.start && d['NAM_HOC'] <= data.end,
+    );
     const length = tableData.length;
 
     return (
