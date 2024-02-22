@@ -1,5 +1,4 @@
 [![Contributors](https://img.shields.io/github/contributors/longtoZ/score-gen-2)]()
-[![Commits](https://img.shields.io/github/commits-since/longtoZ/score-gen-2)]()
 [![Issues](https://img.shields.io/github/issues/longtoZ/score-gen-2)]()
 [![MIT License](https://img.shields.io/github/license/longtoZ/score-gen-2)]()
 
