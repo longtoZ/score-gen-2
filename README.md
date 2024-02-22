@@ -8,7 +8,7 @@
     <img src="img/logo.png" alt="Logo" width="100" height="100">
   </a>
 
-  <h3 align="center">Score Generation II</h3>
+  <h1 align="center">Score Generation II</h1>
 
   <p align="center">
     Dữ liệu không chỉ dừng lại ở những con số, với Score, bạn có thể khai thác nhiều hơn thế nữa.
@@ -53,6 +53,7 @@
 
 Những framework/package/tool được sử dụng trong quá trình xây dựng.
 
+<div style="display:flex; flex-wrap:wrap; justify-content:center; gap:6px">
 <img src="https://img.shields.io/badge/VSCode-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white" width="110" height="40"/>
 <img src="https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white" width="110" height="40"/>
 <img src="https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E" width="140" height="40"/>
@@ -67,10 +68,12 @@ Những framework/package/tool được sử dụng trong quá trình xây dựn
 <img src="https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white" width="140" height="40"/>
 <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" width="100" height="40"/>
 <img src="https://img.shields.io/badge/axios-671ddf?&style=for-the-badge&logo=axios&logoColor=white" width="100" height="40"/>
+</div>
+
 
 ## 5. License
 
-Phân phối theo Giấy phép MIT. Xem [LICENSE.txt](LICENSE.txt) để biết thêm thông tin.
+Phân phối theo Giấy phép MIT. Xem [LICENSE](LICENSE) để biết thêm thông tin.
 
 ## 6. Contact
 <a href="mailto:longto.xp@gmail.com">
