@@ -40,12 +40,14 @@ export const Hero = () => {
                     nơi.
                 </p>
                 <div className="flex gap-6">
-                    <button className="mt-[2rem] bg-emerald-400 text-white font-semibold rounded-lg p-2 w-[7rem] try-shadow">
+                    <button className="mt-[2rem] bg-emerald-400 text-white text-center font-semibold rounded-lg p-2 w-[8rem] try-shadow">
+                        <PlayArrowIcon className="mr-2" />
                         <Link to="/search">Thử ngay</Link>
                     </button>
-                    <button className="mt-[2rem] bg-bg-color border-2 font-semibold rounded-lg p-2 w-[8rem] demo-shadow">
-                        <PlayArrowIcon className="mr-2" />
-                        Xem demo
+                    <button className="mt-[2rem] text-center bg-bg-color border-2 font-semibold rounded-lg p-2 w-[9rem] demo-shadow">
+                        <Link to="/docs/migration">
+                            Tìm hiểu thêm
+                        </Link>
                     </button>
                 </div>
             </div>

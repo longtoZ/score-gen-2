@@ -1,4 +1,4 @@
-import { createContext, useEffect, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
@@ -28,22 +28,12 @@ import './responsive.css';
 import './schoolSearch.css';
 
 import { yearsList } from '../../utils/lists';
-
-const toastOptions = {
-    position: 'bottom-right',
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'light',
-    transition: Bounce,
-};
+import { ModeContext } from '../../utils/setModeContext';
 
 export const SchoolContext = createContext();
 
 export const Visual = () => {
+    const { theme } = useContext(ModeContext);
     const [showSearch, setShowSearch] = useState(false);
     const [keyword, setKeyword] = useState('Nguyễn Hữu Huân');
     const [startYear, setStartYear] = useState(yearsList[yearsList.length - 1]);
@@ -63,6 +53,18 @@ export const Visual = () => {
         type: '',
         msg: '',
     });
+
+    const toastOptions = {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: theme,
+        transition: Bounce,
+    };
 
     const keywordRef = useRef(null);
     const searchRef = useRef(null);
@@ -217,7 +219,8 @@ export const Visual = () => {
         if (schoolData.length === 0) return;
 
         const selectedScore = schoolData
-            .find((s) => s['CHOSEN'] === true)['DATA'].find((d) => d['NAM_HOC'] === singleYear)['DIEM'][singleWish];
+            .find((s) => s['CHOSEN'] === true)['DATA']
+            .find((d) => d['NAM_HOC'] === singleYear)['DIEM'][singleWish];
 
         getAxiosGroup(singleYear, singleWish, selectedScore, singleDiff)
             .then((res) => handleDataGroup(res))
@@ -256,8 +259,7 @@ export const Visual = () => {
                     <div className="relative" ref={addSchoolRef}>
                         <div
                             className="add cursor-pointer bg-input-color p-1 rounded-[50%] shadow-basic flex"
-                            onClick={handleShowSearch}
-                        >
+                            onClick={handleShowSearch}>
                             <AddIcon
                                 className={
                                     showSearch ? 'rotate-45' : 'rotate-180'
@@ -267,8 +269,7 @@ export const Visual = () => {
                             <h1 className="ml-1 font-semibold">Thêm</h1>
                         </div>
                         <div
-                            className={`absolute top-[150%] left-0 p-2 shadow-basic bg-input-color rounded-lg flex gap-2 ${showSearch ? 'block' : 'hidden'}`}
-                        >
+                            className={`absolute top-[150%] left-0 p-2 shadow-basic bg-input-color rounded-lg flex gap-2 ${showSearch ? 'block' : 'hidden'}`}>
                             <input
                                 className="bg-input-color bs-in-light py-1 px-2 rounded-lg"
                                 type="text"
@@ -284,8 +285,7 @@ export const Visual = () => {
                             <button
                                 className="rounded-[50%] bg-emerald-500 text-white p-1"
                                 onClick={handleSearch}
-                                ref={searchRef}
-                            >
+                                ref={searchRef}>
                                 <SearchIcon />
                             </button>
                         </div>
@@ -303,8 +303,7 @@ export const Visual = () => {
                             setAreaData,
                             districtList,
                             setDistrictList,
-                        }}
-                    >
+                        }}>
                         {schoolData.map((school, index) => (
                             <SchoolSearch key={index} school={school} />
                         ))}
@@ -320,8 +319,7 @@ export const Visual = () => {
                         singleWish,
                         setSingleWish,
                         schoolData,
-                    }}
-                >
+                    }}>
                     <YearChart />
                 </SchoolContext.Provider>
 
@@ -334,8 +332,7 @@ export const Visual = () => {
                         competeData,
                         singleYear,
                         setSingleYear,
-                    }}
-                >
+                    }}>
                     <CompeteChart />
                 </SchoolContext.Provider>
 
@@ -350,8 +347,7 @@ export const Visual = () => {
                         singleWish,
                         setSingleWish,
                         schoolData,
-                    }}
-                >
+                    }}>
                     {areaData.length === districtList.DATA.length ? (
                         <AreaChart />
                     ) : null}
@@ -372,8 +368,7 @@ export const Visual = () => {
                         sendDiff,
                         setSendDiff,
                         setToastMessage,
-                    }}
-                >
+                    }}>
                     {schoolData.length > 0 ? <GroupChart /> : null}
                 </SchoolContext.Provider>
             </div>

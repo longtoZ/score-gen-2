@@ -6,7 +6,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 export const Detail = ({ ...res }) => {
     return (
-        <td className="py-6 px-4 text-left bg-even-row-color" colSpan={7}>
+        <td className="detail-row py-6 px-4 text-left bg-even-row-color" colSpan={7} >
             <div className="grid grid-cols-2">
                 <ul className="block my-auto bg-[#14966a30] p-4 rounded-lg shadow-md border-2 border-[#14966a8a]">
                     <li className="my-2">

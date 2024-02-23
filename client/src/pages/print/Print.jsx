@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
@@ -25,17 +25,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import './print.css';
 import './responsive.css';
 
-const toastOptions = {
-    position: 'bottom-right',
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'light',
-    transition: Bounce,
-};
+import { ModeContext } from '../../utils/setModeContext';
 
 const functionsDescription = {
     'score-range': 'Khoảng điểm',
@@ -53,6 +43,7 @@ export const DeleteContext = createContext();
 export const FunctionContext = createContext();
 
 export const Print = () => {
+    const { theme } = useContext(ModeContext);
     const [data, setData] = useState(
         localStorage.getItem('data')
             ? JSON.parse(localStorage.getItem('data'))
@@ -68,6 +59,17 @@ export const Print = () => {
         show: false,
         index: 0,
     });
+    const toastOptions = {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: theme,
+        transition: Bounce,
+    };
     const [toastMessage, setToastMessage] = useState({
         type: '',
         msg: '',
@@ -163,8 +165,7 @@ export const Print = () => {
 
             <FunctionContext.Provider value={{ data, setData }}>
                 <AddContext.Provider
-                    value={{ showAdd, setShowAdd, setToastMessage }}
-                >
+                    value={{ showAdd, setShowAdd, setToastMessage }}>
                     {showAdd.show && <AddMenu />}
                 </AddContext.Provider>
             </FunctionContext.Provider>
@@ -180,8 +181,7 @@ export const Print = () => {
                     data,
                     setData,
                     setToastMessage,
-                }}
-            >
+                }}>
                 {showDelete.show && <DeleteMenu />}
             </DeleteContext.Provider>
 
@@ -201,8 +201,7 @@ export const Print = () => {
                 <div className="options flex justify-center gap-2 mt-[3rem]">
                     <div
                         className="w-[8rem] cursor-pointer"
-                        onClick={handleShowAdd}
-                    >
+                        onClick={handleShowAdd}>
                         <div className="p-2 flex justify-center gap-2 rounded-lg bg-input-color shadow-basic">
                             <AddIcon />
                             <h1 className="font-semibold">Thêm mục</h1>
@@ -210,8 +209,7 @@ export const Print = () => {
                     </div>
                     <div
                         className="w-[8rem] cursor-pointer"
-                        onClick={handleSaveData}
-                    >
+                        onClick={handleSaveData}>
                         <div className="p-2 flex justify-center gap-2 rounded-lg bg-cyan-500 text-white shadow-basic">
                             <SaveIcon style={{ fontSize: '1.4em' }} />
                             <h1 className="font-semibold">Lưu dữ liệu</h1>
@@ -219,8 +217,7 @@ export const Print = () => {
                     </div>
                     <div
                         className="w-[8rem] cursor-pointer"
-                        onClick={handleDeleteData}
-                    >
+                        onClick={handleDeleteData}>
                         <div className="p-2 flex justify-center gap-2 rounded-lg bg-red-500 text-white shadow-basic">
                             <DeleteForeverIcon style={{ fontSize: '1.4em' }} />
                             <h1 className="font-semibold">Xoá tất cả</h1>
@@ -231,20 +228,17 @@ export const Print = () => {
                 <div className="fixed bottom-4 p-2 cursor-pointer add-area">
                     <div
                         className="my-2 p-2 flex justify-center gap-2 bg-white shadow-basic add-btn"
-                        onClick={handleShowAdd}
-                    >
+                        onClick={handleShowAdd}>
                         <h1 className="font-semibold add-text">Thêm mục</h1>
                         <AddIcon />
                     </div>
                     <div
                         className="float-right inline-block relative my-2 p-2 gap-2 bg-white shadow-basic print-btn"
-                        onClick={handleShowPrint}
-                    >
+                        onClick={handleShowPrint}>
                         <PrintIcon />
 
                         <div
-                            className={` ${showPrint ? 'block' : 'hidden'} absolute bottom-0 right-[120%] bg-white py-2 px-6 rounded-lg w-[12rem]`}
-                        >
+                            className={` ${showPrint ? 'block' : 'hidden'} absolute bottom-0 right-[120%] bg-white py-2 px-6 rounded-lg w-[12rem]`}>
                             <label className="block mb-2">
                                 <h1 className="mx-2 inline-block">
                                     Mỗi trang 1 mục
@@ -259,8 +253,7 @@ export const Print = () => {
                                 className="block w-full bg-emerald-500 p-2 rounded-lg text-white font-bold my-1"
                                 onClick={() => {
                                     window.print();
-                                }}
-                            >
+                                }}>
                                 In
                             </button>
                         </div>
@@ -272,14 +265,12 @@ export const Print = () => {
                         return (
                             <div
                                 key={index}
-                                className={`${isChecked ? 'page-break-after' : ''} table-area my-[5rem] bg-container-color border-2 border-border-color rounded-xl overflow-hidden`}
-                            >
+                                className={`${isChecked ? 'page-break-after' : ''} table-area my-[5rem] bg-container-color border-2 border-border-color rounded-xl overflow-hidden`}>
                                 <div className="table-options flex justify-between py-3 px-[5%] bg-even-row-color-light">
                                     <div className="flex gap-2">
                                         <button
                                             className="bg-input-color p-1 rounded-lg border-2 border-border-color text-gray-600 cursor-pointer mx-auto"
-                                            onClick={handleShowOrder}
-                                        >
+                                            onClick={handleShowOrder}>
                                             <ListIcon />
                                         </button>
                                         <h1 className="leading-[0] my-auto font-semibold">
@@ -293,14 +284,12 @@ export const Print = () => {
                                     <div className="flex gap-2">
                                         <button
                                             className="bg-input-color p-1 rounded-lg border-2 border-border-color text-gray-600 cursor-pointer mx-auto"
-                                            onClick={() => editData(index)}
-                                        >
+                                            onClick={() => editData(index)}>
                                             <EditNoteIcon />
                                         </button>
                                         <button
                                             className="bg-input-color p-1 rounded-lg border-2 border-border-color text-gray-600 cursor-pointer mx-auto"
-                                            onClick={() => deleteData(index)}
-                                        >
+                                            onClick={() => deleteData(index)}>
                                             <DeleteForeverIcon />
                                         </button>
                                     </div>

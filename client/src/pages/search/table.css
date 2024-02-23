@@ -15,11 +15,8 @@ tbody tr:hover {
     color: black;
 }
 
-.detail-td {
-    display: block;
-    overflow: hidden;
-    height: 0;
-    animation: change-height 1s forwards;
+[data-theme='dark'] tbody .detail-row:hover {
+    color: white !important;
 }
 
 @keyframes change-height {

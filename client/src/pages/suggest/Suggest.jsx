@@ -1,4 +1,4 @@
-import { createContext, useEffect, useRef, useState } from 'react';
+import { createContext, useEffect, useRef, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
@@ -17,6 +17,7 @@ import {
     normalSubjectsObj,
     specialSubjectsObj,
 } from '../../utils/lists.js';
+import { ModeContext } from '../../utils/setModeContext.js';
 
 import { Loader } from '../../components/loader/Loader';
 
@@ -27,21 +28,10 @@ import './responsive.css';
 import './suggest.css';
 import './top.css';
 
-const toastOptions = {
-    position: 'bottom-right',
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: 'light',
-    transition: Bounce,
-};
-
 export const FilterContext = createContext();
 
 export const Suggest = () => {
+    const { theme } = useContext(ModeContext);
     const fullDistrictsList = ['Tất cả', ...districtsList];
 
     const normalSchoolRef = useRef(null);
@@ -79,6 +69,18 @@ export const Suggest = () => {
         positionValue: 'highest',
         averageValue: 'higher',
     });
+
+    const toastOptions = {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: theme,
+        transition: Bounce,
+    };
 
     const [toastMessage, setToastMessage] = useState({
         type: '',

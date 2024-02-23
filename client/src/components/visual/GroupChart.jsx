@@ -87,6 +87,7 @@ export const GroupChart = () => {
                 ticks: {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
                 },
+                max: groupData.length > 0 ? (groupData[0]['NAM_HOC'] < 2021 ? 50 : 30) : 0
             },
         },
 
