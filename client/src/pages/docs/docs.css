@@ -1,5 +1,20 @@
+.Docs .compare-table th, .Docs .compare-table td {
+    padding: 0.75rem;
+    border: 1px solid black;
+}
+
+.Docs .compare-table tr:hover {
+    color: inherit !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+[data-theme="dark"] .Docs .compare-table th, [data-theme="dark"] .Docs .compare-table td {
+    border-color: white;
+}
+
 @media (max-width: 992px) {
     .Docs .side-bar {
-        width: 50% !important;
+        width: 40% !important;
     }
 }

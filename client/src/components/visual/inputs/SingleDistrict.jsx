@@ -28,7 +28,7 @@ export const SingleDistrict = () => {
         <div className="m-1">
             <h1 className="font-semibold mx-2 my-1 block">Chọn khu vực</h1>
             <div
-                className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer z-[3]"
+                className="w-[10rem] bg-input-color relative border border-border-color flex justify-between shadow-md rounded-lg py-2 px-3 text-sm cursor-pointer"
                 onClick={handleShowDistrict}
             >
                 <p className="pr-2" ref={districtRef}>
@@ -37,7 +37,7 @@ export const SingleDistrict = () => {
                 <ArrowDropDownIcon />
 
                 <ul
-                    className="overflow-y-scroll w-[8rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg"
+                    className="overflow-y-scroll w-[8rem] absolute top-[100%] left-0 mt-4 bg-input-color shadow-md p-2 rounded-lg z-[3]"
                     style={
                         showDistrict === true
                             ? { display: 'block' }

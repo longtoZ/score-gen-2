@@ -74,7 +74,7 @@ export const SideBar = ({
                 onClick={handleHide}
             ></div>
             <div
-                className={`side-menu bg-header-color w-[35%] h-full fixed top-0 right-0 p-4 z-[7] transition-transform ease-in-out duration-300 ${show ? 'translate-x-0' : 'translate-x-[100%]'}`}
+                className={`side-menu bg-header-color w-[40%] h-full fixed top-0 right-0 p-4 z-[7] transition-transform ease-in-out duration-300 ${show ? 'translate-x-0' : 'translate-x-[100%]'}`}
             >
                 <h1 className="text-2xl font-bold text-right my-4">Mục lục</h1>
                 <div className="grid grid-cols-2 rounded-lg border-2 border-border-color overflow-hidden">
@@ -93,7 +93,7 @@ export const SideBar = ({
                 </div>
                 <ul className="text-right mt-[2rem]">
                     <li
-                        className="p-2 font-semibold hover:bg-even-row-color rounded-lg"
+                        className="p-2 font-semibold hover:bg-even-row-color dark:hover:bg-neutral-700 rounded-lg"
                         ref={searchRef}
                         onClick={() => setShow(false)}
                     >
@@ -104,7 +104,7 @@ export const SideBar = ({
                         />
                     </li>
                     <li
-                        className="p-2 font-semibold hover:bg-even-row-color rounded-lg"
+                        className="p-2 font-semibold hover:bg-even-row-color dark:hover:bg-neutral-700 rounded-lg"
                         ref={suggestRef}
                         onClick={() => setShow(false)}
                     >
@@ -115,7 +115,7 @@ export const SideBar = ({
                         />
                     </li>
                     <li
-                        className="p-2 font-semibold hover:bg-even-row-color rounded-lg"
+                        className="p-2 font-semibold hover:bg-even-row-color dark:hover:bg-neutral-700 rounded-lg"
                         ref={visualRef}
                         onClick={() => setShow(false)}
                     >
@@ -126,7 +126,7 @@ export const SideBar = ({
                         />
                     </li>
                     <li
-                        className="p-2 font-semibold hover:bg-even-row-color rounded-lg"
+                        className="p-2 font-semibold hover:bg-even-row-color dark:hover:bg-neutral-700 rounded-lg"
                         ref={printRef}
                         onClick={() => setShow(false)}
                     >
@@ -147,7 +147,7 @@ export const SideBar = ({
                         </p>
                         <div className="flex justify-between px-[10%] items-center text-xs mt-4">
                             <h1>Khám phá</h1>
-                            <div className="rounded-[50%] bg-white text-emerald-400 p-1 cursor-pointer transition-transform ease-in-out duration-500 hover:rotate-[360deg]">
+                            <div className="rounded-[50%] bg-white text-emerald-400 p-1 cursor-pointer transition-transform ease-in-out duration-500 hover:rotate-[360deg]" onClick={() => setShow(false)}>
                                 <Link to="/docs/migration">
                                     <ArrowForwardIcon />
                                 </Link>

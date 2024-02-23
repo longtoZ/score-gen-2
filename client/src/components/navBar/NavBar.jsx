@@ -38,6 +38,7 @@ export const NavBar = () => {
             printRef.current.classList.add('current-page');
         } else if (location.pathname.includes('/docs')) {
             document.querySelector('footer').style.display = 'none';
+            navRef.current.style.top = '0';
             setHideNav(false);
         }
     }, [location]);

@@ -44,12 +44,12 @@ export const Docs = () => {
                         <section className="mb-[2rem]">
                             <h1 className="text-lg font-semibold">Bắt đầu</h1>
                             <ul className="mt-4">
-                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold">
+                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold" onClick={() => setShow(false)}>
                                     <Link to="/docs/introduction">
                                         Tổng quan
                                     </Link>
                                 </li>
-                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold">
+                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold" onClick={() => setShow(false)}>
                                     <Link to="/docs/migration">
                                         Phiên bản mới
                                     </Link>
@@ -59,16 +59,16 @@ export const Docs = () => {
                         <section className="mb-[2rem]">
                             <h1 className="text-lg font-semibold">Hướng dẫn</h1>
                             <ul className="mt-4">
-                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold">
+                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold" onClick={() => setShow(false)}>
                                     <Link to="/docs/search">Tra cứu</Link>
                                 </li>
-                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold">
+                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold" onClick={() => setShow(false)}>
                                     <Link to="/docs/suggest">Đề xuất</Link>
                                 </li>
-                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold">
+                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold" onClick={() => setShow(false)}>
                                     <Link to="/docs/visual">Phân tích</Link>
                                 </li>
-                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold">
+                                <li className="pl-4 py-2 border-l-2 border-border-color hover:border-l-4 hover:font-semibold" onClick={() => setShow(false)}>
                                     <Link to="/docs/print">Báo cáo</Link>
                                 </li>
                             </ul>

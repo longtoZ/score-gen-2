@@ -35,7 +35,7 @@ export const SingleDiff = () => {
     }, []);
 
     return (
-        <div className="m-1 w-[10rem] block">
+        <div className="m-1 w-[12rem] block">
             <h1 className="font-semibold mx-2 my-1 block">Chênh lệch</h1>
             <div className="flex gap-2">
                 <input
@@ -47,7 +47,7 @@ export const SingleDiff = () => {
                     onChange={handleDiff}
                 />
                 <button
-                    className="rounded-lg p-2 bg-emerald-500 text-white font-semibold"
+                    className="rounded-lg p-2 bg-emerald-500 text-white font-semibold w-[5rem]"
                     onClick={handleSendDiff}
                 >
                     Lọc

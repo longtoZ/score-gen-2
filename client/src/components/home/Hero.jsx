@@ -45,7 +45,7 @@ export const Hero = () => {
                         <Link to="/search">Thử ngay</Link>
                     </button>
                     <button className="mt-[2rem] text-center bg-bg-color border-2 font-semibold rounded-lg p-2 w-[9rem] demo-shadow">
-                        <Link to="/docs/migration">
+                        <Link to="/docs/introduction">
                             Tìm hiểu thêm
                         </Link>
                     </button>
