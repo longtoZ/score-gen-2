@@ -95,52 +95,52 @@ export const handleDataYear = (data) => {
     let year = '';
     let code = '';
     let school = {
-        MA_TRUONG: '',
-        NAM_HOC: 0,
-        TEN_TRUONG: '',
+        ma_truong: '',
+        nam_hoc: 0,
+        ten_truong: '',
         'QUAN/HUYEN': '',
-        MA_LOAI: '',
-        DIEM: {},
+        ma_loai: '',
+        diem: {},
     };
 
     if (data.length !== 0) {
         for (let i = 0; i < data.length; i++) {
             if (year === '') {
                 if (i !== 0) {
-                    if (code !== data[i]['MA_TRUONG']) {
+                    if (code !== data[i]['ma_truong']) {
                         break;
                     }
 
-                    school['MA_TRUONG'] = data[i - 1]['MA_TRUONG'];
-                    school['NAM_HOC'] = data[i - 1]['NAM_HOC'];
-                    school['TEN_TRUONG'] = data[i - 1]['TEN_TRUONG'];
+                    school['ma_truong'] = data[i - 1]['ma_truong'];
+                    school['nam_hoc'] = data[i - 1]['nam_hoc'];
+                    school['ten_truong'] = data[i - 1]['ten_truong'];
                     school['QUAN/HUYEN'] = data[i - 1]['QUAN/HUYEN'];
-                    school['MA_LOAI'] = data[i - 1]['MA_LOAI'];
-                    school['DIEM'][data[i - 1]['MA_NV']] = data[i - 1]['DIEM'];
-                    school['DIEM'][data[i]['MA_NV']] = data[i]['DIEM'];
-                    year = data[i - 1]['NAM_HOC'];
-                    code = data[i - 1]['MA_TRUONG'];
+                    school['ma_loai'] = data[i - 1]['ma_loai'];
+                    school['diem'][data[i - 1]['ma_nv']] = data[i - 1]['diem'];
+                    school['diem'][data[i]['ma_nv']] = data[i]['diem'];
+                    year = data[i - 1]['nam_hoc'];
+                    code = data[i - 1]['ma_truong'];
                 } else {
-                    school['MA_TRUONG'] = data[i]['MA_TRUONG'];
-                    school['NAM_HOC'] = data[i]['NAM_HOC'];
-                    school['TEN_TRUONG'] = data[i]['TEN_TRUONG'];
+                    school['ma_truong'] = data[i]['ma_truong'];
+                    school['nam_hoc'] = data[i]['nam_hoc'];
+                    school['ten_truong'] = data[i]['ten_truong'];
                     school['QUAN/HUYEN'] = data[i]['QUAN/HUYEN'];
-                    school['MA_LOAI'] = data[i]['MA_LOAI'];
-                    school['DIEM'][data[i]['MA_NV']] = data[i]['DIEM'];
-                    year = data[i]['NAM_HOC'];
-                    code = data[i]['MA_TRUONG'];
+                    school['ma_loai'] = data[i]['ma_loai'];
+                    school['diem'][data[i]['ma_nv']] = data[i]['diem'];
+                    year = data[i]['nam_hoc'];
+                    code = data[i]['ma_truong'];
                 }
-            } else if (year === data[i]['NAM_HOC']) {
-                school['DIEM'][data[i]['MA_NV']] = data[i]['DIEM'];
-            } else if (year !== data[i]['NAM_HOC']) {
+            } else if (year === data[i]['nam_hoc']) {
+                school['diem'][data[i]['ma_nv']] = data[i]['diem'];
+            } else if (year !== data[i]['nam_hoc']) {
                 result.push(school);
                 school = {
-                    MA_TRUONG: '',
-                    NAM_HOC: 0,
-                    TEN_TRUONG: '',
+                    ma_truong: '',
+                    nam_hoc: 0,
+                    ten_truong: '',
                     'QUAN/HUYEN': '',
-                    MA_LOAI: '',
-                    DIEM: {},
+                    ma_loai: '',
+                    diem: {},
                 };
                 year = '';
             }
@@ -148,12 +148,12 @@ export const handleDataYear = (data) => {
             if (i === data.length - 1) {
                 result.push(school);
                 school = {
-                    MA_TRUONG: '',
-                    NAM_HOC: 0,
-                    TEN_TRUONG: '',
+                    ma_truong: '',
+                    nam_hoc: 0,
+                    ten_truong: '',
                     'QUAN/HUYEN': '',
-                    MA_LOAI: '',
-                    DIEM: {},
+                    ma_loai: '',
+                    diem: {},
                 };
                 year = '';
             }
@@ -164,23 +164,23 @@ export const handleDataYear = (data) => {
 };
 
 export const handleDataCompete = (data) => {
-    const code = data[0]['MA_TRUONG'];
+    const code = data[0]['ma_truong'];
     const result = {
-        MA_TRUONG: data[0]['MA_TRUONG'],
-        TEN_TRUONG: data[0]['TEN_TRUONG'],
+        ma_truong: data[0]['ma_truong'],
+        ten_truong: data[0]['ten_truong'],
         'QUAN/HUYEN': data[0]['QUAN/HUYEN'],
         DATA: [],
     };
 
     for (let i = 0; i < data.length; i++) {
-        if (code !== data[i]['MA_TRUONG']) {
+        if (code !== data[i]['ma_truong']) {
             break;
         }
 
         result.DATA.push({
-            NAM_HOC: data[i]['NAM_HOC'],
-            CHI_TIEU: data[i]['CHI_TIEU'],
-            SO_LUONG: data[i]['SO_LUONG'],
+            nam_hoc: data[i]['nam_hoc'],
+            chi_tieu: data[i]['chi_tieu'],
+            so_luong: data[i]['so_luong'],
         });
     }
 
@@ -190,12 +190,12 @@ export const handleDataCompete = (data) => {
 export const handleDataArea = (data) => {
     const result = {
         'QUAN/HUYEN': data[0]['QUAN/HUYEN'],
-        MA_NV: data[0]['MA_NV'],
+        ma_nv: data[0]['ma_nv'],
         DATA: Array.from(data, (item) => {
             return {
-                MA_TRUONG: item['MA_TRUONG'],
-                TEN_TRUONG: item['TEN_TRUONG'],
-                DIEM: item['DIEM'],
+                ma_truong: item['ma_truong'],
+                ten_truong: item['ten_truong'],
+                diem: item['diem'],
             };
         }),
     };
@@ -207,42 +207,42 @@ export const handleDataAreaAll = (data) => {
     let result = [];
     let code = '';
     let school = {
-        MA_TRUONG: '',
-        TEN_TRUONG: '',
+        ma_truong: '',
+        ten_truong: '',
         'QUAN/HUYEN': '',
-        NAM_HOC: 0,
-        DIEM: {},
+        nam_hoc: 0,
+        diem: {},
     };
 
     if (data.length !== 0) {
         for (let i = 0; i < data.length; i++) {
             if (code === '') {
                 if (i !== 0) {
-                    school['MA_TRUONG'] = data[i - 1]['MA_TRUONG'];
-                    school['TEN_TRUONG'] = data[i - 1]['TEN_TRUONG'];
+                    school['ma_truong'] = data[i - 1]['ma_truong'];
+                    school['ten_truong'] = data[i - 1]['ten_truong'];
                     school['QUAN/HUYEN'] = data[i - 1]['QUAN/HUYEN'];
-                    school['NAM_HOC'] = data[i - 1]['NAM_HOC'];
-                    school['DIEM'][data[i - 1]['MA_NV']] = data[i - 1]['DIEM'];
-                    school['DIEM'][data[i]['MA_NV']] = data[i]['DIEM'];
-                    code = data[i - 1]['MA_TRUONG'];
+                    school['nam_hoc'] = data[i - 1]['nam_hoc'];
+                    school['diem'][data[i - 1]['ma_nv']] = data[i - 1]['diem'];
+                    school['diem'][data[i]['ma_nv']] = data[i]['diem'];
+                    code = data[i - 1]['ma_truong'];
                 } else {
-                    school['MA_TRUONG'] = data[i]['MA_TRUONG'];
-                    school['TEN_TRUONG'] = data[i]['TEN_TRUONG'];
+                    school['ma_truong'] = data[i]['ma_truong'];
+                    school['ten_truong'] = data[i]['ten_truong'];
                     school['QUAN/HUYEN'] = data[i]['QUAN/HUYEN'];
-                    school['NAM_HOC'] = data[i]['NAM_HOC'];
-                    school['DIEM'][data[i]['MA_NV']] = data[i]['DIEM'];
-                    code = data[i]['MA_TRUONG'];
+                    school['nam_hoc'] = data[i]['nam_hoc'];
+                    school['diem'][data[i]['ma_nv']] = data[i]['diem'];
+                    code = data[i]['ma_truong'];
                 }
-            } else if (code === data[i]['MA_TRUONG']) {
-                school['DIEM'][data[i]['MA_NV']] = data[i]['DIEM'];
-            } else if (code !== data[i]['MA_TRUONG']) {
+            } else if (code === data[i]['ma_truong']) {
+                school['diem'][data[i]['ma_nv']] = data[i]['diem'];
+            } else if (code !== data[i]['ma_truong']) {
                 result.push(school);
                 school = {
-                    MA_TRUONG: '',
-                    TEN_TRUONG: '',
+                    ma_truong: '',
+                    ten_truong: '',
                     'QUAN/HUYEN': '',
-                    NAM_HOC: 0,
-                    DIEM: {},
+                    nam_hoc: 0,
+                    diem: {},
                 };
                 code = '';
             }
@@ -250,11 +250,11 @@ export const handleDataAreaAll = (data) => {
             if (i === data.length - 1) {
                 result.push(school);
                 school = {
-                    MA_TRUONG: '',
-                    TEN_TRUONG: '',
+                    ma_truong: '',
+                    ten_truong: '',
                     'QUAN/HUYEN': '',
-                    NAM_HOC: 0,
-                    DIEM: {},
+                    nam_hoc: 0,
+                    diem: {},
                 };
                 code = '';
             }
@@ -268,11 +268,11 @@ export const handleDataGroup = (data) => {
     const result = Array.from(data, (item) => {
         return {
             'QUAN/HUYEN': item['QUAN/HUYEN'],
-            MA_TRUONG: item['MA_TRUONG'],
-            TEN_TRUONG: item['TEN_TRUONG'],
-            NAM_HOC: item['NAM_HOC'],
-            MA_NV: item['MA_NV'],
-            DIEM: item['DIEM'],
+            ma_truong: item['ma_truong'],
+            ten_truong: item['ten_truong'],
+            nam_hoc: item['nam_hoc'],
+            ma_nv: item['ma_nv'],
+            diem: item['diem'],
         };
     });
 
@@ -283,42 +283,42 @@ export const handleDataSpecial = (data) => {
     let result = [];
     let code = '';
     let school = {
-        MA_TRUONG: '',
-        TEN_TRUONG: '',
+        ma_truong: '',
+        ten_truong: '',
         'QUAN/HUYEN': '',
-        NAM_HOC: 0,
-        DIEM: {},
+        nam_hoc: 0,
+        diem: {},
     };
 
     if (data.length !== 0) {
         for (let i = 0; i < data.length; i++) {
             if (code === '') {
                 if (i !== 0) {
-                    school['MA_TRUONG'] = data[i - 1]['MA_TRUONG'];
-                    school['TEN_TRUONG'] = data[i - 1]['TEN_TRUONG'];
+                    school['ma_truong'] = data[i - 1]['ma_truong'];
+                    school['ten_truong'] = data[i - 1]['ten_truong'];
                     school['QUAN/HUYEN'] = data[i - 1]['QUAN/HUYEN'];
-                    school['NAM_HOC'] = data[i - 1]['NAM_HOC'];
-                    school['DIEM'][data[i - 1]['MA_NV']] = data[i - 1]['DIEM'];
-                    school['DIEM'][data[i]['MA_NV']] = data[i]['DIEM'];
-                    code = data[i - 1]['MA_TRUONG'];
+                    school['nam_hoc'] = data[i - 1]['nam_hoc'];
+                    school['diem'][data[i - 1]['ma_nv']] = data[i - 1]['diem'];
+                    school['diem'][data[i]['ma_nv']] = data[i]['diem'];
+                    code = data[i - 1]['ma_truong'];
                 } else {
-                    school['MA_TRUONG'] = data[i]['MA_TRUONG'];
-                    school['TEN_TRUONG'] = data[i]['TEN_TRUONG'];
+                    school['ma_truong'] = data[i]['ma_truong'];
+                    school['ten_truong'] = data[i]['ten_truong'];
                     school['QUAN/HUYEN'] = data[i]['QUAN/HUYEN'];
-                    school['NAM_HOC'] = data[i]['NAM_HOC'];
-                    school['DIEM'][data[i]['MA_NV']] = data[i]['DIEM'];
-                    code = data[i]['MA_TRUONG'];
+                    school['nam_hoc'] = data[i]['nam_hoc'];
+                    school['diem'][data[i]['ma_nv']] = data[i]['diem'];
+                    code = data[i]['ma_truong'];
                 }
-            } else if (code === data[i]['MA_TRUONG']) {
-                school['DIEM'][data[i]['MA_NV']] = data[i]['DIEM'];
-            } else if (code !== data[i]['MA_TRUONG']) {
+            } else if (code === data[i]['ma_truong']) {
+                school['diem'][data[i]['ma_nv']] = data[i]['diem'];
+            } else if (code !== data[i]['ma_truong']) {
                 result.push(school);
                 school = {
-                    MA_TRUONG: '',
-                    TEN_TRUONG: '',
+                    ma_truong: '',
+                    ten_truong: '',
                     'QUAN/HUYEN': '',
-                    NAM_HOC: 0,
-                    DIEM: {},
+                    nam_hoc: 0,
+                    diem: {},
                 };
                 code = '';
             }
@@ -326,11 +326,11 @@ export const handleDataSpecial = (data) => {
             if (i === data.length - 1) {
                 result.push(school);
                 school = {
-                    MA_TRUONG: '',
-                    TEN_TRUONG: '',
+                    ma_truong: '',
+                    ten_truong: '',
                     'QUAN/HUYEN': '',
-                    NAM_HOC: 0,
-                    DIEM: {},
+                    nam_hoc: 0,
+                    diem: {},
                 };
                 code = '';
             }

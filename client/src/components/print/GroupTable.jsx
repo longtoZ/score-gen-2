@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const GroupTable = ({ data }) => {
-    const tableData = data.tableData.sort((a, b) => b['DIEM'] - a['DIEM']);
+    const tableData = data.tableData.sort((a, b) => b['diem'] - a['diem']);
     const wish = data.wish;
 
     return (
@@ -36,16 +36,16 @@ export const GroupTable = ({ data }) => {
                                     <tr
                                         key={index}
                                         className={
-                                            item['TEN_TRUONG'] === data.school
+                                            item['ten_truong'] === data.school
                                                 ? 'bg-amber-100 text black'
                                                 : '[&:nth-child(even)]:bg-even-row-color-light'
                                         }
                                     >
                                         <td className="py-2">
-                                            {item['NAM_HOC']}
+                                            {item['nam_hoc']}
                                         </td>
                                         <td className="py-2">
-                                            {item['TEN_TRUONG']}
+                                            {item['ten_truong']}
                                         </td>
                                         <td className="py-2">
                                             {item['QUAN/HUYEN']}
@@ -53,17 +53,17 @@ export const GroupTable = ({ data }) => {
 
                                         {wish === 'NV1' && (
                                             <td className="py-2">
-                                                {item['DIEM']}
+                                                {item['diem']}
                                             </td>
                                         )}
                                         {wish === 'NV2' && (
                                             <td className="py-2">
-                                                {item['DIEM']}
+                                                {item['diem']}
                                             </td>
                                         )}
                                         {wish === 'NV3' && (
                                             <td className="py-2">
-                                                {item['DIEM']}
+                                                {item['diem']}
                                             </td>
                                         )}
                                     </tr>

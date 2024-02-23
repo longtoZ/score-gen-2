@@ -1,5 +1,5 @@
 export const CompeteTable = ({ data }) => {
-    const school = data.tableData['TEN_TRUONG'];
+    const school = data.tableData['ten_truong'];
     const district = data.tableData['QUAN/HUYEN'];
     const tableData = data.tableData.DATA;
     const length = tableData.length;
@@ -49,67 +49,67 @@ export const CompeteTable = ({ data }) => {
                                             </>
                                         ) : null}
                                         <td className="py-2">
-                                            {item['NAM_HOC']}
+                                            {item['nam_hoc']}
                                         </td>
                                         <td className="py-2">
-                                            {item['CHI_TIEU']}
+                                            {item['chi_tieu']}
                                         </td>
                                         <td className="py-2">
-                                            {item['SO_LUONG']}
+                                            {item['so_luong']}
                                         </td>
                                         <td className="py-2">
                                             {(
-                                                item['SO_LUONG'] /
-                                                item['CHI_TIEU']
+                                                item['so_luong'] /
+                                                item['chi_tieu']
                                             ).toFixed(2)}
                                         </td>
                                         <td className="py-2">
                                             {index === 0 ? (
                                                 ''
                                             ) : (
-                                                  tableData[index]['SO_LUONG'] /
-                                                  tableData[index]['CHI_TIEU']
+                                                  tableData[index]['so_luong'] /
+                                                  tableData[index]['chi_tieu']
                                               ).toFixed(2) -
                                                   (
                                                       tableData[index - 1][
-                                                          'SO_LUONG'
+                                                          'so_luong'
                                                       ] /
                                                       tableData[index - 1][
-                                                          'CHI_TIEU'
+                                                          'chi_tieu'
                                                       ]
                                                   ).toFixed(2) >
                                               0 ? (
                                                 <span className="text-emerald-600">
                                                     {(
                                                         tableData[index][
-                                                            'SO_LUONG'
+                                                            'so_luong'
                                                         ] /
                                                             tableData[index][
-                                                                'CHI_TIEU'
+                                                                'chi_tieu'
                                                             ] -
                                                         tableData[index - 1][
-                                                            'SO_LUONG'
+                                                            'so_luong'
                                                         ] /
                                                             tableData[
                                                                 index - 1
-                                                            ]['CHI_TIEU']
+                                                            ]['chi_tieu']
                                                     ).toFixed(2)}
                                                 </span>
                                             ) : (
                                                 <span className="text-red-600">
                                                     {(
                                                         tableData[index][
-                                                            'SO_LUONG'
+                                                            'so_luong'
                                                         ] /
                                                             tableData[index][
-                                                                'CHI_TIEU'
+                                                                'chi_tieu'
                                                             ] -
                                                         tableData[index - 1][
-                                                            'SO_LUONG'
+                                                            'so_luong'
                                                         ] /
                                                             tableData[
                                                                 index - 1
-                                                            ]['CHI_TIEU']
+                                                            ]['chi_tieu']
                                                     ).toFixed(2)}
                                                 </span>
                                             )}

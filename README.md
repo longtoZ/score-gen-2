@@ -49,7 +49,7 @@
 | Không giới hạn số lượng mục in | | có |
 | Sắp xếp, chỉnh sửa, lưu các mục | | có |
 
-### 4. Built With
+## 4. Built With
 
 Những framework/package/tool được sử dụng trong quá trình xây dựng.
 

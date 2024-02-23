@@ -1,5 +1,5 @@
 export const SpecialTable = ({ data }) => {
-    const tableData = data.tableData.sort((a, b) => b['DIEM'] - a['DIEM']);
+    const tableData = data.tableData.sort((a, b) => b['diem'] - a['diem']);
     const wish1 = data.wish.replace('%', '1');
     const wish2 = data.wish.replace('%', '2');
 
@@ -28,25 +28,25 @@ export const SpecialTable = ({ data }) => {
                                     <tr
                                         key={index}
                                         className={
-                                            item['TEN_TRUONG'] === data.school
+                                            item['ten_truong'] === data.school
                                                 ? 'bg-amber-100 text-black'
                                                 : '[&:nth-child(even)]:bg-even-row-color-light'
                                         }
                                     >
                                         <td className="py-2 ">
-                                            {item['NAM_HOC']}
+                                            {item['nam_hoc']}
                                         </td>
                                         <td className="py-2">
-                                            {item['TEN_TRUONG']}
+                                            {item['ten_truong']}
                                         </td>
                                         <td className="py-2">
                                             {item['QUAN/HUYEN']}
                                         </td>
                                         <td className="py-2">
-                                            {item['DIEM'][wish1]}
+                                            {item['diem'][wish1]}
                                         </td>
                                         <td className="py-2">
-                                            {item['DIEM'][wish2]}
+                                            {item['diem'][wish2]}
                                         </td>
                                     </tr>
                                 );

@@ -37,8 +37,10 @@ export const Search = () => {
     useEffect(() => {
         setShowLoader(true);
         getAxios(schoolType, year.replace('Năm ', '').trim())
-            .then((res) => handleData(res))
-            .then((data) => setTableData(data))
+            .then((res) => 
+                handleData(res))
+            .then((data) => 
+                setTableData(data))
             .then(() => setShowLoader(false));
     }, [schoolType, year]);
 

@@ -1,4 +1,4 @@
-import { db } from "../connect.js";
+import { pool } from "../connect.js";
 
 export const visualGroupController = (req, res) => {
   const year = req.query.year;
@@ -6,14 +6,28 @@ export const visualGroupController = (req, res) => {
   const score = parseFloat(req.query.score);
   const diff = parseFloat(req.query.diff);
 
-  const query =
-    "SELECT `truong`.`TEN_TRUONG`, `diem_chuan`.`MA_TRUONG`, `truong`.`QUAN/HUYEN`, `diem_chuan`.`NAM_HOC`, `diem_chuan`.`MA_NV`, `diem_chuan`.`DIEM` FROM `diem_chuan` LEFT OUTER JOIN `truong` on `truong`.`MA_TRUONG` = `diem_chuan`.`MA_TRUONG` WHERE (`DIEM` >= " + (score-diff) + " AND `DIEM` <= " + (score+diff) + ") AND `NAM_HOC` = " + year + " AND `MA_NV` = '" + wish + "' ORDER BY `DIEM` DESC";
+  const query = `SELECT "truong"."ten_truong", "diem_chuan"."ma_truong", "truong"."QUAN/HUYEN", "diem_chuan"."nam_hoc", "diem_chuan"."ma_nv", "diem_chuan"."diem" FROM "diem_chuan" LEFT OUTER JOIN "truong" on "truong"."ma_truong" = "diem_chuan"."ma_truong" WHERE ("diem" >= ${
+    score - diff
+  } AND "diem" <= ${
+    score + diff
+  }) AND "nam_hoc" = ${year} AND "ma_nv" = '${wish}' ORDER BY "diem" DESC`;
+  
+  pool
+    .connect()
+    .then((client) => {
+      console.log("ready to query...");
 
-  db.query(query, (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
-  });
+      pool.query(query, (error, result) => {
+        if (error) {
+          res.status(500).send("Error: " + error);
+        } else {
+          res.status(200).send(result.rows);
+        }
+      });
+
+      client.release();
+    })
+    .catch((error) => {
+      console.error("Error: " + error);
+    });
 };

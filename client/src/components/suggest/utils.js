@@ -25,19 +25,19 @@ export const handleData = (data, schoolType, wish) => {
 
         for (let i = 0; i < data.length; i++) {
             const school = data[i];
-            calc[school['MA_TRUONG']] = {};
+            calc[school['ma_truong']] = {};
 
             if (schoolType === 'Lớp thường') {
-                calc[school['MA_TRUONG']]['NV1'] = [];
-                calc[school['MA_TRUONG']]['NV2'] = [];
-                calc[school['MA_TRUONG']]['NV3'] = [];
+                calc[school['ma_truong']]['NV1'] = [];
+                calc[school['ma_truong']]['NV2'] = [];
+                calc[school['ma_truong']]['NV3'] = [];
             } else {
-                calc[school['MA_TRUONG']][wish.replace('%', '1')] = [];
-                calc[school['MA_TRUONG']][wish.replace('%', '2')] = [];
+                calc[school['ma_truong']][wish.replace('%', '1')] = [];
+                calc[school['ma_truong']][wish.replace('%', '2')] = [];
             }
 
-            calc[school['MA_TRUONG']]['INFO'] = [
-                school['TEN_TRUONG'],
+            calc[school['ma_truong']]['info'] = [
+                school['ten_truong'],
                 school['QUAN/HUYEN'],
             ];
         }
@@ -45,14 +45,14 @@ export const handleData = (data, schoolType, wish) => {
         for (let i = 0; i < data.length; i++) {
             const school = data[i];
 
-            if (school['DIEM'] !== 0) {
+            if (school['diem'] !== 0) {
                 if (schoolType === 'Lớp thường') {
-                    calc[school['MA_TRUONG']][school['MA_NV']].push(
-                        calcScore(school['DIEM'], school['NAM_HOC']),
+                    calc[school['ma_truong']][school['ma_nv']].push(
+                        calcScore(school['diem'], school['nam_hoc']),
                     );
                 } else {
-                    calc[school['MA_TRUONG']][school['MA_NV']].push(
-                        school['DIEM'],
+                    calc[school['ma_truong']][school['ma_nv']].push(
+                        school['diem'],
                     );
                 }
             }
@@ -64,8 +64,8 @@ export const handleData = (data, schoolType, wish) => {
 
             if (schoolType === 'Lớp thường') {
                 full.push({
-                    name: value['INFO'][0],
-                    district: value['INFO'][1],
+                    name: value['info'][0],
+                    district: value['info'][1],
                     NV1:
                         value['NV1'].length > 0
                             ? (
@@ -90,8 +90,8 @@ export const handleData = (data, schoolType, wish) => {
                 });
             } else {
                 full.push({
-                    name: value['INFO'][0],
-                    district: value['INFO'][1],
+                    name: value['info'][0],
+                    district: value['info'][1],
                     NV1:
                         value[wish.replace('%', '1')].length > 0
                             ? (

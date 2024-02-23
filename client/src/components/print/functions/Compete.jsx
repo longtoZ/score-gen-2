@@ -74,7 +74,7 @@ export const Compete = () => {
                     {
                         dataType: 'compete',
                         title,
-                        school: tableData.TEN_TRUONG,
+                        school: tableData.ten_truong,
                         start,
                         end,
                         tableData,
@@ -113,7 +113,7 @@ export const Compete = () => {
                 newData[dataIndex] = {
                     dataType: 'compete',
                     title,
-                    school: tableData.TEN_TRUONG,
+                    school: tableData.ten_truong,
                     start,
                     end,
                     tableData,

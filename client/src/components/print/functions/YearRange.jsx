@@ -74,7 +74,7 @@ export const YearRange = () => {
                     {
                         dataType: 'year-range',
                         title,
-                        school: tableData[0].TEN_TRUONG,
+                        school: tableData[0].ten_truong,
                         start,
                         end,
                         tableData,
@@ -114,7 +114,7 @@ export const YearRange = () => {
                 newData[dataIndex] = {
                     dataType: 'year-range',
                     title,
-                    school: tableData[0].TEN_TRUONG,
+                    school: tableData[0].ten_truong,
                     start,
                     end,
                     tableData,

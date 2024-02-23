@@ -1,17 +1,27 @@
-import { db } from '../connect.js';
+import { pool } from '../connect.js'
 
 export const detailController = (req, res) => {
 
     const school = req.query.school.replace(/[^\w\s]/g, "\\$&")
 
-    const query = "SELECT * FROM `links` WHERE `TEN_TRUONG` LIKE '%" + school + "%';";
+    const query = `SELECT * FROM "links" WHERE "ten_truong" ILIKE '%` + school + `%';`;
 
-    db.query(query, (err, result) => {
-        if (err) {
-            res.send(err)
+    pool.connect()
+    .then((client) => {
+      console.log("ready to query...")
+
+      pool.query(query, (error, result) => {
+        if (error) {
+          res.status(500).send("Error: " + error);
         } else {
-            res.send(result)
+          res.status(200).send(result.rows);
         }
+      })
+
+      client.release();
+    })
+    .catch((error) => {
+      console.error("Error: " + error);
     })
 
 }

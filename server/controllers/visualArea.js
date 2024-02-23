@@ -1,18 +1,28 @@
-import { db } from "../connect.js";
+import { pool } from "../connect.js";
 
 export const visualAreaController = (req, res) => {
   const district = req.query.district;
   const year = req.query.year;
   const wish = req.query.wish;
 
-  const query =
-    "SELECT `truong`.`TEN_TRUONG`, `diem_chuan`.`MA_TRUONG`, `truong`.`QUAN/HUYEN`, `diem_chuan`.`MA_NV`, `diem_chuan`.`DIEM` FROM `diem_chuan` LEFT OUTER JOIN `truong` on `truong`.`MA_TRUONG` = `diem_chuan`.`MA_TRUONG` WHERE `QUAN/HUYEN` LIKE '%" + district + "%' AND `NAM_HOC` = " + year + " AND (`MA_NV` = '" + wish + "') ORDER BY `DIEM` DESC";
+  const query = `SELECT "truong"."ten_truong", "diem_chuan"."ma_truong", "truong"."QUAN/HUYEN", "diem_chuan"."ma_nv", "diem_chuan"."diem" FROM "diem_chuan" LEFT OUTER JOIN "truong" on "truong"."ma_truong" = "diem_chuan"."ma_truong" WHERE "QUAN/HUYEN" ILIKE '%${district}%' AND "nam_hoc" = ${year} AND ("ma_nv" = '${wish}') ORDER BY "diem" DESC`;
 
-  db.query(query, (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
-  });
+  pool
+    .connect()
+    .then((client) => {
+      console.log("ready to query...");
+
+      pool.query(query, (error, result) => {
+        if (error) {
+          res.status(500).send("Error: " + error);
+        } else {
+          res.status(200).send(result.rows);
+        }
+      });
+
+      client.release();
+    })
+    .catch((error) => {
+      console.error("Error: " + error);
+    });
 };

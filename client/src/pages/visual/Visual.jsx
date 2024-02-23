@@ -82,7 +82,7 @@ export const Visual = () => {
 
                 if (
                     !schoolData.some(
-                        (s) => s['MA_TRUONG'] === data[0]['MA_TRUONG'],
+                        (s) => s['ma_truong'] === data[0]['ma_truong'],
                     )
                 ) {
                     const prev = schoolData.map((i) => {
@@ -94,17 +94,17 @@ export const Visual = () => {
                     setSchoolData([
                         ...prev,
                         {
-                            MA_TRUONG: data[0]['MA_TRUONG'],
-                            TEN_TRUONG: data[0]['TEN_TRUONG'],
+                            ma_truong: data[0]['ma_truong'],
+                            ten_truong: data[0]['ten_truong'],
                             'QUAN/HUYEN': data[0]['QUAN/HUYEN'],
-                            MA_LOAI: data[0]['MA_LOAI'],
+                            ma_loai: data[0]['ma_loai'],
                             DATA: data.map((d) => {
                                 return {
-                                    NAM_HOC: d['NAM_HOC'],
-                                    DIEM: {
-                                        NV1: d['DIEM']['NV1'],
-                                        NV2: d['DIEM']['NV2'],
-                                        NV3: d['DIEM']['NV3'],
+                                    nam_hoc: d['nam_hoc'],
+                                    diem: {
+                                        NV1: d['diem']['NV1'],
+                                        NV2: d['diem']['NV2'],
+                                        NV3: d['diem']['NV3'],
                                     },
                                 };
                             }),
@@ -150,7 +150,7 @@ export const Visual = () => {
 
                 if (
                     !schoolData.some(
-                        (s) => s['MA_TRUONG'] === data['MA_TRUONG'],
+                        (s) => s['ma_truong'] === data['ma_truong'],
                     )
                 ) {
                     setCompeteData([...competeData, data]);
@@ -217,7 +217,7 @@ export const Visual = () => {
         if (schoolData.length === 0) return;
 
         const selectedScore = schoolData
-            .find((s) => s['CHOSEN'] === true)['DATA'].find((d) => d['NAM_HOC'] === singleYear)['DIEM'][singleWish];
+            .find((s) => s['CHOSEN'] === true)['DATA'].find((d) => d['nam_hoc'] === singleYear)['diem'][singleWish];
 
         getAxiosGroup(singleYear, singleWish, selectedScore, singleDiff)
             .then((res) => handleDataGroup(res))

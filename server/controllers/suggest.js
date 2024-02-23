@@ -1,4 +1,4 @@
-import { db } from "../connect.js";
+import { pool } from "../connect.js";
 
 export const suggestController = (req, res) => {
   const schoolType = req.query.schoolType;
@@ -6,18 +6,29 @@ export const suggestController = (req, res) => {
   const extend =
     schoolType === "Lớp thường"
       ? "IN ('NV1', 'NV2', 'NV3')"
-      : "LIKE '%" + wish + "%'";
+      : "ILIKE '%" + wish + "%'";
 
   const query =
-    "SELECT `truong`.`TEN_TRUONG`, `diem_chuan`.`MA_TRUONG`, `truong`.`QUAN/HUYEN`, `diem_chuan`.`NAM_HOC` ,`diem_chuan`.`MA_NV`, `diem_chuan`.`DIEM` FROM `diem_chuan` LEFT OUTER JOIN `truong` on `truong`.`MA_TRUONG` = `diem_chuan`.`MA_TRUONG` WHERE `diem_chuan`.`MA_NV` " +
+    `select "truong"."ten_truong", "diem_chuan"."ma_truong", "truong"."QUAN/HUYEN", "diem_chuan"."nam_hoc" ,"diem_chuan"."ma_nv", "diem_chuan"."diem" from "diem_chuan" left outer join "truong" on "truong"."ma_truong" = "diem_chuan"."ma_truong" where "diem_chuan"."ma_nv"` +
     extend +
-    " AND `NAM_HOC` <> 2021;";
+    ` AND "nam_hoc" <> 2021;`;
 
-  db.query(query, (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
-  });
+  pool
+    .connect()
+    .then((client) => {
+      console.log("ready to query...");
+
+      pool.query(query, (error, result) => {
+        if (error) {
+          res.status(500).send("Error: " + error);
+        } else {
+          res.status(200).send(result.rows);
+        }
+      });
+
+      client.release();
+    })
+    .catch((error) => {
+      console.error("Error: " + error);
+    });
 };

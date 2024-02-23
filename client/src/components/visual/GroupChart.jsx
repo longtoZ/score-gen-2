@@ -44,7 +44,7 @@ export const GroupChart = () => {
     const { groupData, schoolData } = useContext(SchoolContext);
 
     const selectedScore = schoolData.find((s) => s['CHOSEN'] === true)[
-        'TEN_TRUONG'
+        'ten_truong'
     ];
 
     let delayed;
@@ -56,7 +56,7 @@ export const GroupChart = () => {
         plugins: {
             title: {
                 display: true,
-                text: `${groupData.length > 0 ? groupData[0]['NAM_HOC'] : ''}`,
+                text: `${groupData.length > 0 ? groupData[0]['nam_hoc'] : ''}`,
                 color: theme === 'light' ? '#18181b' : '#d4d4d8',
             },
             legend: {
@@ -87,6 +87,7 @@ export const GroupChart = () => {
                 ticks: {
                     color: theme === 'light' ? '#18181b' : '#d4d4d8',
                 },
+                max: groupData.length > 0 ? (groupData[0]['nam_hoc'] < 2021 ? 50 : 30) : 0
             },
         },
 
@@ -110,18 +111,18 @@ export const GroupChart = () => {
     };
 
     const data = {
-        labels: groupData.map((d) => d['TEN_TRUONG']),
+        labels: groupData.map((d) => d['ten_truong']),
         datasets: [
             {
                 labels: null,
-                data: groupData.map((d) => d['DIEM']),
+                data: groupData.map((d) => d['diem']),
                 backgroundColor: groupData.map((d) =>
-                    d['TEN_TRUONG'] === selectedScore
+                    d['ten_truong'] === selectedScore
                         ? color.selected.bg
                         : color.normal.bg,
                 ),
                 borderColor: groupData.map((d) =>
-                    d['TEN_TRUONG'] === selectedScore
+                    d['ten_truong'] === selectedScore
                         ? color.selected.border
                         : color.normal.border,
                 ),
@@ -165,7 +166,7 @@ export const GroupChart = () => {
                                         className="flex justify-between py-2 my-2 border-b-2 border-border-color"
                                     >
                                         <h1 className="inline-block font-semibold">
-                                            {item['TEN_TRUONG']}
+                                            {item['ten_truong']}
                                         </h1>
                                         <h1 className="inline-block">
                                             {item['QUAN/HUYEN']}

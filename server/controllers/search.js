@@ -1,28 +1,39 @@
 
-import { db } from "../connect.js";
+import { pool } from '../connect.js';
 import { schoolTypesObj } from "../utils/lists.js";
 
 export const searchController = (req, res) => {
   const type =
     req.query.type === "Trường thường"
-      ? "`truong`.`MA_LOAI` = 'L02' OR `truong`.`MA_LOAI` = 'L03'"
-      : "`truong`.`MA_LOAI` = " +
+      ? `"truong"."ma_loai" = 'L02' OR "truong"."ma_loai" = 'L03'`
+      : `"truong"."ma_loai" = ` +
         `'${schoolTypesObj[req.query.type]}'` +
-        " AND `diem_chuan`.`MA_NV` LIKE '%\\_%'";
+        ` AND "diem_chuan"."ma_nv" LIKE '%\\_%'`;
   const year = req.query.year;
 
   const query =
-    "SELECT `truong`.`TEN_TRUONG`, `diem_chuan`.`MA_TRUONG`, `truong`.`QUAN/HUYEN`, `diem_chuan`.`MA_NV`, `diem_chuan`.`DIEM` FROM `diem_chuan` LEFT OUTER JOIN `truong` on `truong`.`MA_TRUONG` = `diem_chuan`.`MA_TRUONG` WHERE (" +
+    `SELECT "truong"."ten_truong", "diem_chuan"."ma_truong", "truong"."QUAN/HUYEN", "diem_chuan"."ma_nv", "diem_chuan"."diem" FROM "diem_chuan" LEFT OUTER JOIN "truong" on "truong"."ma_truong" = "diem_chuan"."ma_truong" WHERE (` +
     type +
-    " AND `diem_chuan`.`NAM_HOC` = " +
+    ` AND "diem_chuan"."nam_hoc" = ` +
     year +
-    ");";
+    `);`;
 
-  db.query(query, (err, result) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(result);
-    }
-  });
+  pool.connect()
+    .then((client) => {
+      console.log("ready to query...")
+
+      pool.query(query, (error, result) => {
+        if (error) {
+          res.status(500).send("Error: " + error);
+        } else {
+          res.status(200).send(result.rows);
+        }
+      })
+
+      client.release();
+    })
+    .catch((error) => {
+      console.error("Error: " + error);
+    })
+
 };
