@@ -1,4 +1,4 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Benefits } from '../../components/home/Benefits';
 import { Compare } from '../../components/home/Compare';
 import { Features } from '../../components/home/Features';
@@ -15,6 +15,9 @@ export const Home = () => {
     // useEffect(() => {
     //     track();
     // }, [])
+    useEffect(() => {
+        document.title = 'Score | Trang chủ';
+    }, []);
     return (
         <div className="Home">
             <Hero />

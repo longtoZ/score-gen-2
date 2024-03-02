@@ -129,9 +129,9 @@ export const Print = () => {
     };
 
     const handleShowPrint = (e) => {
-        e.stopPropagation();
-
-        setShowPrint(!showPrint);
+        e.stopPropagation()
+        if (e.currentTarget === e.target)
+            setShowPrint(!showPrint);   
     };
 
     // Update document title
@@ -227,18 +227,18 @@ export const Print = () => {
 
                 <div className="fixed bottom-4 p-2 cursor-pointer add-area">
                     <div
-                        className="my-2 p-2 flex justify-center gap-2 bg-white shadow-basic add-btn"
+                        className="my-2 p-2 flex justify-center gap-2 bg-header-color shadow-basic add-btn"
                         onClick={handleShowAdd}>
                         <h1 className="font-semibold add-text">Thêm mục</h1>
                         <AddIcon />
                     </div>
                     <div
-                        className="float-right inline-block relative my-2 p-2 gap-2 bg-white shadow-basic print-btn"
+                        className="float-right inline-block relative my-2 p-2 gap-2 bg-header-color shadow-basic print-btn"
                         onClick={handleShowPrint}>
-                        <PrintIcon />
+                        <PrintIcon className='pointer-events-none' />
 
                         <div
-                            className={` ${showPrint ? 'block' : 'hidden'} absolute bottom-0 right-[120%] bg-white py-2 px-6 rounded-lg w-[12rem]`}>
+                            className={` ${showPrint ? 'block' : 'hidden'} absolute bottom-0 right-[120%] bg-header-color py-2 px-6 rounded-lg w-[12rem]`}>
                             <label className="block mb-2">
                                 <h1 className="mx-2 inline-block">
                                     Mỗi trang 1 mục

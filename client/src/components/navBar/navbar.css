@@ -1,7 +1,7 @@
 header {
     transition:
-        transform ease 1s,
-        top ease 1s !important;
+        transform ease-in-out 0.5s,
+        top ease-in-out 0.5s !important;
 }
 
 .select {

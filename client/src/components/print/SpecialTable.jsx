@@ -3,9 +3,13 @@ export const SpecialTable = ({ data }) => {
     const wish1 = data.wish.replace('%', '1');
     const wish2 = data.wish.replace('%', '2');
 
+    const filteredTableData = tableData.sort((a, b) => 
+        parseFloat(b['DIEM'][wish1]) - parseFloat(a['DIEM'][wish1])
+    )
+
     return (
         <>
-            {tableData.length !== 0 ? (
+            {filteredTableData.length !== 0 ? (
                 <>
                     <section className="text-center">
                         <h1 className="text-3xl font-bold">{data.title}</h1>
@@ -23,7 +27,7 @@ export const SpecialTable = ({ data }) => {
                         </thead>
 
                         <tbody>
-                            {tableData.map((item, index) => {
+                            {filteredTableData.map((item, index) => {
                                 return (
                                     <tr
                                         key={index}

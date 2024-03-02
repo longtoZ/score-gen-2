@@ -2,9 +2,16 @@ export const AreaTable = ({ data }) => {
     const tableData = data.tableData;
     const length = tableData.length;
 
+    const filteredTableData = tableData.sort((a, b) => {
+        const wish1 = parseFloat(a['DIEM']['NV1']);
+        const wish2 = parseFloat(b['DIEM']['NV1']);
+
+        return wish2 - wish1;
+    })
+
     return (
         <>
-            {tableData.length !== 0 ? (
+            {filteredTableData.length !== 0 ? (
                 <>
                     <section className="text-center">
                         <h1 className="text-3xl font-bold">{data.title}</h1>
@@ -23,7 +30,7 @@ export const AreaTable = ({ data }) => {
                         </thead>
 
                         <tbody>
-                            {tableData.map((item, index) => {
+                            {filteredTableData.map((item, index) => {
                                 return (
                                     <tr
                                         key={index}

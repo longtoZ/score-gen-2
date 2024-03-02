@@ -62,10 +62,10 @@ export const NavBar = () => {
             }
 
             if (addBtn) {
-                if (currentScrollPos > windowHeight) {
+                if (currentScrollPos > windowHeight/2) {
                     addBtn.style.right = '1rem';
                 } else {
-                    addBtn.style.right = '-4rem';
+                    addBtn.style.right = '-20rem';
                 }
             }
 
