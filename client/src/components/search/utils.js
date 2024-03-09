@@ -23,20 +23,20 @@ export const handleData = (data) => {
     for (let i = 0; i < data.length; i++) {
         if (code === '') {
             if (i !== 0) {
-                school[0] = data[i - 1]['TEN_TRUONG'];
+                school[0] = data[i - 1]['ten_truong'];
                 school[1] = data[i - 1]['QUAN/HUYEN'];
-                school[2][data[i - 1]['MA_NV']] = data[i - 1]['DIEM'];
-                school[2][data[i]['MA_NV']] = data[i]['DIEM'];
-                code = data[i - 1]['MA_TRUONG'];
+                school[2][data[i - 1]['ma_nv']] = data[i - 1]['diem'];
+                school[2][data[i]['ma_nv']] = data[i]['diem'];
+                code = data[i - 1]['ma_truong'];
             } else {
-                school[0] = data[i]['TEN_TRUONG'];
+                school[0] = data[i]['ten_truong'];
                 school[1] = data[i]['QUAN/HUYEN'];
-                school[2][data[i]['MA_NV']] = data[i]['DIEM'];
-                code = data[i]['MA_TRUONG'];
+                school[2][data[i]['ma_nv']] = data[i]['diem'];
+                code = data[i]['ma_truong'];
             }
-        } else if (code === data[i]['MA_TRUONG']) {
-            school[2][data[i]['MA_NV']] = data[i]['DIEM'];
-        } else if (code !== data[i]['MA_TRUONG']) {
+        } else if (code === data[i]['ma_truong']) {
+            school[2][data[i]['ma_nv']] = data[i]['diem'];
+        } else if (code !== data[i]['ma_truong']) {
             result.push(school);
             school = ['', '', {}];
             code = '';

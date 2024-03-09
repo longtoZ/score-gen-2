@@ -78,6 +78,14 @@ export const Group = () => {
 
     // Add the data to the main array
     const addData = () => {
+        if (school === '') {
+            setToastMessage({
+                type: 'error',
+                msg: 'Tên trường không được để trống',
+            });
+            return;
+        }
+
         getAxiosYear(school)
             .then((res) => handleDataYear(res))
             .then((schoolData) => {
@@ -89,10 +97,10 @@ export const Group = () => {
                     return;
                 }
 
-                const schoolName = schoolData[0].TEN_TRUONG;
+                const schoolName = schoolData[0].ten_truong;
                 const selectedScore = schoolData.find(
-                    (d) => d['NAM_HOC'] === selectedYear,
-                )['DIEM'][normalSubjectsObj[selectedNormalWish]];
+                    (d) => d['nam_hoc'] === selectedYear,
+                )['diem'][normalSubjectsObj[selectedNormalWish]];
 
                 getAxiosGroup(
                     selectedYear,
@@ -136,10 +144,10 @@ export const Group = () => {
                     });
                     return;
                 }
-                const schoolName = schoolData[0].TEN_TRUONG;
+                const schoolName = schoolData[0].ten_truong;
                 const selectedScore = schoolData.find(
-                    (d) => d['NAM_HOC'] === selectedYear,
-                )['DIEM'][normalSubjectsObj[selectedNormalWish]];
+                    (d) => d['nam_hoc'] === selectedYear,
+                )['diem'][normalSubjectsObj[selectedNormalWish]];
 
                 getAxiosGroup(
                     selectedYear,

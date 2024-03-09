@@ -1,6 +1,6 @@
 export const YearRangeTable = ({ data }) => {
     const tableData = data.tableData.filter(
-        (d) => d['NAM_HOC'] >= data.start && d['NAM_HOC'] <= data.end,
+        (d) => d['nam_hoc'] >= data.start && d['nam_hoc'] <= data.end,
     );
     const length = tableData.length;
 
@@ -37,7 +37,7 @@ export const YearRangeTable = ({ data }) => {
                                                     className="py-2 text-emerald-600 font-semibold"
                                                     rowSpan={length}
                                                 >
-                                                    {item['TEN_TRUONG']}
+                                                    {item['ten_truong']}
                                                 </td>
                                                 <td
                                                     className="py-2 text-emerald-600 font-semibold"
@@ -48,16 +48,16 @@ export const YearRangeTable = ({ data }) => {
                                             </>
                                         ) : null}
                                         <td className="py-2">
-                                            {item['NAM_HOC']}
+                                            {item['nam_hoc']}
                                         </td>
                                         <td className="py-2">
-                                            {item['DIEM']['NV1']}
+                                            {item['diem']['NV1']}
                                         </td>
                                         <td className="py-2">
-                                            {item['DIEM']['NV2']}
+                                            {item['diem']['NV2']}
                                         </td>
                                         <td className="py-2">
-                                            {item['DIEM']['NV3']}
+                                            {item['diem']['NV3']}
                                         </td>
                                     </tr>
                                 );

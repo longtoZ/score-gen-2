@@ -20,7 +20,7 @@ export const SingleSchool = () => {
 
         setSchoolData(
             schoolData.map((i) => {
-                if (i.MA_TRUONG === code) {
+                if (i.ma_truong === code) {
                     return {
                         ...i,
                         CHOSEN: true,
@@ -47,7 +47,7 @@ export const SingleSchool = () => {
             >
                 <p className="pr-2" ref={schoolRef}>
                     {schoolData.find((i) => i.CHOSEN === true) !== undefined
-                        ? schoolData.find((i) => i.CHOSEN === true).TEN_TRUONG
+                        ? schoolData.find((i) => i.CHOSEN === true).ten_truong
                         : 'Chọn trường'}
                 </p>
                 <ArrowDropDownIcon />
@@ -61,8 +61,8 @@ export const SingleSchool = () => {
                     }
                 >
                     {schoolData.map((item, index) => {
-                        const name = item.TEN_TRUONG;
-                        const code = item.MA_TRUONG;
+                        const name = item.ten_truong;
+                        const code = item.ma_truong;
 
                         return (
                             <li

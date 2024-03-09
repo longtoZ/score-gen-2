@@ -4,7 +4,6 @@ Date : 2024-03-02 22:02:23
 
 Total : 128 files,  10322 codes, 106 comments, 1086 blanks, all 11514 lines
 
-Summary / [Details](details.md) / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
 ## Languages
 | language | files | code | comment | blank | total |

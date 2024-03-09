@@ -79,38 +79,38 @@ export const YearChart = () => {
         const school = data['DATA'];
 
         wishes.NV1.push({
-            TEN_TRUONG: data['TEN_TRUONG'],
-            DIEM: Array.from(school, (s) =>
-                years.includes(s['NAM_HOC']) ? s['DIEM']['NV1'] : null,
+            ten_truong: data['ten_truong'],
+            diem: Array.from(school, (s) =>
+                years.includes(s['nam_hoc']) ? s['diem']['NV1'] : null,
             ).filter((s) => s !== null),
         });
 
         wishes.NV2.push({
-            TEN_TRUONG: data['TEN_TRUONG'],
-            DIEM: Array.from(school, (s) =>
-                years.includes(s['NAM_HOC']) ? s['DIEM']['NV2'] : null,
+            ten_truong: data['ten_truong'],
+            diem: Array.from(school, (s) =>
+                years.includes(s['nam_hoc']) ? s['diem']['NV2'] : null,
             ).filter((s) => s !== null),
         });
 
         wishes.NV3.push({
-            TEN_TRUONG: data['TEN_TRUONG'],
-            DIEM: Array.from(school, (s) =>
-                years.includes(s['NAM_HOC']) ? s['DIEM']['NV3'] : null,
+            ten_truong: data['ten_truong'],
+            diem: Array.from(school, (s) =>
+                years.includes(s['nam_hoc']) ? s['diem']['NV3'] : null,
             ).filter((s) => s !== null),
         });
 
         wishesPercentage.NV1.push({
-            TEN_TRUONG: data['TEN_TRUONG'],
-            DIEM: Array.from(school, (s) => {
-                if (years.includes(s['NAM_HOC'])) {
-                    if (s['DIEM']['NV1'] === 0) {
+            ten_truong: data['ten_truong'],
+            diem: Array.from(school, (s) => {
+                if (years.includes(s['nam_hoc'])) {
+                    if (s['diem']['NV1'] === 0) {
                         return NaN;
                     }
 
-                    if (s['NAM_HOC'] < 2021) {
-                        return ((s['DIEM']['NV1'] / 50) * 100).toFixed(2);
+                    if (s['nam_hoc'] < 2021) {
+                        return ((s['diem']['NV1'] / 50) * 100).toFixed(2);
                     } else {
-                        return ((s['DIEM']['NV1'] / 30) * 100).toFixed(2);
+                        return ((s['diem']['NV1'] / 30) * 100).toFixed(2);
                     }
                 }
                 return null;
@@ -118,17 +118,17 @@ export const YearChart = () => {
         });
 
         wishesPercentage.NV2.push({
-            TEN_TRUONG: data['TEN_TRUONG'],
-            DIEM: Array.from(school, (s) => {
-                if (years.includes(s['NAM_HOC'])) {
-                    if (s['DIEM']['NV2'] === 0) {
+            ten_truong: data['ten_truong'],
+            diem: Array.from(school, (s) => {
+                if (years.includes(s['nam_hoc'])) {
+                    if (s['diem']['NV2'] === 0) {
                         return NaN;
                     }
 
-                    if (s['NAM_HOC'] < 2021) {
-                        return ((s['DIEM']['NV2'] / 50) * 100).toFixed(2);
+                    if (s['nam_hoc'] < 2021) {
+                        return ((s['diem']['NV2'] / 50) * 100).toFixed(2);
                     } else {
-                        return ((s['DIEM']['NV2'] / 30) * 100).toFixed(2);
+                        return ((s['diem']['NV2'] / 30) * 100).toFixed(2);
                     }
                 }
                 return null;
@@ -136,17 +136,17 @@ export const YearChart = () => {
         });
 
         wishesPercentage.NV3.push({
-            TEN_TRUONG: data['TEN_TRUONG'],
-            DIEM: Array.from(school, (s) => {
-                if (years.includes(s['NAM_HOC'])) {
-                    if (s['DIEM']['NV3'] === 0) {
+            ten_truong: data['ten_truong'],
+            diem: Array.from(school, (s) => {
+                if (years.includes(s['nam_hoc'])) {
+                    if (s['diem']['NV3'] === 0) {
                         return NaN;
                     }
 
-                    if (s['NAM_HOC'] < 2021) {
-                        return ((s['DIEM']['NV3'] / 50) * 100).toFixed(2);
+                    if (s['nam_hoc'] < 2021) {
+                        return ((s['diem']['NV3'] / 50) * 100).toFixed(2);
                     } else {
-                        return ((s['DIEM']['NV3'] / 30) * 100).toFixed(2);
+                        return ((s['diem']['NV3'] / 30) * 100).toFixed(2);
                     }
                 }
                 return null;
@@ -271,8 +271,8 @@ export const YearChart = () => {
         labels: years,
         datasets: Array.from(wishes[singleWish], (wish, index) => {
             return {
-                label: wish['TEN_TRUONG'],
-                data: wish['DIEM'],
+                label: wish['ten_truong'],
+                data: wish['diem'],
                 backgroundColor: color[index]['bg'],
                 borderColor: color[index]['border'],
                 borderWidth: 1,
@@ -284,8 +284,8 @@ export const YearChart = () => {
         labels: years,
         datasets: Array.from(wishesPercentage[singleWish], (wish, index) => {
             return {
-                label: wish['TEN_TRUONG'],
-                data: wish['DIEM'],
+                label: wish['ten_truong'],
+                data: wish['diem'],
                 backgroundColor: color[index]['bg'],
                 borderColor: color[index]['border'],
                 borderWidth: 2,

@@ -181,14 +181,14 @@ export const CompeteChart = () => {
         labels: years,
         datasets: Array.from(competeData, (item, index) => {
             return {
-                label: item['TEN_TRUONG'],
+                label: item['ten_truong'],
                 data: years.map((year) =>
                     (
-                        item['DATA'].find((item) => item['NAM_HOC'] === year)[
-                            'SO_LUONG'
+                        item['DATA'].find((item) => item['nam_hoc'] === year)[
+                            'so_luong'
                         ] /
-                        item['DATA'].find((item) => item['NAM_HOC'] === year)[
-                            'CHI_TIEU'
+                        item['DATA'].find((item) => item['nam_hoc'] === year)[
+                            'chi_tieu'
                         ]
                     ).toFixed(2),
                 ),
@@ -212,30 +212,30 @@ export const CompeteChart = () => {
                         </div>
                         <div className="p-4 w-full flex justify-center relative flex-wrap">
                             {competeData.map((item, index) => {
-                                const title = item['TEN_TRUONG'];
+                                const title = item['ten_truong'];
                                 const target = item['DATA'].find(
-                                    (year) => year['NAM_HOC'] === singleYear,
-                                )['CHI_TIEU'];
+                                    (year) => year['nam_hoc'] === singleYear,
+                                )['chi_tieu'];
                                 const total = item['DATA'].find(
-                                    (year) => year['NAM_HOC'] === singleYear,
-                                )['SO_LUONG'];
+                                    (year) => year['nam_hoc'] === singleYear,
+                                )['so_luong'];
                                 const c = total / target;
 
                                 const targetPrevious =
                                     singleYear - 1 >= earliestYear
                                         ? item['DATA'].find(
                                               (year) =>
-                                                  year['NAM_HOC'] ===
+                                                  year['nam_hoc'] ===
                                                   singleYear - 1,
-                                          )['CHI_TIEU']
+                                          )['chi_tieu']
                                         : 0;
                                 const totalPrevious =
                                     singleYear - 1 >= earliestYear
                                         ? item['DATA'].find(
                                               (year) =>
-                                                  year['NAM_HOC'] ===
+                                                  year['nam_hoc'] ===
                                                   singleYear - 1,
-                                          )['SO_LUONG']
+                                          )['so_luong']
                                         : 0;
                                 const cPrevious =
                                     totalPrevious / targetPrevious;

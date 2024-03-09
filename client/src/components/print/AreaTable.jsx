@@ -3,8 +3,8 @@ export const AreaTable = ({ data }) => {
     const length = tableData.length;
 
     const filteredTableData = tableData.sort((a, b) => {
-        const wish1 = parseFloat(a['DIEM']['NV1']);
-        const wish2 = parseFloat(b['DIEM']['NV1']);
+        const wish1 = parseFloat(a['diem']['NV1']);
+        const wish2 = parseFloat(b['diem']['NV1']);
 
         return wish2 - wish1;
     })
@@ -48,22 +48,22 @@ export const AreaTable = ({ data }) => {
                                                     className="py-2 text-emerald-600 font-semibold"
                                                     rowSpan={length}
                                                 >
-                                                    {item['NAM_HOC']}
+                                                    {item['nam_hoc']}
                                                 </td>
                                             </>
                                         ) : null}
                                         <td className="py-2">
-                                            {item['TEN_TRUONG']}
+                                            {item['ten_truong']}
                                         </td>
 
                                         <td className="py-2">
-                                            {item['DIEM']['NV1']}
+                                            {item['diem']['NV1']}
                                         </td>
                                         <td className="py-2">
-                                            {item['DIEM']['NV2']}
+                                            {item['diem']['NV2']}
                                         </td>
                                         <td className="py-2">
-                                            {item['DIEM']['NV3']}
+                                            {item['diem']['NV3']}
                                         </td>
                                     </tr>
                                 );

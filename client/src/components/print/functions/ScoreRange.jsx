@@ -137,7 +137,7 @@ export const ScoreRange = () => {
             return;
         }
 
-        if (start < 0 || end > 30) {
+        if (start <= 0 || end >= 30) {
             setToastMessage({
                 type: 'error',
                 msg: 'Điểm phải nằm trong khoảng từ 0 đến 30',
@@ -179,7 +179,7 @@ export const ScoreRange = () => {
     const editData = () => {
         if (start > end) {
             setToastMessage({
-                type: 'warning',
+                type: 'error',
                 msg: 'Điểm đầu không thể lớn hơn điểm cuối',
             });
             return;

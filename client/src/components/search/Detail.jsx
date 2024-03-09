@@ -11,7 +11,7 @@ export const Detail = ({ ...res }) => {
                 <ul className="block my-auto bg-[#14966a30] p-4 rounded-lg shadow-md border-2 border-[#14966a8a]">
                     <li className="my-2">
                         <CalendarMonthIcon className="mr-2" />
-                        <b>Thành lập: </b> {res.THANH_LAP}
+                        <b>Thành lập: </b> {res.thanh_lap}
                     </li>
                     <li className="my-2">
                         <InsertLinkIcon className="mr-2" />
@@ -27,12 +27,12 @@ export const Detail = ({ ...res }) => {
                     </li>
                     <li className="my-2">
                         <LocationOnIcon className="mr-2" />
-                        <b>Địa chỉ: </b> {res.DIA_CHI}
+                        <b>Địa chỉ: </b> {res.dia_chi}
                     </li>
                 </ul>
                 <div
                     className="map-area"
-                    dangerouslySetInnerHTML={{ __html: res.BAN_DO }}
+                    dangerouslySetInnerHTML={{ __html: res.ban_do }}
                 ></div>
             </div>
         </td>

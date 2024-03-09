@@ -50,9 +50,18 @@ export const YearRange = () => {
 
     // Add the data to the main array
     const addData = () => {
-        if (end > yearsList[0] || start < yearsList[yearsList.length - 1]) {
+
+        if (school === '') {
             setToastMessage({
                 type: 'warning',
+                msg: 'Tên trường không được để trống',
+            });
+            return;
+        }
+
+        if (end > yearsList[0] || start < yearsList[yearsList.length - 1]) {
+            setToastMessage({
+                type: 'error',
                 msg: `Năm bắt đầu và kết thúc phải năm trong khoảng từ ${yearsList[yearsList.length - 1]} đến ${yearsList[0]}`,
             });
             return;
@@ -74,7 +83,7 @@ export const YearRange = () => {
                     {
                         dataType: 'year-range',
                         title,
-                        school: tableData[0].TEN_TRUONG,
+                        school: tableData[0].ten_truong,
                         start,
                         end,
                         tableData,
@@ -93,7 +102,7 @@ export const YearRange = () => {
     const editData = () => {
         if (end > yearsList[0] || start < yearsList[yearsList.length - 1]) {
             setToastMessage({
-                type: 'warning',
+                type: 'error',
                 msg: `Năm bắt đầu và kết thúc phải năm trong khoảng từ ${yearsList[yearsList.length - 1]} đến ${yearsList[0]}`,
             });
             return;
@@ -114,7 +123,7 @@ export const YearRange = () => {
                 newData[dataIndex] = {
                     dataType: 'year-range',
                     title,
-                    school: tableData[0].TEN_TRUONG,
+                    school: tableData[0].ten_truong,
                     start,
                     end,
                     tableData,

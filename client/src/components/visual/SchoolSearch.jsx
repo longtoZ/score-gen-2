@@ -22,11 +22,11 @@ export const SchoolSearch = ({ school }) => {
             (s) => s !== school['QUAN/HUYEN'],
         );
         setSchoolData(
-            schoolData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
+            schoolData.filter((s) => s['ma_truong'] !== school['ma_truong']),
         );
         setSchoolData(
             schoolData
-                .filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG'])
+                .filter((s) => s['ma_truong'] !== school['ma_truong'])
                 .map((s, i, arr) => {
                     if (i === arr.length - 1) {
                         s['CHOSEN'] = true;
@@ -36,7 +36,7 @@ export const SchoolSearch = ({ school }) => {
                 }),
         );
         setCompeteData(
-            competeData.filter((s) => s['MA_TRUONG'] !== school['MA_TRUONG']),
+            competeData.filter((s) => s['ma_truong'] !== school['ma_truong']),
         );
         setAreaData(
             areaData.filter((s) => s['QUAN/HUYEN'] !== school['QUAN/HUYEN']),
@@ -59,11 +59,11 @@ export const SchoolSearch = ({ school }) => {
                         {school['QUAN/HUYEN']}
                     </p>
                     <p className="text-lg font-semibold">
-                        {school['TEN_TRUONG']}
+                        {school['ten_truong']}
                     </p>
                 </div>
                 <h1 className="text-text-subtitle-color mt-3">
-                    {schoolTypesObjRev[school['MA_LOAI']]}
+                    {schoolTypesObjRev[school['ma_loai']]}
                 </h1>
             </div>
             <div className="flex justify-center mt-4 cursor-pointer">

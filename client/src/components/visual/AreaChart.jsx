@@ -62,7 +62,7 @@ export const AreaChart = () => {
             (d) => d['QUAN/HUYEN'] === districtList.CHOSEN,
         );
 
-        const schoolDataList = schoolData.map((s) => s['TEN_TRUONG']);
+        const schoolDataList = schoolData.map((s) => s['ten_truong']);
 
         let delayed;
         const options = {
@@ -127,18 +127,18 @@ export const AreaChart = () => {
         };
 
         const data = {
-            labels: schools['DATA'].map((d) => d['TEN_TRUONG']),
+            labels: schools['DATA'].map((d) => d['ten_truong']),
             datasets: [
                 {
                     labels: null,
-                    data: schools['DATA'].map((d) => d['DIEM']),
+                    data: schools['DATA'].map((d) => d['diem']),
                     backgroundColor: schools['DATA'].map((d) =>
-                        schoolDataList.includes(d['TEN_TRUONG'])
+                        schoolDataList.includes(d['ten_truong'])
                             ? selectedColor.bg
                             : color[colorIndex].bg,
                     ),
                     borderColor: schools['DATA'].map((d) =>
-                        schoolDataList.includes(d['TEN_TRUONG'])
+                        schoolDataList.includes(d['ten_truong'])
                             ? selectedColor.border
                             : color[colorIndex].border,
                     ),
