@@ -225,7 +225,7 @@ export const Print = () => {
                     </div>
                 </div>
 
-                <div className="fixed bottom-4 p-2 cursor-pointer add-area">
+                <div className="fixed bottom-4 right-[1rem] p-2 cursor-pointer add-area">
                     <div
                         className="my-2 p-2 flex justify-center gap-2 bg-header-color shadow-basic add-btn"
                         onClick={handleShowAdd}>

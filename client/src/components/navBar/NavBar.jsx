@@ -47,8 +47,6 @@ export const NavBar = () => {
         if (!hideNav) return;
 
         let prevScrollPos = window.scrollY;
-        let windowHeight = window.innerHeight;
-        const addBtn = document.querySelector('.add-area');
 
         window.onscroll = () => {
             let currentScrollPos = window.scrollY;
@@ -59,14 +57,6 @@ export const NavBar = () => {
                 navRef.current.style.top = '0';
             } else {
                 navRef.current.style.top = '-100%';
-            }
-
-            if (addBtn) {
-                if (currentScrollPos > windowHeight/2) {
-                    addBtn.style.right = '1rem';
-                } else {
-                    addBtn.style.right = '-20rem';
-                }
             }
 
             prevScrollPos = currentScrollPos;

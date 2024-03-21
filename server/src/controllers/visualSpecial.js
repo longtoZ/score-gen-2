@@ -5,7 +5,7 @@ export const visualSpecialController = (req, res) => {
   const wish = req.query.wish.replaceAll('%25', '%');
 
   const query =
-    `SELECT "truong"."ten_truong", "diem_chuan"."ma_truong", "truong"."QUAN/HUYEN", "diem_chuan"."nam_hoc", "diem_chuan"."ma_nv", "diem_chuan"."diem" FROM "diem_chuan" LEFT OUTER JOIN "truong" on "truong"."ma_truong" = "diem_chuan"."ma_truong" WHERE "nam_hoc" = ${year} AND "ma_nv" = '${wish}' ORDER BY "ma_truong" ASC`;
+    `SELECT "truong"."ten_truong", "diem_chuan"."ma_truong", "truong"."QUAN/HUYEN", "diem_chuan"."nam_hoc", "diem_chuan"."ma_nv", "diem_chuan"."diem" FROM "diem_chuan" LEFT OUTER JOIN "truong" on "truong"."ma_truong" = "diem_chuan"."ma_truong" WHERE "nam_hoc" = ${year} AND "ma_nv" LIKE '${wish}' ORDER BY "ma_truong" ASC`;
 
     pool
     .connect()

@@ -17,12 +17,12 @@ export const Detail = ({ ...res }) => {
                         <InsertLinkIcon className="mr-2" />
                         <b>Đường dẫn: </b>
                         <a
-                            href={res.URL}
+                            href={res.url}
                             target="_blank"
                             rel="noreferrer"
                             className="text-blue-500 underline"
                         >
-                            {res.URL}
+                            {res.url}
                         </a>
                     </li>
                     <li className="my-2">

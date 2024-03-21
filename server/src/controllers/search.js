@@ -12,11 +12,7 @@ export const searchController = (req, res) => {
   const year = req.query.year;
 
   const query =
-    `SELECT "truong"."ten_truong", "diem_chuan"."ma_truong", "truong"."QUAN/HUYEN", "diem_chuan"."ma_nv", "diem_chuan"."diem" FROM "diem_chuan" LEFT OUTER JOIN "truong" on "truong"."ma_truong" = "diem_chuan"."ma_truong" WHERE (` +
-    type +
-    ` AND "diem_chuan"."nam_hoc" = ` +
-    year +
-    `);`;
+    `SELECT "truong"."ten_truong", "diem_chuan"."ma_truong", "truong"."QUAN/HUYEN", "diem_chuan"."ma_nv", "diem_chuan"."diem" FROM "diem_chuan" LEFT OUTER JOIN "truong" on "truong"."ma_truong" = "diem_chuan"."ma_truong" WHERE ((${type}) AND "diem_chuan"."nam_hoc" = ${year});`;
 
   pool.connect()
     .then((client) => {

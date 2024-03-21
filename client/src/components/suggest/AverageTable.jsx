@@ -68,7 +68,7 @@ export const AverageTable = ({ tableData, filterData }) => {
                                                 key={index}
                                                 className="[&:nth-child(even)]:bg-even-row-color"
                                             >
-                                                <td className="text-emerald-600">
+                                                <td className="text-emerald-600 font-bold">
                                                     {index + 1}
                                                 </td>
                                                 <td className="py-2">
